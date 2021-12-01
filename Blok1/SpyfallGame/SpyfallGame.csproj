@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="presentatie\showRolesGui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="presentatie\showRolesGui.Designer.cs">
+      <DependentUpon>showRolesGui.cs</DependentUpon>
+    </Compile>
     <Compile Include="presentatie\startGui.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,9 @@
     <Compile Include="logica\SpyfallMain.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="presentatie\showRolesGui.resx">
+      <DependentUpon>showRolesGui.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="presentatie\startGui.resx">
       <DependentUpon>startGui.cs</DependentUpon>
     </EmbeddedResource>

@@ -66,6 +66,8 @@ public class Rollen
 
 
         }
+        //een nieuwe gui gaan openen die de rollen gaat gaan tonen
+
 
     }
 

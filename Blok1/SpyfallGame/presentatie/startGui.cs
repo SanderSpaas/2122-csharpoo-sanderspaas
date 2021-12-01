@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpyfallGame.presentatie;
+using System;
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
@@ -48,14 +49,20 @@ namespace SpyfallGame
                 textBox1.Text = textBox1.Text + error;
             }
             //als er geen errors zijn dingen voor het spel beginnen klaarzetten
-            if(errorArray.Count == 0)
+            if (errorArray.Count == 0)
             {
+                //random data uit ons bestand gaan laden en in de rollenlist gaan zetten
                 KiesRadomRol(@"data\SpyfallData.csv");
-                //spelerobjecten gaan aanmaken
+
+                //het aantal spelers en spionnen gaan vastzetten
                 SetAantalspelers((int)aantalSpelers.Value);
                 SetAantalspionnen((int)aantalSpionnen.Value);
+                //de rollen in een tijdelijke array gaan zetten zodat we er in kunnen verwijderen zonder de originele data te verliezen
                 rollenListSpel = rollenList;
-                for (int aantalSpelers = 0; aantalSpelers < GetAantalspelers()-GetAantalspionnen(); aantalSpelers++)
+                //code voor spelers
+                //het totaal aantal spelers bepaalt hoeveel spelerobjecten er aan gemaakt gaan worden
+                //aantal spelers = aantal spelers - het aantal spionnen
+                for (int aantalSpelers = 0; aantalSpelers < GetAantalspelers() - GetAantalspionnen(); aantalSpelers++)
                 {
                     //als er geen originele rollen meer overzijn de lijst gewoon opnieuw vullen met alle mogelijkheden
                     if (rollenList.Count == 0)
@@ -65,42 +72,33 @@ namespace SpyfallGame
                     Random random = new Random();
                     //random gaan genereren
                     int randomRol = random.Next(0, rollenListSpel.Count);
+                    //spelerobjecten gaan aanmaken
                     Speler speler = new Speler(rollenListSpel[randomRol].ToString(), Locatie);
                     addSpeler(speler);
-                    rollenListSpel.RemoveAt(randomRol); 
+                    rollenListSpel.RemoveAt(randomRol);
                 }
+                //code voor spionnen
                 for (int aantalSpionnen = 0; aantalSpionnen < GetAantalspionnen(); aantalSpionnen++)
                 {
                     Speler speler = new Speler("Spion", "Onbekend");
                     addSpeler(speler);
                 }
+
             }
-            
+            //debug om spelers met hun rollen te zien in het errorvak
             foreach (Speler speler in Spelers)
             {
                 textBox1.Text = textBox1.Text + speler.getRol() + "    ";
             }
+            //de locatie ook gaan tonen in het errorvak
             textBox1.Text = textBox1.Text + Locatie;
 
-            //aantal spelers gaan setten
-
-            //lijst van spelers gaan maken 
-            for(int i = 0; i < GetAantalspelers(); i++)
-            {
-
-            }
-
-            //code voor spelers
-            //aantal spelers = aantal spelers - het aantal spionnen
-            //het totaal aantal spelers bepaalt hoeveel spelerobjecten er aan gemaakt gaan worden
-            //code voor spionnen
-            //door de tijdelijke array gaan loopen en objecten gaan aanmaken met de data en in de echte array gaan zetten
-
-
+            //de volgende form gaan tonen bye bye o/ :)
+            this.Hide();
+            new showRolesGui().Show();
 
 
         }
-
         private void Spyfall_Load(object sender, EventArgs e)
         {
 
@@ -120,5 +118,6 @@ namespace SpyfallGame
         {
 
         }
+
     }
 }
