@@ -1,8 +1,14 @@
 ﻿using System;
 
-public class Class1
+public class SpyfallMain
 {
-	public Class1()
+	public SpyfallMain()
 	{
+
 	}
+	public const int AANTALSPELERS;
+	public const int AANTALSPIONNEN;
+	public const String locatie;
+
+
 }

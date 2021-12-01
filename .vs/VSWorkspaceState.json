@@ -2,12 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\Blok1",
-    "\\Blok1\\BasicGui",
-    "\\Blok1\\BasicGui\\BasicGui",
-    "\\Spyfall",
-    "\\Spyfall\\Spyfall",
-    "\\Spyfall\\Spyfall\\Resources"
+    "\\Blok1\\BasicGui\\testCode",
+    "\\Blok1\\data",
+    "\\Blok1\\logica",
+    "\\Blok1\\presentatie",
+    "\\Blok1\\Spyfall"
   ],
-  "SelectedNode": "\\Blok1\\BasicGui\\BasicGui\\MainWindow.xaml",
+  "SelectedNode": "\\Blok1",
   "PreviewInSolutionExplorer": false
 }
