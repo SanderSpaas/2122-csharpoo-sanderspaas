@@ -6,18 +6,27 @@ public class SpyfallMain
     {
 
     }
-    private int aantalspelers;
-    private int aantalspionnen;
-    private String locatie;
+    private static int aantalspelers;
+    private static int aantalspionnen;
 
-    public SpyfallMain(int aantalspelers, int aantalspionnen, string locatie)
+    public static int GetAantalspelers()
     {
-        this.aantalspelers = aantalspelers;
-        this.aantalspionnen = aantalspionnen;
-        this.locatie = locatie;
+        return aantalspelers;
     }
 
-    public int Aantalspelers { get; set; }
-    public int Aantalspionnen { get; set; }
+    public static void SetAantalspelers(int value)
+    {
+        aantalspelers = value;
+    }
+
+    public static int GetAantalspionnen()
+    {
+        return aantalspionnen;
+    }
+
+    public static void SetAantalspionnen(int value)
+    {
+        aantalspionnen = value;
+    }
 
 }

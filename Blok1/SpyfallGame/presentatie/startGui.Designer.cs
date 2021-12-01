@@ -1,6 +1,6 @@
 ﻿namespace SpyfallGame
 {
-    partial class Form1
+    partial class Spyfall
     {
         /// <summary>
         /// Required designer variable.
@@ -30,37 +30,85 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.aantalSpelers = new System.Windows.Forms.NumericUpDown();
+            this.labelSpelers = new System.Windows.Forms.Label();
+            this.aantalSpionnen = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.aantalSpelers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aantalSpionnen)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(593, 212);
+            this.button1.Location = new System.Drawing.Point(27, 155);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(120, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(81, 12);
+            this.textBox1.ForeColor = System.Drawing.Color.Crimson;
+            this.textBox1.Location = new System.Drawing.Point(27, 203);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(434, 426);
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(326, 113);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // Form1
+            // aantalSpelers
+            // 
+            this.aantalSpelers.Location = new System.Drawing.Point(27, 59);
+            this.aantalSpelers.Name = "aantalSpelers";
+            this.aantalSpelers.Size = new System.Drawing.Size(120, 22);
+            this.aantalSpelers.TabIndex = 2;
+            this.aantalSpelers.ValueChanged += new System.EventHandler(this.aantalSpelers_ValueChanged);
+            // 
+            // labelSpelers
+            // 
+            this.labelSpelers.AutoSize = true;
+            this.labelSpelers.Location = new System.Drawing.Point(153, 61);
+            this.labelSpelers.Name = "labelSpelers";
+            this.labelSpelers.Size = new System.Drawing.Size(200, 16);
+            this.labelSpelers.TabIndex = 3;
+            this.labelSpelers.Text = "Geef het totaal aantal spelers op";
+            this.labelSpelers.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // aantalSpionnen
+            // 
+            this.aantalSpionnen.Location = new System.Drawing.Point(27, 113);
+            this.aantalSpionnen.Name = "aantalSpionnen";
+            this.aantalSpionnen.Size = new System.Drawing.Size(120, 22);
+            this.aantalSpionnen.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(153, 115);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(174, 16);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Geef het aantal spionnen op";
+            // 
+            // Spyfall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(376, 349);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.aantalSpionnen);
+            this.Controls.Add(this.labelSpelers);
+            this.Controls.Add(this.aantalSpelers);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "Spyfall";
+            this.Text = "Spyfall";
+            this.Load += new System.EventHandler(this.Spyfall_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.aantalSpelers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aantalSpionnen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -70,6 +118,10 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.NumericUpDown aantalSpelers;
+        private System.Windows.Forms.Label labelSpelers;
+        private System.Windows.Forms.NumericUpDown aantalSpionnen;
+        private System.Windows.Forms.Label label1;
     }
 }
 

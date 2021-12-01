@@ -33,7 +33,7 @@ public class Rollen
 
 
 
-    public static void ReturnRandomRolllen(String filePath)
+    public static void KiesRadomRol(String filePath)
     {
         //een random gaan genereren met als upper limit het aantal lijnen in ons data document
         //de lijnen gaan tellen
@@ -58,10 +58,10 @@ public class Rollen
             }
             else
             {
-                //object gaan aanmaken
-                Rollen rol = new Rollen(naam);
+                ////object gaan aanmaken
+                //Rollen rol = new Rollen(naam);
                 //object in de lijst gaan zetten
-                rollenList.Add(rol);
+                rollenList.Add(naam);
             }
 
 

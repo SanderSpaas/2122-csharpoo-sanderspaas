@@ -8,4 +8,6 @@ public enum Colors
     BLAUW,
     ROZE,
     GROEN,
+    PAARS,
+    ORANGE,
 }
