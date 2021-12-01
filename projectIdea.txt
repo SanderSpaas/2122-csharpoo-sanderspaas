@@ -1,0 +1,19 @@
+character creator program 
+
+spyfall the game 
+spion moet raden waar spelers zijn
+spelers moeten raden wie spion is
+
+randomisen van characters maar ook alles manueel kunnen doen
+gebruikte technologieen:
+- kennismaking met Visual Studio & C#
+- Gebruik van GIT
+- debugging
+- programmeerstijl
+- architectuur van een toepassing – meerlagenmodel
+- exceptions
+- enumerations
+- properties
+- generic collections
+- bestanden/streams
+- 'Value' en 'Reference' types: cloning & serialisatie
