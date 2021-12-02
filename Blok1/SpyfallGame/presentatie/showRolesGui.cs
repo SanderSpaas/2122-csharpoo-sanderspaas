@@ -41,6 +41,7 @@ namespace SpyfallGame.presentatie
                 counter++;
                 if (counter % 2 == 0)
                 {
+                    nextPlayerButton.Text = "Klik hier als je de info wilt zien";
                     rolLabel.Text = "";
                     locatieLabel.Text = "";
                     rolLabel1.Text = "";
@@ -48,6 +49,7 @@ namespace SpyfallGame.presentatie
                 }
                 else
                 {
+                    nextPlayerButton.Text = "Ik heb mijn rol en de locatie gezien";
                     Speler speler = (Speler)Spelers[counter2];
                     rolLabel.Text = speler.GetRol();
                     locatieLabel.Text = speler.GetLocatie();

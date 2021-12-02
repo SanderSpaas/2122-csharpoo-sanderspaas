@@ -33,8 +33,13 @@ public class Rollen
 
 
 
-    public static void KiesRadomRol(String filePath)
+    public static void KiesRandomRol(String filePath)
     {
+        //gaan kijken of het filePath bestaat anders een exception gaan thrownen
+        if (!File.Exists(filePath))
+        {
+            throw new ArgumentException("File does not exist at given location: {0}", filePath);
+        }
         //een random gaan genereren met als upper limit het aantal lijnen in ons data document
         //de lijnen gaan tellen
         int lineCount = File.ReadLines(filePath).Count();
@@ -66,7 +71,6 @@ public class Rollen
 
 
         }
-        //een nieuwe gui gaan openen die de rollen gaat gaan tonen
 
 
     }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.nextPlayerButton = new System.Windows.Forms.Button();
             this.welkeSpelerLabel = new System.Windows.Forms.Label();
             this.rolLabel1 = new System.Windows.Forms.Label();
             this.rolLabel = new System.Windows.Forms.Label();
@@ -36,15 +36,15 @@
             this.locatieLabel1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // nextPlayerButton
             // 
-            this.button1.Location = new System.Drawing.Point(104, 265);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(238, 53);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "klik hier als je de info wilt zien";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.nextPlayerButton.Location = new System.Drawing.Point(104, 265);
+            this.nextPlayerButton.Name = "nextPlayerButton";
+            this.nextPlayerButton.Size = new System.Drawing.Size(238, 53);
+            this.nextPlayerButton.TabIndex = 0;
+            this.nextPlayerButton.Text = "Klik hier als je de info wilt zien";
+            this.nextPlayerButton.UseVisualStyleBackColor = true;
+            this.nextPlayerButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // welkeSpelerLabel
             // 
@@ -100,7 +100,8 @@
             this.Controls.Add(this.rolLabel);
             this.Controls.Add(this.rolLabel1);
             this.Controls.Add(this.welkeSpelerLabel);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.nextPlayerButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "showRolesGui";
             this.Text = "showRolesGui";
             this.Load += new System.EventHandler(this.showRolesGui_Load);
@@ -111,7 +112,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button nextPlayerButton;
         private System.Windows.Forms.Label welkeSpelerLabel;
         private System.Windows.Forms.Label rolLabel1;
         private System.Windows.Forms.Label rolLabel;

@@ -34,6 +34,8 @@
             this.labelSpelers = new System.Windows.Forms.Label();
             this.aantalSpionnen = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.dataFileLabel = new System.Windows.Forms.Label();
+            this.dataFileButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpelers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpionnen)).BeginInit();
             this.SuspendLayout();
@@ -93,17 +95,40 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Geef het aantal spionnen op";
             // 
+            // dataFileLabel
+            // 
+            this.dataFileLabel.AutoSize = true;
+            this.dataFileLabel.Location = new System.Drawing.Point(27, 332);
+            this.dataFileLabel.Name = "dataFileLabel";
+            this.dataFileLabel.Size = new System.Drawing.Size(305, 16);
+            this.dataFileLabel.TabIndex = 6;
+            this.dataFileLabel.Text = "Selecteer je eigen databestand om mee te spelen";
+            this.dataFileLabel.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // dataFileButton
+            // 
+            this.dataFileButton.Location = new System.Drawing.Point(27, 352);
+            this.dataFileButton.Name = "dataFileButton";
+            this.dataFileButton.Size = new System.Drawing.Size(305, 23);
+            this.dataFileButton.TabIndex = 7;
+            this.dataFileButton.Text = "Select File";
+            this.dataFileButton.UseVisualStyleBackColor = true;
+            this.dataFileButton.Click += new System.EventHandler(this.dataFileButton_Click);
+            // 
             // Spyfall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 349);
+            this.ClientSize = new System.Drawing.Size(376, 402);
+            this.Controls.Add(this.dataFileButton);
+            this.Controls.Add(this.dataFileLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.aantalSpionnen);
             this.Controls.Add(this.labelSpelers);
             this.Controls.Add(this.aantalSpelers);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Spyfall";
             this.Text = "Spyfall";
             this.Load += new System.EventHandler(this.Spyfall_Load);
@@ -122,6 +147,8 @@
         private System.Windows.Forms.Label labelSpelers;
         private System.Windows.Forms.NumericUpDown aantalSpionnen;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label dataFileLabel;
+        private System.Windows.Forms.Button dataFileButton;
     }
 }
 

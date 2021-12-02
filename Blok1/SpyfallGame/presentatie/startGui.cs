@@ -54,7 +54,7 @@ namespace SpyfallGame
             if (errorArray.Count == 0)
             {
                 //random data uit ons bestand gaan laden en in de rollenlist gaan zetten
-                KiesRadomRol(@"data\SpyfallData.csv");
+                KiesRandomRol(@"data\SpyfallData.csv");
 
                 //het aantal spelers en spionnen gaan vastzetten
                 SetAantalspelers((int)aantalSpelers.Value);
@@ -122,5 +122,35 @@ namespace SpyfallGame
 
         }
 
+        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //de user zelf een databestand laten kiezen
+        private void dataFileButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "csv files (*.csv)|*.csv";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    String filePath = openFileDialog.FileName;
+                    textBox1.Text = textBox1.Text + filePath;
+                }
+            }
+
+            
+        }
     }
 }
