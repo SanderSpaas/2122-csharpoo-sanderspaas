@@ -14,13 +14,25 @@ public class Speler
         this.locatie = locatie;
     }
 
+
+    public String Rol
+    {
+        get { return rol; }
+        set { rol = value; }
+    }
+
+
     public static void addSpeler(Speler speler)
     {
         Spelers.Add (speler);
     }
-    public String getRol()
+    public String GetRol()
     {
         return this.rol;
+    }
+    public String GetLocatie()
+    {
+        return this.locatie;
     }
 
 }

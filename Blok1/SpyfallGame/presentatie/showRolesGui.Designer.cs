@@ -30,10 +30,10 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.welkeSpelerLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.rolLabel1 = new System.Windows.Forms.Label();
             this.rolLabel = new System.Windows.Forms.Label();
             this.locatieLabel = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.locatieLabel1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -44,6 +44,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "klik hier als je de info wilt zien";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // welkeSpelerLabel
             // 
@@ -53,20 +54,19 @@
             this.welkeSpelerLabel.Size = new System.Drawing.Size(0, 16);
             this.welkeSpelerLabel.TabIndex = 1;
             // 
-            // label2
+            // rolLabel1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(177, 109);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 29);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Jouw rol";
+            this.rolLabel1.AutoSize = true;
+            this.rolLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rolLabel1.Location = new System.Drawing.Point(177, 109);
+            this.rolLabel1.Name = "rolLabel1";
+            this.rolLabel1.Size = new System.Drawing.Size(0, 29);
+            this.rolLabel1.TabIndex = 2;
             // 
             // rolLabel
             // 
             this.rolLabel.AutoSize = true;
-            this.rolLabel.Location = new System.Drawing.Point(205, 149);
+            this.rolLabel.Location = new System.Drawing.Point(177, 149);
             this.rolLabel.Name = "rolLabel";
             this.rolLabel.Size = new System.Drawing.Size(0, 16);
             this.rolLabel.TabIndex = 3;
@@ -75,31 +75,30 @@
             // locatieLabel
             // 
             this.locatieLabel.AutoSize = true;
-            this.locatieLabel.Location = new System.Drawing.Point(205, 207);
+            this.locatieLabel.Location = new System.Drawing.Point(177, 210);
             this.locatieLabel.Name = "locatieLabel";
             this.locatieLabel.Size = new System.Drawing.Size(0, 16);
             this.locatieLabel.TabIndex = 5;
             this.locatieLabel.Click += new System.EventHandler(this.locatieLabel_Click);
             // 
-            // label6
+            // locatieLabel1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(160, 165);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(121, 29);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "De locatie";
+            this.locatieLabel1.AutoSize = true;
+            this.locatieLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.locatieLabel1.Location = new System.Drawing.Point(175, 169);
+            this.locatieLabel1.Name = "locatieLabel1";
+            this.locatieLabel1.Size = new System.Drawing.Size(0, 29);
+            this.locatieLabel1.TabIndex = 6;
             // 
             // showRolesGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 450);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.locatieLabel1);
             this.Controls.Add(this.locatieLabel);
             this.Controls.Add(this.rolLabel);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.rolLabel1);
             this.Controls.Add(this.welkeSpelerLabel);
             this.Controls.Add(this.button1);
             this.Name = "showRolesGui";
@@ -114,9 +113,9 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label welkeSpelerLabel;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label rolLabel1;
         private System.Windows.Forms.Label rolLabel;
         private System.Windows.Forms.Label locatieLabel;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label locatieLabel1;
     }
 }

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using static Rollen;
 using static Speler;
 using static SpyfallMain;
+using static SpyfallGame.logica.Shuffle;
 
 namespace SpyfallGame
 {
@@ -18,6 +19,7 @@ namespace SpyfallGame
         public Spyfall()
         {
             InitializeComponent();
+            this.Icon = new Icon("data/spy.ico");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -83,20 +85,21 @@ namespace SpyfallGame
                     Speler speler = new Speler("Spion", "Onbekend");
                     addSpeler(speler);
                 }
+                //de spelerarray gaan shuffelen
+                ShuffleList(Spelers);
 
+                //de volgende form gaan tonen bye bye o/ :)
+                //de huidige form gaan hiden
+                Hide();
+                new showRolesGui().Show();
             }
             //debug om spelers met hun rollen te zien in het errorvak
             foreach (Speler speler in Spelers)
             {
-                textBox1.Text = textBox1.Text + speler.getRol() + "    ";
+                textBox1.Text = textBox1.Text + speler.GetRol() + "    ";
             }
             //de locatie ook gaan tonen in het errorvak
             textBox1.Text = textBox1.Text + Locatie;
-
-            //de volgende form gaan tonen bye bye o/ :)
-            this.Hide();
-            new showRolesGui().Show();
-
 
         }
         private void Spyfall_Load(object sender, EventArgs e)

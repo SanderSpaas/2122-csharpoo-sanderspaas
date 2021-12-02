@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Speler;
 
 namespace SpyfallGame.presentatie
 {
     public partial class showRolesGui : Form
     {
+        //global variables
+        private int counter = 0;
+        private int counter2 = 0;
         public showRolesGui()
         {
             InitializeComponent();
+            this.Icon = new Icon("data/spy.ico");
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -29,6 +28,33 @@ namespace SpyfallGame.presentatie
 
         private void showRolesGui_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int maxPlayers = Spelers.Count;
+            rolLabel1.Text = "Jouw rol";
+            locatieLabel1.Text = "De locatie";
+            if (counter < maxPlayers * 2)
+            {
+                counter++;
+                if (counter % 2 == 0)
+                {
+                    rolLabel.Text = "";
+                    locatieLabel.Text = "";
+                    rolLabel1.Text = "";
+                    locatieLabel1.Text = "";
+                }
+                else
+                {
+                    Speler speler = (Speler)Spelers[counter2];
+                    rolLabel.Text = speler.GetRol();
+                    locatieLabel.Text = speler.GetLocatie();
+                    counter2++;
+                }
+
+            }
 
         }
     }
