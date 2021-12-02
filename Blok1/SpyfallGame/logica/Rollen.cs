@@ -10,14 +10,17 @@ public class Rollen
     private static string locatie;
     public static ArrayList rollenList = new ArrayList();
     public static ArrayList rollenListString = new ArrayList();
- 
+
 
     //public int id { get; set; }
 
     //constructor voor rollen classe
     public Rollen(String naam)
     {
-        this.naam = naam;
+       
+            this.naam = naam;
+        
+
     }
 
     public String Naam { get => naam; set => naam = value; }
@@ -38,7 +41,7 @@ public class Rollen
         //gaan kijken of het filePath bestaat anders een exception gaan thrownen
         if (!File.Exists(filePath))
         {
-            throw new ArgumentException("File does not exist at given location: {0}", filePath);
+            throw new ArgumentException("Het bestand bestaat niet op de opgegeven locatie: {0}", filePath);
         }
         //een random gaan genereren met als upper limit het aantal lijnen in ons data document
         //de lijnen gaan tellen
@@ -50,8 +53,17 @@ public class Rollen
         var lines = File.ReadAllLines(filePath);
         //random lijn gaan opslaan in variable randomLijn 
         String randomLijn = lines[randomGetal];
-        //de lijn gaan splitsen op basis van een delimiter in een tijdelijke arraylist
-        rollenListString.AddRange(randomLijn.Split(';'));
+
+        try
+        {
+            //de lijn gaan splitsen op basis van een delimiter in een tijdelijke arraylist
+            rollenListString.AddRange(randomLijn.Split(';'));
+        }
+        catch (Exception)
+        {
+
+            throw new ArgumentException("Het bestand heeft een incorrecte data-opbouw");
+        }
         //door de tijdelijke array gaan loopen en objecten gaan aanmaken met de data en in de echte array gaan zetten
         int counter = 0;
         foreach (String naam in rollenListString)
@@ -68,10 +80,11 @@ public class Rollen
                 //object in de lijst gaan zetten
                 rollenList.Add(naam);
             }
-
-
         }
-
+        if (rollenList.Count == 0)
+        {
+            throw new ArgumentException("Er is geen data ingeladen geweest, controleer de opbouw van je csv bestand");
+        }
 
     }
 

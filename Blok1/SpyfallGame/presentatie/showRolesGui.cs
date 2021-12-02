@@ -57,6 +57,14 @@ namespace SpyfallGame.presentatie
                 }
 
             }
+            else
+            {
+                rolLabel.Text = "";
+                locatieLabel.Text = "";
+                rolLabel1.Text = "";
+                locatieLabel1.Text = "";
+            }
+
 
         }
     }

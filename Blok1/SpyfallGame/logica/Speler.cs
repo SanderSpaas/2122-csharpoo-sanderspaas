@@ -10,7 +10,14 @@ public class Speler
 
     public Speler(String rol, String locatie)
     {
-        this.rol = rol;
+        if (rol != "" && rol != null)
+        {
+            this.rol = rol;
+        }
+        else
+        {
+            throw new ArgumentException("Een rol kan niet leeg zijn");
+        }
         this.locatie = locatie;
     }
 
@@ -24,7 +31,7 @@ public class Speler
 
     public static void addSpeler(Speler speler)
     {
-        Spelers.Add (speler);
+        Spelers.Add(speler);
     }
     public String GetRol()
     {

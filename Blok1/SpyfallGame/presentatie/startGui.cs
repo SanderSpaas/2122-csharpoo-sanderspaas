@@ -15,6 +15,7 @@ namespace SpyfallGame
         //de array waar we onze errors gaan insteken
         public static ArrayList errorArray = new ArrayList();
         private ArrayList rollenListSpel;
+        private string filePath = "";
 
         public Spyfall()
         {
@@ -54,7 +55,16 @@ namespace SpyfallGame
             if (errorArray.Count == 0)
             {
                 //random data uit ons bestand gaan laden en in de rollenlist gaan zetten
-                KiesRandomRol(@"data\SpyfallData.csv");
+                //gaan kijken of er costum data gekozen is en anders de default data gaan gebruiken
+                if(filePath.Length == 0)
+                {
+                    KiesRandomRol(@"data\SpyfallData.csv");
+                }
+                else
+                {
+                    KiesRandomRol(filePath);
+                }
+                
 
                 //het aantal spelers en spionnen gaan vastzetten
                 SetAantalspelers((int)aantalSpelers.Value);
@@ -64,29 +74,40 @@ namespace SpyfallGame
                 //code voor spelers
                 //het totaal aantal spelers bepaalt hoeveel spelerobjecten er aan gemaakt gaan worden
                 //aantal spelers = aantal spelers - het aantal spionnen
-                for (int aantalSpelers = 0; aantalSpelers < GetAantalspelers() - GetAantalspionnen(); aantalSpelers++)
+                int aantalSpelersTeller = GetAantalspelers();
+                int aantalSpionnenTeller = GetAantalspionnen();
+                for (int aantalSpelers = 0; aantalSpelers < aantalSpelersTeller - aantalSpionnenTeller; aantalSpelers++)
                 {
                     //als er geen originele rollen meer overzijn de lijst gewoon opnieuw vullen met alle mogelijkheden
-                    if (rollenList.Count == 0)
+                    if (rollenListSpel.Count <= 0)
                     {
                         rollenListSpel = rollenList;
                     }
                     Random random = new Random();
-                    //random gaan genereren
-                    int randomRol = random.Next(0, rollenListSpel.Count);
+                    //random gaan genereren -1 omdat het over een index gaat in een array
+                    int randomRol = random.Next(0, rollenListSpel.Count-1);
                     //spelerobjecten gaan aanmaken
+                    if (rollenListSpel[randomRol].ToString() != "" && rollenListSpel[randomRol].ToString() != null)
+                    {
+                        
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Een rol kan niet leeg zijn");
+                    }
                     Speler speler = new Speler(rollenListSpel[randomRol].ToString(), Locatie);
                     addSpeler(speler);
+                    
                     rollenListSpel.RemoveAt(randomRol);
                 }
                 //code voor spionnen
-                for (int aantalSpionnen = 0; aantalSpionnen < GetAantalspionnen(); aantalSpionnen++)
+                for (int aantalSpionnen = 0; aantalSpionnen < aantalSpionnenTeller; aantalSpionnen++)
                 {
                     Speler speler = new Speler("Spion", "Onbekend");
                     addSpeler(speler);
                 }
                 //de spelerarray gaan shuffelen
-                ShuffleList(Spelers);
+                //ShuffleList(Spelers);
 
                 //de volgende form gaan tonen bye bye o/ :)
                 //de huidige form gaan hiden
@@ -145,8 +166,8 @@ namespace SpyfallGame
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     //Get the path of specified file
-                    String filePath = openFileDialog.FileName;
-                    textBox1.Text = textBox1.Text + filePath;
+                    filePath = openFileDialog.FileName;
+                    textBox1.Text = "Costum data geselecteerd";
                 }
             }
 
