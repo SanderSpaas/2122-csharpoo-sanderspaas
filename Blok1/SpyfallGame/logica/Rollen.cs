@@ -9,30 +9,12 @@ public class Rollen
     private string naam;
     private static string locatie;
     public static ArrayList rollenList = new ArrayList();
-    public static ArrayList rollenListString = new ArrayList();
     private const String DEFAULTDATA = @"data\SpyfallData.csv";
-
-    //public int id { get; set; }
-
-    //constructor voor rollen classe
-    //voorlopig nog overbodig
-    //public Rollen(String naam)
-    //{
-    //    this.naam = naam;
-    //}
-
-    public String Naam { get => naam; set => naam = value; }
-
-    public override string ToString()
-    {
-        return naam.ToString();
-    }
-
-    //logica gaan schrijven waarmee de rollen in een lijst gezet kunnen gaan worden 
-    //eerst een random gaan genereren om te zien welke lijn we uitlezen en alleen die data gebruiken???
 
     private static String TestData(String filePath)
     {
+        //een tijdelijke arraylist om data om na te kijken in te zetten
+        ArrayList checkList = new ArrayList();
         //eerst kijken of het bestand wel bestaat
         try
         {
@@ -44,49 +26,72 @@ public class Rollen
             return DEFAULTDATA;
         }
 
-
         //kijken of de data die er instaat een geldige opbouw heeft
         try
         {
             //alle lijnen in het document gaan lezen
             var lines = File.ReadAllLines(filePath);
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException("Het bestand bestaat niet op de opgegeven locatie: {0}", filePath);
+            foreach (String line in lines)
+            {
+                checkList.AddRange(line.Split(';'));
+                if (checkList == null)
+                {
+                    throw new ArgumentException("Het bestand heeft een incorrecte data-opbouw");
+                }
+                //lijst gaan clearen zodat we de volgende lijn kunnen gaan checken
+                checkList.Clear();
+            }
         }
-        catch (FileNotFoundException)
+        catch (ArgumentException)
         {
             return DEFAULTDATA;
         }
-        //kijken of er niets leeg is in de data 
-
+        //kijken of er geen lege velden zijn in de data
+        try
+        {
+            //alle lijnen in het document gaan lezen
+            var lines = File.ReadAllLines(filePath);
+            foreach (String line in lines)
+            {
+                checkList.AddRange(line.Split(';'));
+                foreach (String rol in checkList)
+                {
+                    //gaan checken of de elementen leeg zijn
+                    if (rol == "" || rol == null)
+                    {
+                        throw new ArgumentException("Het bestand heeft een incorrecte data-opbouw, de locatie of rol kan niet leeg zijn");
+                    }
+                }
+                //lijst gaan clearen zodat we de volgende lijn kunnen gaan checken
+                checkList.Clear();
+            }
+        }
+        catch (ArgumentException)
+        {
+            return DEFAULTDATA;
+        }
         return filePath;
-
     }
 
 
     public static void KiesRandomRol(String filePath)
     {
-        
-        //een random gaan genereren met als upper limit het aantal lijnen in ons data document
-        //de lijnen gaan tellen
-        int lineCount = File.ReadLines(filePath).Count();
+        //tijdelijke arraylist
+        ArrayList rollenListString = new ArrayList();
+        //kijken of het meegegeven bestand een juiste opbouw heeft
+        String filePathCorrect = TestData(filePath);
+
         Random random = new Random();
-        //random gaan genereren
-        int randomGetal = random.Next(0, lineCount);
+        //een random gaan genereren met als upper limit het aantal lijnen in ons data document
+        int randomGetal = random.Next(0, File.ReadLines(filePathCorrect).Count());
         //alle lijnen in het document gaan lezen
-        var lines = File.ReadAllLines(filePath);
+        var lines = File.ReadAllLines(filePathCorrect);
         //random lijn gaan opslaan in variable randomLijn 
         String randomLijn = lines[randomGetal];
 
-        try
-        {
-            //de lijn gaan splitsen op basis van een delimiter in een tijdelijke arraylist
-            rollenListString.AddRange(randomLijn.Split(';'));
-        }
-        catch (Exception)
-        {
-            throw new ArgumentException("Het bestand heeft een incorrecte data-opbouw");
-        }
+        //de lijn gaan splitsen op basis van een delimiter in een tijdelijke arraylist
+        rollenListString.AddRange(randomLijn.Split(';'));
+
         //door de tijdelijke array gaan loopen en objecten gaan aanmaken met de data en in de echte array gaan zetten
         int counter = 0;
         foreach (String rol in rollenListString)
@@ -94,41 +99,14 @@ public class Rollen
             //eerste element als locatie gaan zetten
             if (counter++ == 0)
             {
-                if (rol != "" && rol != null)
-                {
-                    locatie = rol;
-                }
-                else
-                {
-                    throw new ArgumentException("Het bestand heeft een incorrecte data-opbouw");
-                }
-                
+                locatie = rol;
             }
             else
             {
-                ////object gaan aanmaken
-                //Rollen rol = new Rollen(naam);
                 //object in de lijst gaan zetten
-                //gaan nakijken dat de rol niet leeg is voordat we ze toevoegen
-                if (rol != "" && rol != null)
-                {
-                    rollenList.Add(rol);
-                }
+                rollenList.Add(rol);
             }
         }
-        //als er toenvallig lege elementen in de array geraakt zijn deze er uit gaan halen
-        //een tijdelijke array gaan maken om de juiste data in te zetten we kunnen namelijk niet een array bewerken en er tegelijk doorloopen
-        //ArrayList rollenListBewerkt = new ArrayList();
-        //foreach (String  rol in rollenList)
-        //{
-        //    if (rol != "" && rol != null)
-        //    {
-        //        rollenListBewerkt.Add(rol);
-        //    }
-        //}
-        ////de originele array gaan gelijkzetten met de bewerkte array
-        //rollenList = rollenListBewerkt;
-
     }
 
 
