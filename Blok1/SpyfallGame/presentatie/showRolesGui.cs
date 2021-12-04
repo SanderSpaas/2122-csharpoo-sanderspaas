@@ -63,6 +63,7 @@ namespace SpyfallGame.presentatie
                 locatieLabel.Text = "";
                 rolLabel1.Text = "";
                 locatieLabel1.Text = "";
+                nextPlayerButton.Text = "Start het spel";
             }
 
 

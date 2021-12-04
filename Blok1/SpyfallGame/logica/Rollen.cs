@@ -10,18 +10,16 @@ public class Rollen
     private static string locatie;
     public static ArrayList rollenList = new ArrayList();
     public static ArrayList rollenListString = new ArrayList();
-
+    private const String DEFAULTDATA = @"data\SpyfallData.csv";
 
     //public int id { get; set; }
 
     //constructor voor rollen classe
-    public Rollen(String naam)
-    {
-       
-            this.naam = naam;
-        
-
-    }
+    //voorlopig nog overbodig
+    //public Rollen(String naam)
+    //{
+    //    this.naam = naam;
+    //}
 
     public String Naam { get => naam; set => naam = value; }
 
@@ -33,16 +31,42 @@ public class Rollen
     //logica gaan schrijven waarmee de rollen in een lijst gezet kunnen gaan worden 
     //eerst een random gaan genereren om te zien welke lijn we uitlezen en alleen die data gebruiken???
 
+    private static String TestData(String filePath)
+    {
+        //eerst kijken of het bestand wel bestaat
+        try
+        {
+            if (!File.Exists(filePath))
+                throw new FileNotFoundException("Het bestand bestaat niet op de opgegeven locatie: {0}", filePath);
+        }
+        catch (FileNotFoundException)
+        {
+            return DEFAULTDATA;
+        }
 
+
+        //kijken of de data die er instaat een geldige opbouw heeft
+        try
+        {
+            //alle lijnen in het document gaan lezen
+            var lines = File.ReadAllLines(filePath);
+            if (!File.Exists(filePath))
+                throw new FileNotFoundException("Het bestand bestaat niet op de opgegeven locatie: {0}", filePath);
+        }
+        catch (FileNotFoundException)
+        {
+            return DEFAULTDATA;
+        }
+        //kijken of er niets leeg is in de data 
+
+        return filePath;
+
+    }
 
 
     public static void KiesRandomRol(String filePath)
     {
-        //gaan kijken of het filePath bestaat anders een exception gaan thrownen
-        if (!File.Exists(filePath))
-        {
-            throw new ArgumentException("Het bestand bestaat niet op de opgegeven locatie: {0}", filePath);
-        }
+        
         //een random gaan genereren met als upper limit het aantal lijnen in ons data document
         //de lijnen gaan tellen
         int lineCount = File.ReadLines(filePath).Count();
@@ -61,30 +85,49 @@ public class Rollen
         }
         catch (Exception)
         {
-
             throw new ArgumentException("Het bestand heeft een incorrecte data-opbouw");
         }
         //door de tijdelijke array gaan loopen en objecten gaan aanmaken met de data en in de echte array gaan zetten
         int counter = 0;
-        foreach (String naam in rollenListString)
+        foreach (String rol in rollenListString)
         {
             //eerste element als locatie gaan zetten
             if (counter++ == 0)
             {
-                locatie = naam;
+                if (rol != "" && rol != null)
+                {
+                    locatie = rol;
+                }
+                else
+                {
+                    throw new ArgumentException("Het bestand heeft een incorrecte data-opbouw");
+                }
+                
             }
             else
             {
                 ////object gaan aanmaken
                 //Rollen rol = new Rollen(naam);
                 //object in de lijst gaan zetten
-                rollenList.Add(naam);
+                //gaan nakijken dat de rol niet leeg is voordat we ze toevoegen
+                if (rol != "" && rol != null)
+                {
+                    rollenList.Add(rol);
+                }
             }
         }
-        if (rollenList.Count == 0)
-        {
-            throw new ArgumentException("Er is geen data ingeladen geweest, controleer de opbouw van je csv bestand");
-        }
+        //als er toenvallig lege elementen in de array geraakt zijn deze er uit gaan halen
+        //een tijdelijke array gaan maken om de juiste data in te zetten we kunnen namelijk niet een array bewerken en er tegelijk doorloopen
+        //ArrayList rollenListBewerkt = new ArrayList();
+        //foreach (String  rol in rollenList)
+        //{
+        //    if (rol != "" && rol != null)
+        //    {
+        //        rollenListBewerkt.Add(rol);
+        //    }
+        //}
+        ////de originele array gaan gelijkzetten met de bewerkte array
+        //rollenList = rollenListBewerkt;
 
     }
 

@@ -14,7 +14,7 @@ namespace SpyfallGame
     {
         //de array waar we onze errors gaan insteken
         public static ArrayList errorArray = new ArrayList();
-        private ArrayList rollenListSpel;
+        private ArrayList rollenListSpel = new ArrayList();
         private string filePath = "";
 
         public Spyfall()
@@ -69,35 +69,31 @@ namespace SpyfallGame
                 //het aantal spelers en spionnen gaan vastzetten
                 SetAantalspelers((int)aantalSpelers.Value);
                 SetAantalspionnen((int)aantalSpionnen.Value);
-                //de rollen in een tijdelijke array gaan zetten zodat we er in kunnen verwijderen zonder de originele data te verliezen
-                rollenListSpel = rollenList;
+
                 //code voor spelers
                 //het totaal aantal spelers bepaalt hoeveel spelerobjecten er aan gemaakt gaan worden
                 //aantal spelers = aantal spelers - het aantal spionnen
                 int aantalSpelersTeller = GetAantalspelers();
                 int aantalSpionnenTeller = GetAantalspionnen();
+                Random random = new Random();
                 for (int aantalSpelers = 0; aantalSpelers < aantalSpelersTeller - aantalSpionnenTeller; aantalSpelers++)
                 {
                     //als er geen originele rollen meer overzijn de lijst gewoon opnieuw vullen met alle mogelijkheden
-                    if (rollenListSpel.Count <= 0)
+                    //hiermee word de lijst ook origineel gevuld
+                    if (rollenListSpel.Count == 0)
                     {
-                        rollenListSpel = rollenList;
+                        rollenListSpel.AddRange(rollenList);
+                        //textBox1.Text = textBox1.Text +  "rollenlist aangevuld";
                     }
-                    Random random = new Random();
-                    //random gaan genereren -1 omdat het over een index gaat in een array
-                    int randomRol = random.Next(0, rollenListSpel.Count-1);
+                    
+                    //random gaan genereren
+                    int randomRol = random.Next(0, rollenListSpel.Count);
+                   
                     //spelerobjecten gaan aanmaken
-                    if (rollenListSpel[randomRol].ToString() != "" && rollenListSpel[randomRol].ToString() != null)
-                    {
-                        
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Een rol kan niet leeg zijn");
-                    }
                     Speler speler = new Speler(rollenListSpel[randomRol].ToString(), Locatie);
                     addSpeler(speler);
                     
+                    //de rol gaan verwijderen uit de tijdelijke array zodat hij niet nog is gekozen word
                     rollenListSpel.RemoveAt(randomRol);
                 }
                 //code voor spionnen
@@ -107,7 +103,7 @@ namespace SpyfallGame
                     addSpeler(speler);
                 }
                 //de spelerarray gaan shuffelen
-                //ShuffleList(Spelers);
+                ShuffleList(Spelers);
 
                 //de volgende form gaan tonen bye bye o/ :)
                 //de huidige form gaan hiden
