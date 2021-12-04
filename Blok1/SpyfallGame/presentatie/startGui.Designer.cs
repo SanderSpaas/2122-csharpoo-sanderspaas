@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataFileLabel = new System.Windows.Forms.Label();
             this.dataFileButton = new System.Windows.Forms.Button();
+            this.SpelRegelsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpelers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpionnen)).BeginInit();
             this.SuspendLayout();
@@ -44,7 +45,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(27, 155);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 23);
+            this.button1.Size = new System.Drawing.Size(120, 28);
             this.button1.TabIndex = 0;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
@@ -109,17 +110,28 @@
             // 
             this.dataFileButton.Location = new System.Drawing.Point(27, 352);
             this.dataFileButton.Name = "dataFileButton";
-            this.dataFileButton.Size = new System.Drawing.Size(305, 23);
+            this.dataFileButton.Size = new System.Drawing.Size(305, 29);
             this.dataFileButton.TabIndex = 7;
             this.dataFileButton.Text = "Select File";
             this.dataFileButton.UseVisualStyleBackColor = true;
             this.dataFileButton.Click += new System.EventHandler(this.dataFileButton_Click);
+            // 
+            // SpelRegelsButton
+            // 
+            this.SpelRegelsButton.Location = new System.Drawing.Point(156, 155);
+            this.SpelRegelsButton.Name = "SpelRegelsButton";
+            this.SpelRegelsButton.Size = new System.Drawing.Size(197, 28);
+            this.SpelRegelsButton.TabIndex = 8;
+            this.SpelRegelsButton.Text = "Spelregels";
+            this.SpelRegelsButton.UseVisualStyleBackColor = true;
+            this.SpelRegelsButton.Click += new System.EventHandler(this.SpelRegelsButton_Click);
             // 
             // Spyfall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(376, 402);
+            this.Controls.Add(this.SpelRegelsButton);
             this.Controls.Add(this.dataFileButton);
             this.Controls.Add(this.dataFileLabel);
             this.Controls.Add(this.label1);
@@ -149,6 +161,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label dataFileLabel;
         private System.Windows.Forms.Button dataFileButton;
+        private System.Windows.Forms.Button SpelRegelsButton;
     }
 }
 

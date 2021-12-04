@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="logica\Shuffle.cs" />
+    <Compile Include="presentatie\Spelregels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="presentatie\Spelregels.Designer.cs">
+      <DependentUpon>Spelregels.cs</DependentUpon>
+    </Compile>
     <Compile Include="presentatie\showRolesGui.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="presentatie\showRolesGui.resx">
       <DependentUpon>showRolesGui.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="presentatie\Spelregels.resx">
+      <DependentUpon>Spelregels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="presentatie\startGui.resx">
       <DependentUpon>startGui.cs</DependentUpon>

@@ -124,6 +124,33 @@ namespace SpyfallGame
             textBox1.Text = textBox1.Text + Locatie;
 
         }
+       
+
+        //de user zelf een databestand laten kiezen
+        private void dataFileButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "csv files (*.csv)|*.csv";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    textBox1.Text = "Costum data geselecteerd";
+                }
+            }
+        }
+
+        //button die de spelregelsGUI gaat openen
+        private void SpelRegelsButton_Click(object sender, EventArgs e)
+        {
+            new Spelregels().Show();
+        }
+
         private void Spyfall_Load(object sender, EventArgs e)
         {
 
@@ -151,27 +178,6 @@ namespace SpyfallGame
 
         private void label2_Click(object sender, EventArgs e)
         {
-
-        }
-
-        //de user zelf een databestand laten kiezen
-        private void dataFileButton_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "csv files (*.csv)|*.csv";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-                    textBox1.Text = "Costum data geselecteerd";
-                }
-            }
-
 
         }
     }
