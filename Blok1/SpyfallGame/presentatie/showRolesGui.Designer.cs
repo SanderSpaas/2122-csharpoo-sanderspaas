@@ -34,6 +34,8 @@
             this.rolLabel = new System.Windows.Forms.Label();
             this.locatieLabel = new System.Windows.Forms.Label();
             this.locatieLabel1 = new System.Windows.Forms.Label();
+            this.ColorPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // nextPlayerButton
@@ -58,49 +60,78 @@
             // 
             this.rolLabel1.AutoSize = true;
             this.rolLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rolLabel1.Location = new System.Drawing.Point(177, 109);
+            this.rolLabel1.Location = new System.Drawing.Point(151, 89);
             this.rolLabel1.Name = "rolLabel1";
-            this.rolLabel1.Size = new System.Drawing.Size(0, 29);
+            this.rolLabel1.Size = new System.Drawing.Size(141, 29);
             this.rolLabel1.TabIndex = 2;
+            this.rolLabel1.Text = "placeholder";
             // 
             // rolLabel
             // 
             this.rolLabel.AutoSize = true;
-            this.rolLabel.Location = new System.Drawing.Point(177, 149);
+            this.rolLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rolLabel.Location = new System.Drawing.Point(151, 118);
             this.rolLabel.Name = "rolLabel";
-            this.rolLabel.Size = new System.Drawing.Size(0, 16);
+            this.rolLabel.Size = new System.Drawing.Size(141, 29);
             this.rolLabel.TabIndex = 3;
+            this.rolLabel.Text = "placeholder";
+            this.rolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rolLabel.Click += new System.EventHandler(this.label3_Click);
             // 
             // locatieLabel
             // 
             this.locatieLabel.AutoSize = true;
-            this.locatieLabel.Location = new System.Drawing.Point(177, 210);
+            this.locatieLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.locatieLabel.Location = new System.Drawing.Point(151, 210);
             this.locatieLabel.Name = "locatieLabel";
-            this.locatieLabel.Size = new System.Drawing.Size(0, 16);
+            this.locatieLabel.Size = new System.Drawing.Size(141, 29);
             this.locatieLabel.TabIndex = 5;
+            this.locatieLabel.Text = "placeholder";
+            this.locatieLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.locatieLabel.Click += new System.EventHandler(this.locatieLabel_Click);
             // 
             // locatieLabel1
             // 
             this.locatieLabel1.AutoSize = true;
             this.locatieLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.locatieLabel1.Location = new System.Drawing.Point(175, 169);
+            this.locatieLabel1.Location = new System.Drawing.Point(151, 181);
             this.locatieLabel1.Name = "locatieLabel1";
-            this.locatieLabel1.Size = new System.Drawing.Size(0, 29);
+            this.locatieLabel1.Size = new System.Drawing.Size(141, 29);
             this.locatieLabel1.TabIndex = 6;
+            this.locatieLabel1.Text = "placeholder";
+            // 
+            // ColorPanel
+            // 
+            this.ColorPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ColorPanel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ColorPanel.Location = new System.Drawing.Point(12, 31);
+            this.ColorPanel.Name = "ColorPanel";
+            this.ColorPanel.Size = new System.Drawing.Size(32, 346);
+            this.ColorPanel.TabIndex = 7;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.panel1.Location = new System.Drawing.Point(402, 31);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(32, 346);
+            this.panel1.TabIndex = 9;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // showRolesGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 450);
+            this.ClientSize = new System.Drawing.Size(446, 401);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.locatieLabel1);
             this.Controls.Add(this.locatieLabel);
             this.Controls.Add(this.rolLabel);
             this.Controls.Add(this.rolLabel1);
             this.Controls.Add(this.welkeSpelerLabel);
             this.Controls.Add(this.nextPlayerButton);
+            this.Controls.Add(this.ColorPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "showRolesGui";
             this.Text = "showRolesGui";
@@ -118,5 +149,7 @@
         private System.Windows.Forms.Label rolLabel;
         private System.Windows.Forms.Label locatieLabel;
         private System.Windows.Forms.Label locatieLabel1;
+        private System.Windows.Forms.Panel ColorPanel;
+        private System.Windows.Forms.Panel panel1;
     }
 }

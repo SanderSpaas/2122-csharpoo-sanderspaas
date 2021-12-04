@@ -11,7 +11,7 @@ public class Rollen
     public static ArrayList rollenList = new ArrayList();
     private const String DEFAULTDATA = @"data\SpyfallData.csv";
 
-    private static String TestData(String filePath)
+    public static bool TestData(String filePath)
     {
         //een tijdelijke arraylist om data om na te kijken in te zetten
         ArrayList checkList = new ArrayList();
@@ -23,7 +23,7 @@ public class Rollen
         }
         catch (FileNotFoundException)
         {
-            return DEFAULTDATA;
+            return false;
         }
 
         //kijken of de data die er instaat een geldige opbouw heeft
@@ -44,7 +44,7 @@ public class Rollen
         }
         catch (ArgumentException)
         {
-            return DEFAULTDATA;
+            return false;
         }
         //kijken of er geen lege velden zijn in de data
         try
@@ -68,9 +68,9 @@ public class Rollen
         }
         catch (ArgumentException)
         {
-            return DEFAULTDATA;
+            return false;
         }
-        return filePath;
+        return true;
     }
 
 
@@ -78,14 +78,12 @@ public class Rollen
     {
         //tijdelijke arraylist
         ArrayList rollenListString = new ArrayList();
-        //kijken of het meegegeven bestand een juiste opbouw heeft
-        String filePathCorrect = TestData(filePath);
 
         Random random = new Random();
         //een random gaan genereren met als upper limit het aantal lijnen in ons data document
-        int randomGetal = random.Next(0, File.ReadLines(filePathCorrect).Count());
+        int randomGetal = random.Next(0, File.ReadLines(filePath).Count());
         //alle lijnen in het document gaan lezen
-        var lines = File.ReadAllLines(filePathCorrect);
+        var lines = File.ReadAllLines(filePath);
         //random lijn gaan opslaan in variable randomLijn 
         String randomLijn = lines[randomGetal];
 

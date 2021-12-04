@@ -5,8 +5,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using static Rollen;
 using static Speler;
-using static SpyfallMain;
 using static SpyfallGame.logica.Shuffle;
+using static SpyfallMain;
 
 namespace SpyfallGame
 {
@@ -15,12 +15,12 @@ namespace SpyfallGame
         //de array waar we onze errors gaan insteken
         public static ArrayList errorArray = new ArrayList();
         private ArrayList rollenListSpel = new ArrayList();
-        private string filePath = "";
+        private string filePath = @"data\SpyfallData.csv";
 
         public Spyfall()
         {
             InitializeComponent();
-            this.Icon = new Icon("data/spy.ico");
+            Icon = new Icon("data/spy.ico");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -46,25 +46,30 @@ namespace SpyfallGame
             {
                 errorArray.Add("Je kan niet meer of evenveel spionnen als spelers hebben. \n");
             }
+            
+
+            //gaan kijken of er costum data gekozen is en anders de default data gaan gebruiken
+            if (TestData(filePath))
+            {
+                KiesRandomRol(filePath);
+            }
+            else
+            {
+                errorArray.Add("Het gekozen databestand is ongeldig");
+            }
+
             //de errors gaan tonen
             foreach (string error in errorArray)
             {
                 textBox1.Text = textBox1.Text + error;
             }
+
             //als er geen errors zijn dingen voor het spel beginnen klaarzetten
             if (errorArray.Count == 0)
             {
                 //random data uit ons bestand gaan laden en in de rollenlist gaan zetten
-                //gaan kijken of er costum data gekozen is en anders de default data gaan gebruiken
-                if(filePath.Length == 0)
-                {
-                    KiesRandomRol(@"data\SpyfallData.csv");
-                }
-                else
-                {
-                    KiesRandomRol(filePath);
-                }
                 
+
 
                 //het aantal spelers en spionnen gaan vastzetten
                 SetAantalspelers((int)aantalSpelers.Value);
@@ -85,14 +90,14 @@ namespace SpyfallGame
                         rollenListSpel.AddRange(rollenList);
                         //textBox1.Text = textBox1.Text +  "rollenlist aangevuld";
                     }
-                    
+
                     //random gaan genereren
                     int randomRol = random.Next(0, rollenListSpel.Count);
-                   
+
                     //spelerobjecten gaan aanmaken
                     Speler speler = new Speler(rollenListSpel[randomRol].ToString(), Locatie);
                     addSpeler(speler);
-                    
+
                     //de rol gaan verwijderen uit de tijdelijke array zodat hij niet nog is gekozen word
                     rollenListSpel.RemoveAt(randomRol);
                 }
@@ -167,7 +172,7 @@ namespace SpyfallGame
                 }
             }
 
-            
+
         }
     }
 }
