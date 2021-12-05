@@ -46,7 +46,6 @@ namespace SpyfallGame
             {
                 errorArray.Add("Je kan niet meer of evenveel spionnen als spelers hebben. \n");
             }
-            
 
             //gaan kijken of er costum data gekozen is en anders de default data gaan gebruiken
             if (TestData(filePath))
@@ -68,8 +67,6 @@ namespace SpyfallGame
             if (errorArray.Count == 0)
             {
                 //random data uit ons bestand gaan laden en in de rollenlist gaan zetten
-                
-
 
                 //het aantal spelers en spionnen gaan vastzetten
                 SetAantalspelers((int)aantalSpelers.Value);
@@ -124,7 +121,6 @@ namespace SpyfallGame
             textBox1.Text = textBox1.Text + Locatie;
 
         }
-       
 
         //de user zelf een databestand laten kiezen
         private void dataFileButton_Click(object sender, EventArgs e)
@@ -150,6 +146,11 @@ namespace SpyfallGame
         {
             new Spelregels().Show();
         }
+        //button die de spelbestandmaker gaat openen
+        private void SpelBestandButton_Click(object sender, EventArgs e)
+        {
+            new SpelMaker().Show();
+        }
 
         private void Spyfall_Load(object sender, EventArgs e)
         {
@@ -171,14 +172,13 @@ namespace SpyfallGame
 
         }
 
-        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-        {
 
-        }
 
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
+
+
     }
 }

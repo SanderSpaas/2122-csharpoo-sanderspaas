@@ -37,6 +37,7 @@
             this.dataFileLabel = new System.Windows.Forms.Label();
             this.dataFileButton = new System.Windows.Forms.Button();
             this.SpelRegelsButton = new System.Windows.Forms.Button();
+            this.SpelBestandButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpelers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpionnen)).BeginInit();
             this.SuspendLayout();
@@ -126,11 +127,22 @@
             this.SpelRegelsButton.UseVisualStyleBackColor = true;
             this.SpelRegelsButton.Click += new System.EventHandler(this.SpelRegelsButton_Click);
             // 
+            // SpelBestandButton
+            // 
+            this.SpelBestandButton.Location = new System.Drawing.Point(30, 387);
+            this.SpelBestandButton.Name = "SpelBestandButton";
+            this.SpelBestandButton.Size = new System.Drawing.Size(305, 29);
+            this.SpelBestandButton.TabIndex = 9;
+            this.SpelBestandButton.Text = "Maak je eigen spelbestand";
+            this.SpelBestandButton.UseVisualStyleBackColor = true;
+            this.SpelBestandButton.Click += new System.EventHandler(this.SpelBestandButton_Click);
+            // 
             // Spyfall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 402);
+            this.ClientSize = new System.Drawing.Size(376, 428);
+            this.Controls.Add(this.SpelBestandButton);
             this.Controls.Add(this.SpelRegelsButton);
             this.Controls.Add(this.dataFileButton);
             this.Controls.Add(this.dataFileLabel);
@@ -162,6 +174,7 @@
         private System.Windows.Forms.Label dataFileLabel;
         private System.Windows.Forms.Button dataFileButton;
         private System.Windows.Forms.Button SpelRegelsButton;
+        private System.Windows.Forms.Button SpelBestandButton;
     }
 }
 

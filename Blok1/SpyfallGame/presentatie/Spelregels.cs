@@ -32,12 +32,7 @@ namespace SpyfallGame.presentatie
                 "Weet de spion gedurende het spel 100 % zeker wat de locatie is, mag hij zeggen dat hij de spion is en de locatie noemen. " +
                 "Klopt het? Dan wint de spion. Na afloop van de 8 minuten krijgt de groep nog één kans om iemand unaniem te beschuldigen. " +
                 "Is dat de spion? Dan wint de groep, anders wint de spion.";
-                SpelregelsTextBox.DeselectAll();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            SpelregelsTextBox.DeselectAll();
         }
 
         private void SpelregelsTextBox_TextChanged(object sender, EventArgs e)
