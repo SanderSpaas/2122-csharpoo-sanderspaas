@@ -125,20 +125,8 @@ namespace SpyfallGame
         //de user zelf een databestand laten kiezen
         private void dataFileButton_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "csv files (*.csv)|*.csv";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-                    textBox1.Text = "Costum data geselecteerd";
-                }
-            }
+            filePath = FileSelector();
+            textBox1.Text = "Costum data geselecteerd";
         }
 
         //button die de spelregelsGUI gaat openen
@@ -171,8 +159,6 @@ namespace SpyfallGame
         {
 
         }
-
-
 
         private void label2_Click(object sender, EventArgs e)
         {

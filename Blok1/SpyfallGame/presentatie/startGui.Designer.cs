@@ -177,4 +177,3 @@
         private System.Windows.Forms.Button SpelBestandButton;
     }
 }
-

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 public class SpyfallMain
 {
@@ -27,6 +28,24 @@ public class SpyfallMain
     public static void SetAantalspionnen(int value)
     {
         aantalspionnen = value;
+    }
+
+    public static String FileSelector()
+    {
+        using (OpenFileDialog openFileDialog = new OpenFileDialog())
+        {
+            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.Filter = "csv files (*.csv)|*.csv";
+            openFileDialog.FilterIndex = 2;
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //Get the path of specified file
+                return openFileDialog.FileName;
+            }
+            return null;
+        }
     }
 
 }

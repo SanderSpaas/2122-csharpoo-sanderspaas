@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using static SpyfallMain;
 
 namespace SpyfallGame.presentatie
 {
@@ -10,11 +12,76 @@ namespace SpyfallGame.presentatie
         {
             InitializeComponent();
             Icon = new Icon("data/spy.ico");
-        }
 
+        }
+        //variables
+        String dataCSVLocation;
+        String dataCSVRoles;
+        String filePath;
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            if (LocatieTextbox.Text != null && LocatieTextbox.Text != "")
+            {
+                dataCSVLocation = LocatieTextbox.Text.Trim();
+            }
+            if (RolTextBox.Text != null && RolTextBox.Text != "")
+            {
+                dataCSVRoles = dataCSVRoles + ";" + RolTextBox.Text.Trim();
+            }
+            RolTextBox.Text = "";
+            OutputTextBox.Text = $"De locatie is: {dataCSVLocation} De rollen zijn: {dataCSVRoles}";
+        }
+        //het CSV bestand gaan aanmaken 
+        private void GenereerBestand_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "csv files (*.csv)|*.csv";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //geen data gaan schrijven gewoon het bestand al selecteren
+                filePath = saveFileDialog1.FileName;
+                GeselecteerdeBestandTextBox.Text = filePath;
+                // Code to write the stream goes here.
+                File.Create(saveFileDialog1.FileName);
+
+            }
+
+        }
+        //een al bestaan bestand gaan bijwerken met extra data
+        private void LaadBestandButton_Click(object sender, EventArgs e)
+        {
+            filePath = FileSelector();
+            showFileContent(filePath);
+        }
+        private void VoegToeButton_Click(object sender, EventArgs e)
+        {
+
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void OutputTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showFileContent(String filePath)
+        {
+            OutputTextBox.Text = "Bestand geselecteerd. \r\n";
+            //alle lijnen in het document gaan lezen
+            var lines = File.ReadAllLines(filePath);
+            foreach (var line in lines)
+            {
+                OutputTextBox.Text = OutputTextBox.Text + line + "\r\n";
+            }
+            GeselecteerdeBestandTextBox.Text = filePath;
         }
     }
 }
