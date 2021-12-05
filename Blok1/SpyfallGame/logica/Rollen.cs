@@ -5,11 +5,8 @@ using System.Linq;
 
 public class Rollen
 {
-    //private const int id;
-    private string naam;
     private static string locatie;
     public static ArrayList rollenList = new ArrayList();
-    private const String DEFAULTDATA = @"data\SpyfallData.csv";
 
     public static bool TestData(String filePath)
     {
@@ -73,7 +70,6 @@ public class Rollen
         return true;
     }
 
-
     public static void KiesRandomRol(String filePath)
     {
         //tijdelijke arraylist
@@ -106,7 +102,6 @@ public class Rollen
             }
         }
     }
-
 
     public static ArrayList RollenList { get; set; }
     public static string Locatie { get => locatie; set => locatie = value; }
