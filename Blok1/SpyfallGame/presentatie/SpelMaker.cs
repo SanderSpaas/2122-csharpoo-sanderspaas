@@ -45,9 +45,9 @@ namespace SpyfallGame.presentatie
             {
                 //geen data gaan schrijven gewoon het bestand al selecteren
                 filePath = saveFileDialog1.FileName;
-                GeselecteerdeBestandTextBox.Text = filePath;
-                // Code to write the stream goes here.
-                File.Create(saveFileDialog1.FileName);
+                //het bestand gaan aanmaken
+                File.Create(saveFileDialog1.FileName).Close();
+                showFileContent(filePath, false);
 
             }
 
@@ -56,11 +56,11 @@ namespace SpyfallGame.presentatie
         private void LaadBestandButton_Click(object sender, EventArgs e)
         {
             filePath = FileSelector();
-            showFileContent(filePath);
+            showFileContent(filePath, true);
         }
         private void VoegToeButton_Click(object sender, EventArgs e)
         {
-
+            addToFile(filePath);
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -72,16 +72,30 @@ namespace SpyfallGame.presentatie
 
         }
 
-        private void showFileContent(String filePath)
+        private void showFileContent(String filePath, bool read)
         {
             OutputTextBox.Text = "Bestand geselecteerd. \r\n";
-            //alle lijnen in het document gaan lezen
-            var lines = File.ReadAllLines(filePath);
-            foreach (var line in lines)
+            if (read)
             {
-                OutputTextBox.Text = OutputTextBox.Text + line + "\r\n";
+                //alle lijnen in het document gaan lezen
+                var lines = File.ReadAllLines(filePath);
+                foreach (var line in lines)
+                {
+                    OutputTextBox.Text = OutputTextBox.Text + line + "\r\n";
+                }
             }
             GeselecteerdeBestandTextBox.Text = filePath;
+        }
+
+        private void addToFile(String filePath)
+        {
+            File.AppendAllText(filePath, dataCSVLocation + dataCSVRoles + Environment.NewLine);
+            dataCSVLocation = "";
+            dataCSVRoles = "";
+            OutputTextBox.Text = "";
+            LocatieTextbox.Text = "";
+            OutputTextBox.Text = "Data naar bestand geschreven. \r\n";
+            showFileContent(filePath, true);
         }
     }
 }
