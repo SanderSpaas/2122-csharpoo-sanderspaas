@@ -70,17 +70,24 @@ namespace SpyfallGame.presentatie
         //methode die een bestand gaat uitlezen
         private void showFileContent(String filePath, bool read)
         {
-            OutputTextBox.Text = "Bestand geselecteerd. \r\n";
-            if (read)
+            if (!TestData(filePath))
             {
-                //alle lijnen in het document gaan lezen
-                var lines = File.ReadAllLines(filePath);
-                foreach (var line in lines)
-                {
-                    OutputTextBox.Text = OutputTextBox.Text + line + "\r\n";
-                }
+                OutputTextBox.Text = "Het gekozen databestand is ongeldig. \r\n";
             }
-            GeselecteerdeBestandTextBox.Text = filePath;
+            else
+            {
+                OutputTextBox.Text = "Bestand geselecteerd. \r\n";
+                if (read)
+                {
+                    //alle lijnen in het document gaan lezen
+                    var lines = File.ReadAllLines(filePath);
+                    foreach (var line in lines)
+                    {
+                        OutputTextBox.Text = OutputTextBox.Text + line + "\r\n";
+                    }
+                }
+                GeselecteerdeBestandTextBox.Text = filePath;
+            }
         }
 
         //methode die data naar een bestand gaat schrijven
