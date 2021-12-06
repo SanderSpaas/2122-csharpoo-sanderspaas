@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ColorPanel = new System.Windows.Forms.Panel();
             this.ColorPanel1 = new System.Windows.Forms.Panel();
+            this.StemLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TimerLabel
@@ -80,11 +81,23 @@
             this.ColorPanel1.Size = new System.Drawing.Size(32, 318);
             this.ColorPanel1.TabIndex = 9;
             // 
+            // StemLabel
+            // 
+            this.StemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StemLabel.Location = new System.Drawing.Point(50, 264);
+            this.StemLabel.Name = "StemLabel";
+            this.StemLabel.Size = new System.Drawing.Size(376, 51);
+            this.StemLabel.TabIndex = 10;
+            this.StemLabel.Text = "Begin met stemmen";
+            this.StemLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.StemLabel.Visible = false;
+            // 
             // TimerGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 339);
+            this.Controls.Add(this.StemLabel);
             this.Controls.Add(this.ColorPanel1);
             this.Controls.Add(this.ColorPanel);
             this.Controls.Add(this.label1);
@@ -102,5 +115,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel ColorPanel;
         private System.Windows.Forms.Panel ColorPanel1;
+        private System.Windows.Forms.Label StemLabel;
     }
 }

@@ -15,7 +15,6 @@ namespace SpyfallGame.presentatielaag
             var minutes = 8;
             var start = DateTime.UtcNow;
             endTime = start.AddMinutes(minutes);
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -23,8 +22,9 @@ namespace SpyfallGame.presentatielaag
             TimeSpan remainingTime = endTime - DateTime.UtcNow;
             if (remainingTime < TimeSpan.Zero)
             {
-                TimerLabel.Text = "Done!";
+                TimerLabel.Text = "0:00";
                 timer1.Enabled = false;
+                StemLabel.Visible = true;
             }
             else
             {
