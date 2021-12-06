@@ -12,14 +12,9 @@ namespace SpyfallGame.presentatielaag
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
-            var minutes = 8; //countdown time
-            var start = DateTime.UtcNow; // Use UtcNow instead of Now
-            endTime = start.AddMinutes(minutes); //endTime is a member, not a local variable
-
-        }
-
-        private void TimerGUI_Load(object sender, EventArgs e)
-        {
+            var minutes = 8;
+            var start = DateTime.UtcNow;
+            endTime = start.AddMinutes(minutes);
 
         }
 

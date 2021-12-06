@@ -38,13 +38,13 @@
             // 
             // TimerLabel
             // 
-            this.TimerLabel.AutoSize = true;
             this.TimerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 45.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimerLabel.Location = new System.Drawing.Point(142, 179);
+            this.TimerLabel.Location = new System.Drawing.Point(50, 177);
             this.TimerLabel.Name = "TimerLabel";
-            this.TimerLabel.Size = new System.Drawing.Size(187, 87);
+            this.TimerLabel.Size = new System.Drawing.Size(376, 87);
             this.TimerLabel.TabIndex = 0;
             this.TimerLabel.Text = "8:00";
+            this.TimerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer1
             // 
@@ -54,13 +54,13 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(50, 97);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(354, 51);
+            this.label1.Size = new System.Drawing.Size(376, 51);
             this.label1.TabIndex = 0;
             this.label1.Text = "Zoek de Spion 🕵️";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ColorPanel
             // 
@@ -91,9 +91,7 @@
             this.Controls.Add(this.TimerLabel);
             this.Name = "TimerGUI";
             this.Text = "TimerGUI";
-            this.Load += new System.EventHandler(this.TimerGUI_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

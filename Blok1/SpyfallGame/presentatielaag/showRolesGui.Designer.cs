@@ -58,45 +58,43 @@
             // 
             // rolLabel1
             // 
-            this.rolLabel1.AutoSize = true;
             this.rolLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rolLabel1.Location = new System.Drawing.Point(151, 89);
+            this.rolLabel1.Location = new System.Drawing.Point(50, 89);
             this.rolLabel1.Name = "rolLabel1";
-            this.rolLabel1.Size = new System.Drawing.Size(141, 29);
+            this.rolLabel1.Size = new System.Drawing.Size(346, 29);
             this.rolLabel1.TabIndex = 2;
             this.rolLabel1.Text = "placeholder";
+            this.rolLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // rolLabel
             // 
-            this.rolLabel.AutoSize = true;
             this.rolLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rolLabel.Location = new System.Drawing.Point(151, 118);
+            this.rolLabel.Location = new System.Drawing.Point(50, 118);
             this.rolLabel.Name = "rolLabel";
-            this.rolLabel.Size = new System.Drawing.Size(141, 29);
+            this.rolLabel.Size = new System.Drawing.Size(346, 29);
             this.rolLabel.TabIndex = 3;
             this.rolLabel.Text = "placeholder";
             this.rolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // locatieLabel
             // 
-            this.locatieLabel.AutoSize = true;
             this.locatieLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.locatieLabel.Location = new System.Drawing.Point(151, 210);
+            this.locatieLabel.Location = new System.Drawing.Point(50, 210);
             this.locatieLabel.Name = "locatieLabel";
-            this.locatieLabel.Size = new System.Drawing.Size(141, 29);
+            this.locatieLabel.Size = new System.Drawing.Size(346, 29);
             this.locatieLabel.TabIndex = 5;
             this.locatieLabel.Text = "placeholder";
             this.locatieLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // locatieLabel1
             // 
-            this.locatieLabel1.AutoSize = true;
             this.locatieLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.locatieLabel1.Location = new System.Drawing.Point(151, 181);
+            this.locatieLabel1.Location = new System.Drawing.Point(50, 181);
             this.locatieLabel1.Name = "locatieLabel1";
-            this.locatieLabel1.Size = new System.Drawing.Size(141, 29);
+            this.locatieLabel1.Size = new System.Drawing.Size(346, 29);
             this.locatieLabel1.TabIndex = 6;
             this.locatieLabel1.Text = "placeholder";
+            this.locatieLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ColorPanel
             // 
