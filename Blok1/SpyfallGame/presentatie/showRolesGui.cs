@@ -10,7 +10,7 @@ namespace SpyfallGame.presentatie
         //global variables
         private int counter = 0;
         private int counter2 = 0;
-      
+
         public showRolesGui()
         {
             InitializeComponent();
@@ -19,24 +19,9 @@ namespace SpyfallGame.presentatie
             LabelClear();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void locatieLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void showRolesGui_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             int maxPlayers = Spelers.Count;
             rolLabel1.Text = "Jouw rol";
             locatieLabel1.Text = "De locatie";
@@ -70,7 +55,6 @@ namespace SpyfallGame.presentatie
                 nextPlayerButton.Text = "Start het spel";
             }
 
-
         }
 
         //labelclear functie
@@ -80,10 +64,6 @@ namespace SpyfallGame.presentatie
             locatieLabel.Text = "";
             rolLabel1.Text = "";
             locatieLabel1.Text = "";
-        }
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

@@ -16,7 +16,7 @@ public class Rollen
         try
         {
             if (!File.Exists(filePath))
-                throw new FileNotFoundException("Het bestand bestaat niet op de opgegeven locatie: {0}", filePath);
+                throw new FileNotFoundException($"Het bestand bestaat niet op de opgegeven locatie: {filePath}");
         }
         catch (FileNotFoundException)
         {
@@ -67,6 +67,7 @@ public class Rollen
         {
             return false;
         }
+        //als alles in orde is returnen we true
         return true;
     }
 
@@ -76,30 +77,23 @@ public class Rollen
         ArrayList rollenListString = new ArrayList();
 
         Random random = new Random();
-        //een random gaan genereren met als upper limit het aantal lijnen in ons data document
+        //een random gaan genereren met als maximum het aantal lijnen in ons data document
         int randomGetal = random.Next(0, File.ReadLines(filePath).Count());
         //alle lijnen in het document gaan lezen
         var lines = File.ReadAllLines(filePath);
-        //random lijn gaan opslaan in variable randomLijn 
-        String randomLijn = lines[randomGetal];
 
-        //de lijn gaan splitsen op basis van een delimiter in een tijdelijke arraylist
-        rollenListString.AddRange(randomLijn.Split(';'));
+        //de random gekozen lijn gaan splitsen op basis van een delimiter in een tijdelijke arraylist
+        rollenListString.AddRange(lines[randomGetal].Split(';'));
+
+        //de locatie gaan vastzetten en daarna verwijderen uit de array
+        locatie = rollenListString[0].ToString();
+        rollenListString.RemoveAt(0);
 
         //door de tijdelijke array gaan loopen en objecten gaan aanmaken met de data en in de echte array gaan zetten
-        int counter = 0;
         foreach (String rol in rollenListString)
         {
-            //eerste element als locatie gaan zetten
-            if (counter++ == 0)
-            {
-                locatie = rol;
-            }
-            else
-            {
-                //object in de lijst gaan zetten
-                rollenList.Add(rol);
-            }
+            //object in de lijst gaan zetten
+            rollenList.Add(rol);
         }
     }
 

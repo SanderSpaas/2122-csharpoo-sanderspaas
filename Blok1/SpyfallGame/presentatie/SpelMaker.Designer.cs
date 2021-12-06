@@ -50,7 +50,6 @@
             this.LocatieLabel.Size = new System.Drawing.Size(68, 22);
             this.LocatieLabel.TabIndex = 0;
             this.LocatieLabel.Text = "Locatie";
-            this.LocatieLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // RolLabel
             // 
@@ -105,7 +104,6 @@
             this.OutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.OutputTextBox.Size = new System.Drawing.Size(563, 139);
             this.OutputTextBox.TabIndex = 6;
-            this.OutputTextBox.TextChanged += new System.EventHandler(this.OutputTextBox_TextChanged);
             // 
             // LaadBestandButton
             // 

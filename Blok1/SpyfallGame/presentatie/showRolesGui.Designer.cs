@@ -76,7 +76,6 @@
             this.rolLabel.TabIndex = 3;
             this.rolLabel.Text = "placeholder";
             this.rolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rolLabel.Click += new System.EventHandler(this.label3_Click);
             // 
             // locatieLabel
             // 
@@ -88,7 +87,6 @@
             this.locatieLabel.TabIndex = 5;
             this.locatieLabel.Text = "placeholder";
             this.locatieLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.locatieLabel.Click += new System.EventHandler(this.locatieLabel_Click);
             // 
             // locatieLabel1
             // 
@@ -117,7 +115,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(32, 346);
             this.panel1.TabIndex = 9;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // showRolesGui
             // 
@@ -135,7 +132,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "showRolesGui";
             this.Text = "showRolesGui";
-            this.Load += new System.EventHandler(this.showRolesGui_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

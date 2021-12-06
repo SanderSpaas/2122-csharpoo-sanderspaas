@@ -61,15 +61,13 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(326, 113);
             this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // aantalSpelers
             // 
             this.aantalSpelers.Location = new System.Drawing.Point(27, 59);
             this.aantalSpelers.Name = "aantalSpelers";
             this.aantalSpelers.Size = new System.Drawing.Size(120, 22);
-            this.aantalSpelers.TabIndex = 2;
-            this.aantalSpelers.ValueChanged += new System.EventHandler(this.aantalSpelers_ValueChanged);
+            this.aantalSpelers.TabIndex = 2; 
             // 
             // labelSpelers
             // 
@@ -79,7 +77,6 @@
             this.labelSpelers.Size = new System.Drawing.Size(200, 16);
             this.labelSpelers.TabIndex = 3;
             this.labelSpelers.Text = "Geef het totaal aantal spelers op";
-            this.labelSpelers.Click += new System.EventHandler(this.label1_Click);
             // 
             // aantalSpionnen
             // 
@@ -105,7 +102,6 @@
             this.dataFileLabel.Size = new System.Drawing.Size(305, 16);
             this.dataFileLabel.TabIndex = 6;
             this.dataFileLabel.Text = "Selecteer je eigen databestand om mee te spelen";
-            this.dataFileLabel.Click += new System.EventHandler(this.label2_Click);
             // 
             // dataFileButton
             // 
@@ -155,7 +151,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Spyfall";
             this.Text = "Spyfall";
-            this.Load += new System.EventHandler(this.Spyfall_Load);
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpelers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpionnen)).EndInit();
             this.ResumeLayout(false);

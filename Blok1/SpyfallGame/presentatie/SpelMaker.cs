@@ -62,15 +62,6 @@ namespace SpyfallGame.presentatie
         {
             addToFile(filePath);
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OutputTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void showFileContent(String filePath, bool read)
         {
