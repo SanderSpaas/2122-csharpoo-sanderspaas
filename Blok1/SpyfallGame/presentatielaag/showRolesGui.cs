@@ -14,7 +14,7 @@ namespace SpyfallGame.presentatie
         public showRolesGui()
         {
             InitializeComponent();
-            Icon = new Icon("data/spy.ico");
+            Icon = new Icon("datalaag/spy.ico");
             Text = "Rollen GUI";
             LabelClear();
         }

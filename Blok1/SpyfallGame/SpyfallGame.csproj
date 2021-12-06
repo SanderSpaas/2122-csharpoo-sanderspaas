@@ -46,47 +46,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="logica\Shuffle.cs" />
-    <Compile Include="presentatie\SpelMaker.cs">
+    <Compile Include="logische laag\Shuffle.cs" />
+    <Compile Include="presentatielaag\SpelMaker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="presentatie\SpelMaker.Designer.cs">
+    <Compile Include="presentatielaag\SpelMaker.Designer.cs">
       <DependentUpon>SpelMaker.cs</DependentUpon>
     </Compile>
-    <Compile Include="presentatie\Spelregels.cs">
+    <Compile Include="presentatielaag\Spelregels.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="presentatie\Spelregels.Designer.cs">
+    <Compile Include="presentatielaag\Spelregels.Designer.cs">
       <DependentUpon>Spelregels.cs</DependentUpon>
     </Compile>
-    <Compile Include="presentatie\showRolesGui.cs">
+    <Compile Include="presentatielaag\showRolesGui.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="presentatie\showRolesGui.Designer.cs">
+    <Compile Include="presentatielaag\showRolesGui.Designer.cs">
       <DependentUpon>showRolesGui.cs</DependentUpon>
     </Compile>
-    <Compile Include="presentatie\startGui.cs">
+    <Compile Include="presentatielaag\startGui.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="presentatie\startGui.Designer.cs">
+    <Compile Include="presentatielaag\startGui.Designer.cs">
       <DependentUpon>startGui.cs</DependentUpon>
     </Compile>
-    <Compile Include="logica\Colors.cs" />
-    <Compile Include="logica\Rollen.cs" />
-    <Compile Include="logica\Speler.cs" />
-    <Compile Include="logica\SpyfallMain.cs" />
+    <Compile Include="logische laag\Colors.cs" />
+    <Compile Include="logische laag\Rollen.cs" />
+    <Compile Include="logische laag\Speler.cs" />
+    <Compile Include="logische laag\SpyfallMain.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="presentatie\showRolesGui.resx">
+    <EmbeddedResource Include="presentatielaag\showRolesGui.resx">
       <DependentUpon>showRolesGui.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="presentatie\SpelMaker.resx">
+    <EmbeddedResource Include="presentatielaag\SpelMaker.resx">
       <DependentUpon>SpelMaker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="presentatie\Spelregels.resx">
+    <EmbeddedResource Include="presentatielaag\Spelregels.resx">
       <DependentUpon>Spelregels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="presentatie\startGui.resx">
+    <EmbeddedResource Include="presentatielaag\startGui.resx">
       <DependentUpon>startGui.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -98,7 +98,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="data\SpyfallData.csv">
+    <None Include="datalaag\SpyfallData.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
@@ -115,7 +115,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data\spy.ico">
+    <Content Include="datalaag\spy.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

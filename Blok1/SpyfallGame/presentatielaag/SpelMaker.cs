@@ -11,7 +11,7 @@ namespace SpyfallGame.presentatie
         public SpelMaker()
         {
             InitializeComponent();
-            Icon = new Icon("data/spy.ico");
+            Icon = new Icon("datalaag/spy.ico");
 
         }
         //variables

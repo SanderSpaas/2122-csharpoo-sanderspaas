@@ -15,12 +15,12 @@ namespace SpyfallGame
         //de array waar we onze errors gaan insteken
         public static ArrayList errorArray = new ArrayList();
         private ArrayList rollenListSpel = new ArrayList();
-        private string filePath = @"data\SpyfallData.csv";
+        private string filePath = @"datalaag\SpyfallData.csv";
 
         public Spyfall()
         {
             InitializeComponent();
-            Icon = new Icon("data/spy.ico");
+            Icon = new Icon("datalaag/spy.ico");
         }
 
         private void button1_Click(object sender, EventArgs e)
