@@ -5,4 +5,4 @@
 Een toffe eigen versie van de populaire partygame Spyfall.
 
 Je kan gewoon spelen met het standaard databestand, of met je eigen data spelen gemaakt met de ingebouwde editor.
-
+De game ondersteund csv bestanden met als delimiter een ';'.
