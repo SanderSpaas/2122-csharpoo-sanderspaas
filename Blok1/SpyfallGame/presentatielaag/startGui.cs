@@ -3,10 +3,10 @@ using System;
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
+using static DataVerwerker;
 using static Rollen;
+using static Shuffle;
 using static Speler;
-using static SpyfallGame.logica.Shuffle;
-using static SpyfallMain;
 
 namespace SpyfallGame
 {

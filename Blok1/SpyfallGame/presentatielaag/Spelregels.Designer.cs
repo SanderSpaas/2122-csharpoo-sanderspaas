@@ -42,8 +42,7 @@
             this.SpelregelsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.SpelregelsTextBox.Size = new System.Drawing.Size(743, 546);
             this.SpelregelsTextBox.TabIndex = 0;
-            this.SpelregelsTextBox.TabStop = false;
-            this.SpelregelsTextBox.TextChanged += new System.EventHandler(this.SpelregelsTextBox_TextChanged);
+            this.SpelregelsTextBox.TabStop = false; 
             // 
             // Spelregels
             // 

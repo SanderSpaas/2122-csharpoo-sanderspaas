@@ -5,6 +5,8 @@ public class Speler
 {
     private String rol;
     private String locatie;
+    private static int aantalspelers;
+    private static int aantalspionnen;
     public static ArrayList Spelers = new ArrayList();
 
     public Speler(String rol, String locatie)
@@ -32,4 +34,23 @@ public class Speler
         return this.locatie;
     }
 
+    public static int GetAantalspelers()
+    {
+        return aantalspelers;
+    }
+
+    public static void SetAantalspelers(int value)
+    {
+        aantalspelers = value;
+    }
+
+    public static int GetAantalspionnen()
+    {
+        return aantalspionnen;
+    }
+
+    public static void SetAantalspionnen(int value)
+    {
+        aantalspionnen = value;
+    }
 }

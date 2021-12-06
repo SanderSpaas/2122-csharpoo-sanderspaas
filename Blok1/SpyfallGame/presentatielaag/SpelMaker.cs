@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using static SpyfallMain;
+using static DataVerwerker;
 
 namespace SpyfallGame.presentatie
 {

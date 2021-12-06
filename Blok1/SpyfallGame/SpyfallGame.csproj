@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="datalaag\DataVerwerker.cs" />
     <Compile Include="logische laag\Shuffle.cs" />
     <Compile Include="presentatielaag\SpelMaker.cs">
       <SubType>Form</SubType>
@@ -74,7 +75,6 @@
     <Compile Include="logische laag\Colors.cs" />
     <Compile Include="logische laag\Rollen.cs" />
     <Compile Include="logische laag\Speler.cs" />
-    <Compile Include="logische laag\SpyfallMain.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="presentatielaag\showRolesGui.resx">

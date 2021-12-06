@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace SpyfallGame.presentatie
@@ -9,7 +8,7 @@ namespace SpyfallGame.presentatie
         public Spelregels()
         {
             InitializeComponent();
-            Icon = new Icon("data/spy.ico");
+            Icon = new Icon("datalaag/spy.ico");
             Text = "Spelregels";
             SpelregelsTextBox.Text = "Spyfall is een hidden deductie game. " +
                 "In het spel probeert een groep spelers uit te vogelen wie van hen een spion is, " +
@@ -33,11 +32,6 @@ namespace SpyfallGame.presentatie
                 "Klopt het? Dan wint de spion. Na afloop van de 8 minuten krijgt de groep nog één kans om iemand unaniem te beschuldigen. " +
                 "Is dat de spion? Dan wint de groep, anders wint de spion.";
             SpelregelsTextBox.DeselectAll();
-        }
-
-        private void SpelregelsTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -3,36 +3,8 @@ using System.Collections;
 using System.IO;
 using System.Windows.Forms;
 
-public class SpyfallMain
+public class DataVerwerker
 {
-    //de main class voor algemene logica
-    public SpyfallMain()
-    {
-
-    }
-    private static int aantalspelers;
-    private static int aantalspionnen;
-
-    public static int GetAantalspelers()
-    {
-        return aantalspelers;
-    }
-
-    public static void SetAantalspelers(int value)
-    {
-        aantalspelers = value;
-    }
-
-    public static int GetAantalspionnen()
-    {
-        return aantalspionnen;
-    }
-
-    public static void SetAantalspionnen(int value)
-    {
-        aantalspionnen = value;
-    }
-
     public static String FileSelector()
     {
         using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -97,5 +69,4 @@ public class SpyfallMain
         //als alles in orde is returnen we true
         return true;
     }
-
 }
