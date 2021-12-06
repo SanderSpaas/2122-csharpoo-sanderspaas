@@ -35,7 +35,7 @@
             this.locatieLabel = new System.Windows.Forms.Label();
             this.locatieLabel1 = new System.Windows.Forms.Label();
             this.ColorPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.ColorPanel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // nextPlayerButton
@@ -107,21 +107,21 @@
             this.ColorPanel.Size = new System.Drawing.Size(32, 346);
             this.ColorPanel.TabIndex = 7;
             // 
-            // panel1
+            // ColorPanel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panel1.Location = new System.Drawing.Point(402, 31);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(32, 346);
-            this.panel1.TabIndex = 9;
+            this.ColorPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ColorPanel1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ColorPanel1.Location = new System.Drawing.Point(402, 31);
+            this.ColorPanel1.Name = "ColorPanel1";
+            this.ColorPanel1.Size = new System.Drawing.Size(32, 346);
+            this.ColorPanel1.TabIndex = 9;
             // 
             // showRolesGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 401);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.ColorPanel1);
             this.Controls.Add(this.locatieLabel1);
             this.Controls.Add(this.locatieLabel);
             this.Controls.Add(this.rolLabel);
@@ -146,6 +146,6 @@
         private System.Windows.Forms.Label locatieLabel;
         private System.Windows.Forms.Label locatieLabel1;
         private System.Windows.Forms.Panel ColorPanel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel ColorPanel1;
     }
 }

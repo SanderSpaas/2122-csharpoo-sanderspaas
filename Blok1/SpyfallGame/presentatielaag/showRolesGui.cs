@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpyfallGame.presentatielaag;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using static Speler;
@@ -21,17 +22,16 @@ namespace SpyfallGame.presentatie
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             int maxPlayers = Spelers.Count;
             rolLabel1.Text = "Jouw rol";
             locatieLabel1.Text = "De locatie";
-            if (counter < maxPlayers * 2)
+            if (counter < (maxPlayers * 2) - 1)
             {
                 counter++;
                 if (counter % 2 == 0)
                 {
                     ColorPanel.BackColor = Color.FromArgb(240, 240, 240);
-                    panel1.BackColor = Color.FromArgb(240, 240, 240);
+                    ColorPanel1.BackColor = Color.FromArgb(240, 240, 240);
                     nextPlayerButton.Text = "Klik hier als je de info wilt zien";
                     LabelClear();
                 }
@@ -40,19 +40,24 @@ namespace SpyfallGame.presentatie
                     Random random = new Random();
                     Color kleur = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
                     ColorPanel.BackColor = kleur;
-                    panel1.BackColor = kleur;
+                    ColorPanel1.BackColor = kleur;
                     nextPlayerButton.Text = "Ik heb mijn rol en de locatie gezien";
                     Speler speler = (Speler)Spelers[counter2];
                     rolLabel.Text = speler.GetRol();
                     locatieLabel.Text = speler.GetLocatie();
                     counter2++;
                 }
-
             }
             else
             {
                 LabelClear();
                 nextPlayerButton.Text = "Start het spel";
+            }
+
+            if (nextPlayerButton.Text == "Start het spel")
+            {
+                Hide();
+                new TimerGUI().Show();
             }
 
         }

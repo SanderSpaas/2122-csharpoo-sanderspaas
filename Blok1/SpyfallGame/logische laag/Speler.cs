@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 
 public class Speler
 {
-    private String rol;
-    private String locatie;
+    private string rol;
+    private string locatie;
     private static int aantalspelers;
     private static int aantalspionnen;
     public static ArrayList Spelers = new ArrayList();
 
-    public Speler(String rol, String locatie)
+    public Speler(string rol, string locatie)
     {
         this.rol = rol;
         this.locatie = locatie;
     }
 
-    public String Rol
+    public string Rol
     {
         get { return rol; }
         set { rol = value; }
@@ -25,13 +24,13 @@ public class Speler
     {
         Spelers.Add(speler);
     }
-    public String GetRol()
+    public string GetRol()
     {
-        return this.rol;
+        return rol;
     }
-    public String GetLocatie()
+    public string GetLocatie()
     {
-        return this.locatie;
+        return locatie;
     }
 
     public static int GetAantalspelers()

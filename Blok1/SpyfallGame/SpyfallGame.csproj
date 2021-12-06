@@ -75,6 +75,12 @@
     <Compile Include="logische laag\Colors.cs" />
     <Compile Include="logische laag\Rollen.cs" />
     <Compile Include="logische laag\Speler.cs" />
+    <Compile Include="presentatielaag\TimerGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="presentatielaag\TimerGUI.Designer.cs">
+      <DependentUpon>TimerGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="presentatielaag\showRolesGui.resx">
@@ -88,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="presentatielaag\startGui.resx">
       <DependentUpon>startGui.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="presentatielaag\TimerGUI.resx">
+      <DependentUpon>TimerGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
