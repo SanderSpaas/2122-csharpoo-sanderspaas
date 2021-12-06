@@ -7,20 +7,17 @@ public class Speler
     private String locatie;
     public static ArrayList Spelers = new ArrayList();
 
-
     public Speler(String rol, String locatie)
     {
         this.rol = rol;
         this.locatie = locatie;
     }
 
-
     public String Rol
     {
         get { return rol; }
         set { rol = value; }
     }
-
 
     public static void addSpeler(Speler speler)
     {

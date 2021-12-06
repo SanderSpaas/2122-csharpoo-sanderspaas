@@ -19,13 +19,14 @@ namespace SpyfallGame.presentatie
         String dataCSVRoles;
         String filePath;
 
+        //knop die de ingegeven data gaat opslaan in vars zodat ze later eventueel in bestand gezet kunnen worden
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (LocatieTextbox.Text != null && LocatieTextbox.Text != "")
+            if (CheckInput(LocatieTextbox.Text))
             {
                 dataCSVLocation = LocatieTextbox.Text.Trim();
             }
-            if (RolTextBox.Text != null && RolTextBox.Text != "")
+            if (CheckInput(RolTextBox.Text))
             {
                 dataCSVRoles = dataCSVRoles + ";" + RolTextBox.Text.Trim();
             }
@@ -48,21 +49,25 @@ namespace SpyfallGame.presentatie
                 //het bestand gaan aanmaken
                 File.Create(saveFileDialog1.FileName).Close();
                 showFileContent(filePath, false);
-
+                EnableInput();
             }
 
         }
-        //een al bestaan bestand gaan bijwerken met extra data
+        //een bestaand bestand gaan selecteren om dingen aan toe te voegen
         private void LaadBestandButton_Click(object sender, EventArgs e)
         {
             filePath = FileSelector();
             showFileContent(filePath, true);
+            EnableInput();
         }
+
+        //button die de data gaat laten toevoegen
         private void VoegToeButton_Click(object sender, EventArgs e)
         {
             addToFile(filePath);
         }
 
+        //methode die een bestand gaat uitlezen
         private void showFileContent(String filePath, bool read)
         {
             OutputTextBox.Text = "Bestand geselecteerd. \r\n";
@@ -78,6 +83,7 @@ namespace SpyfallGame.presentatie
             GeselecteerdeBestandTextBox.Text = filePath;
         }
 
+        //methode die data naar een bestand gaat schrijven
         private void addToFile(String filePath)
         {
             File.AppendAllText(filePath, dataCSVLocation + dataCSVRoles + Environment.NewLine);
@@ -87,6 +93,32 @@ namespace SpyfallGame.presentatie
             LocatieTextbox.Text = "";
             OutputTextBox.Text = "Data naar bestand geschreven. \r\n";
             showFileContent(filePath, true);
+        }
+
+        //saniteer data die binnenkomt 
+        private bool CheckInput(String input)
+        {
+            input = input.Trim();
+            if (input == null)
+            {
+                return false;
+            }
+            if (input == "")
+            {
+                return false;
+            }
+            if (input.Contains(";"))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void EnableInput()
+        {
+            LocatieTextbox.Enabled = true;
+            RolTextBox.Enabled = true;
+            AddButton.Enabled = true;
         }
     }
 }

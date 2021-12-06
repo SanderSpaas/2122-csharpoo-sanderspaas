@@ -38,6 +38,7 @@
             this.dataFileButton = new System.Windows.Forms.Button();
             this.SpelRegelsButton = new System.Windows.Forms.Button();
             this.SpelBestandButton = new System.Windows.Forms.Button();
+            this.MaakJeEigenSpelbestandLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpelers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpionnen)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +68,7 @@
             this.aantalSpelers.Location = new System.Drawing.Point(27, 59);
             this.aantalSpelers.Name = "aantalSpelers";
             this.aantalSpelers.Size = new System.Drawing.Size(120, 22);
-            this.aantalSpelers.TabIndex = 2; 
+            this.aantalSpelers.TabIndex = 2;
             // 
             // labelSpelers
             // 
@@ -125,19 +126,29 @@
             // 
             // SpelBestandButton
             // 
-            this.SpelBestandButton.Location = new System.Drawing.Point(30, 387);
+            this.SpelBestandButton.Location = new System.Drawing.Point(30, 415);
             this.SpelBestandButton.Name = "SpelBestandButton";
             this.SpelBestandButton.Size = new System.Drawing.Size(305, 29);
             this.SpelBestandButton.TabIndex = 9;
-            this.SpelBestandButton.Text = "Maak je eigen spelbestand";
+            this.SpelBestandButton.Text = "Open de editor";
             this.SpelBestandButton.UseVisualStyleBackColor = true;
             this.SpelBestandButton.Click += new System.EventHandler(this.SpelBestandButton_Click);
+            // 
+            // MaakJeEigenSpelbestandLabel
+            // 
+            this.MaakJeEigenSpelbestandLabel.AutoSize = true;
+            this.MaakJeEigenSpelbestandLabel.Location = new System.Drawing.Point(27, 396);
+            this.MaakJeEigenSpelbestandLabel.Name = "MaakJeEigenSpelbestandLabel";
+            this.MaakJeEigenSpelbestandLabel.Size = new System.Drawing.Size(170, 16);
+            this.MaakJeEigenSpelbestandLabel.TabIndex = 10;
+            this.MaakJeEigenSpelbestandLabel.Text = "Maak je eigen spelbestand";
             // 
             // Spyfall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 428);
+            this.ClientSize = new System.Drawing.Size(376, 472);
+            this.Controls.Add(this.MaakJeEigenSpelbestandLabel);
             this.Controls.Add(this.SpelBestandButton);
             this.Controls.Add(this.SpelRegelsButton);
             this.Controls.Add(this.dataFileButton);
@@ -170,5 +181,6 @@
         private System.Windows.Forms.Button dataFileButton;
         private System.Windows.Forms.Button SpelRegelsButton;
         private System.Windows.Forms.Button SpelBestandButton;
+        private System.Windows.Forms.Label MaakJeEigenSpelbestandLabel;
     }
 }

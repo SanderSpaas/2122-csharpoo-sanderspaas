@@ -63,9 +63,10 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(314, 78);
+            this.AddButton.Enabled = false;
+            this.AddButton.Location = new System.Drawing.Point(314, 70);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(75, 23);
+            this.AddButton.Size = new System.Drawing.Size(75, 31);
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -73,14 +74,16 @@
             // 
             // LocatieTextbox
             // 
-            this.LocatieTextbox.Location = new System.Drawing.Point(71, 77);
+            this.LocatieTextbox.Enabled = false;
+            this.LocatieTextbox.Location = new System.Drawing.Point(71, 74);
             this.LocatieTextbox.Name = "LocatieTextbox";
             this.LocatieTextbox.Size = new System.Drawing.Size(100, 22);
             this.LocatieTextbox.TabIndex = 3;
             // 
             // RolTextBox
             // 
-            this.RolTextBox.Location = new System.Drawing.Point(199, 78);
+            this.RolTextBox.Enabled = false;
+            this.RolTextBox.Location = new System.Drawing.Point(199, 74);
             this.RolTextBox.Name = "RolTextBox";
             this.RolTextBox.Size = new System.Drawing.Size(100, 22);
             this.RolTextBox.TabIndex = 4;

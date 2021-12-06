@@ -3,6 +3,7 @@ using System.Windows.Forms;
 
 public class SpyfallMain
 {
+    //de main class voor algemene logica
     public SpyfallMain()
     {
 
