@@ -8,7 +8,7 @@ namespace SpyfallProject.presentatielaag
         //global variables
         private int _Counter = 0;
         private int _Counter2 = 0;
-        private Random _Random = new();
+        private readonly Random _Random = new();
         public showRolesGui()
         {
             InitializeComponent();

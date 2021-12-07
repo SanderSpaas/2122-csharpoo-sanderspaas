@@ -1,4 +1,4 @@
-﻿using static SpyfallProject.datalaag.DataVerwerker;
+﻿using static SpyfallProject.datalaag.IDataVerwerker;
 using static SpyfallProject.presentatielaag.FilePicker;
 namespace SpyfallProject.presentatielaag
 
@@ -34,16 +34,17 @@ namespace SpyfallProject.presentatielaag
         //het CSV bestand gaan aanmaken 
         private void GenereerBestand_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            SaveFileDialog saveFileDialog = new()
+            {
+                Filter = "csv files (*.csv)|*.csv",
+                FilterIndex = 2,
+                RestoreDirectory = true
+            };
 
-            saveFileDialog1.Filter = "csv files (*.csv)|*.csv";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
-
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 //geen data gaan schrijven gewoon het bestand al selecteren
-                _FilePath = saveFileDialog1.FileName;
+                _FilePath = saveFileDialog.FileName;
                 //het bestand gaan aanmaken
                 CreateFile(_FilePath);
                 OutputTextBox.Text = "Bestand geselecteerd. \r\n";
@@ -83,7 +84,7 @@ namespace SpyfallProject.presentatielaag
         }
 
         //saniteer data die binnenkomt 
-        private bool CheckInput(String input)
+        private static bool CheckInput(String input)
         {
             input = input.Trim();
             if (string.IsNullOrWhiteSpace(input))

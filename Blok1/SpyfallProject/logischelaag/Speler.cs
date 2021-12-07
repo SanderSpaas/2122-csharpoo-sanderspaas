@@ -3,17 +3,23 @@ namespace SpyfallProject.logischelaag
 {
     public class Speler
     {
-        private string _Rol;
-        private string _Locatie;
+        private readonly string _Rol = "";
+        private readonly string _Locatie = "";
         private static int _Aantalspelers;
         private static int _Aantalspionnen;
-        private static ArrayList spelers = new();
+        private static readonly ArrayList spelers = new();
 
         public Speler(string rol, string locatie)
         {
+            if (!string.IsNullOrWhiteSpace(rol))
+            {
+                _Rol = rol;
+            }
+            if (!string.IsNullOrWhiteSpace(locatie))
+            {
+                _Locatie = locatie;
+            }
 
-            _Rol = rol;
-            _Locatie = locatie;
         }
 
         public static int Aantalspionnen { get => _Aantalspionnen; set => _Aantalspionnen = value; }
@@ -22,11 +28,10 @@ namespace SpyfallProject.logischelaag
         public string Locatie { get => _Locatie; }
         public string Rol { get => _Rol; }
 
-        public static void addSpeler(Speler speler)
+        public static void AddSpeler(Speler speler)
         {
             Spelers.Add(speler);
         }
-
 
         public static void SetAantalspelers(int value)
         {

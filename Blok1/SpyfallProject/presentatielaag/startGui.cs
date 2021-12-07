@@ -1,6 +1,6 @@
 ﻿using SpyfallProject.logischelaag;
 using System.Collections;
-using static SpyfallProject.datalaag.DataVerwerker;
+using static SpyfallProject.datalaag.IDataVerwerker;
 using static SpyfallProject.datalaag.Rollen;
 using static SpyfallProject.logischelaag.Shuffle;
 using static SpyfallProject.logischelaag.Speler;
@@ -10,10 +10,10 @@ namespace SpyfallProject.presentatielaag
     public partial class startGui : Form
     {
         //de array waar we onze errors gaan insteken
-        private ArrayList _ErrorArray = new();
-        private ArrayList _RollenListSpel = new();
+        private readonly ArrayList _ErrorArray = new();
+        private readonly ArrayList _RollenListSpel = new();
         private string _FilePath = @"datalaag\SpyfallData.csv";
-        private Random _Random = new();
+        private readonly Random _Random = new();
         public startGui()
         {
             InitializeComponent();
@@ -57,7 +57,7 @@ namespace SpyfallProject.presentatielaag
             //de errors gaan tonen
             foreach (string error in _ErrorArray)
             {
-                textBox1.Text = textBox1.Text + error;
+                textBox1.Text = $"{textBox1.Text}{error}";
             }
 
             //als er geen errors zijn dingen voor het spel beginnen klaarzetten
@@ -88,8 +88,8 @@ namespace SpyfallProject.presentatielaag
                     int randomRol = _Random.Next(0, _RollenListSpel.Count);
 
                     //spelerobjecten gaan aanmaken
-                    Speler speler = new Speler(_RollenListSpel[randomRol].ToString(), Locatie);
-                    addSpeler(speler);
+                    Speler speler = new(_RollenListSpel[randomRol].ToString(), Locatie);
+                    AddSpeler(speler);
 
                     //de rol gaan verwijderen uit de tijdelijke array zodat hij niet nog is gekozen word
                     _RollenListSpel.RemoveAt(randomRol);
@@ -98,7 +98,7 @@ namespace SpyfallProject.presentatielaag
                 for (int aantalSpionnen = 0; aantalSpionnen < aantalSpionnenTeller; aantalSpionnen++)
                 {
                     Speler speler = new Speler("Spion", "Onbekend");
-                    addSpeler(speler);
+                    AddSpeler(speler);
                 }
                 //de spelerarray gaan shuffelen
                 ShuffleList(Spelers);

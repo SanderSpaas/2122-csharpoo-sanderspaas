@@ -30,10 +30,5 @@
                 "Is dat de spion? Dan wint de groep, anders wint de spion.";
             SpelregelsTextBox.DeselectAll();
         }
-
-        private void SpelregelsTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

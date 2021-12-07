@@ -2,8 +2,8 @@
 {
     public partial class TimerGUI : Form
     {
-        private DateTime _EndTime;
-        Random random = new Random();
+        private readonly DateTime _EndTime;
+        private readonly Random random = new();
         public TimerGUI()
         {
             InitializeComponent();
@@ -13,7 +13,7 @@
             _EndTime = start.AddMinutes(minutes);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             TimeSpan remainingTime = _EndTime - DateTime.UtcNow;
             if (remainingTime < TimeSpan.Zero)
@@ -29,11 +29,6 @@
                 ColorPanel.BackColor = kleur;
                 ColorPanel1.BackColor = kleur;
             }
-        }
-
-        private void TimerGUI_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

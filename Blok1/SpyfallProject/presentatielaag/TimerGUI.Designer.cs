@@ -51,7 +51,7 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // label1
             // 
@@ -107,7 +107,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TimerGUI";
             this.Text = "TimerGUI";
-            this.Load += new System.EventHandler(this.TimerGUI_Load);
             this.ResumeLayout(false);
 
         }

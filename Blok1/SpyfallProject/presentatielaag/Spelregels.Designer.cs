@@ -44,7 +44,6 @@
             this.SpelregelsTextBox.Size = new System.Drawing.Size(743, 682);
             this.SpelregelsTextBox.TabIndex = 0;
             this.SpelregelsTextBox.TabStop = false;
-            this.SpelregelsTextBox.TextChanged += new System.EventHandler(this.SpelregelsTextBox_TextChanged);
             // 
             // Spelregels
             // 
