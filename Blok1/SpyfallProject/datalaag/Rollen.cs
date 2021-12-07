@@ -3,10 +3,14 @@ namespace SpyfallProject.datalaag
 {
     public class Rollen
     {
-        private static string _Locatie = "";
-        private static ArrayList rollenList = new();
+        private string _Locatie = "";
+        private static ArrayList rollenList;
 
-        public static void KiesRandomRol(String filePath)
+        public Rollen()
+        {
+        }
+
+        public void KiesRandomRol(String filePath)
         {
             //tijdelijke arraylist
             ArrayList rollenListString = new ArrayList();
@@ -23,15 +27,11 @@ namespace SpyfallProject.datalaag
             _Locatie = rollenListString[0].ToString();
             rollenListString.RemoveAt(0);
 
-            //door de tijdelijke array gaan loopen en objecten gaan aanmaken met de data en in de echte array gaan zetten
-            foreach (string rol in rollenListString)
-            {
-                //object in de lijst gaan zetten
-                rollenList.Add(rol);
-            }
+            //data gaan vastzetten
+            RollenList = rollenListString;
         }
 
-        public static ArrayList RollenList { get => rollenList; set => rollenList = value; }
-        public static string Locatie { get => _Locatie; set => _Locatie = value; }
+        public ArrayList RollenList { get => rollenList; set => rollenList = value; }
+        public string Locatie { get => _Locatie; set => _Locatie = value; }
     }
 }

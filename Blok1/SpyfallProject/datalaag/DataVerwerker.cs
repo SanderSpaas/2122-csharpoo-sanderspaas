@@ -6,6 +6,7 @@ namespace SpyfallProject.datalaag
 
         public static bool TestData(String filePath)
         {
+
             //een tijdelijke arraylist om data om na te kijken in te zetten
             ArrayList checkList = new();
             //eerst kijken of het bestand wel bestaat

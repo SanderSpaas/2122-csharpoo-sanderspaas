@@ -6,8 +6,6 @@ namespace SpyfallProject.logischelaag
         private static readonly Random random = new();
         public static void ShuffleList(ArrayList arrayList)
         {
-
-
             //de data gaan shufflen in de array
             for (int i = 0; i < arrayList.Count - 1; i++)
             {
