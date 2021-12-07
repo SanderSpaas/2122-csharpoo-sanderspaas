@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="datalaag\spy.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="datalaag\spy.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="presentatielaag\showRolesGui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="presentatielaag\SpelMaker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="presentatielaag\Spelregels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="presentatielaag\startGui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="presentatielaag\TimerGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="datalaag\SpyfallData.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
