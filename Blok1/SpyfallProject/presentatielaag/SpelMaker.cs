@@ -1,4 +1,4 @@
-﻿using static DataVerwerker;
+﻿using static SpyfallProject.datalaag.DataVerwerker;
 using static SpyfallProject.presentatielaag.FilePicker;
 namespace SpyfallProject.presentatielaag
 
@@ -62,7 +62,7 @@ namespace SpyfallProject.presentatielaag
             }
             else
             {
-                var lines = showFileContent(_FilePath);
+                var lines = ShowFileContent(_FilePath);
                 OutputTextBox.Text = "Bestand geselecteerd. \r\n";
                 ShowData(lines);
                 GeselecteerdeBestandTextBox.Text = _FilePath;
@@ -78,7 +78,7 @@ namespace SpyfallProject.presentatielaag
                 OutputTextBox.Text = "Data naar bestand geschreven. \r\n";
             }
             ClearFields();
-            var lines = showFileContent(_FilePath);
+            var lines = ShowFileContent(_FilePath);
             ShowData(lines);
         }
 

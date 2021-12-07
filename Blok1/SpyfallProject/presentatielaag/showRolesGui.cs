@@ -1,4 +1,5 @@
-﻿using static Speler;
+﻿using SpyfallProject.logischelaag;
+using static SpyfallProject.logischelaag.Speler;
 
 namespace SpyfallProject.presentatielaag
 {
@@ -18,7 +19,7 @@ namespace SpyfallProject.presentatielaag
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int maxPlayers = Spelers.Count;
+            int maxPlayers = Aantalspelers;
             rolLabel1.Text = "Jouw rol";
             locatieLabel1.Text = "De locatie";
             if (_Counter < (maxPlayers * 2) - 1)
@@ -39,8 +40,8 @@ namespace SpyfallProject.presentatielaag
                     ColorPanel1.BackColor = kleur;
                     nextPlayerButton.Text = "Ik heb mijn rol en de locatie gezien";
                     Speler speler = (Speler)Spelers[_Counter2];
-                    rolLabel.Text = speler.GetRol();
-                    locatieLabel.Text = speler.GetLocatie();
+                    rolLabel.Text = speler.Rol;
+                    locatieLabel.Text = speler.Locatie;
                     _Counter2++;
                 }
             }

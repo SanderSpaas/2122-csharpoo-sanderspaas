@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.StartButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.aantalSpelers = new System.Windows.Forms.NumericUpDown();
             this.labelSpelers = new System.Windows.Forms.Label();
@@ -43,16 +43,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpionnen)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // StartButton
             // 
-            this.button1.Location = new System.Drawing.Point(27, 194);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 35);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.StartButton.Location = new System.Drawing.Point(27, 194);
+            this.StartButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(120, 35);
+            this.StartButton.TabIndex = 0;
+            this.StartButton.Text = "Start";
+            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // textBox1
             // 
@@ -150,7 +150,7 @@
             this.MaakJeEigenSpelbestandLabel.TabIndex = 10;
             this.MaakJeEigenSpelbestandLabel.Text = "Maak je eigen spelbestand";
             // 
-            // Spyfall
+            // startGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -165,12 +165,11 @@
             this.Controls.Add(this.labelSpelers);
             this.Controls.Add(this.aantalSpelers);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.StartButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Spyfall";
+            this.Name = "startGui";
             this.Text = "Spyfall";
-            this.Load += new System.EventHandler(this.Spyfall_Load);
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpelers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpionnen)).EndInit();
             this.ResumeLayout(false);
@@ -180,7 +179,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.NumericUpDown aantalSpelers;
         private System.Windows.Forms.Label labelSpelers;

@@ -2,7 +2,7 @@
 {
     internal class FilePicker
     {
-        public static String FileSelector()
+        public static string FileSelector()
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
