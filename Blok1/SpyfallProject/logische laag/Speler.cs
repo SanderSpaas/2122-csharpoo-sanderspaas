@@ -10,8 +10,8 @@ public class Speler
 
     public Speler(string rol, string locatie)
     {
-        this._Rol = rol;
-        this._Locatie = locatie;
+        _Rol = rol;
+        _Locatie = locatie;
     }
 
     public string Rol

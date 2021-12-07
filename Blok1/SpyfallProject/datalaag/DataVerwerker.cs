@@ -2,7 +2,7 @@
 
 public class DataVerwerker
 {
-    public static String? FileSelector()
+    public static String FileSelector()
     {
         using (OpenFileDialog openFileDialog = new OpenFileDialog())
         {
@@ -16,7 +16,7 @@ public class DataVerwerker
                 //Get the path of specified file
                 return openFileDialog.FileName;
             }
-            return null;
+            return @"datalaag\SpyfallData.csv";
         }
     }
 
@@ -50,7 +50,7 @@ public class DataVerwerker
                 foreach (String rol in checkList)
                 {
                     //gaan checken of de elementen leeg zijn
-                    if (rol == "" || rol == null)
+                    if (string.IsNullOrWhiteSpace(rol))
                     {
                         throw new ArgumentException("Het bestand heeft een incorrecte data-opbouw, de locatie of rol kan niet leeg zijn");
                     }
