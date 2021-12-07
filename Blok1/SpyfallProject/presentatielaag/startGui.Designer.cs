@@ -117,7 +117,7 @@
             this.dataFileButton.TabIndex = 7;
             this.dataFileButton.Text = "Select File";
             this.dataFileButton.UseVisualStyleBackColor = true;
-            this.dataFileButton.Click += new System.EventHandler(this.dataFileButton_Click);
+            this.dataFileButton.Click += new System.EventHandler(this.DataFileButton_Click);
             // 
             // SpelRegelsButton
             // 

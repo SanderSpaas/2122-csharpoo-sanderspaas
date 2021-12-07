@@ -13,7 +13,7 @@ namespace SpyfallProject.presentatielaag
         private ArrayList _ErrorArray = new();
         private ArrayList _RollenListSpel = new();
         private string _FilePath = @"datalaag\SpyfallData.csv";
-
+        private Random _Random = new();
         public startGui()
         {
             InitializeComponent();
@@ -74,7 +74,6 @@ namespace SpyfallProject.presentatielaag
                 //aantal spelers = aantal spelers - het aantal spionnen
                 int aantalSpelersTeller = Aantalspelers;
                 int aantalSpionnenTeller = Aantalspionnen;
-                Random random = new();
                 for (int aantalSpelers = 0; aantalSpelers < aantalSpelersTeller - aantalSpionnenTeller; aantalSpelers++)
                 {
                     //als er geen originele rollen meer overzijn de lijst gewoon opnieuw vullen met alle mogelijkheden
@@ -86,7 +85,7 @@ namespace SpyfallProject.presentatielaag
                     }
 
                     //random gaan genereren
-                    int randomRol = random.Next(0, _RollenListSpel.Count);
+                    int randomRol = _Random.Next(0, _RollenListSpel.Count);
 
                     //spelerobjecten gaan aanmaken
                     Speler speler = new Speler(_RollenListSpel[randomRol].ToString(), Locatie);
@@ -107,7 +106,7 @@ namespace SpyfallProject.presentatielaag
                 //de volgende form gaan tonen bye bye o/ :)
                 //de huidige form gaan hiden
                 Hide();
-                new showRolesGui().Show();
+                new showRolesGui().ShowDialog();
             }
             //debug om spelers met hun rollen te zien in het errorvak
             foreach (Speler speler in Spelers)
@@ -120,7 +119,7 @@ namespace SpyfallProject.presentatielaag
         }
 
         //de user zelf een databestand laten kiezen
-        private void dataFileButton_Click(object sender, EventArgs e)
+        private void DataFileButton_Click(object sender, EventArgs e)
         {
             _FilePath = FileSelector();
             textBox1.Text = "Costum data geselecteerd";

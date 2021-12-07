@@ -13,7 +13,7 @@ namespace SpyfallProject.datalaag
 
             //alle lijnen in het document gaan lezen
             var lines = File.ReadAllLines(filePath);
-            Random random = new Random();
+            Random random = new();
             int randomGetal = random.Next(0, lines.Count());
 
             //de random gekozen lijn gaan splitsen op basis van een delimiter in een tijdelijke arraylist

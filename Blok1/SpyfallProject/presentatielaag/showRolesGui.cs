@@ -8,7 +8,7 @@ namespace SpyfallProject.presentatielaag
         //global variables
         private int _Counter = 0;
         private int _Counter2 = 0;
-
+        private Random _Random = new();
         public showRolesGui()
         {
             InitializeComponent();
@@ -17,7 +17,7 @@ namespace SpyfallProject.presentatielaag
             LabelClear();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             int maxPlayers = Aantalspelers;
             rolLabel1.Text = "Jouw rol";
@@ -34,8 +34,8 @@ namespace SpyfallProject.presentatielaag
                 }
                 else
                 {
-                    Random random = new Random();
-                    Color kleur = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+
+                    Color kleur = Color.FromArgb(_Random.Next(256), _Random.Next(256), _Random.Next(256));
                     ColorPanel.BackColor = kleur;
                     ColorPanel1.BackColor = kleur;
                     nextPlayerButton.Text = "Ik heb mijn rol en de locatie gezien";
@@ -54,7 +54,7 @@ namespace SpyfallProject.presentatielaag
             if (nextPlayerButton.Text == "Start het spel")
             {
                 Hide();
-                new TimerGUI().Show();
+                new TimerGUI().ShowDialog();
             }
 
         }

@@ -46,7 +46,7 @@
             this.nextPlayerButton.TabIndex = 0;
             this.nextPlayerButton.Text = "Klik hier als je de info wilt zien";
             this.nextPlayerButton.UseVisualStyleBackColor = true;
-            this.nextPlayerButton.Click += new System.EventHandler(this.button1_Click);
+            this.nextPlayerButton.Click += new System.EventHandler(this.Button1_Click);
             // 
             // welkeSpelerLabel
             // 
