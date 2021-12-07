@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Blok1",
-    "\\Blok1\\SpyfallGame"
+    "\\Blok1\\SpyfallProject",
+    "\\Blok1\\SpyfallProject\\presentatielaag"
   ],
-  "SelectedNode": "\\Blok1\\SpyfallGame\\SpyfallGame.sln",
+  "SelectedNode": "\\Blok1\\SpyfallProject\\presentatielaag\\TimerGUI.cs",
   "PreviewInSolutionExplorer": false
 }
