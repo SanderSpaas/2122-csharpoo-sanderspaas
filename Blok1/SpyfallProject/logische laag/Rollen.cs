@@ -4,14 +4,13 @@ public class Rollen
 {
     private static string _Locatie;
     public static ArrayList rollenList = new ArrayList();
+    private Random _Random = new Random();
     public static void KiesRandomRol(String filePath)
     {
         //tijdelijke arraylist
         ArrayList rollenListString = new ArrayList();
 
-        Random random = new Random();
-        //een random gaan genereren met als maximum het aantal lijnen in ons data document
-        int randomGetal = random.Next(0, File.ReadLines(filePath).Count());
+        int randomGetal = _Random.Next(0, File.ReadLines(filePath).Count());
         //alle lijnen in het document gaan lezen
         var lines = File.ReadAllLines(filePath);
 
