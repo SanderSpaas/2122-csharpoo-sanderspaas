@@ -5,16 +5,17 @@ namespace SpyfallProject.presentatielaag
 {
     public partial class SpelMaker : Form
     {
+        //variables
+        private string _DataCSVLocation = "";
+        private string _DataCSVRoles = "";
+        private string _FilePath = "";
+
         public SpelMaker()
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
 
         }
-        //variables
-        private String _DataCSVLocation;
-        private String _DataCSVRoles;
-        private String _FilePath;
 
         //knop die de ingegeven data gaat opslaan in vars zodat ze later eventueel in bestand gezet kunnen worden
         private void AddButton_Click(object sender, EventArgs e)
@@ -44,7 +45,7 @@ namespace SpyfallProject.presentatielaag
                 //geen data gaan schrijven gewoon het bestand al selecteren
                 _FilePath = saveFileDialog1.FileName;
                 //het bestand gaan aanmaken
-                File.Create(saveFileDialog1.FileName).Close();
+                CreateFile(_FilePath);
                 OutputTextBox.Text = "Bestand geselecteerd. \r\n";
                 GeselecteerdeBestandTextBox.Text = _FilePath;
                 EnableInput();
