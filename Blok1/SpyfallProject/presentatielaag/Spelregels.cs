@@ -1,4 +1,4 @@
-﻿namespace SpyfallProject.presentatie
+﻿namespace SpyfallProject.presentatielaag
 {
     public partial class Spelregels : Form
     {

@@ -1,6 +1,7 @@
 ﻿using static DataVerwerker;
+using static SpyfallProject.presentatielaag.FilePicker;
+namespace SpyfallProject.presentatielaag
 
-namespace SpyfallProject.presentatie
 {
     public partial class SpelMaker : Form
     {
@@ -44,7 +45,8 @@ namespace SpyfallProject.presentatie
                 _FilePath = saveFileDialog1.FileName;
                 //het bestand gaan aanmaken
                 File.Create(saveFileDialog1.FileName).Close();
-                showFileContent(_FilePath, false);
+                OutputTextBox.Text = "Bestand geselecteerd. \r\n";
+                GeselecteerdeBestandTextBox.Text = _FilePath;
                 EnableInput();
             }
 
@@ -53,60 +55,37 @@ namespace SpyfallProject.presentatie
         private void LaadBestandButton_Click(object sender, EventArgs e)
         {
             _FilePath = FileSelector();
-            showFileContent(_FilePath, true);
-            EnableInput();
-        }
-
-        //button die de data gaat laten toevoegen
-        private void VoegToeButton_Click(object sender, EventArgs e)
-        {
-            addToFile(_FilePath);
-        }
-
-        //methode die een bestand gaat uitlezen
-        private void showFileContent(String filePath, bool read)
-        {
-            if (!TestData(filePath))
+            if (!TestData(_FilePath))
             {
                 OutputTextBox.Text = "Het gekozen databestand is ongeldig. \r\n";
             }
             else
             {
+                var lines = showFileContent(_FilePath);
                 OutputTextBox.Text = "Bestand geselecteerd. \r\n";
-                if (read)
-                {
-                    //alle lijnen in het document gaan lezen
-                    var lines = File.ReadAllLines(filePath);
-                    foreach (var line in lines)
-                    {
-                        OutputTextBox.Text = OutputTextBox.Text + line + "\r\n";
-                    }
-                }
-                GeselecteerdeBestandTextBox.Text = filePath;
+                ShowData(lines);
+                GeselecteerdeBestandTextBox.Text = _FilePath;
+                EnableInput();
             }
         }
 
-        //methode die data naar een bestand gaat schrijven
-        private void addToFile(String filePath)
+        //button die de data gaat laten toevoegen
+        private void VoegToeButton_Click(object sender, EventArgs e)
         {
-            File.AppendAllText(filePath, _DataCSVLocation + _DataCSVRoles + Environment.NewLine);
-            _DataCSVLocation = "";
-            _DataCSVRoles = "";
-            OutputTextBox.Text = "";
-            LocatieTextbox.Text = "";
-            OutputTextBox.Text = "Data naar bestand geschreven. \r\n";
-            showFileContent(filePath, true);
+            if (addToFile(_FilePath, _DataCSVLocation, _DataCSVRoles))
+            {
+                OutputTextBox.Text = "Data naar bestand geschreven. \r\n";
+            }
+            ClearFields();
+            var lines = showFileContent(_FilePath);
+            ShowData(lines);
         }
 
         //saniteer data die binnenkomt 
         private bool CheckInput(String input)
         {
             input = input.Trim();
-            if (input == null)
-            {
-                return false;
-            }
-            if (input == "")
+            if (string.IsNullOrWhiteSpace(input))
             {
                 return false;
             }
@@ -122,6 +101,21 @@ namespace SpyfallProject.presentatie
             LocatieTextbox.Enabled = true;
             RolTextBox.Enabled = true;
             AddButton.Enabled = true;
+            VoegToeButton.Enabled = true;
+        }
+        private void ClearFields()
+        {
+            _DataCSVLocation = "";
+            _DataCSVRoles = "";
+            OutputTextBox.Text = "";
+            LocatieTextbox.Text = "";
+        }
+        private void ShowData(String[] lines)
+        {
+            foreach (var line in lines)
+            {
+                OutputTextBox.Text = OutputTextBox.Text + line + "\r\n";
+            }
         }
     }
 }

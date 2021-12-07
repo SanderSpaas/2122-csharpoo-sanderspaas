@@ -3,8 +3,8 @@ using static DataVerwerker;
 using static Rollen;
 using static Shuffle;
 using static Speler;
-
-namespace SpyfallProject.presentatie
+using static SpyfallProject.presentatielaag.FilePicker;
+namespace SpyfallProject.presentatielaag
 {
     public partial class startGui : Form
     {

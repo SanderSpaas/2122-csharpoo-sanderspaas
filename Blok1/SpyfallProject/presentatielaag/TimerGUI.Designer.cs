@@ -107,6 +107,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TimerGUI";
             this.Text = "TimerGUI";
+            this.Load += new System.EventHandler(this.TimerGUI_Load);
             this.ResumeLayout(false);
 
         }

@@ -1,4 +1,4 @@
-﻿namespace SpyfallProject.presentatie
+﻿namespace SpyfallProject.presentatielaag
 {
     partial class SpelMaker
     {
@@ -44,8 +44,8 @@
             // LocatieLabel
             // 
             this.LocatieLabel.AutoSize = true;
-            this.LocatieLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LocatieLabel.Location = new System.Drawing.Point(67, 51);
+            this.LocatieLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LocatieLabel.Location = new System.Drawing.Point(67, 64);
             this.LocatieLabel.Name = "LocatieLabel";
             this.LocatieLabel.Size = new System.Drawing.Size(68, 22);
             this.LocatieLabel.TabIndex = 0;
@@ -54,8 +54,8 @@
             // RolLabel
             // 
             this.RolLabel.AutoSize = true;
-            this.RolLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RolLabel.Location = new System.Drawing.Point(195, 51);
+            this.RolLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.RolLabel.Location = new System.Drawing.Point(195, 64);
             this.RolLabel.Name = "RolLabel";
             this.RolLabel.Size = new System.Drawing.Size(37, 22);
             this.RolLabel.TabIndex = 1;
@@ -64,9 +64,10 @@
             // AddButton
             // 
             this.AddButton.Enabled = false;
-            this.AddButton.Location = new System.Drawing.Point(314, 70);
+            this.AddButton.Location = new System.Drawing.Point(314, 88);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(75, 31);
+            this.AddButton.Size = new System.Drawing.Size(75, 39);
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -75,24 +76,27 @@
             // LocatieTextbox
             // 
             this.LocatieTextbox.Enabled = false;
-            this.LocatieTextbox.Location = new System.Drawing.Point(71, 74);
+            this.LocatieTextbox.Location = new System.Drawing.Point(71, 92);
+            this.LocatieTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LocatieTextbox.Name = "LocatieTextbox";
-            this.LocatieTextbox.Size = new System.Drawing.Size(100, 22);
+            this.LocatieTextbox.Size = new System.Drawing.Size(100, 27);
             this.LocatieTextbox.TabIndex = 3;
             // 
             // RolTextBox
             // 
             this.RolTextBox.Enabled = false;
-            this.RolTextBox.Location = new System.Drawing.Point(199, 74);
+            this.RolTextBox.Location = new System.Drawing.Point(199, 92);
+            this.RolTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.RolTextBox.Name = "RolTextBox";
-            this.RolTextBox.Size = new System.Drawing.Size(100, 22);
+            this.RolTextBox.Size = new System.Drawing.Size(100, 27);
             this.RolTextBox.TabIndex = 4;
             // 
             // GenereerBestand
             // 
-            this.GenereerBestand.Location = new System.Drawing.Point(350, 252);
+            this.GenereerBestand.Location = new System.Drawing.Point(350, 315);
+            this.GenereerBestand.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.GenereerBestand.Name = "GenereerBestand";
-            this.GenereerBestand.Size = new System.Drawing.Size(284, 48);
+            this.GenereerBestand.Size = new System.Drawing.Size(284, 60);
             this.GenereerBestand.TabIndex = 5;
             this.GenereerBestand.Text = "Maak een bestand aan";
             this.GenereerBestand.UseVisualStyleBackColor = true;
@@ -100,19 +104,21 @@
             // 
             // OutputTextBox
             // 
-            this.OutputTextBox.Location = new System.Drawing.Point(71, 107);
+            this.OutputTextBox.Location = new System.Drawing.Point(71, 134);
+            this.OutputTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.OutputTextBox.Multiline = true;
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.ReadOnly = true;
             this.OutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.OutputTextBox.Size = new System.Drawing.Size(563, 139);
+            this.OutputTextBox.Size = new System.Drawing.Size(563, 173);
             this.OutputTextBox.TabIndex = 6;
             // 
             // LaadBestandButton
             // 
-            this.LaadBestandButton.Location = new System.Drawing.Point(71, 252);
+            this.LaadBestandButton.Location = new System.Drawing.Point(71, 315);
+            this.LaadBestandButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LaadBestandButton.Name = "LaadBestandButton";
-            this.LaadBestandButton.Size = new System.Drawing.Size(273, 48);
+            this.LaadBestandButton.Size = new System.Drawing.Size(273, 60);
             this.LaadBestandButton.TabIndex = 7;
             this.LaadBestandButton.Text = "Laad een bestand om te bewerken";
             this.LaadBestandButton.UseVisualStyleBackColor = true;
@@ -120,9 +126,11 @@
             // 
             // VoegToeButton
             // 
-            this.VoegToeButton.Location = new System.Drawing.Point(71, 306);
+            this.VoegToeButton.Enabled = false;
+            this.VoegToeButton.Location = new System.Drawing.Point(71, 382);
+            this.VoegToeButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.VoegToeButton.Name = "VoegToeButton";
-            this.VoegToeButton.Size = new System.Drawing.Size(273, 48);
+            this.VoegToeButton.Size = new System.Drawing.Size(273, 60);
             this.VoegToeButton.TabIndex = 8;
             this.VoegToeButton.Text = "Voeg toe aan geselecteerd bestand";
             this.VoegToeButton.UseVisualStyleBackColor = true;
@@ -131,8 +139,8 @@
             // GeselecteerdBestandLabel
             // 
             this.GeselecteerdBestandLabel.AutoSize = true;
-            this.GeselecteerdBestandLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GeselecteerdBestandLabel.Location = new System.Drawing.Point(350, 306);
+            this.GeselecteerdBestandLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.GeselecteerdBestandLabel.Location = new System.Drawing.Point(350, 382);
             this.GeselecteerdBestandLabel.Name = "GeselecteerdBestandLabel";
             this.GeselecteerdBestandLabel.Size = new System.Drawing.Size(201, 22);
             this.GeselecteerdBestandLabel.TabIndex = 9;
@@ -140,17 +148,18 @@
             // 
             // GeselecteerdeBestandTextBox
             // 
-            this.GeselecteerdeBestandTextBox.Location = new System.Drawing.Point(350, 332);
+            this.GeselecteerdeBestandTextBox.Location = new System.Drawing.Point(350, 415);
+            this.GeselecteerdeBestandTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.GeselecteerdeBestandTextBox.Name = "GeselecteerdeBestandTextBox";
             this.GeselecteerdeBestandTextBox.ReadOnly = true;
-            this.GeselecteerdeBestandTextBox.Size = new System.Drawing.Size(284, 22);
+            this.GeselecteerdeBestandTextBox.Size = new System.Drawing.Size(284, 27);
             this.GeselecteerdeBestandTextBox.TabIndex = 10;
             // 
             // SpelMaker
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 412);
+            this.ClientSize = new System.Drawing.Size(694, 515);
             this.Controls.Add(this.GeselecteerdeBestandTextBox);
             this.Controls.Add(this.GeselecteerdBestandLabel);
             this.Controls.Add(this.VoegToeButton);
@@ -162,6 +171,7 @@
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.RolLabel);
             this.Controls.Add(this.LocatieLabel);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SpelMaker";
             this.Text = "SpelMaker";
             this.ResumeLayout(false);

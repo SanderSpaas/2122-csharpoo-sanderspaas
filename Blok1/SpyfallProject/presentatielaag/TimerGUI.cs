@@ -30,5 +30,10 @@
                 ColorPanel1.BackColor = kleur;
             }
         }
+
+        private void TimerGUI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

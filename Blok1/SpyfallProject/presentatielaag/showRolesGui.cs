@@ -1,7 +1,6 @@
-﻿using SpyfallProject.presentatielaag;
-using static Speler;
+﻿using static Speler;
 
-namespace SpyfallProject.presentatie
+namespace SpyfallProject.presentatielaag
 {
     public partial class showRolesGui : Form
     {

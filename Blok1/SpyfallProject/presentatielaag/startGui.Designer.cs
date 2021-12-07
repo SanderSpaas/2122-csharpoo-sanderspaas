@@ -1,4 +1,4 @@
-﻿namespace SpyfallProject.presentatie
+﻿namespace SpyfallProject.presentatielaag
 {
     partial class startGui
     {

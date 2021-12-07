@@ -41,6 +41,19 @@ public class Speler
     public static void SetAantalspelers(int value)
     {
         _Aantalspelers = value;
+        try
+        {
+            if (value > 10)
+            {
+                throw new ArgumentException("Het aantal spelers kan niet groter dan 10 en niet kleiner dan 4 zijn");
+            }
+            if (value <= 4)
+            {
+                throw new ArgumentException("Het aantal spelers kan niet groter dan 10 en niet kleiner dan 4 zijn");
+            }
+
+        }
+        finally { _Aantalspelers = value; };
     }
 
     public static int GetAantalspionnen()
@@ -50,6 +63,13 @@ public class Speler
 
     public static void SetAantalspionnen(int value)
     {
-        _Aantalspionnen = value;
+        try
+        {
+            if (value == 0)
+            {
+                throw new ArgumentException("Het aantal spionnen kan niet 0 zijn");
+            }
+        }
+        finally { _Aantalspionnen = value; };
     }
 }

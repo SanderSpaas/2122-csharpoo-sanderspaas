@@ -9,7 +9,7 @@ namespace SpyfallProject
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new presentatie.startGui());
+            Application.Run(new presentatielaag.startGui());
         }
     }
 }
