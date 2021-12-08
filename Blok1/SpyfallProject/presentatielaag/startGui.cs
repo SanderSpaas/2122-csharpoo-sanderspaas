@@ -6,13 +6,12 @@ namespace SpyfallProject.presentatielaag
     public partial class startGui : Form
     {
         //de array waar we onze errors gaan insteken
-        private readonly ArrayList _ErrorArray = new();
-        private string _FilePath = @"datalaag\SpyfallData.csv";
-        private readonly SpyfallMain _Spel = new();
-        private readonly Rollen _Rol = new();
-        private readonly FilePicker _FilePicker = new();
-        private readonly DataVerwerker _DataVerwerker = new();
-        //private static readonly ArrayList RollenList = new();
+        private readonly ArrayList _errorArray = new();
+        private string _filePath = @"datalaag\SpyfallData.csv";
+        private readonly SpyfallMain _spel = new();
+        private readonly Rollen _rol = new();
+        private readonly FilePicker _filePicker = new();
+        private readonly DataVerwerker _dataVerwerker = new();
         public startGui()
         {
             InitializeComponent();
@@ -21,56 +20,56 @@ namespace SpyfallProject.presentatielaag
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            _ErrorArray.Clear();
+            _errorArray.Clear();
             textBox1.Text = "";
             //data die de speler geselecteerd heeft gaan controleren en eventueel errors tonen
             textBox1.BackColor = Color.FromArgb(240, 240, 240);
             textBox1.ForeColor = Color.Red;
             if (aantalSpelers.Value < 4)
             {
-                _ErrorArray.Add("Je moet dit spel met 4 of meer spelen. \n");
+                _errorArray.Add("Je moet dit spel met 4 of meer spelen. \n");
             }
             if (aantalSpelers.Value > 10)
             {
-                _ErrorArray.Add("Je kan dit spel met niet meer dan 10 spelers spelen. \n");
+                _errorArray.Add("Je kan dit spel met niet meer dan 10 spelers spelen. \n");
             }
             if (aantalSpionnen.Value == 0)
             {
-                _ErrorArray.Add("Je moet minstens 1 spion hebben. \n");
+                _errorArray.Add("Je moet minstens 1 spion hebben. \n");
             }
             if (aantalSpionnen.Value >= aantalSpelers.Value)
             {
-                _ErrorArray.Add("Je kan niet meer of evenveel spionnen als spelers hebben. \n");
+                _errorArray.Add("Je kan niet meer of evenveel spionnen als spelers hebben. \n");
             }
-            if (!_DataVerwerker.TestData(_FilePath))
+            if (!_dataVerwerker.TestData(_filePath))
             {
-                _ErrorArray.Add("Het gekozen databestand is ongeldig");
+                _errorArray.Add("Het gekozen databestand is ongeldig");
             }
 
             //de errors gaan tonen
-            foreach (string error in _ErrorArray)
+            foreach (string error in _errorArray)
             {
                 textBox1.Text = $"{textBox1.Text}{error}";
             }
 
             //als er geen errors zijn dingen voor het spel beginnen klaarzetten
-            if (_ErrorArray.Count == 0)
+            if (_errorArray.Count == 0)
             {
                 //het aantal spelers en spionnen gaan vastzetten
-                _Spel.Aantalspelers = (int)aantalSpelers.Value;
-                _Spel.Aantalspionnen = (int)aantalSpionnen.Value;
+                _spel.Aantalspelers = (int)aantalSpelers.Value;
+                _spel.Aantalspionnen = (int)aantalSpionnen.Value;
 
                 //een rollenlijst laten aanmaken
-                _Rol.KiesRandomRol(_FilePath);
+                _rol.KiesRandomRol(_filePath);
 
-                _Spel.Locatie = _Rol.GetRollenList()[0].ToString();
-                var list = _Rol.GetRollenList();
+                _spel.Locatie = _rol.GetRollenList()[0].ToString();
+                var list = _rol.GetRollenList();
                 list.RemoveAt(0);
-                _Rol.SetRollenList(list);
+                _rol.SetRollenList(list);
                 //spelers de rollen gaan toewijzen
-                _Spel.MaakUsers(_FilePath);
+                _spel.MaakUsers(_filePath);
                 //de spelerarray gaan shuffelen
-                _Spel.ShuffleList(_Spel.SpelerList);
+                _spel.ShuffleList(_spel.SpelerList);
 
                 //de volgende form gaan tonen bye bye o/ :)
                 Hide();
@@ -81,7 +80,7 @@ namespace SpyfallProject.presentatielaag
         //de user zelf een databestand laten kiezen
         private void DataFileButton_Click(object sender, EventArgs e)
         {
-            _FilePath = _FilePicker.FileSelector();
+            _filePath = _filePicker.FileSelector();
             textBox1.ForeColor = Color.Black;
             textBox1.Text = "Data geselecteerd";
         }

@@ -5,10 +5,10 @@ namespace SpyfallProject.presentatielaag
     public partial class showRolesGui : Form
     {
         //global variables
-        private int _Counter = 0;
-        private int _Counter2 = 0;
-        private readonly Random _Random = new();
-        private SpyfallMain _Spel = new();
+        private int _counter1 = 0;
+        private int _counter2 = 0;
+        private readonly Random _random = new();
+        private SpyfallMain _spel = new();
         public showRolesGui()
         {
             InitializeComponent();
@@ -19,13 +19,13 @@ namespace SpyfallProject.presentatielaag
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            int maxPlayers = _Spel.Aantalspelers;
+            int maxPlayers = _spel.Aantalspelers;
             rolLabel1.Text = "Jouw rol";
             locatieLabel1.Text = "De locatie";
-            if (_Counter < (maxPlayers * 2) - 1)
+            if (_counter1 < (maxPlayers * 2) - 1)
             {
-                _Counter++;
-                if (_Counter % 2 == 0)
+                _counter1++;
+                if (_counter1 % 2 == 0)
                 {
                     SetColor(Color.FromArgb(240, 240, 240));
                     nextPlayerButton.Text = "Klik hier als je de info wilt zien";
@@ -33,12 +33,12 @@ namespace SpyfallProject.presentatielaag
                 }
                 else
                 {
-                    SetColor(Color.FromArgb(_Random.Next(256), _Random.Next(256), _Random.Next(256)));
+                    SetColor(Color.FromArgb(_random.Next(256), _random.Next(256), _random.Next(256)));
                     nextPlayerButton.Text = "Ik heb mijn rol en de locatie gezien";
-                    Speler speler = (Speler)_Spel.SpelerList[_Counter2];
+                    Speler speler = (Speler)_spel.SpelerList[_counter2];
                     rolLabel.Text = speler.Rol;
-                    locatieLabel.Text = speler.Locatie;
-                    _Counter2++;
+                    locatieLabel.Text = _spel.Locatie;
+                    _counter2++;
                 }
             }
             else

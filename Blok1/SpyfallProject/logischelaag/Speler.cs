@@ -2,8 +2,7 @@
 {
     public class Speler
     {
-        private readonly string _Rol = "";
-        private readonly string _Locatie = "";
+        private readonly string _rol = "";
 
         public Speler()
         {
@@ -12,16 +11,11 @@
         {
             if (!string.IsNullOrWhiteSpace(rol))
             {
-                _Rol = rol;
-            }
-            if (!string.IsNullOrWhiteSpace(locatie))
-            {
-                _Locatie = locatie;
+                _rol = rol;
             }
         }
 
-        public string Locatie { get => _Locatie; }
-        public string Rol { get => _Rol; }
+        public string Rol { get => _rol; }
 
     }
 }

@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Blok1",
+    "\\Blok1\\SpyfallProject"
   ],
-  "SelectedNode": "\\SpyfallProject.sln",
+  "SelectedNode": "\\Blok1\\SpyfallProject\\SpyfallProject.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -2,23 +2,23 @@
 using System.Collections;
 namespace SpyfallProject.logischelaag
 {
-    internal class SpyfallMain
+    public class SpyfallMain
     {
-        private static int _Aantalspelers;
-        private static int _Aantalspionnen;
-        private static string _Locatie;
-        private readonly Random _Random = new();
-        private readonly ArrayList _RollenListSpel = new();
-        private static ArrayList _SpelerList = new();
-        private readonly Rollen _Rol = new();
+        private static int _aantalspelers;
+        private static int _aantalspionnen;
+        private static string _locatie;
+        private readonly Random _random = new();
+        private readonly ArrayList _rollenListSpel = new();
+        private static ArrayList _spelerList = new();
+        private readonly Rollen _rol = new();
         public SpyfallMain()
         {
         }
 
-        public int Aantalspelers { get => _Aantalspelers; set => _Aantalspelers = value; }
-        public int Aantalspionnen { get => _Aantalspionnen; set => _Aantalspionnen = value; }
-        public string Locatie { get => _Locatie; set => _Locatie = value; }
-        public ArrayList SpelerList { get => _SpelerList; set => _SpelerList = value; }
+        public int Aantalspelers { get => _aantalspelers; set => _aantalspelers = value; }
+        public int Aantalspionnen { get => _aantalspionnen; set => _aantalspionnen = value; }
+        public string Locatie { get => _locatie; set => _locatie = value; }
+        public ArrayList SpelerList { get => _spelerList; set => _spelerList = value; }
 
         public void Voegtoe(Speler speler)
         {
@@ -31,17 +31,17 @@ namespace SpyfallProject.logischelaag
             {
                 //als er geen originele rollen meer overzijn de lijst gewoon opnieuw vullen met alle mogelijkheden
                 //hiermee word de lijst ook origineel gevuld
-                if (_RollenListSpel.Count == 0)
+                if (_rollenListSpel.Count == 0)
                 {
-                    _RollenListSpel.AddRange(_Rol.GetRollenList());
+                    _rollenListSpel.AddRange(_rol.GetRollenList());
                 }
-                int randomRol = _Random.Next(0, _RollenListSpel.Count);
+                int randomRol = _random.Next(0, _rollenListSpel.Count);
 
                 //spelerobjecten gaan aanmaken
-                Speler speler = new(_RollenListSpel[randomRol].ToString(), Locatie);
+                Speler speler = new(_rollenListSpel[randomRol].ToString(), Locatie);
                 Voegtoe(speler);
                 //de rol gaan verwijderen uit de tijdelijke array zodat hij niet nog is gekozen word
-                _RollenListSpel.RemoveAt(randomRol);
+                _rollenListSpel.RemoveAt(randomRol);
             }
 
             //code voor spionnen
@@ -57,7 +57,7 @@ namespace SpyfallProject.logischelaag
             //de data gaan shufflen in de array
             for (int i = 0; i < lijst.Count - 1; i++)
             {
-                int j = _Random.Next(i, lijst.Count);
+                int j = _random.Next(i, lijst.Count);
                 Speler tempSpeler = (Speler)lijst[i];
                 lijst[i] = lijst[j];
                 lijst[j] = tempSpeler;

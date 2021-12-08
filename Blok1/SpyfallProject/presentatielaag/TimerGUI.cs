@@ -2,20 +2,20 @@
 {
     public partial class TimerGUI : Form
     {
-        private readonly DateTime _EndTime;
-        private readonly Random random = new();
+        private readonly DateTime _endTime;
+        private readonly Random _random = new();
         public TimerGUI()
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
             var minutes = 8;
             var start = DateTime.UtcNow;
-            _EndTime = start.AddMinutes(minutes);
+            _endTime = start.AddMinutes(minutes);
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            TimeSpan remainingTime = _EndTime - DateTime.UtcNow;
+            TimeSpan remainingTime = _endTime - DateTime.UtcNow;
             if (remainingTime < TimeSpan.Zero)
             {
                 TimerLabel.Text = "0:00";
@@ -25,7 +25,7 @@
             else
             {
                 TimerLabel.Text = $"{(int)remainingTime.TotalMinutes}:{remainingTime.Seconds:00}";
-                Color kleur = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+                Color kleur = Color.FromArgb(_random.Next(256), _random.Next(256), _random.Next(256));
                 ColorPanel.BackColor = kleur;
                 ColorPanel1.BackColor = kleur;
             }

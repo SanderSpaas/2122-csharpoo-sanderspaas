@@ -5,7 +5,6 @@
         public FilePicker()
         {
         }
-
         public string FileSelector()
         {
             using OpenFileDialog openFileDialog = new OpenFileDialog();
