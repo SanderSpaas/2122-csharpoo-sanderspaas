@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 namespace SpyfallProject.datalaag
 {
-    public interface IDataVerwerker
+    public class DataVerwerker
     {
-        public static bool TestData(String filePath)
+        public DataVerwerker()
+        {
+        }
+
+        public bool TestData(String filePath)
         {
             //een tijdelijke arraylist om data om na te kijken in te zetten
             ArrayList checkList = new();
@@ -44,13 +48,13 @@ namespace SpyfallProject.datalaag
         }
 
         //methode die een bestand gaat maken
-        public static void CreateFile(String filePath)
+        public void CreateFile(String filePath)
         {
             File.Create(filePath).Close();
         }
 
         //methode die een bestand gaat uitlezen
-        public static string[] ReadFileContent(String filePath)
+        public string[] ReadFileContent(String filePath)
         {
             //alle lijnen in het document gaan lezen
             var lines = File.ReadAllLines(filePath);
@@ -58,7 +62,7 @@ namespace SpyfallProject.datalaag
         }
 
         //methode die data naar een bestand gaat schrijven
-        public static bool AddToFile(String filePath, String _DataCSVLocation, String _DataCSVRoles)
+        public bool AddToFile(String filePath, String _DataCSVLocation, String _DataCSVRoles)
         {
             try
             {

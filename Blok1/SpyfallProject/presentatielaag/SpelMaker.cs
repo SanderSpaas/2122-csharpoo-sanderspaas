@@ -1,4 +1,4 @@
-﻿using static SpyfallProject.datalaag.IDataVerwerker;
+﻿using SpyfallProject.datalaag;
 namespace SpyfallProject.presentatielaag
 
 {
@@ -9,6 +9,7 @@ namespace SpyfallProject.presentatielaag
         private string _DataCSVRoles = "";
         private string _FilePath = "";
         private readonly FilePicker _FilePicker = new();
+        private readonly DataVerwerker _DataVerwerker = new();
 
         public SpelMaker()
         {
@@ -36,7 +37,7 @@ namespace SpyfallProject.presentatielaag
         {
             _FilePath = _FilePicker.OpenSaveDialog();
             //het bestand gaan aanmaken
-            CreateFile(_FilePath);
+            _DataVerwerker.CreateFile(_FilePath);
             OutputTextBox.Text = "Bestand geselecteerd. \r\n";
             GeselecteerdeBestandTextBox.Text = _FilePath;
             EnableInput();
@@ -46,14 +47,14 @@ namespace SpyfallProject.presentatielaag
         private void LaadBestandButton_Click(object sender, EventArgs e)
         {
             _FilePath = _FilePicker.FileSelector();
-            if (!TestData(_FilePath))
+            if (!_DataVerwerker.TestData(_FilePath))
             {
                 OutputTextBox.Text = "Het gekozen databestand is ongeldig. \r\n";
             }
             else
             {
                 OutputTextBox.Text = "Bestand geselecteerd. \r\n";
-                ShowData(ReadFileContent(_FilePath));
+                ShowData(_DataVerwerker.ReadFileContent(_FilePath));
                 GeselecteerdeBestandTextBox.Text = _FilePath;
                 EnableInput();
             }
@@ -62,12 +63,12 @@ namespace SpyfallProject.presentatielaag
         //button die de data gaat laten toevoegen
         private void VoegToeButton_Click(object sender, EventArgs e)
         {
-            if (AddToFile(_FilePath, _DataCSVLocation, _DataCSVRoles))
+            if (_DataVerwerker.AddToFile(_FilePath, _DataCSVLocation, _DataCSVRoles))
             {
                 OutputTextBox.Text = "Data naar bestand geschreven. \r\n";
             }
             ClearFields();
-            ShowData(ReadFileContent(_FilePath));
+            ShowData(_DataVerwerker.ReadFileContent(_FilePath));
         }
 
         //saniteer data die binnenkomt 

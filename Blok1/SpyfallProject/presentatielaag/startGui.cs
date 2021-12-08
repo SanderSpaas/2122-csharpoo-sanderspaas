@@ -1,7 +1,6 @@
 ﻿using SpyfallProject.datalaag;
 using SpyfallProject.logischelaag;
 using System.Collections;
-using static SpyfallProject.datalaag.IDataVerwerker;
 namespace SpyfallProject.presentatielaag
 {
     public partial class startGui : Form
@@ -10,7 +9,7 @@ namespace SpyfallProject.presentatielaag
         private readonly ArrayList _ErrorArray = new();
         private readonly ArrayList _RollenListSpel = new();
         private string _FilePath = @"datalaag\SpyfallData.csv";
-        private SpyfallMain spel = new();
+        private SpyfallMain _Spel = new();
         private Rollen _Rol = new();
         private FilePicker _FilePicker = new();
         //private static readonly ArrayList RollenList = new();
@@ -59,14 +58,14 @@ namespace SpyfallProject.presentatielaag
             if (_ErrorArray.Count == 0)
             {
                 //het aantal spelers en spionnen gaan vastzetten
-                spel.Aantalspelers = (int)aantalSpelers.Value;
-                spel.Aantalspionnen = (int)aantalSpionnen.Value;
+                _Spel.Aantalspelers = (int)aantalSpelers.Value;
+                _Spel.Aantalspionnen = (int)aantalSpionnen.Value;
                 //een rollenlijst laten aanmaken
                 _Rol.KiesRandomRol(_FilePath);
                 //spelers de rollen gaan toewijzen
-                spel.MaakUsers(_FilePath);
+                _Spel.MaakUsers(_FilePath);
                 //de spelerarray gaan shuffelen
-                spel.ShuffleList(spel.SpelerList);
+                _Spel.ShuffleList(_Spel.SpelerList);
 
                 //de volgende form gaan tonen bye bye o/ :)
                 Hide();
