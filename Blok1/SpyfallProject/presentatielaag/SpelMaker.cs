@@ -1,5 +1,4 @@
 ﻿using static SpyfallProject.datalaag.IDataVerwerker;
-using static SpyfallProject.presentatielaag.FilePicker;
 namespace SpyfallProject.presentatielaag
 
 {
@@ -9,6 +8,7 @@ namespace SpyfallProject.presentatielaag
         private string _DataCSVLocation = "";
         private string _DataCSVRoles = "";
         private string _FilePath = "";
+        private readonly FilePicker _FilePicker = new();
 
         public SpelMaker()
         {
@@ -34,38 +34,26 @@ namespace SpyfallProject.presentatielaag
         //het CSV bestand gaan aanmaken 
         private void GenereerBestand_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new()
-            {
-                Filter = "csv files (*.csv)|*.csv",
-                FilterIndex = 2,
-                RestoreDirectory = true
-            };
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                //geen data gaan schrijven gewoon het bestand al selecteren
-                _FilePath = saveFileDialog.FileName;
-                //het bestand gaan aanmaken
-                CreateFile(_FilePath);
-                OutputTextBox.Text = "Bestand geselecteerd. \r\n";
-                GeselecteerdeBestandTextBox.Text = _FilePath;
-                EnableInput();
-            }
-
+            _FilePath = _FilePicker.OpenSaveDialog();
+            //het bestand gaan aanmaken
+            CreateFile(_FilePath);
+            OutputTextBox.Text = "Bestand geselecteerd. \r\n";
+            GeselecteerdeBestandTextBox.Text = _FilePath;
+            EnableInput();
         }
+
         //een bestaand bestand gaan selecteren om dingen aan toe te voegen
         private void LaadBestandButton_Click(object sender, EventArgs e)
         {
-            _FilePath = FileSelector();
+            _FilePath = _FilePicker.FileSelector();
             if (!TestData(_FilePath))
             {
                 OutputTextBox.Text = "Het gekozen databestand is ongeldig. \r\n";
             }
             else
             {
-                var lines = ShowFileContent(_FilePath);
                 OutputTextBox.Text = "Bestand geselecteerd. \r\n";
-                ShowData(lines);
+                ShowData(ReadFileContent(_FilePath));
                 GeselecteerdeBestandTextBox.Text = _FilePath;
                 EnableInput();
             }
@@ -74,24 +62,22 @@ namespace SpyfallProject.presentatielaag
         //button die de data gaat laten toevoegen
         private void VoegToeButton_Click(object sender, EventArgs e)
         {
-            if (addToFile(_FilePath, _DataCSVLocation, _DataCSVRoles))
+            if (AddToFile(_FilePath, _DataCSVLocation, _DataCSVRoles))
             {
                 OutputTextBox.Text = "Data naar bestand geschreven. \r\n";
             }
             ClearFields();
-            var lines = ShowFileContent(_FilePath);
-            ShowData(lines);
+            ShowData(ReadFileContent(_FilePath));
         }
 
         //saniteer data die binnenkomt 
-        private static bool CheckInput(String input)
+        private static bool CheckInput(string input)
         {
-            input = input.Trim();
-            if (string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input.Trim()))
             {
                 return false;
             }
-            if (input.Contains(";"))
+            if (input.Trim().Contains(";"))
             {
                 return false;
             }
@@ -112,7 +98,7 @@ namespace SpyfallProject.presentatielaag
             OutputTextBox.Text = "";
             LocatieTextbox.Text = "";
         }
-        private void ShowData(String[] lines)
+        private void ShowData(string[] lines)
         {
             foreach (var line in lines)
             {

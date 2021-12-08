@@ -2,7 +2,11 @@
 {
     internal class FilePicker
     {
-        public static string FileSelector()
+        public FilePicker()
+        {
+        }
+
+        public string FileSelector()
         {
             using OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = "c:\\";
@@ -16,6 +20,23 @@
                 return openFileDialog.FileName;
             }
             return @"datalaag\SpyfallData.csv";
+        }
+
+        public string OpenSaveDialog()
+        {
+            SaveFileDialog saveFileDialog = new()
+            {
+                Filter = "csv files (*.csv)|*.csv",
+                FilterIndex = 2,
+                RestoreDirectory = true
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                return saveFileDialog.FileName;
+            }
+            else return null;
+
         }
     }
 }

@@ -2,7 +2,6 @@
 using SpyfallProject.logischelaag;
 using System.Collections;
 using static SpyfallProject.datalaag.IDataVerwerker;
-using static SpyfallProject.presentatielaag.FilePicker;
 namespace SpyfallProject.presentatielaag
 {
     public partial class startGui : Form
@@ -13,7 +12,8 @@ namespace SpyfallProject.presentatielaag
         private string _FilePath = @"datalaag\SpyfallData.csv";
         private SpyfallMain spel = new();
         private Rollen _Rol = new();
-        private static ArrayList RollenList = new();
+        private FilePicker _FilePicker = new();
+        //private static readonly ArrayList RollenList = new();
         public startGui()
         {
             InitializeComponent();
@@ -26,6 +26,7 @@ namespace SpyfallProject.presentatielaag
             textBox1.Text = "";
             //data die de speler geselecteerd heeft gaan controleren en eventueel errors tonen
             //zoeken waarom kleur niet werkt
+            textBox1.BackColor = Color.FromArgb(240, 240, 240);
             textBox1.ForeColor = Color.Red;
             if (aantalSpelers.Value < 4)
             {
@@ -62,37 +63,23 @@ namespace SpyfallProject.presentatielaag
                 spel.Aantalspionnen = (int)aantalSpionnen.Value;
                 //een rollenlijst laten aanmaken
                 _Rol.KiesRandomRol(_FilePath);
+                //spelers de rollen gaan toewijzen
                 spel.MaakUsers(_FilePath);
-
                 //de spelerarray gaan shuffelen
-                //spel.ShuffleList(spel.SpelerList);
+                spel.ShuffleList(spel.SpelerList);
 
                 //de volgende form gaan tonen bye bye o/ :)
-                //de huidige form gaan hiden
-                //Hide();
+                Hide();
                 new showRolesGui().ShowDialog();
             }
-            ////debug om spelers met hun rollen te zien in het errorvak
-            Speler _SpelerObject = new();
-            Rollen _Rollen = new();
-            foreach (Speler speler in spel.SpelerList)
-            {
-                textBox1.Text = textBox1.Text + speler.Rol + "    ";
-            }
-            foreach (Speler speler in _Rollen.RollenList)
-            {
-                textBox1.Text += speler.Rol + "    ";
-            }
-            //de locatie ook gaan tonen in het errorvak
-            textBox1.Text += _SpelerObject.Locatie;
-
         }
 
         //de user zelf een databestand laten kiezen
         private void DataFileButton_Click(object sender, EventArgs e)
         {
-            _FilePath = FileSelector();
-            textBox1.Text = "Costum data geselecteerd";
+            _FilePath = _FilePicker.FileSelector();
+            textBox1.ForeColor = Color.Black;
+            textBox1.Text = "Data geselecteerd";
         }
 
         //button die de spelregelsGUI gaat openen

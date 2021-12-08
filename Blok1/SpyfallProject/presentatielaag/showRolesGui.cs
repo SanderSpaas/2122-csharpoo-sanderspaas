@@ -8,7 +8,6 @@ namespace SpyfallProject.presentatielaag
         private int _Counter = 0;
         private int _Counter2 = 0;
         private readonly Random _Random = new();
-        private Speler _SpelerObject = new();
         private SpyfallMain spel = new();
         public showRolesGui()
         {
@@ -28,16 +27,13 @@ namespace SpyfallProject.presentatielaag
                 _Counter++;
                 if (_Counter % 2 == 0)
                 {
-                    ColorPanel.BackColor = Color.FromArgb(240, 240, 240);
-                    ColorPanel1.BackColor = Color.FromArgb(240, 240, 240);
+                    SetColor(Color.FromArgb(240, 240, 240));
                     nextPlayerButton.Text = "Klik hier als je de info wilt zien";
                     LabelClear();
                 }
                 else
                 {
-                    Color kleur = Color.FromArgb(_Random.Next(256), _Random.Next(256), _Random.Next(256));
-                    ColorPanel.BackColor = kleur;
-                    ColorPanel1.BackColor = kleur;
+                    SetColor(Color.FromArgb(_Random.Next(256), _Random.Next(256), _Random.Next(256)));
                     nextPlayerButton.Text = "Ik heb mijn rol en de locatie gezien";
                     Speler speler = (Speler)spel.SpelerList[_Counter2];
                     rolLabel.Text = speler.Rol;
@@ -48,15 +44,14 @@ namespace SpyfallProject.presentatielaag
             else
             {
                 LabelClear();
-                nextPlayerButton.Text = "Start het spel";
+                nextPlayerButton.Hide();
+                StartButton.Show();
             }
-
-            if (nextPlayerButton.Text == "Start het spel")
-            {
-                Hide();
-                new TimerGUI().ShowDialog();
-            }
-
+        }
+        private void StartButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            new TimerGUI().ShowDialog();
         }
 
         //labelclear functie
@@ -66,6 +61,11 @@ namespace SpyfallProject.presentatielaag
             locatieLabel.Text = "";
             rolLabel1.Text = "";
             locatieLabel1.Text = "";
+        }
+        private void SetColor(Color color)
+        {
+            ColorPanel.BackColor = color;
+            ColorPanel1.BackColor = color;
         }
     }
 }
