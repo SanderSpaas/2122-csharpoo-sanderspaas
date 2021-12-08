@@ -1,20 +1,34 @@
-﻿using SpyfallProject.logischelaag;
+﻿using SpyfallProject.datalaag;
+using SpyfallProject.logischelaag;
 
 namespace SpyfallProject.presentatielaag
 {
-    public partial class showRolesGui : Form
+    public partial class ShowRolesGui : Form
     {
         //global variables
         private int _counter1 = 0;
         private int _counter2 = 0;
         private readonly Random _random = new();
         private SpyfallMain _spel = new();
-        public showRolesGui()
+        private readonly Rollen _rol = new();
+        public ShowRolesGui()
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
             Text = "Rollen GUI";
             LabelClear();
+
+            //een rollenlijst laten aanmaken
+            _rol.KiesRandomRol(_spel.FilePath);
+
+            _spel.Locatie = _rol.GetRollenList()[0].ToString();
+            var list = _rol.GetRollenList();
+            list.RemoveAt(0);
+            _rol.SetRollenList(list);
+            //spelers de rollen gaan toewijzen
+            _spel.MaakUsers();
+            //de spelerarray gaan shuffelen
+            _spel.ShuffleList(_spel.SpelerList);
         }
 
         private void Button1_Click(object sender, EventArgs e)

@@ -4,13 +4,14 @@ namespace SpyfallProject.logischelaag
 {
     public class SpyfallMain
     {
-        private static int _aantalspelers;
-        private static int _aantalspionnen;
+        private int _aantalspelers;
+        private int _aantalspionnen;
         private static string _locatie;
         private readonly Random _random = new();
         private readonly ArrayList _rollenListSpel = new();
         private static ArrayList _spelerList = new();
         private readonly Rollen _rol = new();
+        private string _filePath = @"datalaag\SpyfallData.csv";
         public SpyfallMain()
         {
         }
@@ -19,14 +20,14 @@ namespace SpyfallProject.logischelaag
         public int Aantalspionnen { get => _aantalspionnen; set => _aantalspionnen = value; }
         public string Locatie { get => _locatie; set => _locatie = value; }
         public ArrayList SpelerList { get => _spelerList; set => _spelerList = value; }
+        public string FilePath { get => _filePath; set => _filePath = value; }
 
         public void Voegtoe(Speler speler)
         {
             SpelerList.Add(speler);
         }
-        public void MaakUsers(string filePath)
+        public void MaakUsers()
         {
-
             for (int aantalSpelers = 0; aantalSpelers < Aantalspelers - Aantalspionnen; aantalSpelers++)
             {
                 //als er geen originele rollen meer overzijn de lijst gewoon opnieuw vullen met alle mogelijkheden

@@ -1,6 +1,6 @@
 ﻿namespace SpyfallProject.presentatielaag
 {
-    partial class showRolesGui
+    partial class ShowRolesGui
     {
         /// <summary>
         /// Required designer variable.

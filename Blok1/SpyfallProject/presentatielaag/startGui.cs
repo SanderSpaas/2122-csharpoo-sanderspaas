@@ -7,9 +7,7 @@ namespace SpyfallProject.presentatielaag
     {
         //de array waar we onze errors gaan insteken
         private readonly ArrayList _errorArray = new();
-        private string _filePath = @"datalaag\SpyfallData.csv";
-        private readonly SpyfallMain _spel = new();
-        private readonly Rollen _rol = new();
+        private SpyfallMain _spel = new();
         private readonly FilePicker _filePicker = new();
         private readonly DataVerwerker _dataVerwerker = new();
         public startGui()
@@ -41,7 +39,7 @@ namespace SpyfallProject.presentatielaag
             {
                 _errorArray.Add("Je kan niet meer of evenveel spionnen als spelers hebben. \n");
             }
-            if (!_dataVerwerker.TestData(_filePath))
+            if (!_dataVerwerker.TestData(_spel.FilePath))
             {
                 _errorArray.Add("Het gekozen databestand is ongeldig");
             }
@@ -59,28 +57,16 @@ namespace SpyfallProject.presentatielaag
                 _spel.Aantalspelers = (int)aantalSpelers.Value;
                 _spel.Aantalspionnen = (int)aantalSpionnen.Value;
 
-                //een rollenlijst laten aanmaken
-                _rol.KiesRandomRol(_filePath);
-
-                _spel.Locatie = _rol.GetRollenList()[0].ToString();
-                var list = _rol.GetRollenList();
-                list.RemoveAt(0);
-                _rol.SetRollenList(list);
-                //spelers de rollen gaan toewijzen
-                _spel.MaakUsers(_filePath);
-                //de spelerarray gaan shuffelen
-                _spel.ShuffleList(_spel.SpelerList);
-
                 //de volgende form gaan tonen bye bye o/ :)
                 Hide();
-                new showRolesGui().ShowDialog();
+                new ShowRolesGui().ShowDialog();
             }
         }
 
         //de user zelf een databestand laten kiezen
         private void DataFileButton_Click(object sender, EventArgs e)
         {
-            _filePath = _filePicker.FileSelector();
+            _spel.FilePath = _filePicker.FileSelector();
             textBox1.ForeColor = Color.Black;
             textBox1.Text = "Data geselecteerd";
         }
