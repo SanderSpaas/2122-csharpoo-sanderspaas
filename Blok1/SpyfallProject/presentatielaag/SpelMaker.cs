@@ -15,7 +15,6 @@ namespace SpyfallProject.presentatielaag
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
-
         }
 
         //knop die de ingegeven data gaat opslaan in vars zodat ze later eventueel in bestand gezet kunnen worden
