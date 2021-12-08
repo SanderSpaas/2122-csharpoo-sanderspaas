@@ -1,16 +1,14 @@
-﻿using SpyfallProject.datalaag;
-using System.Collections;
+﻿using System.Collections;
 namespace SpyfallProject.logischelaag
 {
     public class SpyfallMain
     {
         private int _aantalspelers;
         private int _aantalspionnen;
-        private static string _locatie;
+        private string _locatie;
         private readonly Random _random = new();
         private readonly ArrayList _rollenListSpel = new();
-        private static ArrayList _spelerList = new();
-        private readonly Rollen _rol = new();
+        private ArrayList _spelerList = new();
         private string _filePath = @"datalaag\SpyfallData.csv";
         public SpyfallMain()
         {
@@ -26,7 +24,7 @@ namespace SpyfallProject.logischelaag
         {
             SpelerList.Add(speler);
         }
-        public void MaakUsers()
+        public void MaakUsers(ArrayList rollenList)
         {
             for (int aantalSpelers = 0; aantalSpelers < Aantalspelers - Aantalspionnen; aantalSpelers++)
             {
@@ -34,21 +32,20 @@ namespace SpyfallProject.logischelaag
                 //hiermee word de lijst ook origineel gevuld
                 if (_rollenListSpel.Count == 0)
                 {
-                    _rollenListSpel.AddRange(_rol.GetRollenList());
+                    _rollenListSpel.AddRange(rollenList);
                 }
                 int randomRol = _random.Next(0, _rollenListSpel.Count);
 
                 //spelerobjecten gaan aanmaken
-                Speler speler = new(_rollenListSpel[randomRol].ToString(), Locatie);
+                Speler speler = new(_rollenListSpel[randomRol].ToString());
                 Voegtoe(speler);
                 //de rol gaan verwijderen uit de tijdelijke array zodat hij niet nog is gekozen word
                 _rollenListSpel.RemoveAt(randomRol);
             }
-
             //code voor spionnen
             for (int aantalSpionnen = 0; aantalSpionnen < Aantalspionnen; aantalSpionnen++)
             {
-                Speler speler = new("Spion", "Onbekend");
+                Speler speler = new("Spion");
                 Voegtoe(speler);
             }
         }

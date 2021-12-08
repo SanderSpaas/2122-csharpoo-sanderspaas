@@ -3,7 +3,7 @@ namespace SpyfallProject.datalaag
 {
     public class Rollen
     {
-        private static ArrayList _rollenList = new();
+        private ArrayList _rollenList = new();
 
         public Rollen()
         {
@@ -24,17 +24,13 @@ namespace SpyfallProject.datalaag
             //data gaan vastzetten
             SetRollenList(rollenListString);
         }
-
-        public ArrayList GetRollenList()
-        {
-            return _rollenList;
-        }
+        public ArrayList RollenList { get => _rollenList; set => _rollenList = value; }
 
         public void SetRollenList(ArrayList value)
         {
             if (value != null)
             {
-                _rollenList = value;
+                RollenList = value;
             }
         }
     }

@@ -11,7 +11,7 @@ namespace SpyfallProject.presentatielaag
         private readonly Random _random = new();
         private SpyfallMain _spel = new();
         private readonly Rollen _rol = new();
-        public ShowRolesGui()
+        public ShowRolesGui(int aantalSpelers, int aantalSpionnen)
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
@@ -21,13 +21,16 @@ namespace SpyfallProject.presentatielaag
             //een rollenlijst laten aanmaken
             _rol.KiesRandomRol(_spel.FilePath);
 
-            _spel.Locatie = _rol.GetRollenList()[0].ToString();
-            var list = _rol.GetRollenList();
+            //het aantal spelers en spionnen gaan vastzetten
+            _spel.Aantalspelers = aantalSpelers;
+            _spel.Aantalspionnen = aantalSpionnen;
+
+            _spel.Locatie = _rol.RollenList[0].ToString();
+            var list = _rol.RollenList;
             list.RemoveAt(0);
             _rol.SetRollenList(list);
             //spelers de rollen gaan toewijzen
-            _spel.MaakUsers();
-            //de spelerarray gaan shuffelen
+            _spel.MaakUsers(_rol.RollenList);
             _spel.ShuffleList(_spel.SpelerList);
         }
 
@@ -51,7 +54,14 @@ namespace SpyfallProject.presentatielaag
                     nextPlayerButton.Text = "Ik heb mijn rol en de locatie gezien";
                     Speler speler = (Speler)_spel.SpelerList[_counter2];
                     rolLabel.Text = speler.Rol;
-                    locatieLabel.Text = _spel.Locatie;
+                    if (speler.Rol == "Spion")
+                    {
+                        locatieLabel.Text = "onbekend";
+                    }
+                    else
+                    {
+                        locatieLabel.Text = _spel.Locatie;
+                    }
                     _counter2++;
                 }
             }
@@ -67,8 +77,6 @@ namespace SpyfallProject.presentatielaag
             Hide();
             new TimerGUI().ShowDialog();
         }
-
-        //labelclear functie
         private void LabelClear()
         {
             rolLabel.Text = "";

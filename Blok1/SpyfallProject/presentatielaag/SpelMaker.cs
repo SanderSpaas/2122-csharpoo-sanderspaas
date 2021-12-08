@@ -1,6 +1,5 @@
 ﻿using SpyfallProject.datalaag;
 namespace SpyfallProject.presentatielaag
-
 {
     public partial class SpelMaker : Form
     {

@@ -17,10 +17,8 @@ namespace SpyfallProject.datalaag
             //kijken of er geen lege velden zijn in de data
             try
             {
-
                 //alle lijnen in het document gaan lezen
-                var lines = File.ReadAllLines(filePath);
-                foreach (String line in lines)
+                foreach (String line in File.ReadAllLines(filePath))
                 {
                     checkList.AddRange(line.Split(';'));
                     if (checkList == null)
@@ -43,7 +41,6 @@ namespace SpyfallProject.datalaag
             {
                 return false;
             }
-            //als alles in orde is returnen we true
             return true;
         }
 

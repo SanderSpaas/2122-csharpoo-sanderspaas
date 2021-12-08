@@ -7,7 +7,7 @@ namespace SpyfallProject.presentatielaag
     {
         //de array waar we onze errors gaan insteken
         private readonly ArrayList _errorArray = new();
-        private SpyfallMain _spel = new();
+        private readonly SpyfallMain _spel = new();
         private readonly FilePicker _filePicker = new();
         private readonly DataVerwerker _dataVerwerker = new();
         public startGui()
@@ -49,17 +49,12 @@ namespace SpyfallProject.presentatielaag
             {
                 textBox1.Text = $"{textBox1.Text}{error}";
             }
-
-            //als er geen errors zijn dingen voor het spel beginnen klaarzetten
+            //als er geen errors zijn naar de volgende form gaan
             if (_errorArray.Count == 0)
             {
-                //het aantal spelers en spionnen gaan vastzetten
-                _spel.Aantalspelers = (int)aantalSpelers.Value;
-                _spel.Aantalspionnen = (int)aantalSpionnen.Value;
-
                 //de volgende form gaan tonen bye bye o/ :)
                 Hide();
-                new ShowRolesGui().ShowDialog();
+                new ShowRolesGui((int)aantalSpelers.Value, (int)aantalSpionnen.Value).ShowDialog();
             }
         }
 
