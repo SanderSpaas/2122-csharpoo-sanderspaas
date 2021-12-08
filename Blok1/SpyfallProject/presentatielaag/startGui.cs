@@ -7,11 +7,11 @@ namespace SpyfallProject.presentatielaag
     {
         //de array waar we onze errors gaan insteken
         private readonly ArrayList _ErrorArray = new();
-        private readonly ArrayList _RollenListSpel = new();
         private string _FilePath = @"datalaag\SpyfallData.csv";
-        private SpyfallMain _Spel = new();
-        private Rollen _Rol = new();
-        private FilePicker _FilePicker = new();
+        private readonly SpyfallMain _Spel = new();
+        private readonly Rollen _Rol = new();
+        private readonly FilePicker _FilePicker = new();
+        private readonly DataVerwerker _DataVerwerker = new();
         //private static readonly ArrayList RollenList = new();
         public startGui()
         {
@@ -24,7 +24,6 @@ namespace SpyfallProject.presentatielaag
             _ErrorArray.Clear();
             textBox1.Text = "";
             //data die de speler geselecteerd heeft gaan controleren en eventueel errors tonen
-            //zoeken waarom kleur niet werkt
             textBox1.BackColor = Color.FromArgb(240, 240, 240);
             textBox1.ForeColor = Color.Red;
             if (aantalSpelers.Value < 4)
@@ -43,7 +42,7 @@ namespace SpyfallProject.presentatielaag
             {
                 _ErrorArray.Add("Je kan niet meer of evenveel spionnen als spelers hebben. \n");
             }
-            if (!TestData(_FilePath))
+            if (!_DataVerwerker.TestData(_FilePath))
             {
                 _ErrorArray.Add("Het gekozen databestand is ongeldig");
             }
@@ -60,8 +59,14 @@ namespace SpyfallProject.presentatielaag
                 //het aantal spelers en spionnen gaan vastzetten
                 _Spel.Aantalspelers = (int)aantalSpelers.Value;
                 _Spel.Aantalspionnen = (int)aantalSpionnen.Value;
+
                 //een rollenlijst laten aanmaken
                 _Rol.KiesRandomRol(_FilePath);
+
+                _Spel.Locatie = _Rol.GetRollenList()[0].ToString();
+                var list = _Rol.GetRollenList();
+                list.RemoveAt(0);
+                _Rol.SetRollenList(list);
                 //spelers de rollen gaan toewijzen
                 _Spel.MaakUsers(_FilePath);
                 //de spelerarray gaan shuffelen

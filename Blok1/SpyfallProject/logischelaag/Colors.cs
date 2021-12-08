@@ -1,5 +1,6 @@
 namespace SpyfallProject.logischelaag
 {
+    //todo find a use for these
     public enum Colors
     {
         Wit,
