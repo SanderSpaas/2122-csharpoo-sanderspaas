@@ -18,10 +18,13 @@
                 //Get the path of specified file
                 return openFileDialog.FileName;
             }
-            return @"datalaag\SpyfallData.csv";
+            else
+            {
+                return @"datalaag\SpyfallData.csv";
+            }
         }
 
-        public string OpenSaveDialog()
+        public string? OpenSaveDialog()
         {
             SaveFileDialog saveFileDialog = new()
             {
@@ -35,7 +38,6 @@
                 return saveFileDialog.FileName;
             }
             else return null;
-
         }
     }
 }

@@ -3,9 +3,6 @@
     public class Speler
     {
         private readonly string _rol = "";
-        public Speler()
-        {
-        }
         public Speler(string rol)
         {
             if (!string.IsNullOrWhiteSpace(rol))

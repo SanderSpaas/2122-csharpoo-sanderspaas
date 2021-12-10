@@ -33,12 +33,16 @@ namespace SpyfallProject.presentatielaag
         //het CSV bestand gaan aanmaken 
         private void GenereerBestand_Click(object sender, EventArgs e)
         {
-            _filePath = _filePicker.OpenSaveDialog();
-            //het bestand gaan aanmaken
-            _dataVerwerker.CreateFile(_filePath);
-            OutputTextBox.Text = "Bestand geselecteerd. \r\n";
-            GeselecteerdeBestandTextBox.Text = _filePath;
-            EnableInput();
+            String check = _filePicker.OpenSaveDialog();
+            if (check != null)
+            {
+                _filePath = check;
+                //het bestand gaan aanmaken
+                _dataVerwerker.CreateFile(_filePath);
+                OutputTextBox.Text = "Bestand geselecteerd. \r\n";
+                GeselecteerdeBestandTextBox.Text = _filePath;
+                EnableInput();
+            }
         }
 
         //een bestaand bestand gaan selecteren om dingen aan toe te voegen

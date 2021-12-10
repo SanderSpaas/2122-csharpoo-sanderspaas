@@ -9,26 +9,18 @@ namespace SpyfallProject.presentatielaag
         private int _counter1 = 0;
         private int _counter2 = 0;
         private readonly Random _random = new();
-        private SpyfallMain _spel = new();
         private readonly Rollen _rol = new();
-        private int _speltijd;
-        public ShowRolesGui(int aantalSpelers, int aantalSpionnen, int aantalTijd)
+        private SpyfallMain _spel;
+        public ShowRolesGui(int aantalSpelers, int aantalSpionnen, int aantalTijd, string filePath)
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
             Text = "Rollen GUI";
             LabelClear();
-
-            //de tijd in een variabele gaan steken om dan door te geven
-            _speltijd = aantalTijd;
             //een rollenlijst laten aanmaken
-            _rol.KiesRandomRol(_spel.FilePath);
+            _rol.KiesRandomRol(filePath);
+            _spel = new(aantalSpelers, aantalSpionnen, aantalTijd, _rol.RollenList[0].ToString(), filePath);
 
-            //het aantal spelers en spionnen gaan vastzetten
-            _spel.Aantalspelers = aantalSpelers;
-            _spel.Aantalspionnen = aantalSpionnen;
-
-            _spel.Locatie = _rol.RollenList[0].ToString();
             var list = _rol.RollenList;
             list.RemoveAt(0);
             _rol.SetRollenList(list);
@@ -40,8 +32,8 @@ namespace SpyfallProject.presentatielaag
         private void Button1_Click(object sender, EventArgs e)
         {
             int maxPlayers = _spel.Aantalspelers;
-            rolLabel1.Text = "Jouw rol";
-            locatieLabel1.Text = "De locatie";
+            rolLabelTitel.Text = "Jouw rol";
+            locatieLabelTitel.Text = "De locatie";
             if (_counter1 < (maxPlayers * 2) - 1)
             {
                 _counter1++;
@@ -78,14 +70,14 @@ namespace SpyfallProject.presentatielaag
         private void StartButton_Click(object sender, EventArgs e)
         {
             Hide();
-            new TimerGUI(_speltijd).ShowDialog();
+            new TimerGUI(_spel.AantalTijd).Show();
         }
         private void LabelClear()
         {
             rolLabel.Text = "";
             locatieLabel.Text = "";
-            rolLabel1.Text = "";
-            locatieLabel1.Text = "";
+            rolLabelTitel.Text = "";
+            locatieLabelTitel.Text = "";
         }
         private void SetColor(Color color)
         {

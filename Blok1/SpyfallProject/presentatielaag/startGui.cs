@@ -8,6 +8,7 @@ namespace SpyfallProject.presentatielaag
         //de array waar we onze errors gaan insteken
         private readonly ArrayList _errorArray = new();
         private readonly SpyfallMain _spel = new();
+        private string _filePath = "";
         private readonly FilePicker _filePicker = new();
         private readonly DataVerwerker _dataVerwerker = new();
         public startGui()
@@ -19,6 +20,7 @@ namespace SpyfallProject.presentatielaag
         private void StartButton_Click(object sender, EventArgs e)
         {
             _errorArray.Clear();
+            _filePath = _spel.FilePath;
             textBox1.Text = "";
             //data die de speler geselecteerd heeft gaan controleren en eventueel errors tonen
             textBox1.BackColor = Color.FromArgb(240, 240, 240);
@@ -27,7 +29,7 @@ namespace SpyfallProject.presentatielaag
             {
                 _errorArray.Add("Je kan niet meer of evenveel spionnen als het aantal spelers hebben. \n");
             }
-            if (!_dataVerwerker.TestData(_spel.FilePath))
+            if (!_dataVerwerker.TestData(_filePath))
             {
                 _errorArray.Add("Het gekozen databestand is ongeldig");
             }
@@ -42,14 +44,14 @@ namespace SpyfallProject.presentatielaag
             {
                 //de volgende form gaan tonen bye bye o/ :)
                 Hide();
-                new ShowRolesGui((int)aantalSpelers.Value, (int)aantalSpionnen.Value, (int)aantalTijd.Value).ShowDialog();
+                new ShowRolesGui((int)aantalSpelers.Value, (int)aantalSpionnen.Value, (int)aantalTijd.Value, _filePath).Show();
             }
         }
 
         //de user zelf een databestand laten kiezen
         private void DataFileButton_Click(object sender, EventArgs e)
         {
-            _spel.FilePath = _filePicker.FileSelector();
+            _filePath = _filePicker.FileSelector();
             textBox1.ForeColor = Color.Black;
             textBox1.Text = "Data geselecteerd";
         }

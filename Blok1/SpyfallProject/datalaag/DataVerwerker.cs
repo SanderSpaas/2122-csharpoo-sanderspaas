@@ -47,7 +47,19 @@ namespace SpyfallProject.datalaag
         //methode die een bestand gaat maken
         public void CreateFile(String filePath)
         {
-            File.Create(filePath).Close();
+            try
+            {
+                File.Create(filePath).Close();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentNullException("FilePath was null");
+            }
+            finally
+            {
+
+            }
+
         }
 
         //methode die een bestand gaat uitlezen

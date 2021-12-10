@@ -30,10 +30,10 @@
         {
             this.nextPlayerButton = new System.Windows.Forms.Button();
             this.welkeSpelerLabel = new System.Windows.Forms.Label();
-            this.rolLabel1 = new System.Windows.Forms.Label();
+            this.rolLabelTitel = new System.Windows.Forms.Label();
             this.rolLabel = new System.Windows.Forms.Label();
             this.locatieLabel = new System.Windows.Forms.Label();
-            this.locatieLabel1 = new System.Windows.Forms.Label();
+            this.locatieLabelTitel = new System.Windows.Forms.Label();
             this.ColorPanel = new System.Windows.Forms.Panel();
             this.ColorPanel1 = new System.Windows.Forms.Panel();
             this.StartButton = new System.Windows.Forms.Button();
@@ -58,15 +58,15 @@
             this.welkeSpelerLabel.Size = new System.Drawing.Size(0, 20);
             this.welkeSpelerLabel.TabIndex = 1;
             // 
-            // rolLabel1
+            // rolLabelTitel
             // 
-            this.rolLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rolLabel1.Location = new System.Drawing.Point(50, 111);
-            this.rolLabel1.Name = "rolLabel1";
-            this.rolLabel1.Size = new System.Drawing.Size(346, 36);
-            this.rolLabel1.TabIndex = 2;
-            this.rolLabel1.Text = "placeholder";
-            this.rolLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rolLabelTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rolLabelTitel.Location = new System.Drawing.Point(50, 111);
+            this.rolLabelTitel.Name = "rolLabelTitel";
+            this.rolLabelTitel.Size = new System.Drawing.Size(346, 36);
+            this.rolLabelTitel.TabIndex = 2;
+            this.rolLabelTitel.Text = "placeholder";
+            this.rolLabelTitel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // rolLabel
             // 
@@ -88,15 +88,15 @@
             this.locatieLabel.Text = "placeholder";
             this.locatieLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // locatieLabel1
+            // locatieLabelTitel
             // 
-            this.locatieLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.locatieLabel1.Location = new System.Drawing.Point(50, 226);
-            this.locatieLabel1.Name = "locatieLabel1";
-            this.locatieLabel1.Size = new System.Drawing.Size(346, 36);
-            this.locatieLabel1.TabIndex = 6;
-            this.locatieLabel1.Text = "placeholder";
-            this.locatieLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.locatieLabelTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.locatieLabelTitel.Location = new System.Drawing.Point(50, 226);
+            this.locatieLabelTitel.Name = "locatieLabelTitel";
+            this.locatieLabelTitel.Size = new System.Drawing.Size(346, 36);
+            this.locatieLabelTitel.TabIndex = 6;
+            this.locatieLabelTitel.Text = "placeholder";
+            this.locatieLabelTitel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ColorPanel
             // 
@@ -137,10 +137,10 @@
             this.ClientSize = new System.Drawing.Size(446, 501);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.ColorPanel1);
-            this.Controls.Add(this.locatieLabel1);
+            this.Controls.Add(this.locatieLabelTitel);
             this.Controls.Add(this.locatieLabel);
             this.Controls.Add(this.rolLabel);
-            this.Controls.Add(this.rolLabel1);
+            this.Controls.Add(this.rolLabelTitel);
             this.Controls.Add(this.welkeSpelerLabel);
             this.Controls.Add(this.nextPlayerButton);
             this.Controls.Add(this.ColorPanel);
@@ -158,10 +158,10 @@
 
         private System.Windows.Forms.Button nextPlayerButton;
         private System.Windows.Forms.Label welkeSpelerLabel;
-        private System.Windows.Forms.Label rolLabel1;
+        private System.Windows.Forms.Label rolLabelTitel;
         private System.Windows.Forms.Label rolLabel;
         private System.Windows.Forms.Label locatieLabel;
-        private System.Windows.Forms.Label locatieLabel1;
+        private System.Windows.Forms.Label locatieLabelTitel;
         private System.Windows.Forms.Panel ColorPanel;
         private System.Windows.Forms.Panel ColorPanel1;
         private Button StartButton;
