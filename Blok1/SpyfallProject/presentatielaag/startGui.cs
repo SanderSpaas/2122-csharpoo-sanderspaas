@@ -7,7 +7,7 @@ namespace SpyfallProject.presentatielaag
     {
         //de array waar we onze errors gaan insteken
         private readonly ArrayList _errorArray = new();
-        private readonly SpyfallMain _spel = new();
+        private SpyfallMain _spel = new();
         private string _filePath = "";
         private readonly FilePicker _filePicker = new();
         private readonly DataVerwerker _dataVerwerker = new();
@@ -51,7 +51,7 @@ namespace SpyfallProject.presentatielaag
         //de user zelf een databestand laten kiezen
         private void DataFileButton_Click(object sender, EventArgs e)
         {
-            _filePath = _filePicker.FileSelector();
+            _spel.FilePath = _filePicker.FileSelector();
             textBox1.ForeColor = Color.Black;
             textBox1.Text = "Data geselecteerd";
         }

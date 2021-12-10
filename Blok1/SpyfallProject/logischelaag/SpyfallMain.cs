@@ -27,7 +27,7 @@ namespace SpyfallProject.logischelaag
         public int Aantalspionnen { get => _aantalSpionnen; }
         public int AantalTijd { get => _aantalTijd; }
         public string Locatie { get => _locatie; }
-        public string FilePath { get => _filePath; }
+        public string FilePath { get => _filePath; set => _filePath = value ?? throw new ArgumentException("FilePath mag niet leeg zijn"); }
         public ArrayList SpelerList { get => _spelerList; set => _spelerList = value ?? throw new ArgumentException("Spelerlijst mag niet leeg zijn"); }
 
         public void Voegtoe(Speler speler)
