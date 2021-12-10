@@ -11,13 +11,16 @@ namespace SpyfallProject.presentatielaag
         private readonly Random _random = new();
         private SpyfallMain _spel = new();
         private readonly Rollen _rol = new();
-        public ShowRolesGui(int aantalSpelers, int aantalSpionnen)
+        private int _speltijd;
+        public ShowRolesGui(int aantalSpelers, int aantalSpionnen, int aantalTijd)
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
             Text = "Rollen GUI";
             LabelClear();
 
+            //de tijd in een variabele gaan steken om dan door te geven
+            _speltijd = aantalTijd;
             //een rollenlijst laten aanmaken
             _rol.KiesRandomRol(_spel.FilePath);
 
@@ -75,7 +78,7 @@ namespace SpyfallProject.presentatielaag
         private void StartButton_Click(object sender, EventArgs e)
         {
             Hide();
-            new TimerGUI().ShowDialog();
+            new TimerGUI(_speltijd).ShowDialog();
         }
         private void LabelClear()
         {

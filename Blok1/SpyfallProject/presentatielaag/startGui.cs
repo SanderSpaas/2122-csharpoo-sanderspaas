@@ -23,21 +23,9 @@ namespace SpyfallProject.presentatielaag
             //data die de speler geselecteerd heeft gaan controleren en eventueel errors tonen
             textBox1.BackColor = Color.FromArgb(240, 240, 240);
             textBox1.ForeColor = Color.Red;
-            if (aantalSpelers.Value < 4)
-            {
-                _errorArray.Add("Je moet dit spel met 4 of meer spelen. \n");
-            }
-            if (aantalSpelers.Value > 10)
-            {
-                _errorArray.Add("Je kan dit spel met niet meer dan 10 spelers spelen. \n");
-            }
-            if (aantalSpionnen.Value == 0)
-            {
-                _errorArray.Add("Je moet minstens 1 spion hebben. \n");
-            }
             if (aantalSpionnen.Value >= aantalSpelers.Value)
             {
-                _errorArray.Add("Je kan niet meer of evenveel spionnen als spelers hebben. \n");
+                _errorArray.Add("Je kan niet meer of evenveel spionnen als het aantal spelers hebben. \n");
             }
             if (!_dataVerwerker.TestData(_spel.FilePath))
             {
@@ -54,7 +42,7 @@ namespace SpyfallProject.presentatielaag
             {
                 //de volgende form gaan tonen bye bye o/ :)
                 Hide();
-                new ShowRolesGui((int)aantalSpelers.Value, (int)aantalSpionnen.Value).ShowDialog();
+                new ShowRolesGui((int)aantalSpelers.Value, (int)aantalSpionnen.Value, (int)aantalTijd.Value).ShowDialog();
             }
         }
 

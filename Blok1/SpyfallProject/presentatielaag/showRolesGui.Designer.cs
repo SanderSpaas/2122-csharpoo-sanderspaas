@@ -130,7 +130,7 @@
             this.StartButton.Visible = false;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
-            // showRolesGui
+            // ShowRolesGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -146,7 +146,8 @@
             this.Controls.Add(this.ColorPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "showRolesGui";
+            this.MaximizeBox = false;
+            this.Name = "ShowRolesGui";
             this.Text = "showRolesGui";
             this.ResumeLayout(false);
             this.PerformLayout();

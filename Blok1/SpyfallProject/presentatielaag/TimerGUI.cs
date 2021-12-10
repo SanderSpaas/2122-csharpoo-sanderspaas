@@ -4,11 +4,11 @@
     {
         private readonly DateTime _endTime;
         private readonly Random _random = new();
-        public TimerGUI()
+        public TimerGUI(int aantalTijd)
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
-            var minutes = 8;
+            var minutes = aantalTijd;
             var start = DateTime.UtcNow;
             _endTime = start.AddMinutes(minutes);
         }
@@ -18,9 +18,7 @@
             TimeSpan remainingTime = _endTime - DateTime.UtcNow;
             if (remainingTime < TimeSpan.Zero)
             {
-                TimerLabel.Text = "0:00";
-                timer1.Enabled = false;
-                StemLabel.Visible = true;
+                EndTimerAction();
             }
             else
             {
@@ -29,6 +27,19 @@
                 ColorPanel.BackColor = kleur;
                 ColorPanel1.BackColor = kleur;
             }
+        }
+
+        private void StopTimerButton_Click(object sender, EventArgs e)
+        {
+            EndTimerAction();
+        }
+
+        private void EndTimerAction()
+        {
+            TimerLabel.Text = "0:00";
+            timer1.Enabled = false;
+            StemLabel.Visible = true;
+            StopTimerButton.Enabled = false;
         }
     }
 }

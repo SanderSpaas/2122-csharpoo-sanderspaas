@@ -35,16 +35,18 @@
             this.ColorPanel = new System.Windows.Forms.Panel();
             this.ColorPanel1 = new System.Windows.Forms.Panel();
             this.StemLabel = new System.Windows.Forms.Label();
+            this.StopTimerButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TimerLabel
             // 
             this.TimerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 45.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TimerLabel.Location = new System.Drawing.Point(50, 221);
+            this.TimerLabel.Location = new System.Drawing.Point(50, 185);
             this.TimerLabel.Name = "TimerLabel";
             this.TimerLabel.Size = new System.Drawing.Size(376, 109);
             this.TimerLabel.TabIndex = 0;
-            this.TimerLabel.Text = "8:00";
+            this.TimerLabel.Text = "00:00";
             this.TimerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer1
@@ -60,7 +62,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(376, 64);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Zoek de Spion 🕵️";
+            this.label1.Text = "Zoek de Spion";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ColorPanel
@@ -86,7 +88,7 @@
             // StemLabel
             // 
             this.StemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.StemLabel.Location = new System.Drawing.Point(50, 330);
+            this.StemLabel.Location = new System.Drawing.Point(50, 343);
             this.StemLabel.Name = "StemLabel";
             this.StemLabel.Size = new System.Drawing.Size(376, 64);
             this.StemLabel.TabIndex = 10;
@@ -94,17 +96,41 @@
             this.StemLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.StemLabel.Visible = false;
             // 
+            // StopTimerButton
+            // 
+            this.StopTimerButton.Location = new System.Drawing.Point(155, 294);
+            this.StopTimerButton.Name = "StopTimerButton";
+            this.StopTimerButton.Size = new System.Drawing.Size(156, 46);
+            this.StopTimerButton.TabIndex = 11;
+            this.StopTimerButton.Text = "Stop de timer";
+            this.StopTimerButton.UseVisualStyleBackColor = true;
+            this.StopTimerButton.Click += new System.EventHandler(this.StopTimerButton_Click);
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 60.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(50, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(376, 110);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "🕵";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // TimerGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(476, 424);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.StopTimerButton);
             this.Controls.Add(this.StemLabel);
             this.Controls.Add(this.ColorPanel1);
             this.Controls.Add(this.ColorPanel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TimerLabel);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
             this.Name = "TimerGUI";
             this.Text = "TimerGUI";
             this.ResumeLayout(false);
@@ -119,5 +145,7 @@
         private System.Windows.Forms.Panel ColorPanel;
         private System.Windows.Forms.Panel ColorPanel1;
         private System.Windows.Forms.Label StemLabel;
+        private Button StopTimerButton;
+        private Label label2;
     }
 }

@@ -52,6 +52,7 @@
             this.ClientSize = new System.Drawing.Size(827, 712);
             this.Controls.Add(this.SpelregelsTextBox);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
             this.Name = "Spelregels";
             this.Text = "Form1";
             this.ResumeLayout(false);

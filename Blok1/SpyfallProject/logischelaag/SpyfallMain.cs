@@ -3,8 +3,9 @@ namespace SpyfallProject.logischelaag
 {
     public class SpyfallMain
     {
-        private int _aantalspelers;
-        private int _aantalspionnen;
+        private int _aantalSpelers;
+        private int _aantalSpionnen;
+        private int _aantalTijd;
         private string _locatie;
         private readonly Random _random = new();
         private readonly ArrayList _rollenListSpel = new();
@@ -14,11 +15,12 @@ namespace SpyfallProject.logischelaag
         {
         }
 
-        public int Aantalspelers { get => _aantalspelers; set => _aantalspelers = (value < 10 && value > 4) ? value : throw new ArgumentException("Aantal spionnen mag niet meer dan 10 en niet minder dan 4 zijn"); }
-        public int Aantalspionnen { get => _aantalspionnen; set => _aantalspionnen = (value != 0) ? value : throw new ArgumentException("Aantal spionnen mag niet 0 zijn"); }
+        public int Aantalspelers { get => _aantalSpelers; set => _aantalSpelers = (value <= 10 && value >= 4) ? value : throw new ArgumentException("Aantal spelers mag niet meer dan 10 en niet minder dan 4 zijn"); }
+        public int Aantalspionnen { get => _aantalSpionnen; set => _aantalSpionnen = (value != 0) ? value : throw new ArgumentException("Aantal spionnen mag niet 0 zijn"); }
         public string Locatie { get => _locatie; set => _locatie = (!string.IsNullOrWhiteSpace(value)) ? value : throw new ArgumentException("Locatie mag niet leeg zijn"); }
         public ArrayList SpelerList { get => _spelerList; set => _spelerList = value ?? throw new ArgumentException("Spelerlijst mag niet leeg zijn"); }
         public string FilePath { get => _filePath; set => _filePath = (!string.IsNullOrWhiteSpace(value)) ? value : throw new ArgumentException("FilePath mag niet leeg zijn"); }
+        public int AantalTijd { get => _aantalTijd; set => _aantalTijd = value; }
 
         public void Voegtoe(Speler speler)
         {
