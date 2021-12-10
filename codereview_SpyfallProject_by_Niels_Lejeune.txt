@@ -1,0 +1,78 @@
+C# OO - verslag codereview
+==========================
+
+Naam reviewer:	Niels Lejeune
+Datum review:  9/12/2021
+
+Beoordeelde code
+----------------
+
+Auteur: Sander Spaas
+Titel: Spyfall
+Datum code: 8/12
+
+
+Programmeerstijl
+----------------
+
+- naamgeving variabelen (conventies & zinvolle namen)
+ok, naamgevingen van gui componenten zijn wat verwarrend. (rollabel en rollabel1)
+
+- naamgeving methodes (conventies & zinvolle namen)
+goed, Voegtoe (Speler speler) is mss wat moeilijk te vinden met hulp van editor. 
+
+- layout (gebruik accolades en inspringen)
+layout is goed gebruikt. de setters voor propperties zouden soms beter op een extra lijntje gezet worden.
+
+
+- geen publieke velden (properties waar nodig)
+Properties zijn gebruikt waar nodig.
+
+
+- korte methodes (< 25 lijnen), 'single responisbility rule'
+Overal in orde.
+
+
+Structuur
+---------
+
+De code is logisch opgebouwd en verstaanbaar.
+De enkele plaatsen waar het niet direct duidelijk is helpt de comments die overal bij staan.
+
+
+
+
+Userinterface
+-------------
+
+De Ui is niet de mooiste van allemaal.
+Het is logisch opgebouwd.
+De regels die weer kunnen gegeven worden is super goed.
+Mischien is het intressant om een button toe te voegen die de timer direct naar nul brengt om zo da game wat te versnellen.
+
+
+
+Analyse methode1 & methode 2
+----------------------------
+
+<Kies 2 methodes uit verschillende delen van de code en beoordeel de juistheid  en efficiëntie ervan >
+
+methode 1:  DateVerwerking TestData
+
+mooi opgebouwd alle controles zijn er die nodig zijn op de input.
+De messages die worden getrowd worden niet weergegeven op de gui aangezien ze in de methode zelg zijn gevangen.
+Een extra throw wanneer er geen bestand zou zijn is mischien wel handig 
+
+methode 2:  SpyfallMain ShuffleList
+
+Dit kan een heel algemen methode zijn.
+Er is 1 probleem dat het alleen werkt voor lijsten van type Speler.
+Elk type kan echter opgegeven worden zonder controle.
+foreach ging mischien een betere loop zijn.
+Mischien kan de .shuffle() methode hier gebruikt worden.
+
+
+
+
+
+
