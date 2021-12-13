@@ -43,11 +43,22 @@ namespace SpyfallProject.presentatielaag
             TimerLabel.Text = "0:00";
             timer1.Enabled = false;
             StemLabel.Visible = true;
-            StopTimerButton.Enabled = false;
+            StopTimerButton.Visible = false;
+            Spionnen.Visible = true;
+            Spelers.Visible = true;
+            GewonnenLabel.Visible = true;
+        }
 
-            //code nog op de juiste plaats zetten
+        private void Spelers_Click(object sender, EventArgs e)
+        {
             Hide();
-            new ScoreBoard(_spel).Show();
+            new ScoreBoard(_spel, "Spelers").ShowDialog();
+        }
+
+        private void Spionnen_Click(object sender, EventArgs e)
+        {
+            Hide();
+            new ScoreBoard(_spel, "Spionnen").ShowDialog();
         }
     }
 }

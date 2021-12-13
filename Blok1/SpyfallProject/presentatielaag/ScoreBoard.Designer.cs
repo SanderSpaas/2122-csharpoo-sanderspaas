@@ -33,12 +33,13 @@
             // 
             // Scores
             // 
-            this.Scores.Location = new System.Drawing.Point(64, 28);
+            this.Scores.Location = new System.Drawing.Point(12, 12);
             this.Scores.Multiline = true;
             this.Scores.Name = "Scores";
             this.Scores.ReadOnly = true;
-            this.Scores.Size = new System.Drawing.Size(617, 335);
+            this.Scores.Size = new System.Drawing.Size(776, 426);
             this.Scores.TabIndex = 0;
+            this.Scores.TabStop = false;
             // 
             // ScoreBoard
             // 
@@ -46,7 +47,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.Scores);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "ScoreBoard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ScoreBoard";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -171,9 +171,11 @@
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.RolLabel);
             this.Controls.Add(this.LocatieLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "SpelMaker";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SpelMaker";
             this.ResumeLayout(false);
             this.PerformLayout();

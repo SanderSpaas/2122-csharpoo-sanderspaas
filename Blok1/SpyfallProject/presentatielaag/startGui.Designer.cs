@@ -246,6 +246,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "startGui";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Spyfall";
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpelers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aantalSpionnen)).EndInit();
