@@ -1,14 +1,18 @@
-﻿namespace SpyfallProject.presentatielaag
+﻿using SpyfallProject.logischelaag;
+
+namespace SpyfallProject.presentatielaag
 {
     public partial class TimerGUI : Form
     {
         private readonly DateTime _endTime;
         private readonly Random _random = new();
-        public TimerGUI(int aantalTijd)
+        private SpyfallMain _spel;
+        public TimerGUI(SpyfallMain spel)
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
-            var minutes = aantalTijd;
+            _spel = spel;
+            var minutes = spel.AantalTijd;
             var start = DateTime.UtcNow;
             _endTime = start.AddMinutes(minutes);
         }
@@ -40,6 +44,10 @@
             timer1.Enabled = false;
             StemLabel.Visible = true;
             StopTimerButton.Enabled = false;
+
+            //code nog op de juiste plaats zetten
+            Hide();
+            new ScoreBoard(_spel).Show();
         }
     }
 }

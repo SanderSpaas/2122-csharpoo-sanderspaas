@@ -10,7 +10,7 @@ namespace SpyfallProject.presentatielaag
         private int _counter2 = 0;
         private readonly Random _random = new();
         private readonly Rollen _rol = new();
-        private SpyfallMain _spel;
+        private readonly SpyfallMain _spel;
         public ShowRolesGui(int aantalSpelers, int aantalSpionnen, int aantalTijd, string filePath)
         {
             InitializeComponent();
@@ -70,7 +70,7 @@ namespace SpyfallProject.presentatielaag
         private void StartButton_Click(object sender, EventArgs e)
         {
             Hide();
-            new TimerGUI(_spel.AantalTijd).Show();
+            new TimerGUI(_spel).Show();
         }
         private void LabelClear()
         {

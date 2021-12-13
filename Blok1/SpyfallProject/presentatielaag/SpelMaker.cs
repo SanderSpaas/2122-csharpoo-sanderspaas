@@ -65,7 +65,7 @@ namespace SpyfallProject.presentatielaag
         //button die de data gaat laten toevoegen
         private void VoegToeButton_Click(object sender, EventArgs e)
         {
-            if (_dataVerwerker.AddToFile(_filePath, _dataCSVLocation, _dataCSVRoles))
+            if (_dataVerwerker.AddToFile(_filePath, _dataCSVLocation + _dataCSVRoles))
             {
                 OutputTextBox.Text = "Data naar bestand geschreven. \r\n";
             }

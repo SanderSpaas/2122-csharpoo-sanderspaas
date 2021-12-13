@@ -55,11 +55,6 @@ namespace SpyfallProject.datalaag
             {
                 throw new ArgumentNullException("FilePath was null");
             }
-            finally
-            {
-
-            }
-
         }
 
         //methode die een bestand gaat uitlezen
@@ -71,11 +66,11 @@ namespace SpyfallProject.datalaag
         }
 
         //methode die data naar een bestand gaat schrijven
-        public bool AddToFile(String filePath, String _DataCSVLocation, String _DataCSVRoles)
+        public bool AddToFile(String filePath, String data)
         {
             try
             {
-                File.AppendAllText(filePath, _DataCSVLocation + _DataCSVRoles + Environment.NewLine);
+                File.AppendAllText(filePath, data + Environment.NewLine);
                 return true;
             }
             catch (Exception)

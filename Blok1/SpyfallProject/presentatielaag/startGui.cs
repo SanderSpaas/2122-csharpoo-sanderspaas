@@ -27,7 +27,7 @@ namespace SpyfallProject.presentatielaag
             textBox1.ForeColor = Color.Red;
             if (aantalSpionnen.Value >= aantalSpelers.Value)
             {
-                _errorArray.Add("Je kan niet meer of evenveel spionnen als het aantal spelers hebben. \n");
+                _errorArray.Add("Je kan niet meer of evenveel spionnen als het aantal spelers hebben. \r\n");
             }
             if (!_dataVerwerker.TestData(_filePath))
             {
