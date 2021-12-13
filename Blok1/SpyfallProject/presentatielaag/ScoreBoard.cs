@@ -46,7 +46,9 @@ namespace SpyfallProject.presentatielaag
             var lines = _data.ReadFileContent("datalaag/ScoreData.csv");
             foreach (var line in lines)
             {
-                Scores.Text += line + "\r\n";
+                Scores.Text += "!-(-======!-(-O-)-!=====!-(-======!-(-O-)-!=====!-(-🕵-)-!=====!-(-O-)-!======-)-!=====!-(-O-)-!======-)-!" + "\r\n";
+                Scores.Text += line + "\r\n \r\n";
+
             }
         }
     }

@@ -33,19 +33,24 @@
             // 
             // Scores
             // 
+            this.Scores.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Scores.Location = new System.Drawing.Point(12, 12);
             this.Scores.Multiline = true;
             this.Scores.Name = "Scores";
             this.Scores.ReadOnly = true;
-            this.Scores.Size = new System.Drawing.Size(776, 426);
+            this.Scores.Size = new System.Drawing.Size(1283, 687);
             this.Scores.TabIndex = 0;
             this.Scores.TabStop = false;
+            this.Scores.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ScoreBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1307, 711);
             this.Controls.Add(this.Scores);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
