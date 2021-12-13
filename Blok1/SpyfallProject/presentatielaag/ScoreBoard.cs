@@ -3,13 +3,14 @@ using SpyfallProject.logischelaag;
 
 namespace SpyfallProject.presentatielaag
 {
-    public partial class ScoreBoard : Form
+    public partial class ScoreBoard : Form, IDataVerwerker
     {
-        private readonly DataVerwerker _data = new();
-        public ScoreBoard(SpyfallMain spel, string gewonnen)
+        private readonly IDataVerwerker _data;
+        public ScoreBoard(SpyfallMain spel, string gewonnen, IDataVerwerker _data)
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
+            this._data = _data;
             DayOfWeek day = DateTime.Today.DayOfWeek;
             Days dag = Days.Dinsdag;
             switch (day)

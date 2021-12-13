@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using SpyfallProject.datalaag;
+using System.Collections;
 namespace SpyfallProject.logischelaag
 {
-    public class SpyfallMain
+    public class SpyfallMain : IDataVerwerker
     {
         private int _aantalSpelers;
         private int _aantalSpionnen;

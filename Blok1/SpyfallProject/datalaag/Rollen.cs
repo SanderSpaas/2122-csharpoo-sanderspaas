@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 namespace SpyfallProject.datalaag
 {
-    public class Rollen
+    public class Rollen : IDataVerwerker
     {
         private ArrayList _rollenList = new();
 

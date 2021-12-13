@@ -1,3 +1,5 @@
+using SpyfallProject.logischelaag;
+
 namespace SpyfallProject
 {
     internal static class Program
@@ -9,7 +11,8 @@ namespace SpyfallProject
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new presentatielaag.startGui());
+            SpyfallMain spel = new();
+            Application.Run(new presentatielaag.startGui(spel));
         }
     }
 }

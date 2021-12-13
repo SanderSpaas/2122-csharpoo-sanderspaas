@@ -1,14 +1,14 @@
 ﻿using SpyfallProject.datalaag;
 namespace SpyfallProject.presentatielaag
 {
-    public partial class SpelMaker : Form
+    public partial class SpelMaker : Form, IDataVerwerker
     {
         //variables
         private string _dataCSVLocation = "";
         private string _dataCSVRoles = "";
         private string _filePath = "";
         private readonly FilePicker _filePicker = new();
-        private readonly DataVerwerker _dataVerwerker = new();
+        private readonly IDataVerwerker _dataVerwerker;
 
         public SpelMaker()
         {

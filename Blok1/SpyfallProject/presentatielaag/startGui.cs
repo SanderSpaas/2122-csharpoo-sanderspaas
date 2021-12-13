@@ -3,18 +3,19 @@ using SpyfallProject.logischelaag;
 using System.Collections;
 namespace SpyfallProject.presentatielaag
 {
-    public partial class startGui : Form
+    public partial class startGui : Form, IDataVerwerker
     {
         //de array waar we onze errors gaan insteken
         private readonly ArrayList _errorArray = new();
         private SpyfallMain _spel = new();
         private string _filePath = "";
         private readonly FilePicker _filePicker = new();
-        private readonly DataVerwerker _dataVerwerker = new();
-        public startGui()
+        private readonly IDataVerwerker _dataVerwerker;
+        public startGui(IDataVerwerker _dataVerwerker)
         {
             InitializeComponent();
             Icon = new Icon("datalaag/spy.ico");
+            this._dataVerwerker = _dataVerwerker;
         }
 
         private void StartButton_Click(object sender, EventArgs e)

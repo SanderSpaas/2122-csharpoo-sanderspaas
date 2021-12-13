@@ -51,14 +51,18 @@ namespace SpyfallProject.presentatielaag
 
         private void Spelers_Click(object sender, EventArgs e)
         {
-            Hide();
-            new ScoreBoard(_spel, "Spelers").ShowDialog();
+            NextGui("Spelers");
         }
 
         private void Spionnen_Click(object sender, EventArgs e)
         {
+            NextGui("Spionnen");
+        }
+        private void NextGui(string gewonnen)
+        {
+            SpyfallMain spel = new();
             Hide();
-            new ScoreBoard(_spel, "Spionnen").ShowDialog();
+            new ScoreBoard(_spel, gewonnen, spel).ShowDialog();
         }
     }
 }

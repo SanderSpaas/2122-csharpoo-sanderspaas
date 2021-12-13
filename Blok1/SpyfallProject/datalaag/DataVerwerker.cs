@@ -1,18 +1,29 @@
 ﻿using System.Collections;
+
 namespace SpyfallProject.datalaag
 {
-    public class DataVerwerker
+    public interface IDataVerwerker
     {
-        public DataVerwerker()
-        {
-        }
-
         public bool TestData(String filePath)
         {
             //een tijdelijke arraylist om data om na te kijken in te zetten
             ArrayList checkList = new();
             //eerst kijken of het bestand wel bestaat
             if (!File.Exists(filePath)) return false;
+
+            try
+            {
+                using FileStream bestand = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.None);
+                bestand.Close();
+            }
+            catch (IOException)
+            {
+                //the file is unavailable because it is:
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return false;
+            }
 
             //kijken of er geen lege velden zijn in de data
             try
