@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\SpyfallGame",
-    "\\SpyfallGame\\presentatie"
+    "\\SpyfallProject",
+    "\\SpyfallProject\\presentatielaag"
   ],
-  "SelectedNode": "\\SpyfallGame\\presentatie\\startGui.cs",
+  "SelectedNode": "\\SpyfallProject\\presentatielaag\\ScoreBoard.cs",
   "PreviewInSolutionExplorer": false
 }

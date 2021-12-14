@@ -10,7 +10,11 @@ namespace SpyfallProject.datalaag
             ArrayList checkList = new();
             //eerst kijken of het bestand wel bestaat
             if (!File.Exists(filePath)) return false;
-
+            /// <summary>Gaan kijken of een bestand in gebruik is door een ander procces.
+            /// <see cref="https://stackoverflow.com/questions/876473/is-there-a-way-to-check-if-a-file-is-in-use" />
+            /// Geraadpleegd op 13 december 2021.
+            /// Code lichtjes bewerkt om het werkend te krijgen, filepath werd origineel niet meegegeven
+            /// </summary>
             try
             {
                 using FileStream bestand = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.None);
