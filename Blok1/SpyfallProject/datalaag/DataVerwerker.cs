@@ -68,7 +68,7 @@ namespace SpyfallProject.datalaag
             }
             catch (Exception)
             {
-                throw new ArgumentNullException("FilePath was null");
+                throw new ArgumentNullException(filePath, "FilePath was null");
             }
         }
 
