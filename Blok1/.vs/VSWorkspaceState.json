@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\SpyfallProject",
+    "\\SpyfallProject\\logischelaag",
     "\\SpyfallProject\\presentatielaag"
   ],
-  "SelectedNode": "\\SpyfallProject\\presentatielaag\\ScoreBoard.cs",
+  "SelectedNode": "\\SpyfallProject\\logischelaag\\SpyfallMain.cs",
   "PreviewInSolutionExplorer": false
 }
