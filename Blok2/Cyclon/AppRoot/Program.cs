@@ -14,7 +14,7 @@ namespace AppRoot
         private static void Main()
         {
             IData data = new Data();
-            ILogic logic = new Logic(data);
+            ILogic logic = new CyclonMain(/*data*/);
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm(logic));
         }

@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Cyclon",
+    "\\Cyclon\\LogicLayer",
+    "\\Cyclon\\PresentationLayer"
   ],
+  "SelectedNode": "\\Cyclon\\LogicLayer\\CyclonMain.cs",
   "PreviewInSolutionExplorer": false
 }
