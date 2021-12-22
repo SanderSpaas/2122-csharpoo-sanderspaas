@@ -11,7 +11,7 @@ namespace LogicLayer
             //_data = data;
         }
         //people make some fking noise 
-        public Map Generate(int width, int height, float scale, int DeepWater, int Water, int Sand, int Grass, int Hill)
+        public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill)
         {
             var map = new Map(width, height);
             var noiseValues = GenerateNoise(width, height, scale);
@@ -20,26 +20,26 @@ namespace LogicLayer
             {
                 for (int y = 0; y < noiseValues.GetLength(1); y++)
                 {
-                    map.Tiles[x, y].TerrainType = DetermineTerrain(noiseValues[x, y], DeepWater, Water, Sand, Grass, Hill);
+                    map.Tiles[x, y].TerrainType = DetermineTerrain(noiseValues[x, y], deepWater, water, sand, grass, hill);
                 }
             }
 
             return map;
         }
 
-        private TerrainType DetermineTerrain(float noiseValue, int DeepWater, int Water, int Sand, int Grass, int Hill)
+        private TerrainType DetermineTerrain(float noiseValue, int deepWater, int water, int sand, int grass, int hill)
         {
             switch (noiseValue)
             {
-                case var noise when noise <= DeepWater:
+                case var noise when noise <= deepWater:
                     return TerrainType.DeepWater;
-                case var noise when noise <= Water:
+                case var noise when noise <= water:
                     return TerrainType.Water;
-                case var noise when noise <= Sand:
+                case var noise when noise <= sand:
                     return TerrainType.Sand;
-                case var noise when noise <= Grass:
+                case var noise when noise <= grass:
                     return TerrainType.Grass;
-                case var noise when noise <= Hill:
+                case var noise when noise <= hill:
                     return TerrainType.Hill;
                 default:
                     return TerrainType.Mountain;

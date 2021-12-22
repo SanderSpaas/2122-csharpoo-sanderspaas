@@ -22,25 +22,27 @@ namespace PresentationLayer
         private void GenerateButton_Click(object sender, EventArgs e)
         {
             _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value);
-            textBox1.Clear();
             _bitmap = new Bitmap(_map.Height * 32, _map.Width * 32);
             _data = _main.GenerateNoise((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100);
             _generated = true;
             _tile = (int)TileSizeData.Value;
-            //using (var g = Graphics.FromImage(bitmap))
-            //{
-            //    for (int y = 0; y < map.Height; y++)
-            //    {
-            //        for (int x = 0; x < map.Width; x++)
-            //        {
-            //            Extensions.PrintTerrainCharacter(textBox1, map.Tiles[x, y].TerrainType);
-            //            //g.DrawImage(grid[x, y].Image, x * 32, y * 32);
-            //            g.DrawString(((int)datas[x, y]).ToString(), new Font("Arial", 25000), Brushes.Black, x, y);
-            //            g.DrawRectangle(blackPen, x, y, 200, 200);
-            //        }
-            //        Extensions.AppendText(textBox1, "\r\n", Color.Blue);
-            //    }
-            //}
+
+            if (MapModern.Visible)
+            {
+                Refresh();
+            }
+            else if (MapLegacy.Visible)
+            {
+                MapLegacy.Clear();
+                for (int y = 0; y < _map.Height; y++)
+                {
+                    for (int x = 0; x < _map.Width; x++)
+                    {
+                        Extensions.PrintTerrainCharacter(MapLegacy, _map.Tiles[x, y].TerrainType, _tile / 4);
+                    }
+                    Extensions.AppendText(MapLegacy, "\r\n", Color.Blue, _tile / 4);
+                }
+            }
 
             //var bitmap = new Bitmap(grid.GetLength(0) * 32, grid.GetLength(1) * 32);
 
@@ -55,78 +57,67 @@ namespace PresentationLayer
             //        }
             //    }
             //}
-            Refresh();
-        }
-        //List<Rectangle> _rectangles = new List<Rectangle>();
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    locationX = locationX + 20;
-        //    locationY = locationY + 20;
-        //    var rectangle = new Rectangle(locationX, locationY, 50, 30));
-        //    this._rectangles.Add(rectangle);
-        //    this.Invalidate(); // force Redraw the form
-        //}
 
-        //private void Form1_Paint(object sender, PaintEventArgs e)
-        //{
-        //    foreach (var rectangle in this._rectangles)
-        //    {
-        //        e.Graphics.DrawRectangle(Pens.Black, rectangle);
-        //    }
-        //}
+        }
 
         private void DrawingPanel_Paint(object sender, PaintEventArgs e)
         {
-            //using (var g = Graphics.FromImage(bitmap))
-            //{
             if (_generated)
             {
                 for (int y = 0; y < _map.Height; y++)
                 {
                     for (int x = 0; x < _map.Width; x++)
                     {
-                        //g.DrawImage(grid[x, y].Image, x * 32, y * 32);
-                        //e.Graphics.DrawString(((int)_data[x, y]).ToString(), new Font("Arial", 10), Brushes.Black, x * 32, y * 32);
-                        Extensions.PrintTerrainCharacterGrid(e, _map.Tiles[x, y].TerrainType, x, y, _tile);
+                        Extensions.PrintTerrainModern(e, _map.Tiles[x, y].TerrainType, x, y, _tile);
                     }
-                    Extensions.AppendText(textBox1, "\r\n", Color.Blue);
                 }
             }
-
-            //}
         }
+
+        private void LegacyRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            MapLegacy.Visible = true;
+            MapModern.Visible = false;
+        }
+
+        private void ModernRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            MapLegacy.Visible = false;
+            MapModern.Visible = true;
+        }
+
     }
 
     public static class Extensions
     {
-        public static void PrintTerrainCharacter(this RichTextBox box, TerrainType terrainType)
+        public static void PrintTerrainCharacter(this RichTextBox box, TerrainType terrainType, int fontSize)
         {
             switch (terrainType)
             {
                 case TerrainType.DeepWater:
-                    Extensions.AppendText(box, "█", Color.DarkBlue);
+                    Extensions.AppendText(box, "██", Color.DarkBlue, fontSize);
                     break;
                 case TerrainType.Water:
-                    Extensions.AppendText(box, "█", Color.Blue);
+                    Extensions.AppendText(box, "🌊", Color.Blue, fontSize);
                     break;
                 case TerrainType.Sand:
-                    Extensions.AppendText(box, "▒", Color.Yellow);
+                    Extensions.AppendText(box, "▒▒", Color.Yellow, fontSize);
                     break;
                 case TerrainType.Grass:
-                    Extensions.AppendText(box, "█", Color.Green);
+                    Extensions.AppendText(box, "██", Color.Green, fontSize);
                     break;
                 case TerrainType.Hill:
-                    Extensions.AppendText(box, "█", Color.DarkGreen);
+                    Extensions.AppendText(box, "██", Color.DarkGreen, fontSize);
                     break;
                 case TerrainType.Mountain:
-                    Extensions.AppendText(box, "█", Color.Gray);
+                    Extensions.AppendText(box, "██", Color.Gray, fontSize);
                     break;
                 default:
-                    Extensions.AppendText(box, " ", Color.White);
+                    Extensions.AppendText(box, "  ", Color.White, fontSize);
                     break;
             }
         }
-        public static void PrintTerrainCharacterGrid(this PaintEventArgs paint, TerrainType terrainType, int x, int y, int _tile)
+        public static void PrintTerrainModern(this PaintEventArgs paint, TerrainType terrainType, int x, int y, int _tile)
         {
             // Create pen.
             Pen blackPen = new Pen(Color.Black, 32);
@@ -162,8 +153,11 @@ namespace PresentationLayer
                     break;
             }
         }
-        public static void AppendText(this RichTextBox box, string text, Color color)
+        public static void AppendText(this RichTextBox box, string text, Color color, int fontSize)
         {
+            Font currentFont = box.SelectionFont;
+            FontStyle newFontStyle = (FontStyle)(currentFont.Style | FontStyle.Bold);
+            box.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFontStyle);
             box.SelectionStart = box.TextLength;
             box.SelectionLength = 0;
             box.SelectionColor = color;
