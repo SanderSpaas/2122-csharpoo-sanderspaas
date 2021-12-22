@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Globals\Globals.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
 </Project>
