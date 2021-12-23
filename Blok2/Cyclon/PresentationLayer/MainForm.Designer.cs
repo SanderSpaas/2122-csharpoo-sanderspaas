@@ -63,7 +63,7 @@
             this.KleurToner = new System.Windows.Forms.Panel();
             this.LayersComboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.LetterLaagData = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -425,7 +425,7 @@
             this.groupBox2.Controls.Add(this.KleurToner);
             this.groupBox2.Controls.Add(this.LayersComboBox);
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.LetterLaagData);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label13);
@@ -448,7 +448,7 @@
             this.ColorPickerButton.Size = new System.Drawing.Size(31, 29);
             this.ColorPickerButton.TabIndex = 22;
             this.ColorPickerButton.UseVisualStyleBackColor = true;
-            this.ColorPickerButton.Click += new System.EventHandler(this.button2_Click);
+            this.ColorPickerButton.Click += new System.EventHandler(this.ColorPickerButton_Click);
             // 
             // KleurToner
             // 
@@ -465,6 +465,7 @@
             this.LayersComboBox.Name = "LayersComboBox";
             this.LayersComboBox.Size = new System.Drawing.Size(191, 28);
             this.LayersComboBox.TabIndex = 21;
+            this.LayersComboBox.SelectedIndexChanged += new System.EventHandler(this.LayersComboBox_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -475,13 +476,13 @@
             this.button1.Text = "🔃";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // LetterLaagData
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 159);
-            this.textBox1.MaxLength = 1;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(191, 27);
-            this.textBox1.TabIndex = 12;
+            this.LetterLaagData.Location = new System.Drawing.Point(6, 159);
+            this.LetterLaagData.MaxLength = 1;
+            this.LetterLaagData.Name = "LetterLaagData";
+            this.LetterLaagData.Size = new System.Drawing.Size(191, 27);
+            this.LetterLaagData.TabIndex = 12;
             // 
             // label11
             // 
@@ -619,7 +620,7 @@
         private Button RandomSeedButton;
         private GroupBox groupBox2;
         private Button button1;
-        private TextBox textBox1;
+        private TextBox LetterLaagData;
         private Label label11;
         private Label label12;
         private Label label13;

@@ -12,11 +12,18 @@ namespace PresentationLayer
         private float[,] _data;
         private bool _generated = false;
         private int _tile = 0;
+        private Layer _laag = new();
+        private Color[] _kleuren = new Color[] { Color.DarkBlue, Color.Blue, Color.Yellow, Color.Green, Color.DarkGreen, Color.Gray };
+        private int[] _heights = new int[] { 40, 70, 120, 160, 240, 245 };
+        private char[] _drawings = new char[] { '█', '█', '█', '█', '█', '█' };
+        private List<Layer> _layers = new();
         public MainForm(ILogic logic)
         {
             _logic = logic;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
+
+            _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
             foreach (var Terrain in Enum.GetValues(typeof(TerrainType)))
             {
                 if (Terrain.ToString() != "Undefined")
@@ -34,7 +41,7 @@ namespace PresentationLayer
                 //als de seed text is dan veranderen we het naar een getal
                 seed = SeedData.Text.GetHashCode();
             }
-            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, seed);
+            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, seed, _layers);
             _bitmap = new Bitmap(_map.Height * 32, _map.Width * 32);
             _data = _main.GenerateNoise((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, seed);
             _generated = true;
@@ -51,7 +58,7 @@ namespace PresentationLayer
                 {
                     for (int x = 0; x < _map.Width; x++)
                     {
-                        Extensions.PrintTerrainCharacter(MapLegacy, _map.Tiles[x, y].TerrainType, _tile / 4);
+                        Extensions.PrintTerrainCharacter(MapLegacy, _tile / 4, _map.Tiles[x, y].Laag);
                     }
                     Extensions.AppendText(MapLegacy, "\r\n", Color.Blue, _tile / 4);
                 }
@@ -81,7 +88,7 @@ namespace PresentationLayer
                 {
                     for (int x = 0; x < _map.Width; x++)
                     {
-                        Extensions.PrintTerrainModern(e, _map.Tiles[x, y].TerrainType, x, y, _tile);
+                        Extensions.PrintTerrainModern(e, _map.Tiles[x, y].Laag.NaamLaag, x, y, _tile, _map.Tiles[x, y].Laag);
                     }
                 }
             }
@@ -105,79 +112,48 @@ namespace PresentationLayer
             SeedData.Text = random.Next().ToString();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void ColorPickerButton_Click(object sender, EventArgs e)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 KleurToner.BackColor = colorDialog1.Color;
+                //data van die laag gaan updaten
+                foreach (Layer layer in _layers)
+                {
+                    if (LayersComboBox.SelectedItem == layer)
+                    {
+                        layer.Kleur = KleurToner.BackColor;
+                    }
+                }
             }
+        }
+
+        private void LayersComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //data gaan tonen van die laag
+            LetterLaagData.Text = LayersComboBox.SelectedItem.ToString();
+            foreach (var layer in _layers)
+            {
+                if (LayersComboBox.SelectedItem.ToString() == layer.NaamLaag.ToString())
+                {
+                    KleurToner.BackColor = layer.Kleur;
+                    LetterLaagData.Text = layer.Teken.ToString();
+                }
+            }
+
         }
     }
 
     public static class Extensions
     {
-        public static void PrintTerrainCharacter(this RichTextBox box, TerrainType terrainType, int fontSize)
+        public static void PrintTerrainCharacter(this RichTextBox box, int fontSize, Layer laag)
         {
-            switch (terrainType)
-            {
-                case TerrainType.DeepWater:
-                    Extensions.AppendText(box, "A", Color.DarkBlue, fontSize);
-                    break;
-                case TerrainType.Water:
-                    Extensions.AppendText(box, "M", Color.Blue, fontSize);
-                    break;
-                case TerrainType.Sand:
-                    Extensions.AppendText(box, "E", Color.Yellow, fontSize);
-                    break;
-                case TerrainType.Grass:
-                    Extensions.AppendText(box, "L", Color.Green, fontSize);
-                    break;
-                case TerrainType.Hill:
-                    Extensions.AppendText(box, "I", Color.DarkGreen, fontSize);
-                    break;
-                case TerrainType.Mountain:
-                    Extensions.AppendText(box, "A", Color.Gray, fontSize);
-                    break;
-                default:
-                    Extensions.AppendText(box, "!", Color.White, fontSize);
-                    break;
-            }
+            Extensions.AppendText(box, laag.Teken.ToString(), laag.Kleur, fontSize);
         }
-        public static void PrintTerrainModern(this PaintEventArgs paint, TerrainType terrainType, int x, int y, int _tile)
+        public static void PrintTerrainModern(this PaintEventArgs paint, TerrainType terrainType, int x, int y, int _tile, Layer laag)
         {
-            // Create pen.
-            Pen blackPen = new Pen(Color.Black, 32);
-            Pen greenPen = new Pen(Color.Green, 32);
-            Pen yellowPen = new Pen(Color.Yellow, 32);
-            Pen DarkGreenPen = new Pen(Color.DarkGreen, 32);
-            Pen DarkBluePen = new Pen(Color.DarkBlue, 32);
-            Pen BluePen = new Pen(Color.Blue, 32);
-            Pen GrayPen = new Pen(Color.Gray, 32);
-            switch (terrainType)
-            {
-                case TerrainType.DeepWater:
-                    //paint.Graphics.DrawString(((int)datas[x, y]).ToString(), new Font("Arial", 10), Brushes.Black, x * 32, y * 32);
-                    paint.Graphics.DrawRectangle(DarkBluePen, x * _tile, y * _tile, _tile, _tile);
-                    break;
-                case TerrainType.Water:
-                    paint.Graphics.DrawRectangle(BluePen, x * _tile, y * _tile, _tile, _tile);
-                    break;
-                case TerrainType.Sand:
-                    paint.Graphics.DrawRectangle(yellowPen, x * _tile, y * _tile, _tile, _tile);
-                    break;
-                case TerrainType.Grass:
-                    paint.Graphics.DrawRectangle(greenPen, x * _tile, y * _tile, _tile, _tile);
-                    break;
-                case TerrainType.Hill:
-                    paint.Graphics.DrawRectangle(DarkGreenPen, x * _tile, y * _tile, _tile, _tile);
-                    break;
-                case TerrainType.Mountain:
-                    paint.Graphics.DrawRectangle(GrayPen, x * _tile, y * _tile, _tile, _tile);
-                    break;
-                default:
-                    paint.Graphics.DrawRectangle(blackPen, x * _tile, y * _tile, _tile, _tile);
-                    break;
-            }
+            //paint.Graphics.DrawString(((int)datas[x, y]).ToString(), new Font("Arial", 10), Brushes.Black, x * 32, y * 32);
+            paint.Graphics.DrawRectangle(new Pen(laag.Kleur, 32), x * _tile, y * _tile, _tile, _tile);
         }
         public static void AppendText(this RichTextBox box, string text, Color color, int fontSize)
         {

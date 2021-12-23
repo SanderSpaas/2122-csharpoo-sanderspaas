@@ -5,42 +5,56 @@ namespace LogicLayer
     public class CyclonMain : ILogic
     {
         private readonly IData _data;
-
         public CyclonMain(/*IData data*/)
         {
             //_data = data;
         }
-        public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill, int seed)
+        public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill, int seed, List<Layer> layers)
         {
             var map = new Map(width, height);
             var noiseValues = GenerateNoise(width, height, scale, seed);
-
             for (int x = 0; x < noiseValues.GetLength(0); x++)
             {
                 for (int y = 0; y < noiseValues.GetLength(1); y++)
                 {
-                    map.Tiles[x, y].TerrainType = DetermineTerrain(noiseValues[x, y], deepWater, water, sand, grass, hill);
+                    map.Tiles[x, y].Laag = DetermineTerrain(noiseValues[x, y], deepWater, water, sand, grass, hill, layers);
                 }
             }
             return map;
         }
 
-        private TerrainType DetermineTerrain(float noiseValue, int deepWater, int water, int sand, int grass, int hill)
+        public List<Layer> MaakLagen(Color[] kleuren, int[] hoogtes, char[] drawings)
+        {
+            List<Layer> layers = new List<Layer>();
+            int index = 0;
+            foreach (var Terrain in Enum.GetValues(typeof(TerrainType)))
+            {
+                if (Terrain.ToString() != "Undefined")
+                {
+                    var laag = new Layer((TerrainType)Terrain, kleuren[index], hoogtes[index], drawings[index]);
+                    layers.Add(laag);
+                    index++;
+                }
+            }
+            return layers;
+        }
+
+        private Layer DetermineTerrain(float noiseValue, int deepWater, int water, int sand, int grass, int hill, List<Layer> layers)
         {
             switch (noiseValue)
             {
                 case var noise when noise <= deepWater:
-                    return TerrainType.DeepWater;
+                    return layers[0];
                 case var noise when noise <= water:
-                    return TerrainType.Water;
+                    return layers[1];
                 case var noise when noise <= sand:
-                    return TerrainType.Sand;
+                    return layers[2];
                 case var noise when noise <= grass:
-                    return TerrainType.Grass;
+                    return layers[3];
                 case var noise when noise <= hill:
-                    return TerrainType.Hill;
+                    return layers[4];
                 default:
-                    return TerrainType.Mountain;
+                    return layers[5];
             }
         }
 

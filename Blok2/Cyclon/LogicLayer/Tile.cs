@@ -2,14 +2,16 @@
 {
     public class Tile
     {
-        public TerrainType TerrainType;
+        private Layer _laag;
 
-        public Tile() : this(TerrainType.Undefined)
+        public Tile()
         {
         }
-        public Tile(TerrainType terrainType)
+        public Tile(Layer laag)
         {
-            TerrainType = terrainType;
+            Laag = laag;
         }
+
+        public Layer Laag { get => _laag; set => _laag = value; }
     }
 }
