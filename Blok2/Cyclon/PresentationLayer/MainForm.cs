@@ -17,13 +17,26 @@ namespace PresentationLayer
             _logic = logic;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
+            foreach (var Terrain in Enum.GetValues(typeof(TerrainType)))
+            {
+                if (Terrain.ToString() != "Undefined")
+                {
+                    LayersComboBox.Items.Add(Terrain);
+                }
+            }
+            LayersComboBox.SelectedIndex = 0;
         }
 
         private void GenerateButton_Click(object sender, EventArgs e)
         {
-            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value);
+            if (!Int32.TryParse(SeedData.Text, out int seed))
+            {
+                //als de seed text is dan veranderen we het naar een getal
+                seed = SeedData.Text.GetHashCode();
+            }
+            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, seed);
             _bitmap = new Bitmap(_map.Height * 32, _map.Width * 32);
-            _data = _main.GenerateNoise((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100);
+            _data = _main.GenerateNoise((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, seed);
             _generated = true;
             _tile = (int)TileSizeData.Value;
 
@@ -86,6 +99,19 @@ namespace PresentationLayer
             MapModern.Visible = true;
         }
 
+        private void RandomSeedButton_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            SeedData.Text = random.Next().ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                KleurToner.BackColor = colorDialog1.Color;
+            }
+        }
     }
 
     public static class Extensions
@@ -95,25 +121,25 @@ namespace PresentationLayer
             switch (terrainType)
             {
                 case TerrainType.DeepWater:
-                    Extensions.AppendText(box, "██", Color.DarkBlue, fontSize);
+                    Extensions.AppendText(box, "A", Color.DarkBlue, fontSize);
                     break;
                 case TerrainType.Water:
-                    Extensions.AppendText(box, "🌊", Color.Blue, fontSize);
+                    Extensions.AppendText(box, "M", Color.Blue, fontSize);
                     break;
                 case TerrainType.Sand:
-                    Extensions.AppendText(box, "▒▒", Color.Yellow, fontSize);
+                    Extensions.AppendText(box, "E", Color.Yellow, fontSize);
                     break;
                 case TerrainType.Grass:
-                    Extensions.AppendText(box, "██", Color.Green, fontSize);
+                    Extensions.AppendText(box, "L", Color.Green, fontSize);
                     break;
                 case TerrainType.Hill:
-                    Extensions.AppendText(box, "██", Color.DarkGreen, fontSize);
+                    Extensions.AppendText(box, "I", Color.DarkGreen, fontSize);
                     break;
                 case TerrainType.Mountain:
-                    Extensions.AppendText(box, "██", Color.Gray, fontSize);
+                    Extensions.AppendText(box, "A", Color.Gray, fontSize);
                     break;
                 default:
-                    Extensions.AppendText(box, "  ", Color.White, fontSize);
+                    Extensions.AppendText(box, "!", Color.White, fontSize);
                     break;
             }
         }

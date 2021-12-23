@@ -44,6 +44,9 @@
             this.ModernRadio = new System.Windows.Forms.RadioButton();
             this.LegacyRadio = new System.Windows.Forms.RadioButton();
             this.MapSettings = new System.Windows.Forms.GroupBox();
+            this.RandomSeedButton = new System.Windows.Forms.Button();
+            this.SeedData = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,6 +58,19 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.ShowNumbersCheckbox = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ColorPickerButton = new System.Windows.Forms.Button();
+            this.KleurToner = new System.Windows.Forms.Panel();
+            this.LayersComboBox = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.HeightData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WidthData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScaleData)).BeginInit();
@@ -67,6 +83,8 @@
             this.Tekenstijl.SuspendLayout();
             this.MapSettings.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             this.SuspendLayout();
             // 
             // MapLegacy
@@ -76,7 +94,7 @@
             this.MapLegacy.Margin = new System.Windows.Forms.Padding(0);
             this.MapLegacy.Name = "MapLegacy";
             this.MapLegacy.ReadOnly = true;
-            this.MapLegacy.Size = new System.Drawing.Size(1733, 1055);
+            this.MapLegacy.Size = new System.Drawing.Size(1482, 1055);
             this.MapLegacy.TabIndex = 1;
             this.MapLegacy.Text = "";
             this.MapLegacy.Visible = false;
@@ -133,7 +151,7 @@
             this.ScaleData.Size = new System.Drawing.Size(150, 27);
             this.ScaleData.TabIndex = 7;
             this.ScaleData.Value = new decimal(new int[] {
-            6,
+            4,
             0,
             0,
             0});
@@ -142,7 +160,7 @@
             // 
             this.MapModern.Location = new System.Drawing.Point(191, 0);
             this.MapModern.Name = "MapModern";
-            this.MapModern.Size = new System.Drawing.Size(1730, 1055);
+            this.MapModern.Size = new System.Drawing.Size(1482, 1055);
             this.MapModern.TabIndex = 8;
             this.MapModern.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawingPanel_Paint);
             // 
@@ -153,7 +171,7 @@
             this.TileSizeData.Size = new System.Drawing.Size(150, 27);
             this.TileSizeData.TabIndex = 9;
             this.TileSizeData.Value = new decimal(new int[] {
-            32,
+            16,
             0,
             0,
             0});
@@ -161,7 +179,7 @@
             // DeapSeaData
             // 
             this.DeapSeaData.Location = new System.Drawing.Point(6, 51);
-            this.DeapSeaData.Maximum = 500;
+            this.DeapSeaData.Maximum = 255;
             this.DeapSeaData.Name = "DeapSeaData";
             this.DeapSeaData.Size = new System.Drawing.Size(161, 56);
             this.DeapSeaData.TabIndex = 10;
@@ -171,7 +189,7 @@
             // SeaData
             // 
             this.SeaData.Location = new System.Drawing.Point(6, 104);
-            this.SeaData.Maximum = 500;
+            this.SeaData.Maximum = 255;
             this.SeaData.Name = "SeaData";
             this.SeaData.Size = new System.Drawing.Size(161, 56);
             this.SeaData.TabIndex = 11;
@@ -181,7 +199,7 @@
             // BeachData
             // 
             this.BeachData.Location = new System.Drawing.Point(6, 153);
-            this.BeachData.Maximum = 500;
+            this.BeachData.Maximum = 255;
             this.BeachData.Name = "BeachData";
             this.BeachData.Size = new System.Drawing.Size(161, 56);
             this.BeachData.TabIndex = 12;
@@ -191,7 +209,7 @@
             // GrassData
             // 
             this.GrassData.Location = new System.Drawing.Point(6, 215);
-            this.GrassData.Maximum = 500;
+            this.GrassData.Maximum = 255;
             this.GrassData.Name = "GrassData";
             this.GrassData.Size = new System.Drawing.Size(161, 56);
             this.GrassData.TabIndex = 13;
@@ -201,7 +219,7 @@
             // HillData
             // 
             this.HillData.Location = new System.Drawing.Point(12, 277);
-            this.HillData.Maximum = 500;
+            this.HillData.Maximum = 255;
             this.HillData.Name = "HillData";
             this.HillData.Size = new System.Drawing.Size(150, 56);
             this.HillData.TabIndex = 14;
@@ -245,6 +263,9 @@
             // 
             // MapSettings
             // 
+            this.MapSettings.Controls.Add(this.RandomSeedButton);
+            this.MapSettings.Controls.Add(this.SeedData);
+            this.MapSettings.Controls.Add(this.label10);
             this.MapSettings.Controls.Add(this.label4);
             this.MapSettings.Controls.Add(this.label3);
             this.MapSettings.Controls.Add(this.label2);
@@ -255,10 +276,37 @@
             this.MapSettings.Controls.Add(this.TileSizeData);
             this.MapSettings.Location = new System.Drawing.Point(12, 117);
             this.MapSettings.Name = "MapSettings";
-            this.MapSettings.Size = new System.Drawing.Size(173, 253);
+            this.MapSettings.Size = new System.Drawing.Size(173, 301);
             this.MapSettings.TabIndex = 16;
             this.MapSettings.TabStop = false;
             this.MapSettings.Text = "Map instellingen";
+            // 
+            // RandomSeedButton
+            // 
+            this.RandomSeedButton.Location = new System.Drawing.Point(139, 265);
+            this.RandomSeedButton.Name = "RandomSeedButton";
+            this.RandomSeedButton.Size = new System.Drawing.Size(23, 27);
+            this.RandomSeedButton.TabIndex = 19;
+            this.RandomSeedButton.Text = "🔃";
+            this.RandomSeedButton.UseVisualStyleBackColor = true;
+            this.RandomSeedButton.Click += new System.EventHandler(this.RandomSeedButton_Click);
+            // 
+            // SeedData
+            // 
+            this.SeedData.Location = new System.Drawing.Point(13, 265);
+            this.SeedData.Name = "SeedData";
+            this.SeedData.Size = new System.Drawing.Size(125, 27);
+            this.SeedData.TabIndex = 12;
+            this.SeedData.Text = "2126844100";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(0, 242);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(74, 20);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Map seed";
             // 
             // label4
             // 
@@ -283,18 +331,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(0, 81);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 20);
+            this.label2.Size = new System.Drawing.Size(79, 20);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Map width";
+            this.label2.Text = "Map y axis";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(0, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 20);
+            this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Map length";
+            this.label1.Text = "Map x axis";
             // 
             // groupBox1
             // 
@@ -309,7 +357,7 @@
             this.groupBox1.Controls.Add(this.DeapSeaData);
             this.groupBox1.Controls.Add(this.BeachData);
             this.groupBox1.Controls.Add(this.SeaData);
-            this.groupBox1.Location = new System.Drawing.Point(12, 376);
+            this.groupBox1.Location = new System.Drawing.Point(12, 510);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(173, 396);
             this.groupBox1.TabIndex = 17;
@@ -364,12 +412,138 @@
             // ShowNumbersCheckbox
             // 
             this.ShowNumbersCheckbox.AutoSize = true;
-            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(18, 778);
+            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(12, 948);
             this.ShowNumbersCheckbox.Name = "ShowNumbersCheckbox";
             this.ShowNumbersCheckbox.Size = new System.Drawing.Size(167, 24);
             this.ShowNumbersCheckbox.TabIndex = 18;
             this.ShowNumbersCheckbox.Text = "Show number values";
             this.ShowNumbersCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ColorPickerButton);
+            this.groupBox2.Controls.Add(this.KleurToner);
+            this.groupBox2.Controls.Add(this.LayersComboBox);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.numericUpDown4);
+            this.groupBox2.Location = new System.Drawing.Point(1679, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(240, 301);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Map instellingen";
+            // 
+            // ColorPickerButton
+            // 
+            this.ColorPickerButton.BackgroundImage = global::PresentationLayer.Properties.Resources.colorPicker;
+            this.ColorPickerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ColorPickerButton.Location = new System.Drawing.Point(166, 104);
+            this.ColorPickerButton.Name = "ColorPickerButton";
+            this.ColorPickerButton.Size = new System.Drawing.Size(31, 29);
+            this.ColorPickerButton.TabIndex = 22;
+            this.ColorPickerButton.UseVisualStyleBackColor = true;
+            this.ColorPickerButton.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // KleurToner
+            // 
+            this.KleurToner.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.KleurToner.Location = new System.Drawing.Point(6, 104);
+            this.KleurToner.Name = "KleurToner";
+            this.KleurToner.Size = new System.Drawing.Size(154, 29);
+            this.KleurToner.TabIndex = 23;
+            // 
+            // LayersComboBox
+            // 
+            this.LayersComboBox.FormattingEnabled = true;
+            this.LayersComboBox.Location = new System.Drawing.Point(6, 50);
+            this.LayersComboBox.Name = "LayersComboBox";
+            this.LayersComboBox.Size = new System.Drawing.Size(191, 28);
+            this.LayersComboBox.TabIndex = 21;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(139, 265);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(23, 27);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "🔃";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 159);
+            this.textBox1.MaxLength = 1;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(191, 27);
+            this.textBox1.TabIndex = 12;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(0, 242);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(74, 20);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Map seed";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(0, 189);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(69, 20);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Pixel size";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(0, 136);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(128, 20);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Letter van de laag";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(0, 81);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(124, 20);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Kleur van de laag";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(0, 28);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(57, 20);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "Bewerk";
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Location = new System.Drawing.Point(12, 212);
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(150, 27);
+            this.numericUpDown4.TabIndex = 9;
+            this.numericUpDown4.Value = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            // 
+            // colorDialog1
+            // 
+            this.colorDialog1.AnyColor = true;
+            this.colorDialog1.FullOpen = true;
             // 
             // MainForm
             // 
@@ -377,6 +551,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.ShowNumbersCheckbox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.MapSettings);
@@ -402,6 +577,9 @@
             this.MapSettings.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,5 +614,21 @@
         private Label label8;
         private Label label9;
         private CheckBox ShowNumbersCheckbox;
+        private Label label10;
+        private TextBox SeedData;
+        private Button RandomSeedButton;
+        private GroupBox groupBox2;
+        private Button button1;
+        private TextBox textBox1;
+        private Label label11;
+        private Label label12;
+        private Label label13;
+        private Label label14;
+        private Label label15;
+        private NumericUpDown numericUpDown4;
+        private ComboBox LayersComboBox;
+        private Button ColorPickerButton;
+        private Panel KleurToner;
+        private ColorDialog colorDialog1;
     }
 }

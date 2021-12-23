@@ -10,11 +10,10 @@ namespace LogicLayer
         {
             //_data = data;
         }
-        //people make some fking noise 
-        public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill)
+        public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill, int seed)
         {
             var map = new Map(width, height);
-            var noiseValues = GenerateNoise(width, height, scale);
+            var noiseValues = GenerateNoise(width, height, scale, seed);
 
             for (int x = 0; x < noiseValues.GetLength(0); x++)
             {
@@ -23,7 +22,6 @@ namespace LogicLayer
                     map.Tiles[x, y].TerrainType = DetermineTerrain(noiseValues[x, y], deepWater, water, sand, grass, hill);
                 }
             }
-
             return map;
         }
 
@@ -46,12 +44,10 @@ namespace LogicLayer
             }
         }
 
-        public float[,] GenerateNoise(int width, int height, float scale)
+        public float[,] GenerateNoise(int width, int height, float scale, int seed)
         {
-            var random = new Random();
-            SimplexNoise.Noise.Seed = random.Next();
+            SimplexNoise.Noise.Seed = seed;
             float[,]? noiseValues = SimplexNoise.Noise.Calc2D(width, height, scale);
-
             return noiseValues;
         }
     }

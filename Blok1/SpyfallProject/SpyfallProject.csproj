@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="presentatielaag\showRolesGui.cs">
+    <Compile Update="presentatielaag\ShowRolesGui.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="presentatielaag\SpelMaker.cs">
@@ -28,7 +28,7 @@
     <Compile Update="presentatielaag\Spelregels.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="presentatielaag\startGui.cs">
+    <Compile Update="presentatielaag\StartGui.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="presentatielaag\TimerGUI.cs">

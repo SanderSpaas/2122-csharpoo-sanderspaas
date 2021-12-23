@@ -2,7 +2,7 @@
 {
     public enum TerrainType
     {
-        None,
+        Undefined,
         DeepWater,
         Water,
         Sand,

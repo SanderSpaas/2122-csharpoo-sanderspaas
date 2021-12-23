@@ -4,7 +4,7 @@
     {
         public TerrainType TerrainType;
 
-        public Tile() : this(TerrainType.None)
+        public Tile() : this(TerrainType.Undefined)
         {
         }
         public Tile(TerrainType terrainType)
