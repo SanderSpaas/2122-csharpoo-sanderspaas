@@ -25,7 +25,7 @@ namespace LogicLayer
 
         public List<Layer> MaakLagen(Color[] kleuren, int[] hoogtes, char[] drawings)
         {
-            List<Layer> layers = new List<Layer>();
+            var layers = new List<Layer>();
             int index = 0;
             foreach (var Terrain in Enum.GetValues(typeof(TerrainType)))
             {

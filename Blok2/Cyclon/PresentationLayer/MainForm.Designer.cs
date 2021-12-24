@@ -62,7 +62,7 @@
             this.ColorPickerButton = new System.Windows.Forms.Button();
             this.KleurToner = new System.Windows.Forms.Panel();
             this.LayersComboBox = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ResetLagenButton = new System.Windows.Forms.Button();
             this.LetterLaagData = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -424,7 +424,7 @@
             this.groupBox2.Controls.Add(this.ColorPickerButton);
             this.groupBox2.Controls.Add(this.KleurToner);
             this.groupBox2.Controls.Add(this.LayersComboBox);
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.ResetLagenButton);
             this.groupBox2.Controls.Add(this.LetterLaagData);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label12);
@@ -467,31 +467,34 @@
             this.LayersComboBox.TabIndex = 21;
             this.LayersComboBox.SelectedIndexChanged += new System.EventHandler(this.LayersComboBox_SelectedIndexChanged);
             // 
-            // button1
+            // ResetLagenButton
             // 
-            this.button1.Location = new System.Drawing.Point(139, 265);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 27);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "🔃";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ResetLagenButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ResetLagenButton.Location = new System.Drawing.Point(12, 265);
+            this.ResetLagenButton.Name = "ResetLagenButton";
+            this.ResetLagenButton.Size = new System.Drawing.Size(125, 27);
+            this.ResetLagenButton.TabIndex = 19;
+            this.ResetLagenButton.Text = "Reset lagen 🔃";
+            this.ResetLagenButton.UseVisualStyleBackColor = true;
+            this.ResetLagenButton.Click += new System.EventHandler(this.ResetLagenButton_Click);
             // 
             // LetterLaagData
             // 
-            this.LetterLaagData.Location = new System.Drawing.Point(6, 159);
+            this.LetterLaagData.Location = new System.Drawing.Point(12, 156);
             this.LetterLaagData.MaxLength = 1;
             this.LetterLaagData.Name = "LetterLaagData";
-            this.LetterLaagData.Size = new System.Drawing.Size(191, 27);
+            this.LetterLaagData.Size = new System.Drawing.Size(33, 27);
             this.LetterLaagData.TabIndex = 12;
+            this.LetterLaagData.TextChanged += new System.EventHandler(this.LetterLaagData_TextChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(0, 242);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(74, 20);
+            this.label11.Size = new System.Drawing.Size(86, 20);
             this.label11.TabIndex = 11;
-            this.label11.Text = "Map seed";
+            this.label11.Text = "Reset lagen";
             // 
             // label12
             // 
@@ -619,7 +622,7 @@
         private TextBox SeedData;
         private Button RandomSeedButton;
         private GroupBox groupBox2;
-        private Button button1;
+        private Button ResetLagenButton;
         private TextBox LetterLaagData;
         private Label label11;
         private Label label12;

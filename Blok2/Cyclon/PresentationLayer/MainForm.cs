@@ -13,7 +13,7 @@ namespace PresentationLayer
         private bool _generated = false;
         private int _tile = 0;
         private Layer _laag = new();
-        private Color[] _kleuren = new Color[] { Color.DarkBlue, Color.Blue, Color.Yellow, Color.Green, Color.DarkGreen, Color.Gray };
+        private Color[] _kleuren = new Color[] { Color.FromArgb(2, 72, 132), Color.FromArgb(3, 100, 184), Color.FromArgb(255, 203, 60), Color.Green, Color.DarkGreen, Color.Gray };
         private int[] _heights = new int[] { 40, 70, 120, 160, 240, 245 };
         private char[] _drawings = new char[] { '█', '█', '█', '█', '█', '█' };
         private List<Layer> _layers = new();
@@ -22,7 +22,8 @@ namespace PresentationLayer
             _logic = logic;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
-
+            HeightData.Maximum = MapModern.Height;
+            WidthData.Maximum = MapModern.Width;
             _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
             foreach (var Terrain in Enum.GetValues(typeof(TerrainType)))
             {
@@ -42,10 +43,10 @@ namespace PresentationLayer
                 seed = SeedData.Text.GetHashCode();
             }
             _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, seed, _layers);
-            _bitmap = new Bitmap(_map.Height * 32, _map.Width * 32);
+            _tile = (int)TileSizeData.Value;
+            _bitmap = new Bitmap(_map.Height * _tile, _map.Width * _tile);
             _data = _main.GenerateNoise((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, seed);
             _generated = true;
-            _tile = (int)TileSizeData.Value;
 
             if (MapModern.Visible)
             {
@@ -88,7 +89,7 @@ namespace PresentationLayer
                 {
                     for (int x = 0; x < _map.Width; x++)
                     {
-                        Extensions.PrintTerrainModern(e, _map.Tiles[x, y].Laag.NaamLaag, x, y, _tile, _map.Tiles[x, y].Laag);
+                        Extensions.PrintTerrainModern(e, _map.Tiles[x, y].Laag.NaamLaag, x, y, _tile, _map.Tiles[x, y].Laag, _data, ShowNumbersCheckbox);
                     }
                 }
             }
@@ -118,9 +119,9 @@ namespace PresentationLayer
             {
                 KleurToner.BackColor = colorDialog1.Color;
                 //data van die laag gaan updaten
-                foreach (Layer layer in _layers)
+                foreach (var layer in _layers)
                 {
-                    if (LayersComboBox.SelectedItem == layer)
+                    if (LayersComboBox.SelectedItem.ToString() == layer.NaamLaag.ToString())
                     {
                         layer.Kleur = KleurToner.BackColor;
                     }
@@ -131,7 +132,6 @@ namespace PresentationLayer
         private void LayersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //data gaan tonen van die laag
-            LetterLaagData.Text = LayersComboBox.SelectedItem.ToString();
             foreach (var layer in _layers)
             {
                 if (LayersComboBox.SelectedItem.ToString() == layer.NaamLaag.ToString())
@@ -140,7 +140,33 @@ namespace PresentationLayer
                     LetterLaagData.Text = layer.Teken.ToString();
                 }
             }
+        }
+        private void ResetLagenButton_Click(object sender, EventArgs e)
+        {
+            _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
+            foreach (var layer in _layers)
+            {
+                if (LayersComboBox.SelectedItem.ToString() == layer.NaamLaag.ToString())
+                {
+                    KleurToner.BackColor = layer.Kleur;
+                    LetterLaagData.Text = layer.Teken.ToString();
+                }
+            }
+        }
 
+        private void LetterLaagData_TextChanged(object sender, EventArgs e)
+        {
+            if (LetterLaagData.Text.Length > 0)
+            {
+                //data van die laag gaan updaten
+                foreach (var layer in _layers)
+                {
+                    if (LayersComboBox.SelectedItem.ToString() == layer.NaamLaag.ToString())
+                    {
+                        layer.Teken = LetterLaagData.Text.ToCharArray()[0];
+                    }
+                }
+            }
         }
     }
 
@@ -150,10 +176,14 @@ namespace PresentationLayer
         {
             Extensions.AppendText(box, laag.Teken.ToString(), laag.Kleur, fontSize);
         }
-        public static void PrintTerrainModern(this PaintEventArgs paint, TerrainType terrainType, int x, int y, int _tile, Layer laag)
+        public static void PrintTerrainModern(this PaintEventArgs paint, TerrainType terrainType, int x, int y, int tile, Layer laag, float[,] data, CheckBox check)
         {
-            //paint.Graphics.DrawString(((int)datas[x, y]).ToString(), new Font("Arial", 10), Brushes.Black, x * 32, y * 32);
-            paint.Graphics.DrawRectangle(new Pen(laag.Kleur, 32), x * _tile, y * _tile, _tile, _tile);
+            paint.Graphics.DrawRectangle(new Pen(laag.Kleur, tile), x * tile, y * tile, tile, tile);
+            if (check.Checked)
+            {
+                paint.Graphics.DrawString(((int)data[x, y]).ToString(), new Font("Arial", tile / 6), new SolidBrush(Color.Black), x * tile, y * tile);
+                //paint.Graphics.DrawRectangle(new Pen(Color.Red, 3), x * tile, y * tile, tile, tile);   
+            }
         }
         public static void AppendText(this RichTextBox box, string text, Color color, int fontSize)
         {
