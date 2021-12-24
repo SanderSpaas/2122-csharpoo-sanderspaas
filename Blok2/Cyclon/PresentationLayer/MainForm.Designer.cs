@@ -65,12 +65,14 @@
             this.ResetLagenButton = new System.Windows.Forms.Button();
             this.LetterLaagData = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.VariatieCheckBox = new System.Windows.Forms.CheckBox();
+            this.VariatieSlider = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.HeightData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WidthData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScaleData)).BeginInit();
@@ -84,7 +86,8 @@
             this.MapSettings.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // MapLegacy
@@ -427,14 +430,12 @@
             this.groupBox2.Controls.Add(this.ResetLagenButton);
             this.groupBox2.Controls.Add(this.LetterLaagData);
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.numericUpDown4);
             this.groupBox2.Location = new System.Drawing.Point(1679, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(240, 301);
+            this.groupBox2.Size = new System.Drawing.Size(240, 261);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Map instellingen";
@@ -470,7 +471,7 @@
             // ResetLagenButton
             // 
             this.ResetLagenButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ResetLagenButton.Location = new System.Drawing.Point(12, 265);
+            this.ResetLagenButton.Location = new System.Drawing.Point(12, 224);
             this.ResetLagenButton.Name = "ResetLagenButton";
             this.ResetLagenButton.Size = new System.Drawing.Size(125, 27);
             this.ResetLagenButton.TabIndex = 19;
@@ -480,7 +481,7 @@
             // 
             // LetterLaagData
             // 
-            this.LetterLaagData.Location = new System.Drawing.Point(12, 156);
+            this.LetterLaagData.Location = new System.Drawing.Point(12, 167);
             this.LetterLaagData.MaxLength = 1;
             this.LetterLaagData.Name = "LetterLaagData";
             this.LetterLaagData.Size = new System.Drawing.Size(33, 27);
@@ -490,25 +491,16 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(0, 242);
+            this.label11.Location = new System.Drawing.Point(0, 201);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(86, 20);
             this.label11.TabIndex = 11;
             this.label11.Text = "Reset lagen";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(0, 189);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(69, 20);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "Pixel size";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(0, 136);
+            this.label13.Location = new System.Drawing.Point(0, 147);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(128, 20);
             this.label13.TabIndex = 9;
@@ -532,22 +524,51 @@
             this.label15.TabIndex = 7;
             this.label15.Text = "Bewerk";
             // 
-            // numericUpDown4
-            // 
-            this.numericUpDown4.Location = new System.Drawing.Point(12, 212);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(150, 27);
-            this.numericUpDown4.TabIndex = 9;
-            this.numericUpDown4.Value = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-            // 
             // colorDialog1
             // 
             this.colorDialog1.AnyColor = true;
             this.colorDialog1.FullOpen = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.VariatieSlider);
+            this.groupBox3.Controls.Add(this.VariatieCheckBox);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Location = new System.Drawing.Point(1679, 279);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(240, 116);
+            this.groupBox3.TabIndex = 24;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Kleur variatie";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 57);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(146, 20);
+            this.label19.TabIndex = 8;
+            this.label19.Text = "Hoeveelheid variatie";
+            // 
+            // VariatieCheckBox
+            // 
+            this.VariatieCheckBox.AutoSize = true;
+            this.VariatieCheckBox.Location = new System.Drawing.Point(6, 26);
+            this.VariatieCheckBox.Name = "VariatieCheckBox";
+            this.VariatieCheckBox.Size = new System.Drawing.Size(176, 24);
+            this.VariatieCheckBox.TabIndex = 19;
+            this.VariatieCheckBox.Text = "Voeg kleurvariatie toe";
+            this.VariatieCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // VariatieSlider
+            // 
+            this.VariatieSlider.Location = new System.Drawing.Point(12, 83);
+            this.VariatieSlider.Maximum = 100;
+            this.VariatieSlider.Name = "VariatieSlider";
+            this.VariatieSlider.Size = new System.Drawing.Size(161, 56);
+            this.VariatieSlider.TabIndex = 15;
+            this.VariatieSlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.VariatieSlider.Value = 70;
             // 
             // MainForm
             // 
@@ -555,6 +576,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.ShowNumbersCheckbox);
             this.Controls.Add(this.groupBox1);
@@ -583,7 +605,9 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -625,14 +649,16 @@
         private Button ResetLagenButton;
         private TextBox LetterLaagData;
         private Label label11;
-        private Label label12;
         private Label label13;
         private Label label14;
         private Label label15;
-        private NumericUpDown numericUpDown4;
         private ComboBox LayersComboBox;
         private Button ColorPickerButton;
         private Panel KleurToner;
         private ColorDialog colorDialog1;
+        private GroupBox groupBox3;
+        private Label label19;
+        private CheckBox VariatieCheckBox;
+        private TrackBar VariatieSlider;
     }
 }
