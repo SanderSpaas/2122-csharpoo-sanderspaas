@@ -70,9 +70,11 @@
             this.label15 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.VariatieCheckBox = new System.Windows.Forms.CheckBox();
+            this.InvertCheckBox = new System.Windows.Forms.CheckBox();
             this.VariatieSlider = new System.Windows.Forms.TrackBar();
+            this.VariatieCheckBox = new System.Windows.Forms.CheckBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.SpatialOffsetCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.HeightData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WidthData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScaleData)).BeginInit();
@@ -531,15 +533,47 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.SpatialOffsetCheckBox);
+            this.groupBox3.Controls.Add(this.InvertCheckBox);
             this.groupBox3.Controls.Add(this.VariatieSlider);
             this.groupBox3.Controls.Add(this.VariatieCheckBox);
             this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Location = new System.Drawing.Point(1679, 279);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(240, 116);
+            this.groupBox3.Size = new System.Drawing.Size(240, 194);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Kleur variatie";
+            this.groupBox3.Text = "Map generatie";
+            // 
+            // InvertCheckBox
+            // 
+            this.InvertCheckBox.AutoSize = true;
+            this.InvertCheckBox.Location = new System.Drawing.Point(12, 115);
+            this.InvertCheckBox.Name = "InvertCheckBox";
+            this.InvertCheckBox.Size = new System.Drawing.Size(102, 24);
+            this.InvertCheckBox.TabIndex = 20;
+            this.InvertCheckBox.Text = "Invert data";
+            this.InvertCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // VariatieSlider
+            // 
+            this.VariatieSlider.Location = new System.Drawing.Point(12, 83);
+            this.VariatieSlider.Maximum = 100;
+            this.VariatieSlider.Name = "VariatieSlider";
+            this.VariatieSlider.Size = new System.Drawing.Size(185, 56);
+            this.VariatieSlider.TabIndex = 15;
+            this.VariatieSlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.VariatieSlider.Value = 70;
+            // 
+            // VariatieCheckBox
+            // 
+            this.VariatieCheckBox.AutoSize = true;
+            this.VariatieCheckBox.Location = new System.Drawing.Point(12, 26);
+            this.VariatieCheckBox.Name = "VariatieCheckBox";
+            this.VariatieCheckBox.Size = new System.Drawing.Size(176, 24);
+            this.VariatieCheckBox.TabIndex = 19;
+            this.VariatieCheckBox.Text = "Voeg kleurvariatie toe";
+            this.VariatieCheckBox.UseVisualStyleBackColor = true;
             // 
             // label19
             // 
@@ -550,25 +584,15 @@
             this.label19.TabIndex = 8;
             this.label19.Text = "Hoeveelheid variatie";
             // 
-            // VariatieCheckBox
+            // SpatialOffsetCheckBox
             // 
-            this.VariatieCheckBox.AutoSize = true;
-            this.VariatieCheckBox.Location = new System.Drawing.Point(6, 26);
-            this.VariatieCheckBox.Name = "VariatieCheckBox";
-            this.VariatieCheckBox.Size = new System.Drawing.Size(176, 24);
-            this.VariatieCheckBox.TabIndex = 19;
-            this.VariatieCheckBox.Text = "Voeg kleurvariatie toe";
-            this.VariatieCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // VariatieSlider
-            // 
-            this.VariatieSlider.Location = new System.Drawing.Point(12, 83);
-            this.VariatieSlider.Maximum = 100;
-            this.VariatieSlider.Name = "VariatieSlider";
-            this.VariatieSlider.Size = new System.Drawing.Size(161, 56);
-            this.VariatieSlider.TabIndex = 15;
-            this.VariatieSlider.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.VariatieSlider.Value = 70;
+            this.SpatialOffsetCheckBox.AutoSize = true;
+            this.SpatialOffsetCheckBox.Location = new System.Drawing.Point(12, 145);
+            this.SpatialOffsetCheckBox.Name = "SpatialOffsetCheckBox";
+            this.SpatialOffsetCheckBox.Size = new System.Drawing.Size(189, 24);
+            this.SpatialOffsetCheckBox.TabIndex = 21;
+            this.SpatialOffsetCheckBox.Text = "Spatial offset gebruiken";
+            this.SpatialOffsetCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -660,5 +684,7 @@
         private Label label19;
         private CheckBox VariatieCheckBox;
         private TrackBar VariatieSlider;
+        private CheckBox InvertCheckBox;
+        private CheckBox SpatialOffsetCheckBox;
     }
 }

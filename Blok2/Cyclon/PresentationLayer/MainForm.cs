@@ -42,10 +42,10 @@ namespace PresentationLayer
                 //als de seed text is dan veranderen we het naar een getal
                 seed = SeedData.Text.GetHashCode();
             }
-            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, seed, _layers);
+            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, seed, _layers, InvertCheckBox.Checked, SpatialOffsetCheckBox.Checked);
             _tile = (int)TileSizeData.Value;
             _bitmap = new Bitmap(_map.Height * _tile, _map.Width * _tile);
-            _data = _main.GenerateNoise((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, seed);
+            _data = _main.GenerateNoise((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, seed, InvertCheckBox.Checked, SpatialOffsetCheckBox.Checked);
             _generated = true;
 
             if (MapModern.Visible)
