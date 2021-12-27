@@ -22,8 +22,8 @@ namespace PresentationLayer
             _logic = logic;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
-            HeightData.Maximum = MapModern.Height;
-            WidthData.Maximum = MapModern.Width;
+            HeightData.Value = MapModern.Width;
+            MapLegacy.Height = MapModern.Height;
             _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
             foreach (var Terrain in Enum.GetValues(typeof(TerrainType)))
             {
@@ -51,38 +51,49 @@ namespace PresentationLayer
             if (MapModern.Visible)
             {
                 Refresh();
+                //Task drawTerrain = new Task(new Action(ModernDrawing));
+                //drawTerrain.Start();
             }
             else if (MapLegacy.Visible)
             {
                 MapLegacy.Clear();
-                for (int y = 0; y < _map.Height; y++)
-                {
-                    for (int x = 0; x < _map.Width; x++)
-                    {
-                        Extensions.PrintTerrainCharacter(MapLegacy, _tile / 4, _map.Tiles[x, y].Laag, VariatieCheckBox, VariatieSlider.Value);
-                    }
-                    Extensions.AppendText(MapLegacy, "\r\n", Color.Blue, _tile / 4);
-                }
+                Task drawTerrain = new Task(new Action(LegacyDrawing));
+                drawTerrain.Start();
             }
 
-            //var bitmap = new Bitmap(grid.GetLength(0) * 32, grid.GetLength(1) * 32);
+        }
 
-            //using (var g = Graphics.FromImage(bitmap))
-            //{
-            //    for (int x = 0; x < grid.GetLength(0); x++)
-            //    {
-            //        for (int y = 0; y < grid.GetLength(1); y++)
-            //        {
-            //            g.DrawImage(grid[x, y].Image, x * 32, y * 32);
-            //            //g.DrawString(((int)noiseValues[x, y]).ToString(), new Font("Arial", 10), Brushes.White, x * 32, y * 32);
-            //        }
-            //    }
-            //}
+        private void LegacyDrawing()
+        {
+            bool variatie = false;
+            int sliderValue = 0;
 
+            VariatieCheckBox.Invoke(new MethodInvoker(delegate
+            {
+                variatie = VariatieCheckBox.Checked;
+            }));
+
+            VariatieCheckBox.Invoke(new MethodInvoker(delegate
+            {
+                sliderValue = VariatieSlider.Value;
+            }));
+
+            for (int y = 0; y < _map.Height; y++)
+            {
+                for (int x = 0; x < _map.Width; x++)
+                {
+                    Extensions.PrintTerrainCharacter(MapLegacy, _tile, _map.Tiles[x, y].Laag, variatie, sliderValue);
+                }
+                Extensions.AppendText(MapLegacy, "\r\n", Color.Blue, _tile);
+            }
         }
 
         private void DrawingPanel_Paint(object sender, PaintEventArgs e)
         {
+            SetStyle(
+            ControlStyles.AllPaintingInWmPaint |
+            ControlStyles.UserPaint |
+            ControlStyles.DoubleBuffer, true);
             if (_generated)
             {
                 for (int y = 0; y < _map.Height; y++)
@@ -91,6 +102,7 @@ namespace PresentationLayer
                     {
                         Extensions.PrintTerrainModern(e, _map.Tiles[x, y].Laag.NaamLaag, x, y, _tile, _map.Tiles[x, y].Laag, _data, ShowNumbersCheckbox, VariatieCheckBox, VariatieSlider.Value);
                     }
+                    Application.DoEvents();
                 }
             }
         }
@@ -168,16 +180,17 @@ namespace PresentationLayer
                 }
             }
         }
+
     }
 
     public static class Extensions
     {
-        public static void PrintTerrainCharacter(this RichTextBox box, int fontSize, Layer laag, CheckBox checkColorShift, int max)
+        public static void PrintTerrainCharacter(this RichTextBox box, int fontSize, Layer laag, bool checkColorShift, int max)
         {
-
-            if (checkColorShift.Checked)
+            Random random = new Random();
+            if (checkColorShift)
             {
-                Extensions.AppendText(box, laag.Teken.ToString(), ColorByShift(laag.Kleur, max), fontSize);
+                Extensions.AppendText(box, laag.Teken.ToString(), ColorByShift(laag.Kleur, max, random), fontSize);
             }
             else
             {
@@ -186,9 +199,10 @@ namespace PresentationLayer
         }
         public static void PrintTerrainModern(this PaintEventArgs paint, TerrainType terrainType, int x, int y, int tile, Layer laag, float[,] data, CheckBox check, CheckBox checkColorShift, int max)
         {
+            Random random = new Random();
             if (checkColorShift.Checked)
             {
-                paint.Graphics.DrawRectangle(new Pen(ColorByShift(laag.Kleur, max), tile), x * tile, y * tile, tile, tile);
+                paint.Graphics.DrawRectangle(new Pen(ColorByShift(laag.Kleur, max, random), tile), x * tile, y * tile, tile, tile);
             }
             else
             {
@@ -202,19 +216,25 @@ namespace PresentationLayer
         }
         public static void AppendText(this RichTextBox box, string text, Color color, int fontSize)
         {
-            Font currentFont = box.SelectionFont;
-            FontStyle newFontStyle = (FontStyle)(currentFont.Style | FontStyle.Bold);
-            box.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFontStyle);
-            box.SelectionStart = box.TextLength;
-            box.SelectionLength = 0;
-            box.SelectionColor = color;
-            box.AppendText(text);
-            box.SelectionColor = box.ForeColor;
+            if (box.InvokeRequired)
+            {
+                box.Invoke(new MethodInvoker(delegate
+                {
+                    Font currentFont = box.SelectionFont;
+                    FontStyle newFontStyle = (FontStyle)(currentFont.Style | FontStyle.Bold);
+                    box.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFontStyle);
+                    box.SelectionStart = box.TextLength;
+                    box.SelectionLength = 0;
+                    box.SelectionColor = color;
+                    box.AppendText(text);
+                    box.SelectionColor = box.ForeColor;
+                }));
+            }
         }
 
-        public static Color ColorByShift(Color kleur, int max)
+        public static Color ColorByShift(Color kleur, int max, Random random)
         {
-            Random random = new Random();
+
             return Color.FromArgb(kleur.ToArgb() + random.Next(0, max));
         }
     }

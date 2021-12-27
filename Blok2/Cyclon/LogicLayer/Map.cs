@@ -8,7 +8,7 @@
 
         public int Height;
 
-        public Map() : this(15, 15)
+        public Map() /*: this(15, 15)*/
         {
         }
 
@@ -18,10 +18,10 @@
             Height = height;
 
             Tiles = new Tile[width, height];
-            SetDefaultMap();
+            SetMap();
         }
 
-        private void SetDefaultMap()
+        private void SetMap()
         {
             for (int x = 0; x < Width; x++)
             {

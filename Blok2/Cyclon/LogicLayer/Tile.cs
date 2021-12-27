@@ -1,15 +1,12 @@
 ﻿namespace LogicLayer
 {
-    public class Tile
+    public struct Tile
     {
         private Layer _laag;
 
-        public Tile()
-        {
-        }
         public Tile(Layer laag)
         {
-            Laag = laag;
+            _laag = laag;
         }
 
         public Layer Laag { get => _laag; set => _laag = value; }

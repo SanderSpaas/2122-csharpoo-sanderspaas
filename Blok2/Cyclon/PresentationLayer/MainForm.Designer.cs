@@ -41,8 +41,6 @@
             this.GrassData = new System.Windows.Forms.TrackBar();
             this.HillData = new System.Windows.Forms.TrackBar();
             this.Tekenstijl = new System.Windows.Forms.GroupBox();
-            this.ModernRadio = new System.Windows.Forms.RadioButton();
-            this.LegacyRadio = new System.Windows.Forms.RadioButton();
             this.MapSettings = new System.Windows.Forms.GroupBox();
             this.RandomSeedButton = new System.Windows.Forms.Button();
             this.SeedData = new System.Windows.Forms.TextBox();
@@ -51,6 +49,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.ModernRadio = new System.Windows.Forms.RadioButton();
+            this.LegacyRadio = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -59,9 +59,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.ShowNumbersCheckbox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SpatialOffsetCheckBox = new System.Windows.Forms.CheckBox();
             this.ColorPickerButton = new System.Windows.Forms.Button();
+            this.InvertCheckBox = new System.Windows.Forms.CheckBox();
             this.KleurToner = new System.Windows.Forms.Panel();
+            this.VariatieSlider = new System.Windows.Forms.TrackBar();
             this.LayersComboBox = new System.Windows.Forms.ComboBox();
+            this.VariatieCheckBox = new System.Windows.Forms.CheckBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.ResetLagenButton = new System.Windows.Forms.Button();
             this.LetterLaagData = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -69,12 +74,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.InvertCheckBox = new System.Windows.Forms.CheckBox();
-            this.VariatieSlider = new System.Windows.Forms.TrackBar();
-            this.VariatieCheckBox = new System.Windows.Forms.CheckBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.SpatialOffsetCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.HeightData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WidthData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScaleData)).BeginInit();
@@ -88,18 +87,17 @@
             this.MapSettings.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // MapLegacy
             // 
             this.MapLegacy.DetectUrls = false;
-            this.MapLegacy.Location = new System.Drawing.Point(191, 0);
+            this.MapLegacy.Location = new System.Drawing.Point(213, 0);
             this.MapLegacy.Margin = new System.Windows.Forms.Padding(0);
             this.MapLegacy.Name = "MapLegacy";
             this.MapLegacy.ReadOnly = true;
-            this.MapLegacy.Size = new System.Drawing.Size(1482, 1055);
+            this.MapLegacy.Size = new System.Drawing.Size(1474, 1055);
             this.MapLegacy.TabIndex = 1;
             this.MapLegacy.Text = "";
             this.MapLegacy.Visible = false;
@@ -119,7 +117,7 @@
             // 
             this.HeightData.Location = new System.Drawing.Point(12, 51);
             this.HeightData.Maximum = new decimal(new int[] {
-            500,
+            1000000,
             0,
             0,
             0});
@@ -136,7 +134,7 @@
             // 
             this.WidthData.Location = new System.Drawing.Point(12, 106);
             this.WidthData.Maximum = new decimal(new int[] {
-            500,
+            1000000,
             0,
             0,
             0});
@@ -163,9 +161,10 @@
             // 
             // MapModern
             // 
-            this.MapModern.Location = new System.Drawing.Point(191, 0);
+            this.MapModern.AutoSize = true;
+            this.MapModern.Location = new System.Drawing.Point(213, 0);
             this.MapModern.Name = "MapModern";
-            this.MapModern.Size = new System.Drawing.Size(1482, 1055);
+            this.MapModern.Size = new System.Drawing.Size(1471, 1055);
             this.MapModern.TabIndex = 8;
             this.MapModern.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawingPanel_Paint);
             // 
@@ -233,38 +232,17 @@
             // 
             // Tekenstijl
             // 
+            this.Tekenstijl.Controls.Add(this.MapSettings);
             this.Tekenstijl.Controls.Add(this.ModernRadio);
             this.Tekenstijl.Controls.Add(this.LegacyRadio);
-            this.Tekenstijl.Location = new System.Drawing.Point(12, 12);
+            this.Tekenstijl.Controls.Add(this.groupBox1);
+            this.Tekenstijl.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Tekenstijl.Location = new System.Drawing.Point(0, 0);
             this.Tekenstijl.Name = "Tekenstijl";
-            this.Tekenstijl.Size = new System.Drawing.Size(173, 99);
+            this.Tekenstijl.Size = new System.Drawing.Size(210, 1055);
             this.Tekenstijl.TabIndex = 15;
             this.Tekenstijl.TabStop = false;
             this.Tekenstijl.Text = "Tekenstijl";
-            // 
-            // ModernRadio
-            // 
-            this.ModernRadio.AutoSize = true;
-            this.ModernRadio.Checked = true;
-            this.ModernRadio.Location = new System.Drawing.Point(12, 56);
-            this.ModernRadio.Name = "ModernRadio";
-            this.ModernRadio.Size = new System.Drawing.Size(82, 24);
-            this.ModernRadio.TabIndex = 1;
-            this.ModernRadio.TabStop = true;
-            this.ModernRadio.Text = "Modern";
-            this.ModernRadio.UseVisualStyleBackColor = true;
-            this.ModernRadio.CheckedChanged += new System.EventHandler(this.ModernRadio_CheckedChanged);
-            // 
-            // LegacyRadio
-            // 
-            this.LegacyRadio.AutoSize = true;
-            this.LegacyRadio.Location = new System.Drawing.Point(12, 26);
-            this.LegacyRadio.Name = "LegacyRadio";
-            this.LegacyRadio.Size = new System.Drawing.Size(76, 24);
-            this.LegacyRadio.TabIndex = 0;
-            this.LegacyRadio.Text = "Legacy";
-            this.LegacyRadio.UseVisualStyleBackColor = true;
-            this.LegacyRadio.CheckedChanged += new System.EventHandler(this.LegacyRadio_CheckedChanged);
             // 
             // MapSettings
             // 
@@ -279,9 +257,9 @@
             this.MapSettings.Controls.Add(this.WidthData);
             this.MapSettings.Controls.Add(this.ScaleData);
             this.MapSettings.Controls.Add(this.TileSizeData);
-            this.MapSettings.Location = new System.Drawing.Point(12, 117);
+            this.MapSettings.Location = new System.Drawing.Point(6, 95);
             this.MapSettings.Name = "MapSettings";
-            this.MapSettings.Size = new System.Drawing.Size(173, 301);
+            this.MapSettings.Size = new System.Drawing.Size(204, 301);
             this.MapSettings.TabIndex = 16;
             this.MapSettings.TabStop = false;
             this.MapSettings.Text = "Map instellingen";
@@ -349,6 +327,30 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Map x axis";
             // 
+            // ModernRadio
+            // 
+            this.ModernRadio.AutoSize = true;
+            this.ModernRadio.Checked = true;
+            this.ModernRadio.Location = new System.Drawing.Point(12, 56);
+            this.ModernRadio.Name = "ModernRadio";
+            this.ModernRadio.Size = new System.Drawing.Size(82, 24);
+            this.ModernRadio.TabIndex = 1;
+            this.ModernRadio.TabStop = true;
+            this.ModernRadio.Text = "Modern";
+            this.ModernRadio.UseVisualStyleBackColor = true;
+            this.ModernRadio.CheckedChanged += new System.EventHandler(this.ModernRadio_CheckedChanged);
+            // 
+            // LegacyRadio
+            // 
+            this.LegacyRadio.AutoSize = true;
+            this.LegacyRadio.Location = new System.Drawing.Point(12, 26);
+            this.LegacyRadio.Name = "LegacyRadio";
+            this.LegacyRadio.Size = new System.Drawing.Size(76, 24);
+            this.LegacyRadio.TabIndex = 0;
+            this.LegacyRadio.Text = "Legacy";
+            this.LegacyRadio.UseVisualStyleBackColor = true;
+            this.LegacyRadio.CheckedChanged += new System.EventHandler(this.LegacyRadio_CheckedChanged);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label9);
@@ -362,9 +364,9 @@
             this.groupBox1.Controls.Add(this.DeapSeaData);
             this.groupBox1.Controls.Add(this.BeachData);
             this.groupBox1.Controls.Add(this.SeaData);
-            this.groupBox1.Location = new System.Drawing.Point(12, 510);
+            this.groupBox1.Location = new System.Drawing.Point(3, 424);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(173, 396);
+            this.groupBox1.Size = new System.Drawing.Size(207, 396);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Map instellingen";
@@ -417,7 +419,7 @@
             // ShowNumbersCheckbox
             // 
             this.ShowNumbersCheckbox.AutoSize = true;
-            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(12, 948);
+            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(17, 826);
             this.ShowNumbersCheckbox.Name = "ShowNumbersCheckbox";
             this.ShowNumbersCheckbox.Size = new System.Drawing.Size(167, 24);
             this.ShowNumbersCheckbox.TabIndex = 18;
@@ -426,21 +428,37 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.SpatialOffsetCheckBox);
             this.groupBox2.Controls.Add(this.ColorPickerButton);
+            this.groupBox2.Controls.Add(this.InvertCheckBox);
             this.groupBox2.Controls.Add(this.KleurToner);
+            this.groupBox2.Controls.Add(this.VariatieSlider);
             this.groupBox2.Controls.Add(this.LayersComboBox);
+            this.groupBox2.Controls.Add(this.VariatieCheckBox);
+            this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.ResetLagenButton);
             this.groupBox2.Controls.Add(this.LetterLaagData);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Location = new System.Drawing.Point(1679, 12);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox2.Location = new System.Drawing.Point(1684, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(240, 261);
+            this.groupBox2.Size = new System.Drawing.Size(240, 1055);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Map instellingen";
+            // 
+            // SpatialOffsetCheckBox
+            // 
+            this.SpatialOffsetCheckBox.AutoSize = true;
+            this.SpatialOffsetCheckBox.Location = new System.Drawing.Point(12, 424);
+            this.SpatialOffsetCheckBox.Name = "SpatialOffsetCheckBox";
+            this.SpatialOffsetCheckBox.Size = new System.Drawing.Size(189, 24);
+            this.SpatialOffsetCheckBox.TabIndex = 21;
+            this.SpatialOffsetCheckBox.Text = "Spatial offset gebruiken";
+            this.SpatialOffsetCheckBox.UseVisualStyleBackColor = true;
             // 
             // ColorPickerButton
             // 
@@ -453,6 +471,16 @@
             this.ColorPickerButton.UseVisualStyleBackColor = true;
             this.ColorPickerButton.Click += new System.EventHandler(this.ColorPickerButton_Click);
             // 
+            // InvertCheckBox
+            // 
+            this.InvertCheckBox.AutoSize = true;
+            this.InvertCheckBox.Location = new System.Drawing.Point(12, 394);
+            this.InvertCheckBox.Name = "InvertCheckBox";
+            this.InvertCheckBox.Size = new System.Drawing.Size(102, 24);
+            this.InvertCheckBox.TabIndex = 20;
+            this.InvertCheckBox.Text = "Invert data";
+            this.InvertCheckBox.UseVisualStyleBackColor = true;
+            // 
             // KleurToner
             // 
             this.KleurToner.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -460,6 +488,16 @@
             this.KleurToner.Name = "KleurToner";
             this.KleurToner.Size = new System.Drawing.Size(154, 29);
             this.KleurToner.TabIndex = 23;
+            // 
+            // VariatieSlider
+            // 
+            this.VariatieSlider.Location = new System.Drawing.Point(12, 362);
+            this.VariatieSlider.Maximum = 100;
+            this.VariatieSlider.Name = "VariatieSlider";
+            this.VariatieSlider.Size = new System.Drawing.Size(185, 56);
+            this.VariatieSlider.TabIndex = 15;
+            this.VariatieSlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.VariatieSlider.Value = 70;
             // 
             // LayersComboBox
             // 
@@ -470,10 +508,29 @@
             this.LayersComboBox.TabIndex = 21;
             this.LayersComboBox.SelectedIndexChanged += new System.EventHandler(this.LayersComboBox_SelectedIndexChanged);
             // 
+            // VariatieCheckBox
+            // 
+            this.VariatieCheckBox.AutoSize = true;
+            this.VariatieCheckBox.Location = new System.Drawing.Point(12, 306);
+            this.VariatieCheckBox.Name = "VariatieCheckBox";
+            this.VariatieCheckBox.Size = new System.Drawing.Size(176, 24);
+            this.VariatieCheckBox.TabIndex = 19;
+            this.VariatieCheckBox.Text = "Voeg kleurvariatie toe";
+            this.VariatieCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(12, 336);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(146, 20);
+            this.label19.TabIndex = 8;
+            this.label19.Text = "Hoeveelheid variatie";
+            // 
             // ResetLagenButton
             // 
             this.ResetLagenButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ResetLagenButton.Location = new System.Drawing.Point(12, 224);
+            this.ResetLagenButton.Location = new System.Drawing.Point(6, 224);
             this.ResetLagenButton.Name = "ResetLagenButton";
             this.ResetLagenButton.Size = new System.Drawing.Size(125, 27);
             this.ResetLagenButton.TabIndex = 19;
@@ -531,80 +588,14 @@
             this.colorDialog1.AnyColor = true;
             this.colorDialog1.FullOpen = true;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.SpatialOffsetCheckBox);
-            this.groupBox3.Controls.Add(this.InvertCheckBox);
-            this.groupBox3.Controls.Add(this.VariatieSlider);
-            this.groupBox3.Controls.Add(this.VariatieCheckBox);
-            this.groupBox3.Controls.Add(this.label19);
-            this.groupBox3.Location = new System.Drawing.Point(1679, 279);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(240, 194);
-            this.groupBox3.TabIndex = 24;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Map generatie";
-            // 
-            // InvertCheckBox
-            // 
-            this.InvertCheckBox.AutoSize = true;
-            this.InvertCheckBox.Location = new System.Drawing.Point(12, 115);
-            this.InvertCheckBox.Name = "InvertCheckBox";
-            this.InvertCheckBox.Size = new System.Drawing.Size(102, 24);
-            this.InvertCheckBox.TabIndex = 20;
-            this.InvertCheckBox.Text = "Invert data";
-            this.InvertCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // VariatieSlider
-            // 
-            this.VariatieSlider.Location = new System.Drawing.Point(12, 83);
-            this.VariatieSlider.Maximum = 100;
-            this.VariatieSlider.Name = "VariatieSlider";
-            this.VariatieSlider.Size = new System.Drawing.Size(185, 56);
-            this.VariatieSlider.TabIndex = 15;
-            this.VariatieSlider.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.VariatieSlider.Value = 70;
-            // 
-            // VariatieCheckBox
-            // 
-            this.VariatieCheckBox.AutoSize = true;
-            this.VariatieCheckBox.Location = new System.Drawing.Point(12, 26);
-            this.VariatieCheckBox.Name = "VariatieCheckBox";
-            this.VariatieCheckBox.Size = new System.Drawing.Size(176, 24);
-            this.VariatieCheckBox.TabIndex = 19;
-            this.VariatieCheckBox.Text = "Voeg kleurvariatie toe";
-            this.VariatieCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(6, 57);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(146, 20);
-            this.label19.TabIndex = 8;
-            this.label19.Text = "Hoeveelheid variatie";
-            // 
-            // SpatialOffsetCheckBox
-            // 
-            this.SpatialOffsetCheckBox.AutoSize = true;
-            this.SpatialOffsetCheckBox.Location = new System.Drawing.Point(12, 145);
-            this.SpatialOffsetCheckBox.Name = "SpatialOffsetCheckBox";
-            this.SpatialOffsetCheckBox.Size = new System.Drawing.Size(189, 24);
-            this.SpatialOffsetCheckBox.TabIndex = 21;
-            this.SpatialOffsetCheckBox.Text = "Spatial offset gebruiken";
-            this.SpatialOffsetCheckBox.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.ShowNumbersCheckbox);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.MapSettings);
             this.Controls.Add(this.Tekenstijl);
             this.Controls.Add(this.MapModern);
             this.Controls.Add(this.MapLegacy);
@@ -629,8 +620,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -680,7 +669,6 @@
         private Button ColorPickerButton;
         private Panel KleurToner;
         private ColorDialog colorDialog1;
-        private GroupBox groupBox3;
         private Label label19;
         private CheckBox VariatieCheckBox;
         private TrackBar VariatieSlider;
