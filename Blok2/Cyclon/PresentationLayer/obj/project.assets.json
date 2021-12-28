@@ -11,6 +11,19 @@
           "lib/netcoreapp2.2/SimplexNoise.dll": {}
         }
       },
+      "DataAccessLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Globals": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataAccessLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataAccessLayer.dll": {}
+        }
+      },
       "Globals/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -60,6 +73,11 @@
         "simplexnoise.nuspec"
       ]
     },
+    "DataAccessLayer/1.0.0": {
+      "type": "project",
+      "path": "../DataAccessLayer/DataAccessLayer.csproj",
+      "msbuildProject": "../DataAccessLayer/DataAccessLayer.csproj"
+    },
     "Globals/1.0.0": {
       "type": "project",
       "path": "../Globals/Globals.csproj",
@@ -73,6 +91,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
+      "DataAccessLayer >= 1.0.0",
       "Globals >= 1.0.0",
       "LogicLayer >= 1.0.0"
     ]
@@ -109,6 +128,9 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
+            "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj"
+            },
             "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
               "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj"
             },

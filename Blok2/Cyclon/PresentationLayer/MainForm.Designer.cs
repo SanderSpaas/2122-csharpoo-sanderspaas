@@ -59,6 +59,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.ShowNumbersCheckbox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ShadingCheckBox = new System.Windows.Forms.CheckBox();
             this.SpatialOffsetCheckBox = new System.Windows.Forms.CheckBox();
             this.ColorPickerButton = new System.Windows.Forms.Button();
             this.InvertCheckBox = new System.Windows.Forms.CheckBox();
@@ -92,11 +93,15 @@
             // 
             // MapLegacy
             // 
+            this.MapLegacy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MapLegacy.DetectUrls = false;
             this.MapLegacy.Location = new System.Drawing.Point(213, 0);
             this.MapLegacy.Margin = new System.Windows.Forms.Padding(0);
             this.MapLegacy.Name = "MapLegacy";
             this.MapLegacy.ReadOnly = true;
+            this.MapLegacy.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.MapLegacy.Size = new System.Drawing.Size(1474, 1055);
             this.MapLegacy.TabIndex = 1;
             this.MapLegacy.Text = "";
@@ -149,6 +154,7 @@
             // 
             // ScaleData
             // 
+            this.ScaleData.DecimalPlaces = 2;
             this.ScaleData.Location = new System.Drawing.Point(12, 159);
             this.ScaleData.Name = "ScaleData";
             this.ScaleData.Size = new System.Drawing.Size(150, 27);
@@ -161,8 +167,11 @@
             // 
             // MapModern
             // 
+            this.MapModern.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MapModern.AutoSize = true;
-            this.MapModern.Location = new System.Drawing.Point(213, 0);
+            this.MapModern.Location = new System.Drawing.Point(216, 0);
             this.MapModern.Name = "MapModern";
             this.MapModern.Size = new System.Drawing.Size(1471, 1055);
             this.MapModern.TabIndex = 8;
@@ -428,6 +437,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.ShadingCheckBox);
             this.groupBox2.Controls.Add(this.SpatialOffsetCheckBox);
             this.groupBox2.Controls.Add(this.ColorPickerButton);
             this.groupBox2.Controls.Add(this.InvertCheckBox);
@@ -449,6 +459,18 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Map instellingen";
+            // 
+            // ShadingCheckBox
+            // 
+            this.ShadingCheckBox.AutoSize = true;
+            this.ShadingCheckBox.Checked = true;
+            this.ShadingCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShadingCheckBox.Location = new System.Drawing.Point(12, 454);
+            this.ShadingCheckBox.Name = "ShadingCheckBox";
+            this.ShadingCheckBox.Size = new System.Drawing.Size(221, 24);
+            this.ShadingCheckBox.TabIndex = 24;
+            this.ShadingCheckBox.Text = "Shading based on tile height";
+            this.ShadingCheckBox.UseVisualStyleBackColor = true;
             // 
             // SpatialOffsetCheckBox
             // 
@@ -674,5 +696,6 @@
         private TrackBar VariatieSlider;
         private CheckBox InvertCheckBox;
         private CheckBox SpatialOffsetCheckBox;
+        private CheckBox ShadingCheckBox;
     }
 }

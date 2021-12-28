@@ -5,19 +5,21 @@ namespace LogicLayer
     public class CyclonMain : ILogic
     {
         private readonly IData _data;
+        private Random _random = new Random();
         public CyclonMain(/*IData data*/)
         {
             //_data = data;
         }
-        public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill, int seed, List<Layer> layers, bool inverted, bool spatialOffset)
+        public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill, string seed, List<Layer> layers, bool inverted, bool spatialOffset)
         {
-            var map = new Map(width, height);
-            float[,]? noiseValues = GenerateNoise(width, height, scale, seed, inverted, spatialOffset);
-            for (int x = 0; x < noiseValues.GetLength(0); x++)
+            var map = new Map(width, height, scale, seed);
+            map.NoiseValues = GenerateNoise(map);
+            for (int x = 0; x < map.NoiseValues.GetLength(0); x++)
             {
-                for (int y = 0; y < noiseValues.GetLength(1); y++)
+                for (int y = 0; y < map.NoiseValues.GetLength(1); y++)
                 {
-                    map.Tiles[x, y].Laag = DetermineTerrain(noiseValues[x, y], deepWater, water, sand, grass, hill, layers);
+                    map.Tiles[x, y].Laag = DetermineTerrain(map.NoiseValues[x, y], deepWater, water, sand, grass, hill, layers);
+                    map.Tiles[x, y].Color = map.Tiles[x, y].Laag.Kleur;
                 }
             }
             return map;
@@ -27,7 +29,7 @@ namespace LogicLayer
         {
             var layers = new List<Layer>();
             int index = 0;
-            foreach (var Terrain in Enum.GetValues(typeof(TerrainType)))
+            foreach (TerrainType Terrain in Enum.GetValues(typeof(TerrainType)))
             {
                 if (Terrain.ToString() != "Undefined")
                 {
@@ -58,35 +60,60 @@ namespace LogicLayer
             }
         }
 
-        public float[,] GenerateNoise(int width, int height, float scale, int seed, bool inverted, bool spatialOffset)
+        public float[,] GenerateNoise(Map map)
         {
-            SimplexNoise.Noise.Seed = seed;
-            float[,]? noiseValues = SimplexNoise.Noise.Calc2D(width, height, scale);
-            if (inverted)
+            if (!Int32.TryParse(map.Seed, out int seedNumber))
             {
-                for (int y = 0; y < height; y++)
+                //als de seed text is dan veranderen we het naar een getal
+                seedNumber = map.Seed.GetHashCode();
+            }
+            SimplexNoise.Noise.Seed = seedNumber;
+            return SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+        }
+        public void SpatialOffset(float[,] data, Map map)
+        {
+            SimplexNoise.Noise.Seed = _random.Next();
+            float[,]? noiseValues = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+            for (int y = 0; y < map.Height; y++)
+            {
+                for (int x = 0; x < map.Width; x++)
                 {
-                    for (int x = 0; x < width; x++)
-                    {
-                        noiseValues[x, y] = 255 - noiseValues[x, y];
-                    }
+                    data[x, y] = (data[x, y] + noiseValues[x, y]) / 2;
                 }
             }
-            if (spatialOffset)
+            map.NoiseValues = data;
+        }
+        public void Invert(float[,] data, Map map)
+        {
+            for (int y = 0; y < map.Height; y++)
             {
-                SimplexNoise.Noise.Seed = seed + 1;
-                float[,]? noiseValues2 = SimplexNoise.Noise.Calc2D(width, height, scale);
-                SimplexNoise.Noise.Seed = seed + 2;
-                float[,]? noiseValues3 = SimplexNoise.Noise.Calc2D(width, height, scale);
-                for (int y = 0; y < height; y++)
+                for (int x = 0; x < map.Width; x++)
                 {
-                    for (int x = 0; x < width; x++)
-                    {
-                        noiseValues[x, y] = (noiseValues[x, y] + noiseValues2[x, y] + noiseValues3[x, y]) / 3;
-                    }
+                    data[x, y] = 255 - data[x, y];
                 }
             }
-            return noiseValues;
+            map.NoiseValues = data;
+        }
+
+        public void ColorShift(Map map, int max)
+        {
+            for (int y = 0; y < map.Height; y++)
+            {
+                for (int x = 0; x < map.Width; x++)
+                {
+                    map.Tiles[x, y].Color = Color.FromArgb(map.Tiles[x, y].Laag.Kleur.ToArgb() + _random.Next(0, max));
+                }
+            }
+        }
+        public void Shading(Map map)
+        {
+            for (int y = 0; y < map.Height; y++)
+            {
+                for (int x = 0; x < map.Width; x++)
+                {
+                    map.Tiles[x, y].Color = ControlPaint.Dark(map.Tiles[x, y].Color, map.NoiseValues[x, y] / (255 * 2));
+                }
+            }
         }
     }
 }

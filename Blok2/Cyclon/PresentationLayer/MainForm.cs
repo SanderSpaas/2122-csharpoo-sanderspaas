@@ -9,7 +9,6 @@ namespace PresentationLayer
         private Map _map = new();
         private CyclonMain _main = new();
         private Bitmap _bitmap;
-        private float[,] _data;
         private bool _generated = false;
         private int _tile = 0;
         private Layer _laag = new();
@@ -42,10 +41,25 @@ namespace PresentationLayer
                 //als de seed text is dan veranderen we het naar een getal
                 seed = SeedData.Text.GetHashCode();
             }
-            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, seed, _layers, InvertCheckBox.Checked, SpatialOffsetCheckBox.Checked);
+            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, SeedData.Text, _layers, InvertCheckBox.Checked, SpatialOffsetCheckBox.Checked);
             _tile = (int)TileSizeData.Value;
-            _bitmap = new Bitmap(_map.Height * _tile, _map.Width * _tile);
-            _data = _main.GenerateNoise((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, seed, InvertCheckBox.Checked, SpatialOffsetCheckBox.Checked);
+            _bitmap = new Bitmap(_map.Height, _map.Width, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+            if (SpatialOffsetCheckBox.Checked)
+            {
+                _main.SpatialOffset(_map.NoiseValues, _map);
+            }
+            if (InvertCheckBox.Checked)
+            {
+                _main.Invert(_map.NoiseValues, _map);
+            }
+            if (VariatieCheckBox.Checked)
+            {
+                _main.ColorShift(_map, VariatieSlider.Value);
+            }
+            if (ShadingCheckBox.Checked)
+            {
+                _main.Shading(_map);
+            }
             _generated = true;
 
             if (MapModern.Visible)
@@ -65,24 +79,11 @@ namespace PresentationLayer
 
         private void LegacyDrawing()
         {
-            bool variatie = false;
-            int sliderValue = 0;
-
-            VariatieCheckBox.Invoke(new MethodInvoker(delegate
-            {
-                variatie = VariatieCheckBox.Checked;
-            }));
-
-            VariatieCheckBox.Invoke(new MethodInvoker(delegate
-            {
-                sliderValue = VariatieSlider.Value;
-            }));
-
             for (int y = 0; y < _map.Height; y++)
             {
                 for (int x = 0; x < _map.Width; x++)
                 {
-                    Extensions.PrintTerrainCharacter(MapLegacy, _tile, _map.Tiles[x, y].Laag, variatie, sliderValue);
+                    Extensions.PrintTerrainCharacter(MapLegacy, x, y, _tile, _map);
                 }
                 Extensions.AppendText(MapLegacy, "\r\n", Color.Blue, _tile);
             }
@@ -100,7 +101,7 @@ namespace PresentationLayer
                 {
                     for (int x = 0; x < _map.Width; x++)
                     {
-                        Extensions.PrintTerrainModern(e, _map.Tiles[x, y].Laag.NaamLaag, x, y, _tile, _map.Tiles[x, y].Laag, _data, ShowNumbersCheckbox, VariatieCheckBox, VariatieSlider.Value);
+                        Extensions.PrintTerrainModern(e, x, y, _tile, ShowNumbersCheckbox, _map);
                     }
                     Application.DoEvents();
                 }
@@ -180,37 +181,20 @@ namespace PresentationLayer
                 }
             }
         }
-
     }
 
     public static class Extensions
     {
-        public static void PrintTerrainCharacter(this RichTextBox box, int fontSize, Layer laag, bool checkColorShift, int max)
+        public static void PrintTerrainCharacter(this RichTextBox box, int x, int y, int fontSize, Map map)
         {
-            Random random = new Random();
-            if (checkColorShift)
-            {
-                Extensions.AppendText(box, laag.Teken.ToString(), ColorByShift(laag.Kleur, max, random), fontSize);
-            }
-            else
-            {
-                Extensions.AppendText(box, laag.Teken.ToString(), laag.Kleur, fontSize);
-            }
+            Extensions.AppendText(box, map.Tiles[x, y].Laag.Teken.ToString(), map.Tiles[x, y].Color, fontSize);
         }
-        public static void PrintTerrainModern(this PaintEventArgs paint, TerrainType terrainType, int x, int y, int tile, Layer laag, float[,] data, CheckBox check, CheckBox checkColorShift, int max)
+        public static void PrintTerrainModern(this PaintEventArgs paint, int x, int y, int tile, CheckBox checkDebug, Map map)
         {
-            Random random = new Random();
-            if (checkColorShift.Checked)
+            paint.Graphics.DrawRectangle(new Pen(map.Tiles[x, y].Color, tile), x * tile, y * tile, tile, tile);
+            if (checkDebug.Checked)
             {
-                paint.Graphics.DrawRectangle(new Pen(ColorByShift(laag.Kleur, max, random), tile), x * tile, y * tile, tile, tile);
-            }
-            else
-            {
-                paint.Graphics.DrawRectangle(new Pen(laag.Kleur, tile), x * tile, y * tile, tile, tile);
-            }
-            if (check.Checked)
-            {
-                paint.Graphics.DrawString(((int)data[x, y]).ToString(), new Font("Arial", tile / 6), new SolidBrush(Color.Black), x * tile, y * tile);
+                paint.Graphics.DrawString(((int)map.NoiseValues[x, y]).ToString(), new Font("Arial", tile), new SolidBrush(Color.Black), x * tile, y * tile);
                 //paint.Graphics.DrawRectangle(new Pen(Color.Red, 3), x * tile, y * tile, tile, tile);   
             }
         }
@@ -230,12 +214,6 @@ namespace PresentationLayer
                     box.SelectionColor = box.ForeColor;
                 }));
             }
-        }
-
-        public static Color ColorByShift(Color kleur, int max, Random random)
-        {
-
-            return Color.FromArgb(kleur.ToArgb() + random.Next(0, max));
         }
     }
 }

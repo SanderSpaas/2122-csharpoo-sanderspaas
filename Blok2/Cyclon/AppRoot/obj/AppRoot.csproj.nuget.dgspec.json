@@ -297,6 +297,9 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj"
+              },
               "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
                 "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj"
               },

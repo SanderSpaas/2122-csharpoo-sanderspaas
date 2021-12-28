@@ -55,6 +55,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "DataAccessLayer": "1.0.0",
           "Globals": "1.0.0",
           "LogicLayer": "1.0.0"
         },
