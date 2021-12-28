@@ -11,7 +11,6 @@ namespace PresentationLayer
         private Bitmap _bitmap;
         private bool _generated = false;
         private int _tile = 0;
-        private Layer _laag = new();
         private Color[] _kleuren = new Color[] { Color.FromArgb(2, 72, 132), Color.FromArgb(3, 100, 184), Color.FromArgb(255, 203, 60), Color.Green, Color.DarkGreen, Color.Gray };
         private int[] _heights = new int[] { 40, 70, 120, 135, 220, 240 };
         private char[] _drawings = new char[] { '█', '█', '█', '█', '█', '█' };
@@ -41,7 +40,7 @@ namespace PresentationLayer
                 //als de seed text is dan veranderen we het naar een getal
                 seed = SeedData.Text.GetHashCode();
             }
-            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, SeedData.Text, _layers, InvertCheckBox.Checked, SpatialOffsetCheckBox.Checked);
+            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, SeedData.Text, _layers);
             _tile = (int)TileSizeData.Value;
             _bitmap = new Bitmap(_map.Height, _map.Width, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             if (SpatialOffsetCheckBox.Checked)
@@ -194,7 +193,7 @@ namespace PresentationLayer
             paint.Graphics.DrawRectangle(new Pen(map.Tiles[x, y].Color, tile), x * tile, y * tile, tile, tile);
             if (checkDebug.Checked)
             {
-                paint.Graphics.DrawString(((int)map.NoiseValues[x, y]).ToString(), new Font("Arial", tile), new SolidBrush(Color.Black), x * tile, y * tile);
+                paint.Graphics.DrawString(((int)map.NoiseValues[x, y]).ToString(), new Font("Arial", tile / 6), new SolidBrush(Color.Black), x * tile, y * tile);
                 //paint.Graphics.DrawRectangle(new Pen(Color.Red, 3), x * tile, y * tile, tile, tile);   
             }
         }

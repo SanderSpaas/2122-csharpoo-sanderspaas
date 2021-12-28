@@ -4,16 +4,7 @@ namespace LogicLayer;
 
 public class Layer : ILogic
 {
-    private TerrainType _naamLaag;
-    private Color _kleur;
-    private int _height;
-    private char _teken;
-
-    public Layer()
-    {
-
-    }
-    public Layer(TerrainType naamLaag, Color kleur, int height, Char teken)
+    public Layer(TerrainType naamLaag, Color kleur, int height, char teken)
     {
         NaamLaag = naamLaag;
         Kleur = kleur;
@@ -21,11 +12,9 @@ public class Layer : ILogic
         Teken = teken;
     }
 
-
-    public TerrainType NaamLaag { get => _naamLaag; set => _naamLaag = value; }
-    public Color Kleur { get => _kleur; set => _kleur = value; }
-    public char Teken { get => _teken; set => _teken = value; }
-    public int Height { get => _height; set => _height = value; }
-
+    public TerrainType NaamLaag { get; set; }
+    public Color Kleur { get; set; }
+    public char Teken { get; set; }
+    public int Height { get; set; }
 
 }

@@ -2,15 +2,7 @@
 {
     public class Map
     {
-        public Tile[,] Tiles;
-
-        private int _width;
-        private int _height;
-        private float _scale;
-        private float[,]? _noiseValues;
-        private string _seed;
-
-        public Map() /*: this(15, 15)*/
+        public Map()
         {
         }
 
@@ -24,11 +16,12 @@
             SetMap();
         }
 
-        public int Width { get => _width; set => _width = value; }
-        public int Height { get => _height; set => _height = value; }
-        public float Scale { get => _scale; set => _scale = value; }
-        public float[,]? NoiseValues { get => _noiseValues; set => _noiseValues = value; }
-        public string Seed { get => _seed; set => _seed = value; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public float Scale { get; set; }
+        public float[,]? NoiseValues { get; set; }
+        public string Seed { get; set; }
+        public Tile[,] Tiles { get; set; }
 
         public void SetMap()
         {

@@ -5,12 +5,12 @@ namespace LogicLayer
     public class CyclonMain : ILogic
     {
         private readonly IData _data;
-        private Random _random = new Random();
+        private readonly Random _random = new Random();
         public CyclonMain(/*IData data*/)
         {
             //_data = data;
         }
-        public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill, string seed, List<Layer> layers, bool inverted, bool spatialOffset)
+        public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill, string seed, List<Layer> layers)
         {
             var map = new Map(width, height, scale, seed);
             map.NoiseValues = GenerateNoise(map);
@@ -33,7 +33,7 @@ namespace LogicLayer
             {
                 if (Terrain.ToString() != "Undefined")
                 {
-                    var laag = new Layer((TerrainType)Terrain, kleuren[index], hoogtes[index], drawings[index]);
+                    var laag = new Layer(Terrain, kleuren[index], hoogtes[index], drawings[index]);
                     layers.Add(laag);
                     index++;
                 }
@@ -43,21 +43,15 @@ namespace LogicLayer
 
         private Layer DetermineTerrain(float noiseValue, int deepWater, int water, int sand, int grass, int hill, List<Layer> layers)
         {
-            switch (noiseValue)
+            return noiseValue switch
             {
-                case var noise when noise <= deepWater:
-                    return layers[0];
-                case var noise when noise <= water:
-                    return layers[1];
-                case var noise when noise <= sand:
-                    return layers[2];
-                case var noise when noise <= grass:
-                    return layers[3];
-                case var noise when noise <= hill:
-                    return layers[4];
-                default:
-                    return layers[5];
-            }
+                var noise when noise <= deepWater => layers[0],
+                var noise when noise <= water => layers[1],
+                var noise when noise <= sand => layers[2],
+                var noise when noise <= grass => layers[3],
+                var noise when noise <= hill => layers[4],
+                _ => layers[5],
+            };
         }
 
         public float[,] GenerateNoise(Map map)
@@ -111,7 +105,7 @@ namespace LogicLayer
             {
                 for (int x = 0; x < map.Width; x++)
                 {
-                    map.Tiles[x, y].Color = ControlPaint.Dark(map.Tiles[x, y].Color, map.NoiseValues[x, y] / (255 * 2));
+                    map.Tiles[x, y].Color = ControlPaint.Light(ControlPaint.Dark(map.Tiles[x, y].Color, map.NoiseValues[x, y] / (255 * 2)), (float)0.15);
                 }
             }
         }
