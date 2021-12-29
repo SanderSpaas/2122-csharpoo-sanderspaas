@@ -15,15 +15,17 @@ namespace PresentationLayer
         private int[] _heights = new int[] { 40, 70, 120, 135, 220, 240 };
         private char[] _drawings = new char[] { '█', '█', '█', '█', '█', '█' };
         private List<Layer> _layers = new();
+        private CancellationTokenSource _cancellationSource;
+
         public MainForm(ILogic logic)
         {
             _logic = logic;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
             HeightData.Value = MapModern.Width;
-            MapLegacy.Height = MapModern.Height;
+            WidthData.Value = MapModern.Height;
             _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
-            foreach (var Terrain in Enum.GetValues(typeof(TerrainType)))
+            foreach (object? Terrain in Enum.GetValues(typeof(TerrainType)))
             {
                 if (Terrain.ToString() != "Undefined")
                 {
@@ -64,31 +66,19 @@ namespace PresentationLayer
             if (MapModern.Visible)
             {
                 Refresh();
-                //Task drawTerrain = new Task(new Action(ModernDrawing));
-                //drawTerrain.Start();
             }
             else if (MapLegacy.Visible)
             {
                 MapLegacy.Clear();
-                Task drawTerrain = new Task(new Action(LegacyDrawing));
-                drawTerrain.Start();
+                _cancellationSource = new();
+                var drawTerrain = Task.Run(() => LegacyDrawing(2));
             }
-
         }
-
-        private void LegacyDrawing()
+        public static void Update(DateTime previousDateTime)
         {
-            for (int y = 0; y < _map.Height; y++)
-            {
-                for (int x = 0; x < _map.Width; x++)
-                {
-                    Extensions.PrintTerrainCharacter(MapLegacy, x, y, _tile, _map);
-                }
-                Extensions.AppendText(MapLegacy, "\r\n", Color.Blue, _tile);
-            }
         }
 
-        private void DrawingPanel_Paint(object sender, PaintEventArgs e)
+        private async void DrawingPanel_Paint(object sender, PaintEventArgs e)
         {
             SetStyle(
             ControlStyles.AllPaintingInWmPaint |
@@ -96,33 +86,44 @@ namespace PresentationLayer
             ControlStyles.DoubleBuffer, true);
             if (_generated)
             {
-                for (int y = 0; y < _map.Height; y++)
+                GenerateButton.Enabled = false;
+                _cancellationSource = new();
+                var drawTerrainModern = Task.Run(() => ModernDrawing(2));
+                if (drawTerrainModern.IsCompleted)
                 {
-                    for (int x = 0; x < _map.Width; x++)
-                    {
-                        Extensions.PrintTerrainModern(e, x, y, _tile, ShowNumbersCheckbox, _map);
-                    }
-                    Application.DoEvents();
+                    GenerateButton.Enabled = true;
                 }
             }
         }
-
-        private void LegacyRadio_CheckedChanged(object sender, EventArgs e)
+        public async Task LegacyDrawing(int pollingIntervalSeconds)
         {
-            MapLegacy.Visible = true;
-            MapModern.Visible = false;
+            var ct = _cancellationSource.Token;
+            Update(DateTime.MinValue);
+            await Task.Delay(pollingIntervalSeconds * 1000, ct);
+            for (int y = 0; y < _map.Height; y++)
+            {
+                for (int x = 0; x < _map.Width; x++)
+                {
+                    ct.ThrowIfCancellationRequested();
+                    Extensions.PrintTerrainCharacter(MapLegacy, x, y, _tile, _map);
+                }
+                Extensions.AppendText(MapLegacy, "\r\n", Color.Blue, _tile);
+            }
         }
-
-        private void ModernRadio_CheckedChanged(object sender, EventArgs e)
+        public async Task<TaskStatus> ModernDrawing(int pollingIntervalSeconds)
         {
-            MapLegacy.Visible = false;
-            MapModern.Visible = true;
-        }
-
-        private void RandomSeedButton_Click(object sender, EventArgs e)
-        {
-            Random random = new Random();
-            SeedData.Text = random.Next().ToString();
+            var ct = _cancellationSource.Token;
+            Update(DateTime.MinValue);
+            await Task.Delay(pollingIntervalSeconds * 1000, ct);
+            for (int y = 0; y < _map.Height; y++)
+            {
+                for (int x = 0; x < _map.Width; x++)
+                {
+                    ct.ThrowIfCancellationRequested();
+                    Extensions.PrintTerrainModern(MapModern.CreateGraphics(), x, y, _tile, ShowNumbersCheckbox, _map);
+                }
+            }
+            return TaskStatus.RanToCompletion;
         }
 
         private void ColorPickerButton_Click(object sender, EventArgs e)
@@ -165,7 +166,6 @@ namespace PresentationLayer
                 }
             }
         }
-
         private void LetterLaagData_TextChanged(object sender, EventArgs e)
         {
             if (LetterLaagData.Text.Length > 0)
@@ -180,20 +180,53 @@ namespace PresentationLayer
                 }
             }
         }
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            _cancellationSource.Cancel();
+            GenerateButton.Enabled = true;
+        }
+        private void LegacyRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            MapLegacy.Visible = true;
+            MapModern.Visible = false;
+            _cancellationSource.Cancel();
+        }
+        private void ModernRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            MapLegacy.Visible = false;
+            MapModern.Visible = true;
+            _cancellationSource.Cancel();
+        }
+        private void RandomSeedButton_Click(object sender, EventArgs e)
+        {
+            var random = new Random();
+            SeedData.Text = random.Next().ToString();
+        }
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            if (MapLegacy.Visible)
+            {
+                MapLegacy.Clear();
+            }
+            else if (MapModern.Visible)
+            {
+                MapModern.Refresh();
+            }
+        }
     }
 
     public static class Extensions
     {
         public static void PrintTerrainCharacter(this RichTextBox box, int x, int y, int fontSize, Map map)
         {
-            Extensions.AppendText(box, map.Tiles[x, y].Laag.Teken.ToString(), map.Tiles[x, y].Color, fontSize);
+            AppendText(box, map.Tiles[x, y].Laag.Teken.ToString(), map.Tiles[x, y].Color, fontSize);
         }
-        public static void PrintTerrainModern(this PaintEventArgs paint, int x, int y, int tile, CheckBox checkDebug, Map map)
+        public static void PrintTerrainModern(Graphics paint, int x, int y, int tile, CheckBox checkDebug, Map map)
         {
-            paint.Graphics.DrawRectangle(new Pen(map.Tiles[x, y].Color, tile), x * tile, y * tile, tile, tile);
+            paint.DrawRectangle(new Pen(map.Tiles[x, y].Color, tile), x * tile, y * tile, tile, tile);
             if (checkDebug.Checked)
             {
-                paint.Graphics.DrawString(((int)map.NoiseValues[x, y]).ToString(), new Font("Arial", tile / 6), new SolidBrush(Color.Black), x * tile, y * tile);
+                paint.DrawString(((int)map.NoiseValues[x, y]).ToString(), new Font("Arial", tile / 6), new SolidBrush(Color.Black), x * tile, y * tile);
                 //paint.Graphics.DrawRectangle(new Pen(Color.Red, 3), x * tile, y * tile, tile, tile);   
             }
         }

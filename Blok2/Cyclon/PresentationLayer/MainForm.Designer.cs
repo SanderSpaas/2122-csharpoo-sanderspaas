@@ -52,12 +52,14 @@
             this.ModernRadio = new System.Windows.Forms.RadioButton();
             this.LegacyRadio = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.CancelButton = new System.Windows.Forms.Button();
+            this.ShowNumbersCheckbox = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.ShowNumbersCheckbox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ShadingCheckBox = new System.Windows.Forms.CheckBox();
             this.SpatialOffsetCheckBox = new System.Windows.Forms.CheckBox();
@@ -110,7 +112,7 @@
             // 
             // GenerateButton
             // 
-            this.GenerateButton.Location = new System.Drawing.Point(12, 334);
+            this.GenerateButton.Location = new System.Drawing.Point(12, 339);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(150, 29);
             this.GenerateButton.TabIndex = 4;
@@ -248,7 +250,7 @@
             this.Tekenstijl.Dock = System.Windows.Forms.DockStyle.Left;
             this.Tekenstijl.Location = new System.Drawing.Point(0, 0);
             this.Tekenstijl.Name = "Tekenstijl";
-            this.Tekenstijl.Size = new System.Drawing.Size(210, 1055);
+            this.Tekenstijl.Size = new System.Drawing.Size(215, 1055);
             this.Tekenstijl.TabIndex = 15;
             this.Tekenstijl.TabStop = false;
             this.Tekenstijl.Text = "Tekenstijl";
@@ -362,6 +364,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ClearButton);
+            this.groupBox1.Controls.Add(this.CancelButton);
+            this.groupBox1.Controls.Add(this.ShowNumbersCheckbox);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label6);
@@ -375,10 +380,40 @@
             this.groupBox1.Controls.Add(this.SeaData);
             this.groupBox1.Location = new System.Drawing.Point(3, 424);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(207, 396);
+            this.groupBox1.Size = new System.Drawing.Size(207, 496);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Map instellingen";
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.Location = new System.Drawing.Point(12, 414);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(150, 29);
+            this.ClearButton.TabIndex = 19;
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.Location = new System.Drawing.Point(12, 379);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(150, 29);
+            this.CancelButton.TabIndex = 15;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // ShowNumbersCheckbox
+            // 
+            this.ShowNumbersCheckbox.AutoSize = true;
+            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(15, 447);
+            this.ShowNumbersCheckbox.Name = "ShowNumbersCheckbox";
+            this.ShowNumbersCheckbox.Size = new System.Drawing.Size(167, 24);
+            this.ShowNumbersCheckbox.TabIndex = 18;
+            this.ShowNumbersCheckbox.Text = "Show number values";
+            this.ShowNumbersCheckbox.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -424,16 +459,6 @@
             this.label8.Size = new System.Drawing.Size(132, 20);
             this.label8.TabIndex = 7;
             this.label8.Text = "Deep water height";
-            // 
-            // ShowNumbersCheckbox
-            // 
-            this.ShowNumbersCheckbox.AutoSize = true;
-            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(17, 826);
-            this.ShowNumbersCheckbox.Name = "ShowNumbersCheckbox";
-            this.ShowNumbersCheckbox.Size = new System.Drawing.Size(167, 24);
-            this.ShowNumbersCheckbox.TabIndex = 18;
-            this.ShowNumbersCheckbox.Text = "Show number values";
-            this.ShowNumbersCheckbox.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -617,7 +642,6 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.ShowNumbersCheckbox);
             this.Controls.Add(this.Tekenstijl);
             this.Controls.Add(this.MapModern);
             this.Controls.Add(this.MapLegacy);
@@ -697,5 +721,7 @@
         private CheckBox InvertCheckBox;
         private CheckBox SpatialOffsetCheckBox;
         private CheckBox ShadingCheckBox;
+        private Button CancelButton;
+        private Button ClearButton;
     }
 }
