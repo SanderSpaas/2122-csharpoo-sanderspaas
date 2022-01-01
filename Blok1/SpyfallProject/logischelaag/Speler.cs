@@ -2,15 +2,14 @@
 {
     public class Speler
     {
-        private readonly string _rol = "";
         public Speler(string rol)
         {
             if (!string.IsNullOrWhiteSpace(rol))
             {
-                _rol = rol;
+                Rol = rol;
             }
         }
-        public string Rol { get => _rol; }
+        public string Rol { get; } = "";
 
     }
 }

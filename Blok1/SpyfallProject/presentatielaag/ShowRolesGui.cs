@@ -19,7 +19,7 @@ namespace SpyfallProject.presentatielaag
             LabelClear();
             //een rollenlijst laten aanmaken
             _rol.KiesRandomRol(filePath);
-            _spel = new(aantalSpelers, aantalSpionnen, aantalTijd, _rol.RollenList[0].ToString(), filePath);
+            _spel = new(aantalSpelers, aantalSpionnen, aantalTijd, _rol.RollenList[0].Rol.ToString(), filePath);
 
             var list = _rol.RollenList;
             list.RemoveAt(0);
