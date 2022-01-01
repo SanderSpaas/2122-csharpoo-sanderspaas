@@ -9,9 +9,6 @@
 - [x] *Eenvoudige WinForm toepassing*
 - [x] *Een klasse toevoegen*
 
-* Je toepassing is geschreven met het .Net Framework versie 4.7.2. Voor dit vak verwacht ik code met .Net Core versie 5 of 6.
-
-
 #### Gebruik GIT
 
 - [x] *Je gebruikt 'atomaire' commits*
@@ -20,7 +17,7 @@
 * Je commit messages zijn niet altijd voldoende informatief. Beschrijf telkens concreet wat er veranderd is sinds de vorige commit.
 * Je hebt je .gitIgnore bestand aangemaakt nadat je al commits gedaan hebt vanuit je Visual Studio solution. Daardoor zijn er al een aantal 'ongewenste' bestande gemarkeerd voor tracking door GIT.    
    Op volgende blog kan je informatie vinden over hoe je dat moet oplossen: https://www.codeblocq.com/2016/01/Untrack-files-already-added-to-git-repository-based-on-gitignore/.
- 
+   1/1/2022: ik heb dat ondertussen zelf opgelost... 
 
 #### Debugging
 
