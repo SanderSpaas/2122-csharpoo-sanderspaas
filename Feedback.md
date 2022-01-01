@@ -157,16 +157,14 @@ Je kan volgende code:
 
 #### Structs
 
---> Nog niet beoordeeld
-
-- [ ] *Structs*
+- [x] *Structs*
 
 ##### Extension methods
 
---> Nog niet beoordeeld
-
 - [ ] *Extension method schrijven*
 - [ ] *Functioneel gebruik van extension methods*
+
+* 1/1/2022: waar gebruik je extension methods?
 
 #### Delegates
 
@@ -176,9 +174,10 @@ Je kan volgende code:
 
 #### Lambda expressions
 
---> Nog niet beoordeeld
 
-- [ ] *Lambda expressions*
+- [x] *Lambda expressions*
+
+* Je hebt slechts één (heel elementaire) lambda expression (om je Task te starten).
 
 #### Language Integrated Query (Linq)
 
@@ -190,10 +189,11 @@ Je kan volgende code:
 
 #### Events
 
---> Nog niet beoordeeld
-
 - [ ] *Event 'Publisher'*
-- [ ] *Event 'Consumer'*
+- [x] *Event 'Consumer'*
+
+* Je reageert op externe events maar nog niet op eigen events die vanuit je eigen code gestart worden.
+
 
 #### Concurrent programmatie: Tasks
 
