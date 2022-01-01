@@ -10,7 +10,7 @@ namespace PresentationLayer
         private CyclonMain _main = new();
         private Bitmap _bitmap;
         private bool _generated = false;
-        private int _tile = 0;
+        private int _tileSize = 0;
         private Color[] _kleuren = new Color[] { Color.FromArgb(2, 72, 132), Color.FromArgb(3, 100, 184), Color.FromArgb(255, 203, 60), Color.Green, Color.DarkGreen, Color.Gray };
         private int[] _heights = new int[] { 40, 70, 120, 135, 220, 240 };
         private char[] _drawings = new char[] { '█', '█', '█', '█', '█', '█' };
@@ -22,8 +22,8 @@ namespace PresentationLayer
             _logic = logic;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
-            HeightData.Value = MapModern.Width;
-            WidthData.Value = MapModern.Height;
+            HeightData.Value = MapModern.Width / (int)TileSizeData.Value;
+            WidthData.Value = MapModern.Height / (int)TileSizeData.Value;
             _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
             foreach (object? Terrain in Enum.GetValues(typeof(TerrainType)))
             {
@@ -35,15 +35,15 @@ namespace PresentationLayer
             LayersComboBox.SelectedIndex = 0;
         }
 
-        private void GenerateButton_Click(object sender, EventArgs e)
+        private async void GenerateButton_Click(object sender, EventArgs e)
         {
             if (!Int32.TryParse(SeedData.Text, out int seed))
             {
-                //als de seed text is dan veranderen we het naar een getal
+                //als de seed text is dan veranderen we het naar een hascode aka een getal
                 seed = SeedData.Text.GetHashCode();
             }
             _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, SeedData.Text, _layers);
-            _tile = (int)TileSizeData.Value;
+            _tileSize = (int)TileSizeData.Value;
             _bitmap = new Bitmap(_map.Height, _map.Width, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             if (SpatialOffsetCheckBox.Checked)
             {
@@ -71,11 +71,12 @@ namespace PresentationLayer
             {
                 MapLegacy.Clear();
                 _cancellationSource = new();
-                var drawTerrain = Task.Run(() => LegacyDrawing(2));
+                GenerateButton.Enabled = false;
+                var taskDone = await Task.Run(() => LegacyDrawing()); if (taskDone == TaskStatus.RanToCompletion || taskDone == TaskStatus.Canceled)
+                {
+                    GenerateButton.Enabled = true;
+                }
             }
-        }
-        public static void Update(DateTime previousDateTime)
-        {
         }
 
         private async void DrawingPanel_Paint(object sender, PaintEventArgs e)
@@ -88,41 +89,53 @@ namespace PresentationLayer
             {
                 GenerateButton.Enabled = false;
                 _cancellationSource = new();
-                var drawTerrainModern = Task.Run(() => ModernDrawing(2));
-                if (drawTerrainModern.IsCompleted)
+                var taskDone = await Task.Run(() => ModernDrawing()); if (taskDone == TaskStatus.RanToCompletion || taskDone == TaskStatus.Canceled)
                 {
                     GenerateButton.Enabled = true;
                 }
             }
         }
-        public async Task LegacyDrawing(int pollingIntervalSeconds)
+        public TaskStatus LegacyDrawing()
         {
-            var ct = _cancellationSource.Token;
-            Update(DateTime.MinValue);
-            await Task.Delay(pollingIntervalSeconds * 1000, ct);
             for (int y = 0; y < _map.Height; y++)
             {
                 for (int x = 0; x < _map.Width; x++)
                 {
-                    ct.ThrowIfCancellationRequested();
-                    Extensions.PrintTerrainCharacter(MapLegacy, x, y, _tile, _map);
+                    try
+                    {
+                        _cancellationSource.Token.ThrowIfCancellationRequested();
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        _generated = false;
+                        return TaskStatus.Canceled;
+                    }
+                    MapExtensions.PrintTerrainOld(_map, MapLegacy, x, y, _tileSize);
                 }
-                Extensions.AppendText(MapLegacy, "\r\n", Color.Blue, _tile);
+                MapExtensions.AppendText(_map, MapLegacy, _tileSize, 0, 0, true);
             }
+            _generated = false;
+            return TaskStatus.RanToCompletion;
         }
-        public async Task<TaskStatus> ModernDrawing(int pollingIntervalSeconds)
+        public TaskStatus ModernDrawing()
         {
-            var ct = _cancellationSource.Token;
-            Update(DateTime.MinValue);
-            await Task.Delay(pollingIntervalSeconds * 1000, ct);
             for (int y = 0; y < _map.Height; y++)
             {
                 for (int x = 0; x < _map.Width; x++)
                 {
-                    ct.ThrowIfCancellationRequested();
-                    Extensions.PrintTerrainModern(MapModern.CreateGraphics(), x, y, _tile, ShowNumbersCheckbox, _map);
+                    try
+                    {
+                        _cancellationSource.Token.ThrowIfCancellationRequested();
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        _generated = false;
+                        return TaskStatus.Canceled;
+                    }
+                    MapExtensions.PrintTerrainModern(_map, MapModern.CreateGraphics(), x, y, _tileSize, ShowNumbersCheckbox);
                 }
             }
+            _generated = false;
             return TaskStatus.RanToCompletion;
         }
 
@@ -183,19 +196,27 @@ namespace PresentationLayer
         private void CancelButton_Click(object sender, EventArgs e)
         {
             _cancellationSource.Cancel();
+            _generated = false;
+            MapLegacy.Clear();
+            Refresh();
             GenerateButton.Enabled = true;
         }
         private void LegacyRadio_CheckedChanged(object sender, EventArgs e)
         {
-            MapLegacy.Visible = true;
-            MapModern.Visible = false;
-            _cancellationSource.Cancel();
+            ChangeCheck(true, false);
         }
         private void ModernRadio_CheckedChanged(object sender, EventArgs e)
         {
-            MapLegacy.Visible = false;
-            MapModern.Visible = true;
-            _cancellationSource.Cancel();
+            ChangeCheck(false, true);
+        }
+        private void ChangeCheck(bool legacy, bool modern)
+        {
+            MapLegacy.Visible = legacy;
+            MapModern.Visible = modern;
+            if (_cancellationSource is not null)
+            {
+                _cancellationSource.Cancel();
+            }
         }
         private void RandomSeedButton_Click(object sender, EventArgs e)
         {
@@ -204,6 +225,7 @@ namespace PresentationLayer
         }
         private void ClearButton_Click(object sender, EventArgs e)
         {
+            _generated = false;
             if (MapLegacy.Visible)
             {
                 MapLegacy.Clear();
@@ -212,40 +234,7 @@ namespace PresentationLayer
             {
                 MapModern.Refresh();
             }
-        }
-    }
 
-    public static class Extensions
-    {
-        public static void PrintTerrainCharacter(this RichTextBox box, int x, int y, int fontSize, Map map)
-        {
-            AppendText(box, map.Tiles[x, y].Laag.Teken.ToString(), map.Tiles[x, y].Color, fontSize);
-        }
-        public static void PrintTerrainModern(Graphics paint, int x, int y, int tile, CheckBox checkDebug, Map map)
-        {
-            paint.DrawRectangle(new Pen(map.Tiles[x, y].Color, tile), x * tile, y * tile, tile, tile);
-            if (checkDebug.Checked)
-            {
-                paint.DrawString(((int)map.NoiseValues[x, y]).ToString(), new Font("Arial", tile / 6), new SolidBrush(Color.Black), x * tile, y * tile);
-                //paint.Graphics.DrawRectangle(new Pen(Color.Red, 3), x * tile, y * tile, tile, tile);   
-            }
-        }
-        public static void AppendText(this RichTextBox box, string text, Color color, int fontSize)
-        {
-            if (box.InvokeRequired)
-            {
-                box.Invoke(new MethodInvoker(delegate
-                {
-                    Font currentFont = box.SelectionFont;
-                    FontStyle newFontStyle = (FontStyle)(currentFont.Style | FontStyle.Bold);
-                    box.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFontStyle);
-                    box.SelectionStart = box.TextLength;
-                    box.SelectionLength = 0;
-                    box.SelectionColor = color;
-                    box.AppendText(text);
-                    box.SelectionColor = box.ForeColor;
-                }));
-            }
         }
     }
 }

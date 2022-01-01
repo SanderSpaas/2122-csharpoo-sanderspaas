@@ -19,7 +19,7 @@
         public int Width { get; set; }
         public int Height { get; set; }
         public float Scale { get; set; }
-        public float[,]? NoiseValues { get; set; }
+        public float[,] NoiseValues { get; set; }
         public string Seed { get; set; }
         public Tile[,] Tiles { get; set; }
 
