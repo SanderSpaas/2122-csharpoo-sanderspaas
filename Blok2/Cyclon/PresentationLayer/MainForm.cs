@@ -16,6 +16,7 @@ namespace PresentationLayer
         private char[] _drawings = new char[] { '█', '█', '█', '█', '█', '█' };
         private List<Layer> _layers = new();
         private CancellationTokenSource _cancellationSource;
+        private readonly Random _random = new();
 
         public MainForm(ILogic logic)
         {
@@ -25,6 +26,7 @@ namespace PresentationLayer
             HeightData.Value = MapModern.Width / (int)TileSizeData.Value;
             WidthData.Value = MapModern.Height / (int)TileSizeData.Value;
             _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
+            SeedData.Text = _random.Next().ToString();
             foreach (object? Terrain in Enum.GetValues(typeof(TerrainType)))
             {
                 if (Terrain.ToString() != "Undefined")
@@ -35,7 +37,12 @@ namespace PresentationLayer
             LayersComboBox.SelectedIndex = 0;
         }
 
-        private async void GenerateButton_Click(object sender, EventArgs e)
+        private void GenerateButton_Click(object sender, EventArgs e)
+        {
+            SetupData();
+            StartDrawing();
+        }
+        private void SetupData()
         {
             if (!Int32.TryParse(SeedData.Text, out int seed))
             {
@@ -62,7 +69,9 @@ namespace PresentationLayer
                 _main.Shading(_map);
             }
             _generated = true;
-
+        }
+        private async void StartDrawing()
+        {
             if (MapModern.Visible)
             {
                 Refresh();
@@ -78,7 +87,6 @@ namespace PresentationLayer
                 }
             }
         }
-
         private async void DrawingPanel_Paint(object sender, PaintEventArgs e)
         {
             SetStyle(
@@ -97,6 +105,11 @@ namespace PresentationLayer
         }
         public TaskStatus LegacyDrawing()
         {
+            MapProgress.Invoke(new MethodInvoker(delegate
+            {
+                MapProgress.Maximum = _map.Height * _map.Width;
+            }));
+            int counter = 0;
             for (int y = 0; y < _map.Height; y++)
             {
                 for (int x = 0; x < _map.Width; x++)
@@ -111,6 +124,10 @@ namespace PresentationLayer
                         return TaskStatus.Canceled;
                     }
                     MapExtensions.PrintTerrainOld(_map, MapLegacy, x, y, _tileSize);
+                    MapProgress.Invoke(new MethodInvoker(delegate
+                    {
+                        MapProgress.Value = counter++;
+                    }));
                 }
                 MapExtensions.AppendText(_map, MapLegacy, _tileSize, 0, 0, true);
             }
@@ -119,6 +136,11 @@ namespace PresentationLayer
         }
         public TaskStatus ModernDrawing()
         {
+            MapProgress.Invoke(new MethodInvoker(delegate
+            {
+                MapProgress.Maximum = _map.Height * _map.Width;
+            }));
+            int counter = 0;
             for (int y = 0; y < _map.Height; y++)
             {
                 for (int x = 0; x < _map.Width; x++)
@@ -133,6 +155,10 @@ namespace PresentationLayer
                         return TaskStatus.Canceled;
                     }
                     MapExtensions.PrintTerrainModern(_map, MapModern.CreateGraphics(), x, y, _tileSize, ShowNumbersCheckbox);
+                    MapProgress.Invoke(new MethodInvoker(delegate
+                    {
+                        MapProgress.Value = counter++;
+                    }));
                 }
             }
             _generated = false;
@@ -197,8 +223,7 @@ namespace PresentationLayer
         {
             _cancellationSource.Cancel();
             _generated = false;
-            MapLegacy.Clear();
-            Refresh();
+            MapProgress.Value = 0;
             GenerateButton.Enabled = true;
         }
         private void LegacyRadio_CheckedChanged(object sender, EventArgs e)
@@ -213,6 +238,10 @@ namespace PresentationLayer
         {
             MapLegacy.Visible = legacy;
             MapModern.Visible = modern;
+            MapLegacy.Clear();
+            Refresh();
+            MapProgress.Value = 0;
+            SetSize();
             if (_cancellationSource is not null)
             {
                 _cancellationSource.Cancel();
@@ -220,10 +249,13 @@ namespace PresentationLayer
         }
         private void RandomSeedButton_Click(object sender, EventArgs e)
         {
-            var random = new Random();
-            SeedData.Text = random.Next().ToString();
+            SeedData.Text = _random.Next().ToString();
         }
         private void ClearButton_Click(object sender, EventArgs e)
+        {
+            ClearMaps();
+        }
+        private void ClearMaps()
         {
             _generated = false;
             if (MapLegacy.Visible)
@@ -234,7 +266,69 @@ namespace PresentationLayer
             {
                 MapModern.Refresh();
             }
+        }
 
+        private void TileSizeData_ValueChanged(object sender, EventArgs e)
+        {
+            SetSize();
+        }
+        private void SetSize()
+        {
+            if (MapModern.Visible)
+            {
+                HeightData.Maximum = MapModern.Width / TileSizeData.Value;
+                WidthData.Maximum = MapModern.Height / TileSizeData.Value;
+                HeightData.Value = MapModern.Width / TileSizeData.Value;
+                WidthData.Value = MapModern.Height / TileSizeData.Value;
+            }
+            else
+            {
+                HeightData.Maximum = MapModern.Width / (TileSizeData.Value * 2);
+                WidthData.Maximum = MapModern.Height / (TileSizeData.Value * 2);
+                HeightData.Value = MapModern.Width / (TileSizeData.Value * 2);
+                WidthData.Value = MapModern.Height / (TileSizeData.Value * 2);
+            }
+        }
+        private void ProgressBarCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            MapProgress.Visible = ProgressBarCheck.Checked;
+        }
+
+        private async void ShowModeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ClearMaps();
+            if (_cancellationSource is not null)
+            {
+                _cancellationSource.Cancel();
+            }
+            for (int i = 0; i < 100; i++)
+            {
+                if (ShowModeCheckBox.Checked)
+                {
+                    SeedData.Text = _random.Next().ToString();
+                    ScaleData.Value = (decimal)((_random.NextDouble() * (10 - 0.1)) + 0.01);
+                    TileSizeData.Value = _random.Next(8, 20);
+                    SetupData();
+                    if (MapModern.Visible)
+                    {
+                        _cancellationSource = new();
+                        var taskDone = await Task.Run(() => ModernDrawing()); if (taskDone == TaskStatus.RanToCompletion || taskDone == TaskStatus.Canceled)
+                        {
+                            GenerateButton.Enabled = true;
+                        }
+                    }
+                    else if (MapLegacy.Visible)
+                    {
+                        MapLegacy.Clear();
+                        _cancellationSource = new();
+                        GenerateButton.Enabled = false;
+                        var taskDone = await Task.Run(() => LegacyDrawing()); if (taskDone == TaskStatus.RanToCompletion || taskDone == TaskStatus.Canceled)
+                        {
+                            GenerateButton.Enabled = true;
+                        }
+                    }
+                }
+            }
         }
     }
 }

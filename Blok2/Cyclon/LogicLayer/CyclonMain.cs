@@ -68,11 +68,25 @@ namespace LogicLayer
         {
             SimplexNoise.Noise.Seed = _random.Next();
             float[,]? noiseValues = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+            SimplexNoise.Noise.Seed = _random.Next();
+            float[,]? noiseValues1 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+            SimplexNoise.Noise.Seed = _random.Next();
+            float[,]? noiseValues2 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+            SimplexNoise.Noise.Seed = _random.Next();
+            float[,]? noiseValues3 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+            SimplexNoise.Noise.Seed = _random.Next();
+            float[,]? noiseValues4 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+            SimplexNoise.Noise.Seed = _random.Next();
+            float[,]? noiseValues5 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+            SimplexNoise.Noise.Seed = _random.Next();
+            float[,]? noiseValues6 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+            SimplexNoise.Noise.Seed = _random.Next();
+            float[,]? noiseValues7 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
             for (int y = 0; y < map.Height; y++)
             {
                 for (int x = 0; x < map.Width; x++)
                 {
-                    data[x, y] = (data[x, y] + noiseValues[x, y]) / 2;
+                    data[x, y] = (data[x, y] + noiseValues[x, y] + noiseValues1[x, y] + noiseValues2[x, y] + noiseValues3[x, y] + noiseValues4[x, y] + noiseValues5[x, y] + noiseValues6[x, y] + noiseValues7[x, y]) / 7;
                 }
             }
             map.NoiseValues = data;

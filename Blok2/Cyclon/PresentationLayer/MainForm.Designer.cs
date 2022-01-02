@@ -34,6 +34,7 @@
             this.WidthData = new System.Windows.Forms.NumericUpDown();
             this.ScaleData = new System.Windows.Forms.NumericUpDown();
             this.MapModern = new System.Windows.Forms.Panel();
+            this.MapProgress = new System.Windows.Forms.ProgressBar();
             this.TileSizeData = new System.Windows.Forms.NumericUpDown();
             this.DeapSeaData = new System.Windows.Forms.TrackBar();
             this.SeaData = new System.Windows.Forms.TrackBar();
@@ -42,9 +43,6 @@
             this.HillData = new System.Windows.Forms.TrackBar();
             this.Tekenstijl = new System.Windows.Forms.GroupBox();
             this.MapSettings = new System.Windows.Forms.GroupBox();
-            this.RandomSeedButton = new System.Windows.Forms.Button();
-            this.SeedData = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,8 +50,13 @@
             this.ModernRadio = new System.Windows.Forms.RadioButton();
             this.LegacyRadio = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ShowModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.ProgressBarCheck = new System.Windows.Forms.CheckBox();
+            this.RandomSeedButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.SeedData = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.CancelGenerateButton = new System.Windows.Forms.Button();
             this.ShowNumbersCheckbox = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -112,7 +115,7 @@
             // 
             // GenerateButton
             // 
-            this.GenerateButton.Location = new System.Drawing.Point(12, 339);
+            this.GenerateButton.Location = new System.Drawing.Point(17, 379);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(150, 29);
             this.GenerateButton.TabIndex = 4;
@@ -124,7 +127,7 @@
             // 
             this.HeightData.Location = new System.Drawing.Point(12, 51);
             this.HeightData.Maximum = new decimal(new int[] {
-            1000000,
+            1000,
             0,
             0,
             0});
@@ -141,7 +144,7 @@
             // 
             this.WidthData.Location = new System.Drawing.Point(12, 106);
             this.WidthData.Maximum = new decimal(new int[] {
-            1000000,
+            1000,
             0,
             0,
             0});
@@ -173,15 +176,30 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MapModern.AutoSize = true;
-            this.MapModern.Location = new System.Drawing.Point(216, 0);
+            this.MapModern.Location = new System.Drawing.Point(216, 1);
             this.MapModern.Name = "MapModern";
-            this.MapModern.Size = new System.Drawing.Size(1471, 1055);
+            this.MapModern.Size = new System.Drawing.Size(1468, 1054);
             this.MapModern.TabIndex = 8;
             this.MapModern.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawingPanel_Paint);
+            // 
+            // MapProgress
+            // 
+            this.MapProgress.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.MapProgress.Location = new System.Drawing.Point(215, 1028);
+            this.MapProgress.Name = "MapProgress";
+            this.MapProgress.Size = new System.Drawing.Size(1469, 27);
+            this.MapProgress.Step = 1;
+            this.MapProgress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.MapProgress.TabIndex = 20;
             // 
             // TileSizeData
             // 
             this.TileSizeData.Location = new System.Drawing.Point(12, 212);
+            this.TileSizeData.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.TileSizeData.Name = "TileSizeData";
             this.TileSizeData.Size = new System.Drawing.Size(150, 27);
             this.TileSizeData.TabIndex = 9;
@@ -190,6 +208,7 @@
             0,
             0,
             0});
+            this.TileSizeData.ValueChanged += new System.EventHandler(this.TileSizeData_ValueChanged);
             // 
             // DeapSeaData
             // 
@@ -233,7 +252,7 @@
             // 
             // HillData
             // 
-            this.HillData.Location = new System.Drawing.Point(12, 277);
+            this.HillData.Location = new System.Drawing.Point(12, 284);
             this.HillData.Maximum = 255;
             this.HillData.Name = "HillData";
             this.HillData.Size = new System.Drawing.Size(150, 56);
@@ -257,9 +276,6 @@
             // 
             // MapSettings
             // 
-            this.MapSettings.Controls.Add(this.RandomSeedButton);
-            this.MapSettings.Controls.Add(this.SeedData);
-            this.MapSettings.Controls.Add(this.label10);
             this.MapSettings.Controls.Add(this.label4);
             this.MapSettings.Controls.Add(this.label3);
             this.MapSettings.Controls.Add(this.label2);
@@ -270,37 +286,10 @@
             this.MapSettings.Controls.Add(this.TileSizeData);
             this.MapSettings.Location = new System.Drawing.Point(6, 95);
             this.MapSettings.Name = "MapSettings";
-            this.MapSettings.Size = new System.Drawing.Size(204, 301);
+            this.MapSettings.Size = new System.Drawing.Size(204, 250);
             this.MapSettings.TabIndex = 16;
             this.MapSettings.TabStop = false;
             this.MapSettings.Text = "Map instellingen";
-            // 
-            // RandomSeedButton
-            // 
-            this.RandomSeedButton.Location = new System.Drawing.Point(139, 265);
-            this.RandomSeedButton.Name = "RandomSeedButton";
-            this.RandomSeedButton.Size = new System.Drawing.Size(23, 27);
-            this.RandomSeedButton.TabIndex = 19;
-            this.RandomSeedButton.Text = "🔃";
-            this.RandomSeedButton.UseVisualStyleBackColor = true;
-            this.RandomSeedButton.Click += new System.EventHandler(this.RandomSeedButton_Click);
-            // 
-            // SeedData
-            // 
-            this.SeedData.Location = new System.Drawing.Point(13, 265);
-            this.SeedData.Name = "SeedData";
-            this.SeedData.Size = new System.Drawing.Size(125, 27);
-            this.SeedData.TabIndex = 12;
-            this.SeedData.Text = "2126844100";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(0, 242);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(74, 20);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "Map seed";
             // 
             // label4
             // 
@@ -364,8 +353,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ShowModeCheckBox);
+            this.groupBox1.Controls.Add(this.ProgressBarCheck);
+            this.groupBox1.Controls.Add(this.RandomSeedButton);
             this.groupBox1.Controls.Add(this.ClearButton);
-            this.groupBox1.Controls.Add(this.CancelButton);
+            this.groupBox1.Controls.Add(this.SeedData);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.CancelGenerateButton);
             this.groupBox1.Controls.Add(this.ShowNumbersCheckbox);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label5);
@@ -378,16 +372,50 @@
             this.groupBox1.Controls.Add(this.DeapSeaData);
             this.groupBox1.Controls.Add(this.BeachData);
             this.groupBox1.Controls.Add(this.SeaData);
-            this.groupBox1.Location = new System.Drawing.Point(3, 424);
+            this.groupBox1.Location = new System.Drawing.Point(6, 351);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(207, 496);
+            this.groupBox1.Size = new System.Drawing.Size(204, 698);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Map instellingen";
             // 
+            // ShowModeCheckBox
+            // 
+            this.ShowModeCheckBox.AutoSize = true;
+            this.ShowModeCheckBox.Location = new System.Drawing.Point(20, 547);
+            this.ShowModeCheckBox.Name = "ShowModeCheckBox";
+            this.ShowModeCheckBox.Size = new System.Drawing.Size(155, 24);
+            this.ShowModeCheckBox.TabIndex = 21;
+            this.ShowModeCheckBox.Text = "Enable Showmode";
+            this.ShowModeCheckBox.UseVisualStyleBackColor = true;
+            this.ShowModeCheckBox.CheckedChanged += new System.EventHandler(this.ShowModeCheckBox_CheckedChanged);
+            // 
+            // ProgressBarCheck
+            // 
+            this.ProgressBarCheck.AutoSize = true;
+            this.ProgressBarCheck.Checked = true;
+            this.ProgressBarCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ProgressBarCheck.Location = new System.Drawing.Point(20, 517);
+            this.ProgressBarCheck.Name = "ProgressBarCheck";
+            this.ProgressBarCheck.Size = new System.Drawing.Size(150, 24);
+            this.ProgressBarCheck.TabIndex = 20;
+            this.ProgressBarCheck.Text = "Show progressbar";
+            this.ProgressBarCheck.UseVisualStyleBackColor = true;
+            this.ProgressBarCheck.CheckedChanged += new System.EventHandler(this.ProgressBarCheck_CheckedChanged);
+            // 
+            // RandomSeedButton
+            // 
+            this.RandomSeedButton.Location = new System.Drawing.Point(141, 346);
+            this.RandomSeedButton.Name = "RandomSeedButton";
+            this.RandomSeedButton.Size = new System.Drawing.Size(23, 27);
+            this.RandomSeedButton.TabIndex = 19;
+            this.RandomSeedButton.Text = "🔃";
+            this.RandomSeedButton.UseVisualStyleBackColor = true;
+            this.RandomSeedButton.Click += new System.EventHandler(this.RandomSeedButton_Click);
+            // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(12, 414);
+            this.ClearButton.Location = new System.Drawing.Point(17, 454);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(150, 29);
             this.ClearButton.TabIndex = 19;
@@ -395,20 +423,37 @@
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // CancelButton
+            // SeedData
             // 
-            this.CancelButton.Location = new System.Drawing.Point(12, 379);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(150, 29);
-            this.CancelButton.TabIndex = 15;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.SeedData.Location = new System.Drawing.Point(15, 346);
+            this.SeedData.Name = "SeedData";
+            this.SeedData.Size = new System.Drawing.Size(125, 27);
+            this.SeedData.TabIndex = 12;
+            this.SeedData.Text = "2126844100";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(15, 323);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(74, 20);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Map seed";
+            // 
+            // CancelGenerateButton
+            // 
+            this.CancelGenerateButton.Location = new System.Drawing.Point(17, 419);
+            this.CancelGenerateButton.Name = "CancelGenerateButton";
+            this.CancelGenerateButton.Size = new System.Drawing.Size(150, 29);
+            this.CancelGenerateButton.TabIndex = 15;
+            this.CancelGenerateButton.Text = "Cancel";
+            this.CancelGenerateButton.UseVisualStyleBackColor = true;
+            this.CancelGenerateButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // ShowNumbersCheckbox
             // 
             this.ShowNumbersCheckbox.AutoSize = true;
-            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(15, 447);
+            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(20, 487);
             this.ShowNumbersCheckbox.Name = "ShowNumbersCheckbox";
             this.ShowNumbersCheckbox.Size = new System.Drawing.Size(167, 24);
             this.ShowNumbersCheckbox.TabIndex = 18;
@@ -548,6 +593,7 @@
             // 
             // LayersComboBox
             // 
+            this.LayersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LayersComboBox.FormattingEnabled = true;
             this.LayersComboBox.Location = new System.Drawing.Point(6, 50);
             this.LayersComboBox.Name = "LayersComboBox";
@@ -641,6 +687,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.MapProgress);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Tekenstijl);
             this.Controls.Add(this.MapModern);
@@ -721,7 +768,10 @@
         private CheckBox InvertCheckBox;
         private CheckBox SpatialOffsetCheckBox;
         private CheckBox ShadingCheckBox;
-        private Button CancelButton;
+        private Button CancelGenerateButton;
         private Button ClearButton;
+        private ProgressBar MapProgress;
+        private CheckBox ProgressBarCheck;
+        private CheckBox ShowModeCheckBox;
     }
 }
