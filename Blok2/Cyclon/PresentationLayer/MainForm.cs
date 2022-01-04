@@ -27,7 +27,7 @@ namespace PresentationLayer
             WidthData.Value = MapModern.Height / (int)TileSizeData.Value;
             _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
             SeedData.Text = _random.Next().ToString();
-            foreach (object? Terrain in Enum.GetValues(typeof(TerrainType)))
+            foreach (object Terrain in Enum.GetValues(typeof(TerrainType)))
             {
                 if (Terrain.ToString() != "Undefined")
                 {
@@ -54,7 +54,11 @@ namespace PresentationLayer
             _bitmap = new Bitmap(_map.Height, _map.Width, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             if (SpatialOffsetCheckBox.Checked)
             {
-                _main.SpatialOffset(_map.NoiseValues, _map);
+                _main.SpatialOffset(_map.NoiseValues, _map, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, _layers, (int)SpatialOffsetCounter.Value);
+            }
+            if (IslandsCheckBox.Checked)
+            {
+                _main.Islands(_map, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, _layers);
             }
             if (InvertCheckBox.Checked)
             {
@@ -225,6 +229,7 @@ namespace PresentationLayer
             _generated = false;
             MapProgress.Value = 0;
             GenerateButton.Enabled = true;
+            ShowModeCheckBox.Checked = false;
         }
         private void LegacyRadio_CheckedChanged(object sender, EventArgs e)
         {
@@ -242,6 +247,7 @@ namespace PresentationLayer
             Refresh();
             MapProgress.Value = 0;
             SetSize();
+            ShowModeCheckBox.Checked = false;
             if (_cancellationSource is not null)
             {
                 _cancellationSource.Cancel();
@@ -308,6 +314,7 @@ namespace PresentationLayer
                     SeedData.Text = _random.Next().ToString();
                     ScaleData.Value = (decimal)((_random.NextDouble() * (10 - 0.1)) + 0.01);
                     TileSizeData.Value = _random.Next(8, 20);
+                    IslandsCheckBox.Checked = !IslandsCheckBox.Checked;
                     SetupData();
                     if (MapModern.Visible)
                     {

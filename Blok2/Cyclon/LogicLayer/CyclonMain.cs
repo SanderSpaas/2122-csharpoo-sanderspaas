@@ -6,17 +6,20 @@ namespace LogicLayer
     {
         private readonly IData _data;
         private readonly Random _random = new Random();
-        public CyclonMain(/*IData data*/)
+        public CyclonMain(IData data)
         {
-            //_data = data;
+            _data = data;
+        }
+        public CyclonMain()
+        {
         }
         public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill, string seed, List<Layer> layers)
         {
             var map = new Map(width, height, scale, seed);
             map.NoiseValues = GenerateNoise(map);
-            for (int x = 0; x < map.NoiseValues.GetLength(0); x++)
+            for (int x = 0; x < map.Width; x++)
             {
-                for (int y = 0; y < map.NoiseValues.GetLength(1); y++)
+                for (int y = 0; y < map.Height; y++)
                 {
                     map.Tiles[x, y].Laag = DetermineTerrain(map.NoiseValues[x, y], deepWater, water, sand, grass, hill, layers);
                     map.Tiles[x, y].Color = map.Tiles[x, y].Laag.Kleur;
@@ -64,32 +67,31 @@ namespace LogicLayer
             SimplexNoise.Noise.Seed = seedNumber;
             return SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
         }
-        public void SpatialOffset(float[,] data, Map map)
+        public void SpatialOffset(float[,] data, Map map, int deepWater, int water, int sand, int grass, int hill, List<Layer> layers, int aantalKeer)
         {
-            SimplexNoise.Noise.Seed = _random.Next();
-            float[,]? noiseValues = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
-            SimplexNoise.Noise.Seed = _random.Next();
-            float[,]? noiseValues1 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
-            SimplexNoise.Noise.Seed = _random.Next();
-            float[,]? noiseValues2 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
-            SimplexNoise.Noise.Seed = _random.Next();
-            float[,]? noiseValues3 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
-            SimplexNoise.Noise.Seed = _random.Next();
-            float[,]? noiseValues4 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
-            SimplexNoise.Noise.Seed = _random.Next();
-            float[,]? noiseValues5 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
-            SimplexNoise.Noise.Seed = _random.Next();
-            float[,]? noiseValues6 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
-            SimplexNoise.Noise.Seed = _random.Next();
-            float[,]? noiseValues7 = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+            for (int i = 0; i < aantalKeer; i++)
+            {
+                SimplexNoise.Noise.Seed = _random.Next();
+                float[,]? noiseValues = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
+                for (int y = 0; y < map.Height; y++)
+                {
+                    for (int x = 0; x < map.Width; x++)
+                    {
+                        data[x, y] += +noiseValues[x, y];
+                    }
+                }
+            }
             for (int y = 0; y < map.Height; y++)
             {
                 for (int x = 0; x < map.Width; x++)
                 {
-                    data[x, y] = (data[x, y] + noiseValues[x, y] + noiseValues1[x, y] + noiseValues2[x, y] + noiseValues3[x, y] + noiseValues4[x, y] + noiseValues5[x, y] + noiseValues6[x, y] + noiseValues7[x, y]) / 7;
+                    data[x, y] = (data[x, y] / aantalKeer);
+                    map.Tiles[x, y].Laag = DetermineTerrain(data[x, y], deepWater, water, sand, grass, hill, layers);
+                    map.Tiles[x, y].Color = map.Tiles[x, y].Laag.Kleur;
                 }
             }
             map.NoiseValues = data;
+
         }
         public void Invert(float[,] data, Map map)
         {
@@ -122,6 +124,40 @@ namespace LogicLayer
                     map.Tiles[x, y].Color = ControlPaint.Light(ControlPaint.Dark(map.Tiles[x, y].Color, map.NoiseValues[x, y] / (255 * 2)), (float)0.15);
                 }
             }
+        }
+        public void Islands(Map map, int deepWater, int water, int sand, int grass, int hill, List<Layer> layers)
+        {
+            float[,] tempArray = CircleGradient(map);
+            for (int y = 0; y < map.Height; y++)
+            {
+                for (int x = 0; x < map.Width; x++)
+                {
+                    map.NoiseValues[x, y] = (map.NoiseValues[x, y] - tempArray[x, y]);
+                    map.Tiles[x, y].Laag = DetermineTerrain(map.NoiseValues[x, y], deepWater, water, sand, grass, hill, layers);
+                    map.Tiles[x, y].Color = map.Tiles[x, y].Laag.Kleur;
+                }
+            }
+            for (int x = 0; x < map.NoiseValues.GetLength(0); x++)
+            {
+                for (int y = 0; y < map.NoiseValues.GetLength(1); y++)
+                {
+
+                }
+            }
+        }
+        public float[,] CircleGradient(Map map)
+        {
+            float[,] data = new float[map.Width, map.Height];
+            for (int y = 0; y < map.Height; y++)
+            {
+                for (int x = 0; x < map.Width; x++)
+                {
+                    float distanceX = (float)Math.Pow(map.Width / 2 - x, 2);
+                    float distanceY = (float)Math.Pow(map.Height / 2 - y, 2);
+                    data[x, y] = (float)Math.Sqrt(distanceX + distanceY) / map.Width * 510;
+                }
+            }
+            return data;
         }
     }
 }

@@ -64,6 +64,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.IslandsCheckBox = new System.Windows.Forms.CheckBox();
             this.ShadingCheckBox = new System.Windows.Forms.CheckBox();
             this.SpatialOffsetCheckBox = new System.Windows.Forms.CheckBox();
             this.ColorPickerButton = new System.Windows.Forms.Button();
@@ -80,6 +81,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.SpatialOffsetCounter = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.HeightData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WidthData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScaleData)).BeginInit();
@@ -94,6 +97,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpatialOffsetCounter)).BeginInit();
             this.SuspendLayout();
             // 
             // MapLegacy
@@ -507,6 +511,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.SpatialOffsetCounter);
+            this.groupBox2.Controls.Add(this.IslandsCheckBox);
             this.groupBox2.Controls.Add(this.ShadingCheckBox);
             this.groupBox2.Controls.Add(this.SpatialOffsetCheckBox);
             this.groupBox2.Controls.Add(this.ColorPickerButton);
@@ -530,12 +537,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Map instellingen";
             // 
+            // IslandsCheckBox
+            // 
+            this.IslandsCheckBox.AutoSize = true;
+            this.IslandsCheckBox.Checked = true;
+            this.IslandsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.IslandsCheckBox.Location = new System.Drawing.Point(13, 517);
+            this.IslandsCheckBox.Name = "IslandsCheckBox";
+            this.IslandsCheckBox.Size = new System.Drawing.Size(140, 24);
+            this.IslandsCheckBox.TabIndex = 25;
+            this.IslandsCheckBox.Text = "Generate islands";
+            this.IslandsCheckBox.UseVisualStyleBackColor = true;
+            // 
             // ShadingCheckBox
             // 
             this.ShadingCheckBox.AutoSize = true;
             this.ShadingCheckBox.Checked = true;
             this.ShadingCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ShadingCheckBox.Location = new System.Drawing.Point(12, 454);
+            this.ShadingCheckBox.Location = new System.Drawing.Point(13, 487);
             this.ShadingCheckBox.Name = "ShadingCheckBox";
             this.ShadingCheckBox.Size = new System.Drawing.Size(221, 24);
             this.ShadingCheckBox.TabIndex = 24;
@@ -681,6 +700,32 @@
             this.colorDialog1.AnyColor = true;
             this.colorDialog1.FullOpen = true;
             // 
+            // SpatialOffsetCounter
+            // 
+            this.SpatialOffsetCounter.Location = new System.Drawing.Point(12, 454);
+            this.SpatialOffsetCounter.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SpatialOffsetCounter.Name = "SpatialOffsetCounter";
+            this.SpatialOffsetCounter.Size = new System.Drawing.Size(53, 27);
+            this.SpatialOffsetCounter.TabIndex = 11;
+            this.SpatialOffsetCounter.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(73, 456);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(142, 20);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Aantal spatial offset";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -714,6 +759,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpatialOffsetCounter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -773,5 +819,8 @@
         private ProgressBar MapProgress;
         private CheckBox ProgressBarCheck;
         private CheckBox ShowModeCheckBox;
+        private CheckBox IslandsCheckBox;
+        private Label label12;
+        private NumericUpDown SpatialOffsetCounter;
     }
 }
