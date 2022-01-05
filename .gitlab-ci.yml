@@ -5,5 +5,5 @@ CSharpOOTest:
    script:
       - "CSharpOOTest"
    only:
-      - main
+      - DevelopingBranch
       - master
