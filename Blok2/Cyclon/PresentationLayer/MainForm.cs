@@ -230,11 +230,14 @@ namespace PresentationLayer
         }
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            _cancellationSource.Cancel();
-            _generated = false;
-            MapProgress.Value = 0;
-            GenerateButton.Enabled = true;
-            ShowModeCheckBox.Checked = false;
+            if (_cancellationSource != null)
+            {
+                _cancellationSource.Cancel();
+                _generated = false;
+                MapProgress.Value = 0;
+                GenerateButton.Enabled = true;
+                ShowModeCheckBox.Checked = false;
+            }
         }
         private void LegacyRadio_CheckedChanged(object sender, EventArgs e)
         {
@@ -342,15 +345,20 @@ namespace PresentationLayer
                 }
             }
         }
-
-        private void SaveMapButton_Click(object sender, EventArgs e)
-        {
-            SaveMap(_map, MapLegacy);
-        }
         public void SaveMap(Map map, RichTextBox box)
         {
             string jsonString = JsonSerializer.Serialize(map);
             box.Text = jsonString;
+        }
+
+        private void SaveSeedButton_Click(object sender, EventArgs e)
+        {
+            new SaveSeed(SeedData.Text).ShowDialog();
+        }
+
+        private void LoadSeedButton_Click(object sender, EventArgs e)
+        {
+            new LoadSeed().ShowDialog();
         }
     }
 }

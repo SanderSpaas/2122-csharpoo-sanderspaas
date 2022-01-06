@@ -50,6 +50,8 @@
             this.ModernRadio = new System.Windows.Forms.RadioButton();
             this.LegacyRadio = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LoadSeedButton = new System.Windows.Forms.Button();
+            this.SaveSeedButton = new System.Windows.Forms.Button();
             this.ShowModeCheckBox = new System.Windows.Forms.CheckBox();
             this.ProgressBarCheck = new System.Windows.Forms.CheckBox();
             this.RandomSeedButton = new System.Windows.Forms.Button();
@@ -83,8 +85,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.SaveMapButton = new System.Windows.Forms.Button();
-            this.LoadMapButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.HeightData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WidthData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScaleData)).BeginInit();
@@ -359,8 +359,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.LoadMapButton);
-            this.groupBox1.Controls.Add(this.SaveMapButton);
+            this.groupBox1.Controls.Add(this.LoadSeedButton);
+            this.groupBox1.Controls.Add(this.SaveSeedButton);
             this.groupBox1.Controls.Add(this.ShowModeCheckBox);
             this.groupBox1.Controls.Add(this.ProgressBarCheck);
             this.groupBox1.Controls.Add(this.RandomSeedButton);
@@ -386,6 +386,26 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Map instellingen";
+            // 
+            // LoadSeedButton
+            // 
+            this.LoadSeedButton.Location = new System.Drawing.Point(17, 612);
+            this.LoadSeedButton.Name = "LoadSeedButton";
+            this.LoadSeedButton.Size = new System.Drawing.Size(150, 29);
+            this.LoadSeedButton.TabIndex = 23;
+            this.LoadSeedButton.Text = "Load seed";
+            this.LoadSeedButton.UseVisualStyleBackColor = true;
+            this.LoadSeedButton.Click += new System.EventHandler(this.LoadSeedButton_Click);
+            // 
+            // SaveSeedButton
+            // 
+            this.SaveSeedButton.Location = new System.Drawing.Point(17, 577);
+            this.SaveSeedButton.Name = "SaveSeedButton";
+            this.SaveSeedButton.Size = new System.Drawing.Size(150, 29);
+            this.SaveSeedButton.TabIndex = 22;
+            this.SaveSeedButton.Text = "Save seed";
+            this.SaveSeedButton.UseVisualStyleBackColor = true;
+            this.SaveSeedButton.Click += new System.EventHandler(this.SaveSeedButton_Click);
             // 
             // ShowModeCheckBox
             // 
@@ -730,25 +750,6 @@
             this.colorDialog1.AnyColor = true;
             this.colorDialog1.FullOpen = true;
             // 
-            // SaveMapButton
-            // 
-            this.SaveMapButton.Location = new System.Drawing.Point(17, 577);
-            this.SaveMapButton.Name = "SaveMapButton";
-            this.SaveMapButton.Size = new System.Drawing.Size(150, 29);
-            this.SaveMapButton.TabIndex = 22;
-            this.SaveMapButton.Text = "Save map";
-            this.SaveMapButton.UseVisualStyleBackColor = true;
-            this.SaveMapButton.Click += new System.EventHandler(this.SaveMapButton_Click);
-            // 
-            // LoadMapButton
-            // 
-            this.LoadMapButton.Location = new System.Drawing.Point(17, 612);
-            this.LoadMapButton.Name = "LoadMapButton";
-            this.LoadMapButton.Size = new System.Drawing.Size(150, 29);
-            this.LoadMapButton.TabIndex = 23;
-            this.LoadMapButton.Text = "Load map";
-            this.LoadMapButton.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -845,7 +846,7 @@
         private CheckBox IslandsCheckBox;
         private Label label12;
         private NumericUpDown SpatialOffsetCounter;
-        private Button SaveMapButton;
-        private Button LoadMapButton;
+        private Button SaveSeedButton;
+        private Button LoadSeedButton;
     }
 }

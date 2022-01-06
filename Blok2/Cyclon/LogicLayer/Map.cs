@@ -1,5 +1,4 @@
 ﻿using Globals.Interfaces;
-using System.Text.Json.Serialization;
 
 namespace LogicLayer
 {
@@ -22,10 +21,8 @@ namespace LogicLayer
         public int Width { get; set; }
         public int Height { get; set; }
         public float Scale { get; set; }
-        [JsonIgnore]
         public float[,] NoiseValues { get; set; }
         public string Seed { get; set; }
-        [JsonIgnore]
         public Tile[,] Tiles { get; set; }
 
         public void SetMap()
