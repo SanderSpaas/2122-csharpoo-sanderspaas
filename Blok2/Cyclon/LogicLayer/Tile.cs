@@ -1,6 +1,8 @@
-﻿namespace LogicLayer
+﻿using Globals.Interfaces;
+
+namespace LogicLayer
 {
-    public struct Tile
+    public struct Tile : ILogic
     {
         public Tile(Layer laag)
         {

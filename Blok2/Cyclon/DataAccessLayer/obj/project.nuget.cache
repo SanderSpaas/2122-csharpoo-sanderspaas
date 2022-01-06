@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "VD6W9KyivQctdnvME4MFEFBOP/BuqMSzpPaTOD2gP8k630Jjdjv+sJaD0ZUi131/4rvJy3HSBzQguXHqY9ViTQ==",
+  "dgSpecHash": "lLfXvhYqGWOeOGJqvZEBpA7jnVDqpNqyadgloK1m6ibLWiKoaZ5hg5eHkWxVvTuUy5JiVtAfCaMHJ20WlGxnxQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\sande\\.nuget\\packages\\simplexnoise\\2.0.0\\simplexnoise.2.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

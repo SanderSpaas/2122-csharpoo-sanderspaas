@@ -1,26 +1,31 @@
-﻿using Globals.Interfaces;
+﻿using DataAccessLayer;
+using Globals.Interfaces;
 using LogicLayer;
+using System.Text.Json;
 
 namespace PresentationLayer
 {
     public partial class MainForm : Form
     {
+        private readonly IData _data;
         private readonly ILogic _logic;
         private Map _map = new();
         private CyclonMain _main = new();
+        private Data _dataObj = new();
         private Bitmap _bitmap;
         private bool _generated = false;
         private int _tileSize = 0;
-        private Color[] _kleuren = new Color[] { Color.FromArgb(2, 72, 132), Color.FromArgb(3, 100, 184), Color.FromArgb(255, 203, 60), Color.Green, Color.DarkGreen, Color.Gray };
-        private int[] _heights = new int[] { 40, 70, 120, 135, 220, 240 };
-        private char[] _drawings = new char[] { '█', '█', '█', '█', '█', '█' };
+        private readonly Color[] _kleuren = new Color[] { Color.FromArgb(2, 72, 132), Color.FromArgb(3, 100, 184), Color.FromArgb(255, 203, 60), Color.Green, Color.DarkGreen, Color.Gray };
+        private readonly int[] _heights = new int[] { 40, 70, 120, 135, 220, 240 };
+        private readonly char[] _drawings = new char[] { '█', '█', '█', '█', '█', '█' };
         private List<Layer> _layers = new();
         private CancellationTokenSource _cancellationSource;
         private readonly Random _random = new();
 
-        public MainForm(ILogic logic)
+        public MainForm(ILogic logic, IData data)
         {
             _logic = logic;
+            _data = data;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
             HeightData.Value = MapModern.Width / (int)TileSizeData.Value;
@@ -336,6 +341,16 @@ namespace PresentationLayer
                     }
                 }
             }
+        }
+
+        private void SaveMapButton_Click(object sender, EventArgs e)
+        {
+            SaveMap(_map, MapLegacy);
+        }
+        public void SaveMap(Map map, RichTextBox box)
+        {
+            string jsonString = JsonSerializer.Serialize(map);
+            box.Text = jsonString;
         }
     }
 }

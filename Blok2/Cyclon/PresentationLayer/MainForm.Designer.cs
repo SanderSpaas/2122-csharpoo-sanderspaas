@@ -64,6 +64,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.SpatialOffsetCounter = new System.Windows.Forms.NumericUpDown();
             this.IslandsCheckBox = new System.Windows.Forms.CheckBox();
             this.ShadingCheckBox = new System.Windows.Forms.CheckBox();
             this.SpatialOffsetCheckBox = new System.Windows.Forms.CheckBox();
@@ -81,8 +83,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.SpatialOffsetCounter = new System.Windows.Forms.NumericUpDown();
-            this.label12 = new System.Windows.Forms.Label();
+            this.SaveMapButton = new System.Windows.Forms.Button();
+            this.LoadMapButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.HeightData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WidthData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScaleData)).BeginInit();
@@ -96,8 +98,8 @@
             this.MapSettings.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpatialOffsetCounter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // MapLegacy
@@ -357,6 +359,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.LoadMapButton);
+            this.groupBox1.Controls.Add(this.SaveMapButton);
             this.groupBox1.Controls.Add(this.ShowModeCheckBox);
             this.groupBox1.Controls.Add(this.ProgressBarCheck);
             this.groupBox1.Controls.Add(this.RandomSeedButton);
@@ -419,7 +423,7 @@
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(17, 454);
+            this.ClearButton.Location = new System.Drawing.Point(17, 449);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(150, 29);
             this.ClearButton.TabIndex = 19;
@@ -446,7 +450,7 @@
             // 
             // CancelGenerateButton
             // 
-            this.CancelGenerateButton.Location = new System.Drawing.Point(17, 419);
+            this.CancelGenerateButton.Location = new System.Drawing.Point(17, 414);
             this.CancelGenerateButton.Name = "CancelGenerateButton";
             this.CancelGenerateButton.Size = new System.Drawing.Size(150, 29);
             this.CancelGenerateButton.TabIndex = 15;
@@ -536,6 +540,32 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Map instellingen";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(73, 456);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(142, 20);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Aantal spatial offset";
+            // 
+            // SpatialOffsetCounter
+            // 
+            this.SpatialOffsetCounter.Location = new System.Drawing.Point(12, 454);
+            this.SpatialOffsetCounter.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SpatialOffsetCounter.Name = "SpatialOffsetCounter";
+            this.SpatialOffsetCounter.Size = new System.Drawing.Size(53, 27);
+            this.SpatialOffsetCounter.TabIndex = 11;
+            this.SpatialOffsetCounter.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             // 
             // IslandsCheckBox
             // 
@@ -700,31 +730,24 @@
             this.colorDialog1.AnyColor = true;
             this.colorDialog1.FullOpen = true;
             // 
-            // SpatialOffsetCounter
+            // SaveMapButton
             // 
-            this.SpatialOffsetCounter.Location = new System.Drawing.Point(12, 454);
-            this.SpatialOffsetCounter.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.SpatialOffsetCounter.Name = "SpatialOffsetCounter";
-            this.SpatialOffsetCounter.Size = new System.Drawing.Size(53, 27);
-            this.SpatialOffsetCounter.TabIndex = 11;
-            this.SpatialOffsetCounter.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
+            this.SaveMapButton.Location = new System.Drawing.Point(17, 577);
+            this.SaveMapButton.Name = "SaveMapButton";
+            this.SaveMapButton.Size = new System.Drawing.Size(150, 29);
+            this.SaveMapButton.TabIndex = 22;
+            this.SaveMapButton.Text = "Save map";
+            this.SaveMapButton.UseVisualStyleBackColor = true;
+            this.SaveMapButton.Click += new System.EventHandler(this.SaveMapButton_Click);
             // 
-            // label12
+            // LoadMapButton
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(73, 456);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(142, 20);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "Aantal spatial offset";
+            this.LoadMapButton.Location = new System.Drawing.Point(17, 612);
+            this.LoadMapButton.Name = "LoadMapButton";
+            this.LoadMapButton.Size = new System.Drawing.Size(150, 29);
+            this.LoadMapButton.TabIndex = 23;
+            this.LoadMapButton.Text = "Load map";
+            this.LoadMapButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -758,8 +781,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpatialOffsetCounter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -822,5 +845,7 @@
         private CheckBox IslandsCheckBox;
         private Label label12;
         private NumericUpDown SpatialOffsetCounter;
+        private Button SaveMapButton;
+        private Button LoadMapButton;
     }
 }

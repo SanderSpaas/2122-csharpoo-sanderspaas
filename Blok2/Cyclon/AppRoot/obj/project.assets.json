@@ -15,7 +15,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Globals": "1.0.0"
+          "Globals": "1.0.0",
+          "LogicLayer": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DataAccessLayer.dll": {}
