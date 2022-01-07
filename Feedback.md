@@ -2,6 +2,7 @@
 ## Feedback C# OO Programming
 
 
+
 #### Kennismaking Visual Studio 2019
 
 - [x] *Aanmaken solution binnen GIT-repository*
@@ -29,33 +30,29 @@
 
 #### Programmeerstijl
 
---> Nog niet beoordeeld
-
 - [ ] *Huisregels voor programmeerstijl volgen*
  
 * Je volgt niet altijd de regels voor naamgeving.
-  * De waarden voor een enum-type moeten PascalCased zijn.
-  * Start de namen van private velden met een underscore (gevolgd door de naam in camelCasing).
-  * Voor methodes en klassen wordt PascalCasing gebruikt.
-  * Gebruik geen underscores in namen (pas de automatisch gegenereerde namen met underscores aan).
-* Geef je bestand dezelfde naam als de klasse die het bevat (Spyfall / startGUI.cs)
+   * Gebruik geen underscores in namen (pas de automatisch gegenereerde namen met underscores aan).
 * Schrijf geen te lange methoden (richtlijn ~20 lijnen).
 * Gebruik voor alle velden, klassen, methodes, properties steeds access modifiers (public, private...).
-* Gebruik type inference ('var') volgens de conventie uit de stijlregels.
 * Hanteer de gevraagde volgorde voor de verschillende onderdelen van je klasse (properties na de velden en voor de constructor).
 * Vermijd overbodige blanco lijnen (bv. twee achter elkaar of een blanco lijn tussen twee accolades).
-* Werk niet met statische methodes of variabelen tenzij daar een heel goede reden voor is (Je 'Dataverwerker' is bv. helemaal niet object georiënteerd). ).
-* Verwijder de commentaar die geen meerwaarde heeft ten opzichte van de code waar ze bij staat.   
-    Bijvoorbeeld:    
-   ```csharp
-        //een random gaan genereren met als maximum het aantal lijnen in ons data document
-        int randomGetal = random.Next(0, File.ReadLines(filePath).Count());
-   ```
+* Werk niet met statische methodes of variabelen tenzij daar een heel goede reden voor is.
 
-* In bovenstaande code Lees je het volledige bestand in om het aantal lijnen te kennen. De ingelezen inhoud gooi je dan weg om in het volgende statement die inhoud opnieuw te lezen. Dat is niet echt efficiënt!
-* Je gebruikt 'Random' niet op een efficiënte manier (je maakt steeds een nieuwe instantie aan bij de oproep van je methodes).
-* Zoals je nu vensters aanmaakt en toont, geef je de gebruiekr de kans om meerdere keren gelijkaardige vensters aan te maken en die open te laten terwijl de rest van het spel uitgeveord wordt. Gebruik 'ShowDialog' ipv 'Show' waardat relevant is..
-* Tip: Om te testen of een string leeg is,  vervang je `if (input == null)` beter door `string.IsNullOrWhiteSpace(input)`
+* Je hebt de 'ILogic' interface leeg gelaten maar implementeert die wel in `CyclonMain`, `Map`en `Tile`. Waarom???
+* Zet geen twee statements op één lijn (zoals in 'MainForm.StartDrawing').
+
+* Volgende code is niet echt zinvol:    
+    ```csharp
+       var taskDone = await Task.Run(() => ModernDrawing());    
+       if (taskDone == TaskStatus.RanToCompletion || taskDone == TaskStatus.Canceled)
+       {
+          GenerateButton.Enabled = true;
+       }
+    ```
+    Als er bij de await geen exception optreedt dan kan de TaskStatus enkel 'RanToCompletion' of 'Canceled' zijn.
+
 * Tip: hou rekening met de messages en warnings uit de 'Error List'.
 
 
@@ -63,37 +60,17 @@
 
 - [x] *try..catch*
 - [ ] *try..catch..finally*
-- [x] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
+- [ ] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
 
-* Een exceptie opgooien in een 'try' blok om die dan onmiddellijk in de catch blok weer op te vangen, is geen goede aanpak. Een exceptie dient voor een onverwachte foutsituatie die je in de methode waar ze gedetecteerd wordt niet kan opvangen.    
-Je kan volgende code: 
+* Door in je datalaag een debug message weg te schrijven is het probleem dat de exception veroorzaakte niet opgelost. Is dat geen probleem in je toepassing?
 
-   ```csharp
-      try
-      {
-         if (!File.Exists(filePath))
-                throw new FileNotFoundException($"Het bestand bestaat niet op de opgegeven locatie: {filePath}");
-      }
-      catch (FileNotFoundException)
-      {
-          return false;
-      }
-   ```
-
-    
-    veel beter vervangen door:   
-
-
-    `if (!File.Exists(filePath)) return false; `
-
- 
 
 #### Enumerations
 
---> Nog niet beoordeeld
-
-- [ ] *Declaratie en gebruik van enum-type*
+- [x] *Declaratie en gebruik van enum-type*
  
+* Vervang  `if (Terrain.ToString() != "Undefined")` door `if (terrain != TerrainType.Undefined)`.
+
 #### Properties
 
 - [x] *Full property (with private backing field)*
@@ -107,9 +84,7 @@ Je kan volgende code:
 
 #### Generic collections
 
---> Nog niet beoordeeld
-
-- [ ] *List<T>*
+- [x] *List<T>*
 - [ ] *Dictionary<T,T>*
 - [ ] *Overzicht andere generic collections*
 
@@ -123,8 +98,6 @@ Je kan volgende code:
 
 #### Architectuur van een toepassing - Meerlagenmodel
 
---> Nog niet beoordeeld
-
 - [ ] *Klasseblibliotheken*
 - [ ] *Meerlagenmodel - 3lagenmodel*
 - [ ] *'Loose coupling' - dependency injection*
@@ -136,8 +109,8 @@ Je kan volgende code:
 #### Bestanden en 'streams'
 
 - [x] *Statische klassen uit 'System.IO'*
-- [ ] *Streams*
-- [ ] *Serialisatie*
+- [x] *Streams*
+- [x] *Serialisatie*
 
 #### 'Value' en 'Reference' types, cloning van objecten
 
@@ -147,13 +120,13 @@ Je kan volgende code:
 
 #### Klassen - klassehiërarchie
 
---> Nog niet beoordeeld
-
-- [ ] *Klasse declaratie*
-- [ ] *constructor overloading*
+- [x] *Klasse declaratie*
+- [x] *constructor overloading*
 - [ ] *Klasse-hiërarchie - subklasse - base-constructor*
 - [ ] *Klasse-hiërarchie - virtual methods - override*
 - [ ] *Abstracte klasse + implementatie*
+
+* Je gebruikt constructor overloading voor 'Map' maar de default-constructor geeft een map die niet volledig geïnitialiseerd is (en die ook niet zinvol gebruikt wordt).*
 
 #### Structs
 
@@ -161,10 +134,8 @@ Je kan volgende code:
 
 ##### Extension methods
 
-- [ ] *Extension method schrijven*
-- [ ] *Functioneel gebruik van extension methods*
-
-* 1/1/2022: waar gebruik je extension methods?
+- [x] *Extension method schrijven*
+- [x] *Functioneel gebruik van extension methods*
 
 #### Delegates
 
@@ -177,7 +148,7 @@ Je kan volgende code:
 
 - [x] *Lambda expressions*
 
-* Je hebt slechts één (heel elementaire) lambda expression (om je Task te starten).
+* Je gebruikt enkel heel elementaire lambda expressionz (om je Tasks te starten).
 
 #### Language Integrated Query (Linq)
 
@@ -193,16 +164,17 @@ Je kan volgende code:
 - [x] *Event 'Consumer'*
 
 * Je reageert op externe events maar nog niet op eigen events die vanuit je eigen code gestart worden.
-
+7/01/2022: wat is hier veranderd na bovenstaande feedback?
 
 #### Concurrent programmatie: Tasks
 
---> Nog niet beoordeeld
-
-- [ ] *Tasks*
-- [ ] *Cross-thread' interactie vanuit een Task met de userinterface*
+- [x] *Tasks*
+- [x] *Cross-thread' interactie vanuit een Task met de userinterface*
 - [ ] *Exceptions in Tasks*
 - [ ] *Parallel loops*
+
+* Het is niet de bedoeling dat je zelf 'TaskStatus' waarden doorgeeft uit een methode. Dat wordt door .Net op een specifieke manier gebruikt om de toestand van een Task aan te geven.
+
  
 #### Concurrent programming: Task synchronisation
 
@@ -213,9 +185,7 @@ Je kan volgende code:
 
 #### Asynchronous programming: async .. await
 
---> Nog niet beoordeeld
-
-- [ ] *async .. await*
+- [x] *async .. await*
 
 #### (Recursie)
 
@@ -233,10 +203,11 @@ Je kan volgende code:
 
 #### (Statische klassen, methoden, velden)
 
---> Nog niet beoordeeld
+- [x] *Zinvol gebruik statische klassen, methoden, velden*
 
-- [ ] *Zinvol gebruik statische klassen, methoden, velden*
-
+* Het gebruik van het statisch '_seedData' veld in 'SeedData' is een antipattern! Maak daar gewoon instance veld van en zorg dat je maar één instantie van 'SeedData' maakt die je dan via de constructor injecteert op alle plaatsen waar je die nodig hebt.
+* Het heeft geen enkele meerwaarde dat `CheckOrCreate` een statische methode is. Ook dat is een antipattern.
+* 
 #### Code Reviews
 
 --> Nog niet beoordeeld
