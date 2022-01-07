@@ -1,7 +1,4 @@
 ﻿using Globals.Interfaces;
-using LogicLayer;
-using System.Text.Json;
-using System.Windows.Forms;
 
 namespace DataAccessLayer
 {
@@ -10,11 +7,6 @@ namespace DataAccessLayer
         public Data()
         {
 
-        }
-        public void SaveMap(Map map, RichTextBox box)
-        {
-            string jsonString = JsonSerializer.Serialize(map);
-            box.Text = jsonString;
         }
     }
 }

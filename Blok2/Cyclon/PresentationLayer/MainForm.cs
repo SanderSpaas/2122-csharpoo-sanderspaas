@@ -1,7 +1,5 @@
-﻿using DataAccessLayer;
-using Globals.Interfaces;
+﻿using Globals.Interfaces;
 using LogicLayer;
-using System.Text.Json;
 
 namespace PresentationLayer
 {
@@ -11,12 +9,11 @@ namespace PresentationLayer
         private readonly ILogic _logic;
         private Map _map = new();
         private CyclonMain _main = new();
-        private Data _dataObj = new();
         private Bitmap _bitmap;
         private bool _generated = false;
         private int _tileSize = 0;
         private readonly Color[] _kleuren = new Color[] { Color.FromArgb(2, 72, 132), Color.FromArgb(3, 100, 184), Color.FromArgb(255, 203, 60), Color.Green, Color.DarkGreen, Color.Gray };
-        private readonly int[] _heights = new int[] { 40, 70, 120, 135, 220, 240 };
+        private readonly int[] _heights = new int[] { 40, 70, 120, 135, 220, 233 };
         private readonly char[] _drawings = new char[] { '█', '█', '█', '█', '█', '█' };
         private List<Layer> _layers = new();
         private CancellationTokenSource _cancellationSource;
@@ -28,8 +25,6 @@ namespace PresentationLayer
             _data = data;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
-            HeightData.Value = MapModern.Width / (int)TileSizeData.Value;
-            WidthData.Value = MapModern.Height / (int)TileSizeData.Value;
             _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
             SeedData.Text = _random.Next().ToString();
             foreach (object Terrain in Enum.GetValues(typeof(TerrainType)))
@@ -37,9 +32,22 @@ namespace PresentationLayer
                 if (Terrain.ToString() != "Undefined")
                 {
                     LayersComboBox.Items.Add(Terrain);
+
                 }
             }
+            ///dingen gaan juist zetten voor de gridview
+            LayersListGrid.DataSource = _layers;
+            LayersListGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            LayersListGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            LayersListGrid.BackgroundColor = Color.White;
+            LayersListGrid.RowHeadersVisible = false;
+            LayersListGrid.ReadOnly = true;
+
             LayersComboBox.SelectedIndex = 0;
+
+            //de map juist gaan sizen
+            HeightData.Value = MapModern.Width / (int)TileSizeData.Value;
+            WidthData.Value = MapModern.Height / (int)TileSizeData.Value;
         }
 
         private void GenerateButton_Click(object sender, EventArgs e)
@@ -54,16 +62,16 @@ namespace PresentationLayer
                 //als de seed text is dan veranderen we het naar een hascode aka een getal
                 seed = SeedData.Text.GetHashCode();
             }
-            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, SeedData.Text, _layers);
+            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, SeedData.Text, _layers);
             _tileSize = (int)TileSizeData.Value;
             _bitmap = new Bitmap(_map.Height, _map.Width, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             if (SpatialOffsetCheckBox.Checked)
             {
-                _main.SpatialOffset(_map.NoiseValues, _map, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, _layers, (int)SpatialOffsetCounter.Value);
+                _main.SpatialOffset(_map.NoiseValues, _map, _layers, (int)SpatialOffsetCounter.Value);
             }
             if (IslandsCheckBox.Checked)
             {
-                _main.Islands(_map, DeapSeaData.Value, SeaData.Value, BeachData.Value, GrassData.Value, HillData.Value, _layers);
+                _main.Islands(_map, _layers);
             }
             if (InvertCheckBox.Checked)
             {
@@ -185,6 +193,8 @@ namespace PresentationLayer
                     if (LayersComboBox.SelectedItem.ToString() == layer.NaamLaag.ToString())
                     {
                         layer.Kleur = KleurToner.BackColor;
+                        LayersListGrid.Update();
+                        LayersListGrid.Refresh();
                     }
                 }
             }
@@ -199,21 +209,12 @@ namespace PresentationLayer
                 {
                     KleurToner.BackColor = layer.Kleur;
                     LetterLaagData.Text = layer.Teken.ToString();
+                    LayersLabel.Text = layer.NaamLaag.ToString() + " height";
+                    LayersHeightData.Value = layer.Height;
                 }
             }
         }
-        private void ResetLagenButton_Click(object sender, EventArgs e)
-        {
-            _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
-            foreach (var layer in _layers)
-            {
-                if (LayersComboBox.SelectedItem.ToString() == layer.NaamLaag.ToString())
-                {
-                    KleurToner.BackColor = layer.Kleur;
-                    LetterLaagData.Text = layer.Teken.ToString();
-                }
-            }
-        }
+
         private void LetterLaagData_TextChanged(object sender, EventArgs e)
         {
             if (LetterLaagData.Text.Length > 0)
@@ -224,7 +225,37 @@ namespace PresentationLayer
                     if (LayersComboBox.SelectedItem.ToString() == layer.NaamLaag.ToString())
                     {
                         layer.Teken = LetterLaagData.Text.ToCharArray()[0];
+                        LayersListGrid.Update();
+                        LayersListGrid.Refresh();
                     }
+                }
+            }
+        }
+        private void LayersHeightData_Scroll(object sender, EventArgs e)
+        {
+            //data van die laag gaan updaten
+            foreach (var layer in _layers)
+            {
+                if (LayersComboBox.SelectedItem.ToString() == layer.NaamLaag.ToString())
+                {
+                    layer.Height = LayersHeightData.Value;
+                    LayersListGrid.Update();
+                    LayersListGrid.Refresh();
+                }
+            }
+        }
+        private void ResetLagenButton_Click(object sender, EventArgs e)
+        {
+            _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
+            LayersListGrid.DataSource = _layers;
+            LayersListGrid.Update();
+            LayersListGrid.Refresh();
+            foreach (var layer in _layers)
+            {
+                if (LayersComboBox.SelectedItem.ToString() == layer.NaamLaag.ToString())
+                {
+                    KleurToner.BackColor = layer.Kleur;
+                    LetterLaagData.Text = layer.Teken.ToString();
                 }
             }
         }
@@ -344,11 +375,6 @@ namespace PresentationLayer
                     }
                 }
             }
-        }
-        public void SaveMap(Map map, RichTextBox box)
-        {
-            string jsonString = JsonSerializer.Serialize(map);
-            box.Text = jsonString;
         }
 
         private void SaveSeedButton_Click(object sender, EventArgs e)

@@ -36,11 +36,7 @@
             this.MapModern = new System.Windows.Forms.Panel();
             this.MapProgress = new System.Windows.Forms.ProgressBar();
             this.TileSizeData = new System.Windows.Forms.NumericUpDown();
-            this.DeapSeaData = new System.Windows.Forms.TrackBar();
-            this.SeaData = new System.Windows.Forms.TrackBar();
-            this.BeachData = new System.Windows.Forms.TrackBar();
-            this.GrassData = new System.Windows.Forms.TrackBar();
-            this.HillData = new System.Windows.Forms.TrackBar();
+            this.LayersHeightData = new System.Windows.Forms.TrackBar();
             this.Tekenstijl = new System.Windows.Forms.GroupBox();
             this.MapSettings = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -60,12 +56,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.CancelGenerateButton = new System.Windows.Forms.Button();
             this.ShowNumbersCheckbox = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.LayersListGrid = new System.Windows.Forms.DataGridView();
+            this.LayersLabel = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.SpatialOffsetCounter = new System.Windows.Forms.NumericUpDown();
             this.IslandsCheckBox = new System.Windows.Forms.CheckBox();
@@ -89,15 +82,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.WidthData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScaleData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TileSizeData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeapSeaData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SeaData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BeachData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GrassData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HillData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LayersHeightData)).BeginInit();
             this.Tekenstijl.SuspendLayout();
             this.MapSettings.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LayersListGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpatialOffsetCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).BeginInit();
             this.SuspendLayout();
@@ -121,7 +111,7 @@
             // 
             // GenerateButton
             // 
-            this.GenerateButton.Location = new System.Drawing.Point(17, 379);
+            this.GenerateButton.Location = new System.Drawing.Point(16, 88);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(150, 29);
             this.GenerateButton.TabIndex = 4;
@@ -216,55 +206,16 @@
             0});
             this.TileSizeData.ValueChanged += new System.EventHandler(this.TileSizeData_ValueChanged);
             // 
-            // DeapSeaData
+            // LayersHeightData
             // 
-            this.DeapSeaData.Location = new System.Drawing.Point(6, 51);
-            this.DeapSeaData.Maximum = 255;
-            this.DeapSeaData.Name = "DeapSeaData";
-            this.DeapSeaData.Size = new System.Drawing.Size(161, 56);
-            this.DeapSeaData.TabIndex = 10;
-            this.DeapSeaData.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.DeapSeaData.Value = 40;
-            // 
-            // SeaData
-            // 
-            this.SeaData.Location = new System.Drawing.Point(6, 104);
-            this.SeaData.Maximum = 255;
-            this.SeaData.Name = "SeaData";
-            this.SeaData.Size = new System.Drawing.Size(161, 56);
-            this.SeaData.TabIndex = 11;
-            this.SeaData.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.SeaData.Value = 70;
-            // 
-            // BeachData
-            // 
-            this.BeachData.Location = new System.Drawing.Point(6, 153);
-            this.BeachData.Maximum = 255;
-            this.BeachData.Name = "BeachData";
-            this.BeachData.Size = new System.Drawing.Size(161, 56);
-            this.BeachData.TabIndex = 12;
-            this.BeachData.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.BeachData.Value = 120;
-            // 
-            // GrassData
-            // 
-            this.GrassData.Location = new System.Drawing.Point(6, 215);
-            this.GrassData.Maximum = 255;
-            this.GrassData.Name = "GrassData";
-            this.GrassData.Size = new System.Drawing.Size(161, 56);
-            this.GrassData.TabIndex = 13;
-            this.GrassData.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.GrassData.Value = 160;
-            // 
-            // HillData
-            // 
-            this.HillData.Location = new System.Drawing.Point(12, 284);
-            this.HillData.Maximum = 255;
-            this.HillData.Name = "HillData";
-            this.HillData.Size = new System.Drawing.Size(150, 56);
-            this.HillData.TabIndex = 14;
-            this.HillData.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.HillData.Value = 240;
+            this.LayersHeightData.Location = new System.Drawing.Point(6, 231);
+            this.LayersHeightData.Maximum = 255;
+            this.LayersHeightData.Name = "LayersHeightData";
+            this.LayersHeightData.Size = new System.Drawing.Size(161, 56);
+            this.LayersHeightData.TabIndex = 10;
+            this.LayersHeightData.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.LayersHeightData.Value = 40;
+            this.LayersHeightData.Scroll += new System.EventHandler(this.LayersHeightData_Scroll);
             // 
             // Tekenstijl
             // 
@@ -369,17 +320,7 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.CancelGenerateButton);
             this.groupBox1.Controls.Add(this.ShowNumbersCheckbox);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.HillData);
             this.groupBox1.Controls.Add(this.GenerateButton);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.GrassData);
-            this.groupBox1.Controls.Add(this.DeapSeaData);
-            this.groupBox1.Controls.Add(this.BeachData);
-            this.groupBox1.Controls.Add(this.SeaData);
             this.groupBox1.Location = new System.Drawing.Point(6, 351);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(204, 698);
@@ -389,7 +330,7 @@
             // 
             // LoadSeedButton
             // 
-            this.LoadSeedButton.Location = new System.Drawing.Point(17, 612);
+            this.LoadSeedButton.Location = new System.Drawing.Point(16, 321);
             this.LoadSeedButton.Name = "LoadSeedButton";
             this.LoadSeedButton.Size = new System.Drawing.Size(150, 29);
             this.LoadSeedButton.TabIndex = 23;
@@ -399,7 +340,7 @@
             // 
             // SaveSeedButton
             // 
-            this.SaveSeedButton.Location = new System.Drawing.Point(17, 577);
+            this.SaveSeedButton.Location = new System.Drawing.Point(16, 286);
             this.SaveSeedButton.Name = "SaveSeedButton";
             this.SaveSeedButton.Size = new System.Drawing.Size(150, 29);
             this.SaveSeedButton.TabIndex = 22;
@@ -410,7 +351,7 @@
             // ShowModeCheckBox
             // 
             this.ShowModeCheckBox.AutoSize = true;
-            this.ShowModeCheckBox.Location = new System.Drawing.Point(20, 547);
+            this.ShowModeCheckBox.Location = new System.Drawing.Point(19, 256);
             this.ShowModeCheckBox.Name = "ShowModeCheckBox";
             this.ShowModeCheckBox.Size = new System.Drawing.Size(155, 24);
             this.ShowModeCheckBox.TabIndex = 21;
@@ -423,7 +364,7 @@
             this.ProgressBarCheck.AutoSize = true;
             this.ProgressBarCheck.Checked = true;
             this.ProgressBarCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ProgressBarCheck.Location = new System.Drawing.Point(20, 517);
+            this.ProgressBarCheck.Location = new System.Drawing.Point(19, 226);
             this.ProgressBarCheck.Name = "ProgressBarCheck";
             this.ProgressBarCheck.Size = new System.Drawing.Size(150, 24);
             this.ProgressBarCheck.TabIndex = 20;
@@ -433,7 +374,7 @@
             // 
             // RandomSeedButton
             // 
-            this.RandomSeedButton.Location = new System.Drawing.Point(141, 346);
+            this.RandomSeedButton.Location = new System.Drawing.Point(140, 55);
             this.RandomSeedButton.Name = "RandomSeedButton";
             this.RandomSeedButton.Size = new System.Drawing.Size(23, 27);
             this.RandomSeedButton.TabIndex = 19;
@@ -443,7 +384,7 @@
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(17, 449);
+            this.ClearButton.Location = new System.Drawing.Point(16, 158);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(150, 29);
             this.ClearButton.TabIndex = 19;
@@ -453,7 +394,7 @@
             // 
             // SeedData
             // 
-            this.SeedData.Location = new System.Drawing.Point(15, 346);
+            this.SeedData.Location = new System.Drawing.Point(14, 55);
             this.SeedData.Name = "SeedData";
             this.SeedData.Size = new System.Drawing.Size(125, 27);
             this.SeedData.TabIndex = 12;
@@ -462,7 +403,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 323);
+            this.label10.Location = new System.Drawing.Point(14, 32);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(74, 20);
             this.label10.TabIndex = 11;
@@ -470,7 +411,7 @@
             // 
             // CancelGenerateButton
             // 
-            this.CancelGenerateButton.Location = new System.Drawing.Point(17, 414);
+            this.CancelGenerateButton.Location = new System.Drawing.Point(16, 123);
             this.CancelGenerateButton.Name = "CancelGenerateButton";
             this.CancelGenerateButton.Size = new System.Drawing.Size(150, 29);
             this.CancelGenerateButton.TabIndex = 15;
@@ -481,60 +422,17 @@
             // ShowNumbersCheckbox
             // 
             this.ShowNumbersCheckbox.AutoSize = true;
-            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(20, 487);
+            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(19, 196);
             this.ShowNumbersCheckbox.Name = "ShowNumbersCheckbox";
             this.ShowNumbersCheckbox.Size = new System.Drawing.Size(167, 24);
             this.ShowNumbersCheckbox.TabIndex = 18;
             this.ShowNumbersCheckbox.Text = "Show number values";
             this.ShowNumbersCheckbox.UseVisualStyleBackColor = true;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 251);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(121, 20);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Grassy hill height";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 189);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 20);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Grass height";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 130);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 20);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Sand height";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 81);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 20);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Water height";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 28);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(132, 20);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Deep water height";
-            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.LayersListGrid);
+            this.groupBox2.Controls.Add(this.LayersLabel);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.SpatialOffsetCounter);
             this.groupBox2.Controls.Add(this.IslandsCheckBox);
@@ -553,6 +451,7 @@
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.LayersHeightData);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox2.Location = new System.Drawing.Point(1684, 0);
             this.groupBox2.Name = "groupBox2";
@@ -561,10 +460,29 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Map instellingen";
             // 
+            // LayersListGrid
+            // 
+            this.LayersListGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.LayersListGrid.Location = new System.Drawing.Point(0, 607);
+            this.LayersListGrid.Name = "LayersListGrid";
+            this.LayersListGrid.RowHeadersWidth = 51;
+            this.LayersListGrid.RowTemplate.Height = 29;
+            this.LayersListGrid.Size = new System.Drawing.Size(240, 422);
+            this.LayersListGrid.TabIndex = 28;
+            // 
+            // LayersLabel
+            // 
+            this.LayersLabel.AutoSize = true;
+            this.LayersLabel.Location = new System.Drawing.Point(13, 203);
+            this.LayersLabel.Name = "LayersLabel";
+            this.LayersLabel.Size = new System.Drawing.Size(96, 20);
+            this.LayersLabel.TabIndex = 27;
+            this.LayersLabel.Text = "Layers height";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(73, 456);
+            this.label12.Location = new System.Drawing.Point(74, 492);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(142, 20);
             this.label12.TabIndex = 26;
@@ -572,7 +490,7 @@
             // 
             // SpatialOffsetCounter
             // 
-            this.SpatialOffsetCounter.Location = new System.Drawing.Point(12, 454);
+            this.SpatialOffsetCounter.Location = new System.Drawing.Point(13, 490);
             this.SpatialOffsetCounter.Minimum = new decimal(new int[] {
             1,
             0,
@@ -592,7 +510,7 @@
             this.IslandsCheckBox.AutoSize = true;
             this.IslandsCheckBox.Checked = true;
             this.IslandsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.IslandsCheckBox.Location = new System.Drawing.Point(13, 517);
+            this.IslandsCheckBox.Location = new System.Drawing.Point(13, 562);
             this.IslandsCheckBox.Name = "IslandsCheckBox";
             this.IslandsCheckBox.Size = new System.Drawing.Size(140, 24);
             this.IslandsCheckBox.TabIndex = 25;
@@ -604,7 +522,7 @@
             this.ShadingCheckBox.AutoSize = true;
             this.ShadingCheckBox.Checked = true;
             this.ShadingCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ShadingCheckBox.Location = new System.Drawing.Point(13, 487);
+            this.ShadingCheckBox.Location = new System.Drawing.Point(13, 532);
             this.ShadingCheckBox.Name = "ShadingCheckBox";
             this.ShadingCheckBox.Size = new System.Drawing.Size(221, 24);
             this.ShadingCheckBox.TabIndex = 24;
@@ -614,7 +532,7 @@
             // SpatialOffsetCheckBox
             // 
             this.SpatialOffsetCheckBox.AutoSize = true;
-            this.SpatialOffsetCheckBox.Location = new System.Drawing.Point(12, 424);
+            this.SpatialOffsetCheckBox.Location = new System.Drawing.Point(13, 456);
             this.SpatialOffsetCheckBox.Name = "SpatialOffsetCheckBox";
             this.SpatialOffsetCheckBox.Size = new System.Drawing.Size(189, 24);
             this.SpatialOffsetCheckBox.TabIndex = 21;
@@ -625,7 +543,7 @@
             // 
             this.ColorPickerButton.BackgroundImage = global::PresentationLayer.Properties.Resources.colorPicker;
             this.ColorPickerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ColorPickerButton.Location = new System.Drawing.Point(166, 104);
+            this.ColorPickerButton.Location = new System.Drawing.Point(173, 104);
             this.ColorPickerButton.Name = "ColorPickerButton";
             this.ColorPickerButton.Size = new System.Drawing.Size(31, 29);
             this.ColorPickerButton.TabIndex = 22;
@@ -635,7 +553,7 @@
             // InvertCheckBox
             // 
             this.InvertCheckBox.AutoSize = true;
-            this.InvertCheckBox.Location = new System.Drawing.Point(12, 394);
+            this.InvertCheckBox.Location = new System.Drawing.Point(13, 426);
             this.InvertCheckBox.Name = "InvertCheckBox";
             this.InvertCheckBox.Size = new System.Drawing.Size(102, 24);
             this.InvertCheckBox.TabIndex = 20;
@@ -645,14 +563,14 @@
             // KleurToner
             // 
             this.KleurToner.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.KleurToner.Location = new System.Drawing.Point(6, 104);
+            this.KleurToner.Location = new System.Drawing.Point(13, 104);
             this.KleurToner.Name = "KleurToner";
             this.KleurToner.Size = new System.Drawing.Size(154, 29);
             this.KleurToner.TabIndex = 23;
             // 
             // VariatieSlider
             // 
-            this.VariatieSlider.Location = new System.Drawing.Point(12, 362);
+            this.VariatieSlider.Location = new System.Drawing.Point(13, 394);
             this.VariatieSlider.Maximum = 100;
             this.VariatieSlider.Name = "VariatieSlider";
             this.VariatieSlider.Size = new System.Drawing.Size(185, 56);
@@ -664,7 +582,7 @@
             // 
             this.LayersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LayersComboBox.FormattingEnabled = true;
-            this.LayersComboBox.Location = new System.Drawing.Point(6, 50);
+            this.LayersComboBox.Location = new System.Drawing.Point(13, 50);
             this.LayersComboBox.Name = "LayersComboBox";
             this.LayersComboBox.Size = new System.Drawing.Size(191, 28);
             this.LayersComboBox.TabIndex = 21;
@@ -673,7 +591,7 @@
             // VariatieCheckBox
             // 
             this.VariatieCheckBox.AutoSize = true;
-            this.VariatieCheckBox.Location = new System.Drawing.Point(12, 306);
+            this.VariatieCheckBox.Location = new System.Drawing.Point(13, 335);
             this.VariatieCheckBox.Name = "VariatieCheckBox";
             this.VariatieCheckBox.Size = new System.Drawing.Size(176, 24);
             this.VariatieCheckBox.TabIndex = 19;
@@ -683,7 +601,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(12, 336);
+            this.label19.Location = new System.Drawing.Point(13, 368);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(146, 20);
             this.label19.TabIndex = 8;
@@ -692,7 +610,7 @@
             // ResetLagenButton
             // 
             this.ResetLagenButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ResetLagenButton.Location = new System.Drawing.Point(6, 224);
+            this.ResetLagenButton.Location = new System.Drawing.Point(12, 293);
             this.ResetLagenButton.Name = "ResetLagenButton";
             this.ResetLagenButton.Size = new System.Drawing.Size(125, 27);
             this.ResetLagenButton.TabIndex = 19;
@@ -702,17 +620,17 @@
             // 
             // LetterLaagData
             // 
-            this.LetterLaagData.Location = new System.Drawing.Point(12, 167);
+            this.LetterLaagData.Location = new System.Drawing.Point(13, 167);
             this.LetterLaagData.MaxLength = 1;
             this.LetterLaagData.Name = "LetterLaagData";
-            this.LetterLaagData.Size = new System.Drawing.Size(33, 27);
+            this.LetterLaagData.Size = new System.Drawing.Size(124, 27);
             this.LetterLaagData.TabIndex = 12;
             this.LetterLaagData.TextChanged += new System.EventHandler(this.LetterLaagData_TextChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(0, 201);
+            this.label11.Location = new System.Drawing.Point(12, 270);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(86, 20);
             this.label11.TabIndex = 11;
@@ -721,7 +639,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(0, 147);
+            this.label13.Location = new System.Drawing.Point(13, 144);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(128, 20);
             this.label13.TabIndex = 9;
@@ -730,7 +648,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(0, 81);
+            this.label14.Location = new System.Drawing.Point(13, 81);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(124, 20);
             this.label14.TabIndex = 8;
@@ -739,7 +657,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(0, 28);
+            this.label15.Location = new System.Drawing.Point(13, 23);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(57, 20);
             this.label15.TabIndex = 7;
@@ -769,11 +687,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.WidthData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScaleData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TileSizeData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeapSeaData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SeaData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BeachData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GrassData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HillData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LayersHeightData)).EndInit();
             this.Tekenstijl.ResumeLayout(false);
             this.Tekenstijl.PerformLayout();
             this.MapSettings.ResumeLayout(false);
@@ -782,6 +696,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LayersListGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpatialOffsetCounter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.VariatieSlider)).EndInit();
             this.ResumeLayout(false);
@@ -798,11 +713,7 @@
         private NumericUpDown ScaleData;
         private Panel MapModern;
         private NumericUpDown TileSizeData;
-        private TrackBar DeapSeaData;
-        private TrackBar SeaData;
-        private TrackBar BeachData;
-        private TrackBar GrassData;
-        private TrackBar HillData;
+        private TrackBar LayersHeightData;
         private GroupBox Tekenstijl;
         private RadioButton ModernRadio;
         private RadioButton LegacyRadio;
@@ -812,11 +723,6 @@
         private Label label3;
         private Label label4;
         private GroupBox groupBox1;
-        private Label label5;
-        private Label label6;
-        private Label label7;
-        private Label label8;
-        private Label label9;
         private CheckBox ShowNumbersCheckbox;
         private Label label10;
         private TextBox SeedData;
@@ -848,5 +754,7 @@
         private NumericUpDown SpatialOffsetCounter;
         private Button SaveSeedButton;
         private Button LoadSeedButton;
+        private Label LayersLabel;
+        private DataGridView LayersListGrid;
     }
 }

@@ -10,6 +10,7 @@ public partial class LoadSeed : Form
         //DataGrid.Rows.Add("Seed", "Naam", "Beschrijving");
         SeedData seedDataObj = new();
         DataGrid.DataSource = seedDataObj.ReadSeeds();
+        DataGrid.RowHeadersVisible = false;
         DataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         DataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
     }

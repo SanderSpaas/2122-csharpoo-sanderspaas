@@ -13,7 +13,7 @@ namespace LogicLayer
         public CyclonMain()
         {
         }
-        public Map Generate(int width, int height, float scale, int deepWater, int water, int sand, int grass, int hill, string seed, List<Layer> layers)
+        public Map Generate(int width, int height, float scale, string seed, List<Layer> layers)
         {
             var map = new Map(width, height, scale, seed);
             map.NoiseValues = GenerateNoise(map);
@@ -21,7 +21,7 @@ namespace LogicLayer
             {
                 for (int y = 0; y < map.Height; y++)
                 {
-                    map.Tiles[x, y].Laag = DetermineTerrain(map.NoiseValues[x, y], deepWater, water, sand, grass, hill, layers);
+                    map.Tiles[x, y].Laag = DetermineTerrain(map.NoiseValues[x, y], layers);
                     map.Tiles[x, y].Color = map.Tiles[x, y].Laag.Kleur;
                 }
             }
@@ -44,15 +44,15 @@ namespace LogicLayer
             return layers;
         }
 
-        private Layer DetermineTerrain(float noiseValue, int deepWater, int water, int sand, int grass, int hill, List<Layer> layers)
+        private Layer DetermineTerrain(float noiseValue, List<Layer> layers)
         {
             return noiseValue switch
             {
-                var noise when noise <= deepWater => layers[0],
-                var noise when noise <= water => layers[1],
-                var noise when noise <= sand => layers[2],
-                var noise when noise <= grass => layers[3],
-                var noise when noise <= hill => layers[4],
+                var noise when noise <= layers[0].Height => layers[0],
+                var noise when noise <= layers[1].Height => layers[1],
+                var noise when noise <= layers[2].Height => layers[2],
+                var noise when noise <= layers[3].Height => layers[3],
+                var noise when noise <= layers[4].Height => layers[4],
                 _ => layers[5],
             };
         }
@@ -67,7 +67,7 @@ namespace LogicLayer
             SimplexNoise.Noise.Seed = seedNumber;
             return SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
         }
-        public void SpatialOffset(float[,] data, Map map, int deepWater, int water, int sand, int grass, int hill, List<Layer> layers, int aantalKeer)
+        public void SpatialOffset(float[,] data, Map map, List<Layer> layers, int aantalKeer)
         {
             for (int i = 0; i < aantalKeer; i++)
             {
@@ -86,7 +86,7 @@ namespace LogicLayer
                 for (int x = 0; x < map.Width; x++)
                 {
                     data[x, y] = (data[x, y] / aantalKeer);
-                    map.Tiles[x, y].Laag = DetermineTerrain(data[x, y], deepWater, water, sand, grass, hill, layers);
+                    map.Tiles[x, y].Laag = DetermineTerrain(data[x, y], layers);
                     map.Tiles[x, y].Color = map.Tiles[x, y].Laag.Kleur;
                 }
             }
@@ -121,19 +121,23 @@ namespace LogicLayer
             {
                 for (int x = 0; x < map.Width; x++)
                 {
-                    map.Tiles[x, y].Color = ControlPaint.Light(ControlPaint.Dark(map.Tiles[x, y].Color, map.NoiseValues[x, y] / (255 * 2)), (float)0.15);
+                    map.Tiles[x, y].Color = ControlPaint.Light(ControlPaint.Dark(map.Tiles[x, y].Color, (255 - map.NoiseValues[x, y]) / (255 * 2)), (float)0.15);
                 }
             }
         }
-        public void Islands(Map map, int deepWater, int water, int sand, int grass, int hill, List<Layer> layers)
+        public void Islands(Map map, List<Layer> layers)
         {
             float[,] tempArray = CircleGradient(map);
             for (int y = 0; y < map.Height; y++)
             {
                 for (int x = 0; x < map.Width; x++)
                 {
-                    map.NoiseValues[x, y] = (map.NoiseValues[x, y] - tempArray[x, y]);
-                    map.Tiles[x, y].Laag = DetermineTerrain(map.NoiseValues[x, y], deepWater, water, sand, grass, hill, layers);
+                    map.NoiseValues[x, y] = map.NoiseValues[x, y] - tempArray[x, y];
+                    if (map.NoiseValues[x, y] < -255)
+                    {
+                        map.NoiseValues[x, y] = -250;
+                    }
+                    map.Tiles[x, y].Laag = DetermineTerrain(map.NoiseValues[x, y], layers);
                     map.Tiles[x, y].Color = map.Tiles[x, y].Laag.Kleur;
                 }
             }

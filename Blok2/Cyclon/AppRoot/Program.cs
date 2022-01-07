@@ -1,4 +1,3 @@
-using DataAccessLayer;
 using Globals.Interfaces;
 using LogicLayer;
 using PresentationLayer;
@@ -13,8 +12,8 @@ namespace AppRoot
         [STAThread]
         private static void Main()
         {
-            IData data = new Data();
-            ILogic logic = new CyclonMain(/*data*/);
+            IData data = new DataAccessLayer.Data();
+            ILogic logic = new CyclonMain(data);
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm(logic, data));
         }
