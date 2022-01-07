@@ -30,7 +30,12 @@
       "ProjectGuid": "8d533e0b-9eaf-48bb-ab2a-c4aa8cdd500e",
       "DisplayName": "Globals",
       "ColorIndex": 4
+    },
+    "ad61101f-980b-4e03-acb7-ade77caf48ba": {
+      "ProjectGuid": "ad61101f-980b-4e03-acb7-ade77caf48ba",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 6
 }
