@@ -24,9 +24,9 @@ namespace PresentationLayer
             Icon = new Icon("Assets/Cyclon.ico");
             _layers = _cyclonMain.MaakLagen(_kleuren, _heights, _drawings);
             SeedData.Text = _random.Next().ToString();
-            foreach (object Terrain in Enum.GetValues(typeof(TerrainType)))
+            foreach (TerrainType Terrain in Enum.GetValues(typeof(TerrainType)))
             {
-                if (Terrain.ToString() != "Undefined")
+                if (Terrain != TerrainType.Undefined)
                 {
                     LayersComboBox.Items.Add(Terrain);
                 }

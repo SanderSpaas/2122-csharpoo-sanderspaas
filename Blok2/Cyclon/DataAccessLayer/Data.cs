@@ -1,8 +1,6 @@
-﻿using Globals.Interfaces;
-
-namespace DataAccessLayer
+﻿namespace DataAccessLayer
 {
-    public class Data : IData
+    public class Data
     {
         public Data()
         {

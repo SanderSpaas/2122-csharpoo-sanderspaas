@@ -1,6 +1,6 @@
 ﻿namespace LogicLayer;
 
-public class Layer : ICyclonMain
+public class Layer
 {
     public Layer(TerrainType naamLaag, Color kleur, int height, char teken)
     {

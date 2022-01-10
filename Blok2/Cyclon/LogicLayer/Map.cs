@@ -1,6 +1,6 @@
 ﻿namespace LogicLayer
 {
-    public class Map : ICyclonMain
+    public class Map
     {
         public Map()
         {

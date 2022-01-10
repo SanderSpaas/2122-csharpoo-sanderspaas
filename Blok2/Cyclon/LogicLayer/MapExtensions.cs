@@ -12,7 +12,6 @@ public static class MapExtensions
         if (checkDebug.Checked)
         {
             paint.DrawString(((int)map.NoiseValues[x, y]).ToString(), new Font("Arial", tile / 6), new SolidBrush(Color.Black), x * tile, y * tile);
-            //paint.Graphics.DrawRectangle(new Pen(Color.Red, 3), x * tile, y * tile, tile, tile);   
         }
     }
     public static void AppendText(this Map map, RichTextBox box, int fontSize, int x, int y, bool newline)
