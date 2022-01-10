@@ -16,6 +16,17 @@
             SetMap();
         }
 
+        //copy constructor
+        public Map(Map map, float[,] noiseValues)
+        {
+            Width = map.Width;
+            Height = map.Height;
+            Scale = map.Scale;
+            Tiles = map.Tiles;
+            Seed = map.Seed;
+            NoiseValues = noiseValues;
+        }
+
         public int Width { get; set; }
         public int Height { get; set; }
         public float Scale { get; set; }

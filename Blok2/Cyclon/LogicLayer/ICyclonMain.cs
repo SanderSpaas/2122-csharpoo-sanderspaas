@@ -5,7 +5,8 @@
         public Map Generate(int width, int height, float scale, string seed, List<Layer> layers)
         {
             var map = new Map(width, height, scale, seed);
-            map.NoiseValues = GenerateNoise(map);
+            map = new Map(map, GenerateNoise(map));
+            //map.NoiseValues = GenerateNoise(map);
             for (int x = 0; x < map.Width; x++)
             {
                 for (int y = 0; y < map.Height; y++)
@@ -23,7 +24,7 @@
             int index = 0;
             foreach (TerrainType Terrain in Enum.GetValues(typeof(TerrainType)))
             {
-                if (Terrain.ToString() != "Undefined")
+                if (Terrain != TerrainType.Undefined)
                 {
                     var laag = new Layer(Terrain, kleuren[index], hoogtes[index], drawings[index]);
                     layers.Add(laag);
