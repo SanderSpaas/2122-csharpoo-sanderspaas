@@ -52,19 +52,21 @@ partial class LoadSeed
             // UseSelectedSeedButton
             // 
             this.UseSelectedSeedButton.AutoSize = true;
+            this.UseSelectedSeedButton.BackColor = System.Drawing.Color.Honeydew;
             this.UseSelectedSeedButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.UseSelectedSeedButton.Location = new System.Drawing.Point(0, 234);
             this.UseSelectedSeedButton.Name = "UseSelectedSeedButton";
             this.UseSelectedSeedButton.Size = new System.Drawing.Size(609, 30);
             this.UseSelectedSeedButton.TabIndex = 1;
             this.UseSelectedSeedButton.Text = "Copy seed to clipboard";
-            this.UseSelectedSeedButton.UseVisualStyleBackColor = true;
+            this.UseSelectedSeedButton.UseVisualStyleBackColor = false;
             this.UseSelectedSeedButton.Click += new System.EventHandler(this.UseSelectedSeedButton_Click);
             // 
             // LoadSeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(609, 264);
             this.Controls.Add(this.UseSelectedSeedButton);
             this.Controls.Add(this.DataGrid);

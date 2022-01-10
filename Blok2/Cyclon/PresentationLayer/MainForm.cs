@@ -112,7 +112,7 @@ namespace PresentationLayer
                 GenerateButton.Enabled = true;
             }
         }
-        public TaskStatus LegacyDrawing()
+        public void LegacyDrawing()
         {
             MapProgress.Invoke(new MethodInvoker(delegate
             {
@@ -130,7 +130,6 @@ namespace PresentationLayer
                     catch (OperationCanceledException)
                     {
                         _generated = false;
-                        return TaskStatus.Canceled;
                     }
                     MapExtensions.PrintTerrainOld(_map, MapLegacy, x, y, _tileSize);
                     MapProgress.Invoke(new MethodInvoker(delegate
@@ -141,9 +140,8 @@ namespace PresentationLayer
                 MapExtensions.AppendText(_map, MapLegacy, _tileSize, 0, 0, true);
             }
             _generated = false;
-            return TaskStatus.RanToCompletion;
         }
-        public TaskStatus ModernDrawing()
+        public void ModernDrawing()
         {
             MapProgress.Invoke(new MethodInvoker(delegate
             {
@@ -161,7 +159,6 @@ namespace PresentationLayer
                     catch (OperationCanceledException)
                     {
                         _generated = false;
-                        return TaskStatus.Canceled;
                     }
                     MapExtensions.PrintTerrainModern(_map, MapModern.CreateGraphics(), x, y, _tileSize, ShowNumbersCheckbox);
                     MapProgress.Invoke(new MethodInvoker(delegate
@@ -171,7 +168,6 @@ namespace PresentationLayer
                 }
             }
             _generated = false;
-            return TaskStatus.RanToCompletion;
         }
 
         private void ColorPickerButton_Click(object sender, EventArgs e)
@@ -326,10 +322,6 @@ namespace PresentationLayer
                 WidthData.Value = MapModern.Height / (TileSizeData.Value * 2);
             }
         }
-        private void ProgressBarCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            MapProgress.Visible = ProgressBarCheck.Checked;
-        }
 
         private async void ShowModeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -350,20 +342,16 @@ namespace PresentationLayer
                     if (MapModern.Visible)
                     {
                         _cancellationSource = new();
-                        var taskDone = await Task.Run(() => ModernDrawing()); if (taskDone == TaskStatus.RanToCompletion || taskDone == TaskStatus.Canceled)
-                        {
-                            GenerateButton.Enabled = true;
-                        }
+                        await Task.Run(() => ModernDrawing());
+                        GenerateButton.Enabled = true;
                     }
                     else if (MapLegacy.Visible)
                     {
                         MapLegacy.Clear();
                         _cancellationSource = new();
                         GenerateButton.Enabled = false;
-                        var taskDone = await Task.Run(() => LegacyDrawing()); if (taskDone == TaskStatus.RanToCompletion || taskDone == TaskStatus.Canceled)
-                        {
-                            GenerateButton.Enabled = true;
-                        }
+                        await Task.Run(() => LegacyDrawing());
+                        GenerateButton.Enabled = true;
                     }
                 }
             }

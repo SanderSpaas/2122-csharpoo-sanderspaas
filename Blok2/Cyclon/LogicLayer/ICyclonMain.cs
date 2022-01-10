@@ -112,7 +112,7 @@
             {
                 for (int x = 0; x < map.Width; x++)
                 {
-                    map.Tiles[x, y].Color = ControlPaint.Light(ControlPaint.Dark(map.Tiles[x, y].Color, (255 - map.NoiseValues[x, y]) / (255 * 2)), (float)0.15);
+                    map.Tiles[x, y].Color = ControlPaint.Light(ControlPaint.Dark(map.Tiles[x, y].Color, (255 - map.NoiseValues[x, y]) / (255 * 2)), (float)0.20);
                 }
             }
         }
@@ -130,13 +130,6 @@
                     }
                     map.Tiles[x, y].Laag = DetermineTerrain(map.NoiseValues[x, y], layers);
                     map.Tiles[x, y].Color = map.Tiles[x, y].Laag.Kleur;
-                }
-            }
-            for (int x = 0; x < map.NoiseValues.GetLength(0); x++)
-            {
-                for (int y = 0; y < map.NoiseValues.GetLength(1); y++)
-                {
-
                 }
             }
         }

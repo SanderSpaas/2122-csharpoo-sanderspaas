@@ -54,7 +54,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.CancelGenerateButton = new System.Windows.Forms.Button();
             this.ShowModeCheckBox = new System.Windows.Forms.CheckBox();
-            this.ProgressBarCheck = new System.Windows.Forms.CheckBox();
             this.ShowNumbersCheckbox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LayersListGrid = new System.Windows.Forms.DataGridView();
@@ -178,7 +177,7 @@
             this.MapModern.AutoSize = true;
             this.MapModern.Location = new System.Drawing.Point(188, 1);
             this.MapModern.Name = "MapModern";
-            this.MapModern.Size = new System.Drawing.Size(1496, 1054);
+            this.MapModern.Size = new System.Drawing.Size(1496, 1031);
             this.MapModern.TabIndex = 8;
             this.MapModern.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawingPanel_Paint);
             // 
@@ -412,26 +411,13 @@
             // ShowModeCheckBox
             // 
             this.ShowModeCheckBox.AutoSize = true;
-            this.ShowModeCheckBox.Location = new System.Drawing.Point(13, 649);
+            this.ShowModeCheckBox.Location = new System.Drawing.Point(12, 619);
             this.ShowModeCheckBox.Name = "ShowModeCheckBox";
             this.ShowModeCheckBox.Size = new System.Drawing.Size(155, 24);
             this.ShowModeCheckBox.TabIndex = 21;
             this.ShowModeCheckBox.Text = "Enable Showmode";
             this.ShowModeCheckBox.UseVisualStyleBackColor = true;
             this.ShowModeCheckBox.CheckedChanged += new System.EventHandler(this.ShowModeCheckBox_CheckedChanged);
-            // 
-            // ProgressBarCheck
-            // 
-            this.ProgressBarCheck.AutoSize = true;
-            this.ProgressBarCheck.Checked = true;
-            this.ProgressBarCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ProgressBarCheck.Location = new System.Drawing.Point(13, 619);
-            this.ProgressBarCheck.Name = "ProgressBarCheck";
-            this.ProgressBarCheck.Size = new System.Drawing.Size(150, 24);
-            this.ProgressBarCheck.TabIndex = 20;
-            this.ProgressBarCheck.Text = "Show progressbar";
-            this.ProgressBarCheck.UseVisualStyleBackColor = true;
-            this.ProgressBarCheck.CheckedChanged += new System.EventHandler(this.ProgressBarCheck_CheckedChanged);
             // 
             // ShowNumbersCheckbox
             // 
@@ -446,7 +432,6 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.LavenderBlush;
-            this.groupBox2.Controls.Add(this.ProgressBarCheck);
             this.groupBox2.Controls.Add(this.LayersListGrid);
             this.groupBox2.Controls.Add(this.ShowNumbersCheckbox);
             this.groupBox2.Controls.Add(this.LayersLabel);
@@ -483,11 +468,11 @@
             this.LayersListGrid.BackgroundColor = System.Drawing.Color.LavenderBlush;
             this.LayersListGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LayersListGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LayersListGrid.Location = new System.Drawing.Point(0, 681);
+            this.LayersListGrid.Location = new System.Drawing.Point(0, 682);
             this.LayersListGrid.Name = "LayersListGrid";
             this.LayersListGrid.RowHeadersWidth = 51;
             this.LayersListGrid.RowTemplate.Height = 29;
-            this.LayersListGrid.Size = new System.Drawing.Size(240, 298);
+            this.LayersListGrid.Size = new System.Drawing.Size(240, 340);
             this.LayersListGrid.TabIndex = 28;
             // 
             // LayersLabel
@@ -631,7 +616,7 @@
             // 
             // ResetLagenButton
             // 
-            this.ResetLagenButton.BackColor = System.Drawing.Color.Moccasin;
+            this.ResetLagenButton.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ResetLagenButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ResetLagenButton.Location = new System.Drawing.Point(12, 293);
             this.ResetLagenButton.Name = "ResetLagenButton";
@@ -772,7 +757,6 @@
         private Button CancelGenerateButton;
         private Button ClearButton;
         private ProgressBar MapProgress;
-        private CheckBox ProgressBarCheck;
         private CheckBox ShowModeCheckBox;
         private CheckBox IslandsCheckBox;
         private Label label12;

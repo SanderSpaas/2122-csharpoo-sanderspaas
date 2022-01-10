@@ -20,7 +20,7 @@ public partial class LoadSeed : Form
         }
         DataGrid.RowHeadersVisible = false;
         DataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        DataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+        DataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
     }
 
     private void UseSelectedSeedButton_Click(object sender, EventArgs e)

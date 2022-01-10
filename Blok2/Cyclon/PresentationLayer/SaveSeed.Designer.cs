@@ -40,6 +40,7 @@ partial class SaveSeed
             // 
             // SeedInput
             // 
+            this.SeedInput.BackColor = System.Drawing.Color.Lavender;
             this.SeedInput.Location = new System.Drawing.Point(21, 38);
             this.SeedInput.Name = "SeedInput";
             this.SeedInput.Size = new System.Drawing.Size(134, 27);
@@ -47,6 +48,7 @@ partial class SaveSeed
             // 
             // SeedNameInput
             // 
+            this.SeedNameInput.BackColor = System.Drawing.Color.Lavender;
             this.SeedNameInput.Location = new System.Drawing.Point(161, 38);
             this.SeedNameInput.Name = "SeedNameInput";
             this.SeedNameInput.Size = new System.Drawing.Size(125, 27);
@@ -54,6 +56,7 @@ partial class SaveSeed
             // 
             // SeedDescInput
             // 
+            this.SeedDescInput.BackColor = System.Drawing.Color.Lavender;
             this.SeedDescInput.Location = new System.Drawing.Point(305, 38);
             this.SeedDescInput.Multiline = true;
             this.SeedDescInput.Name = "SeedDescInput";
@@ -89,12 +92,13 @@ partial class SaveSeed
             // 
             // SaveSeedButton
             // 
+            this.SaveSeedButton.BackColor = System.Drawing.Color.Honeydew;
             this.SaveSeedButton.Location = new System.Drawing.Point(21, 72);
             this.SaveSeedButton.Name = "SaveSeedButton";
             this.SaveSeedButton.Size = new System.Drawing.Size(265, 29);
             this.SaveSeedButton.TabIndex = 6;
             this.SaveSeedButton.Text = "Save";
-            this.SaveSeedButton.UseVisualStyleBackColor = true;
+            this.SaveSeedButton.UseVisualStyleBackColor = false;
             this.SaveSeedButton.Click += new System.EventHandler(this.SaveSeedButton_Click);
             // 
             // ErrorLabel
@@ -109,6 +113,7 @@ partial class SaveSeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(630, 132);
             this.Controls.Add(this.ErrorLabel);
             this.Controls.Add(this.SaveSeedButton);
