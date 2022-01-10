@@ -6,7 +6,6 @@
         {
             var map = new Map(width, height, scale, seed);
             map = new Map(map, GenerateNoise(map));
-            //map.NoiseValues = GenerateNoise(map);
             for (int x = 0; x < map.Width; x++)
             {
                 for (int y = 0; y < map.Height; y++)

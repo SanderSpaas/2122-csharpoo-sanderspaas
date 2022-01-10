@@ -48,13 +48,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.LoadSeedButton = new System.Windows.Forms.Button();
             this.SaveSeedButton = new System.Windows.Forms.Button();
-            this.ShowModeCheckBox = new System.Windows.Forms.CheckBox();
-            this.ProgressBarCheck = new System.Windows.Forms.CheckBox();
             this.RandomSeedButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.SeedData = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.CancelGenerateButton = new System.Windows.Forms.Button();
+            this.ShowModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.ProgressBarCheck = new System.Windows.Forms.CheckBox();
             this.ShowNumbersCheckbox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LayersListGrid = new System.Windows.Forms.DataGridView();
@@ -98,12 +98,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MapLegacy.DetectUrls = false;
-            this.MapLegacy.Location = new System.Drawing.Point(213, 0);
+            this.MapLegacy.Location = new System.Drawing.Point(188, 0);
             this.MapLegacy.Margin = new System.Windows.Forms.Padding(0);
             this.MapLegacy.Name = "MapLegacy";
             this.MapLegacy.ReadOnly = true;
             this.MapLegacy.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.MapLegacy.Size = new System.Drawing.Size(1474, 1055);
+            this.MapLegacy.Size = new System.Drawing.Size(1499, 1055);
             this.MapLegacy.TabIndex = 1;
             this.MapLegacy.Text = "";
             this.MapLegacy.Visible = false;
@@ -112,7 +112,7 @@
             // GenerateButton
             // 
             this.GenerateButton.BackColor = System.Drawing.Color.Honeydew;
-            this.GenerateButton.Location = new System.Drawing.Point(14, 228);
+            this.GenerateButton.Location = new System.Drawing.Point(12, 28);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(150, 29);
             this.GenerateButton.TabIndex = 4;
@@ -122,6 +122,7 @@
             // 
             // HeightData
             // 
+            this.HeightData.BackColor = System.Drawing.Color.Lavender;
             this.HeightData.Location = new System.Drawing.Point(12, 51);
             this.HeightData.Maximum = new decimal(new int[] {
             1000,
@@ -139,6 +140,7 @@
             // 
             // WidthData
             // 
+            this.WidthData.BackColor = System.Drawing.Color.Lavender;
             this.WidthData.Location = new System.Drawing.Point(12, 106);
             this.WidthData.Maximum = new decimal(new int[] {
             1000,
@@ -156,6 +158,7 @@
             // 
             // ScaleData
             // 
+            this.ScaleData.BackColor = System.Drawing.Color.Lavender;
             this.ScaleData.DecimalPlaces = 2;
             this.ScaleData.Location = new System.Drawing.Point(12, 159);
             this.ScaleData.Name = "ScaleData";
@@ -173,24 +176,26 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MapModern.AutoSize = true;
-            this.MapModern.Location = new System.Drawing.Point(216, 1);
+            this.MapModern.Location = new System.Drawing.Point(188, 1);
             this.MapModern.Name = "MapModern";
-            this.MapModern.Size = new System.Drawing.Size(1468, 1054);
+            this.MapModern.Size = new System.Drawing.Size(1496, 1054);
             this.MapModern.TabIndex = 8;
             this.MapModern.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawingPanel_Paint);
             // 
             // MapProgress
             // 
+            this.MapProgress.BackColor = System.Drawing.Color.LavenderBlush;
             this.MapProgress.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MapProgress.Location = new System.Drawing.Point(215, 1028);
+            this.MapProgress.Location = new System.Drawing.Point(188, 1028);
             this.MapProgress.Name = "MapProgress";
-            this.MapProgress.Size = new System.Drawing.Size(1469, 27);
+            this.MapProgress.Size = new System.Drawing.Size(1496, 27);
             this.MapProgress.Step = 1;
             this.MapProgress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.MapProgress.TabIndex = 20;
             // 
             // TileSizeData
             // 
+            this.TileSizeData.BackColor = System.Drawing.Color.Lavender;
             this.TileSizeData.Location = new System.Drawing.Point(12, 212);
             this.TileSizeData.Minimum = new decimal(new int[] {
             1,
@@ -220,6 +225,7 @@
             // 
             // Tekenstijl
             // 
+            this.Tekenstijl.BackColor = System.Drawing.Color.LavenderBlush;
             this.Tekenstijl.Controls.Add(this.MapSettings);
             this.Tekenstijl.Controls.Add(this.ModernRadio);
             this.Tekenstijl.Controls.Add(this.LegacyRadio);
@@ -227,13 +233,14 @@
             this.Tekenstijl.Dock = System.Windows.Forms.DockStyle.Left;
             this.Tekenstijl.Location = new System.Drawing.Point(0, 0);
             this.Tekenstijl.Name = "Tekenstijl";
-            this.Tekenstijl.Size = new System.Drawing.Size(215, 1055);
+            this.Tekenstijl.Size = new System.Drawing.Size(188, 1055);
             this.Tekenstijl.TabIndex = 15;
             this.Tekenstijl.TabStop = false;
             this.Tekenstijl.Text = "Tekenstijl";
             // 
             // MapSettings
             // 
+            this.MapSettings.BackColor = System.Drawing.Color.LavenderBlush;
             this.MapSettings.Controls.Add(this.label4);
             this.MapSettings.Controls.Add(this.label3);
             this.MapSettings.Controls.Add(this.label2);
@@ -244,7 +251,7 @@
             this.MapSettings.Controls.Add(this.TileSizeData);
             this.MapSettings.Location = new System.Drawing.Point(6, 95);
             this.MapSettings.Name = "MapSettings";
-            this.MapSettings.Size = new System.Drawing.Size(204, 250);
+            this.MapSettings.Size = new System.Drawing.Size(182, 250);
             this.MapSettings.TabIndex = 16;
             this.MapSettings.TabStop = false;
             this.MapSettings.Text = "Map instellingen";
@@ -311,6 +318,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.GenerateButton);
             this.groupBox1.Controls.Add(this.LoadSeedButton);
             this.groupBox1.Controls.Add(this.SaveSeedButton);
             this.groupBox1.Controls.Add(this.RandomSeedButton);
@@ -318,33 +326,88 @@
             this.groupBox1.Controls.Add(this.SeedData);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.CancelGenerateButton);
-            this.groupBox1.Controls.Add(this.GenerateButton);
             this.groupBox1.Location = new System.Drawing.Point(6, 351);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(204, 698);
+            this.groupBox1.Size = new System.Drawing.Size(182, 698);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Map instellingen";
             // 
             // LoadSeedButton
             // 
-            this.LoadSeedButton.Location = new System.Drawing.Point(12, 123);
+            this.LoadSeedButton.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.LoadSeedButton.Location = new System.Drawing.Point(12, 221);
             this.LoadSeedButton.Name = "LoadSeedButton";
             this.LoadSeedButton.Size = new System.Drawing.Size(150, 29);
             this.LoadSeedButton.TabIndex = 23;
             this.LoadSeedButton.Text = "Load seed";
-            this.LoadSeedButton.UseVisualStyleBackColor = true;
+            this.LoadSeedButton.UseVisualStyleBackColor = false;
             this.LoadSeedButton.Click += new System.EventHandler(this.LoadSeedButton_Click);
             // 
             // SaveSeedButton
             // 
-            this.SaveSeedButton.Location = new System.Drawing.Point(12, 88);
+            this.SaveSeedButton.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.SaveSeedButton.Location = new System.Drawing.Point(12, 186);
             this.SaveSeedButton.Name = "SaveSeedButton";
             this.SaveSeedButton.Size = new System.Drawing.Size(150, 29);
             this.SaveSeedButton.TabIndex = 22;
             this.SaveSeedButton.Text = "Save seed";
-            this.SaveSeedButton.UseVisualStyleBackColor = true;
+            this.SaveSeedButton.UseVisualStyleBackColor = false;
             this.SaveSeedButton.Click += new System.EventHandler(this.SaveSeedButton_Click);
+            // 
+            // RandomSeedButton
+            // 
+            this.RandomSeedButton.BackColor = System.Drawing.Color.Lavender;
+            this.RandomSeedButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.RandomSeedButton.FlatAppearance.BorderSize = 0;
+            this.RandomSeedButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RandomSeedButton.Location = new System.Drawing.Point(139, 153);
+            this.RandomSeedButton.Name = "RandomSeedButton";
+            this.RandomSeedButton.Size = new System.Drawing.Size(23, 27);
+            this.RandomSeedButton.TabIndex = 19;
+            this.RandomSeedButton.Text = "🔃";
+            this.RandomSeedButton.UseVisualStyleBackColor = false;
+            this.RandomSeedButton.Click += new System.EventHandler(this.RandomSeedButton_Click);
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.BackColor = System.Drawing.Color.Cornsilk;
+            this.ClearButton.Location = new System.Drawing.Point(12, 63);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(150, 29);
+            this.ClearButton.TabIndex = 19;
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.UseVisualStyleBackColor = false;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
+            // SeedData
+            // 
+            this.SeedData.BackColor = System.Drawing.Color.Lavender;
+            this.SeedData.Location = new System.Drawing.Point(14, 153);
+            this.SeedData.Name = "SeedData";
+            this.SeedData.Size = new System.Drawing.Size(125, 27);
+            this.SeedData.TabIndex = 12;
+            this.SeedData.Text = "2126844100";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(14, 130);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(74, 20);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Map seed";
+            // 
+            // CancelGenerateButton
+            // 
+            this.CancelGenerateButton.BackColor = System.Drawing.Color.MistyRose;
+            this.CancelGenerateButton.Location = new System.Drawing.Point(12, 98);
+            this.CancelGenerateButton.Name = "CancelGenerateButton";
+            this.CancelGenerateButton.Size = new System.Drawing.Size(150, 29);
+            this.CancelGenerateButton.TabIndex = 15;
+            this.CancelGenerateButton.Text = "Cancel";
+            this.CancelGenerateButton.UseVisualStyleBackColor = false;
+            this.CancelGenerateButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // ShowModeCheckBox
             // 
@@ -370,53 +433,6 @@
             this.ProgressBarCheck.UseVisualStyleBackColor = true;
             this.ProgressBarCheck.CheckedChanged += new System.EventHandler(this.ProgressBarCheck_CheckedChanged);
             // 
-            // RandomSeedButton
-            // 
-            this.RandomSeedButton.Location = new System.Drawing.Point(140, 55);
-            this.RandomSeedButton.Name = "RandomSeedButton";
-            this.RandomSeedButton.Size = new System.Drawing.Size(23, 27);
-            this.RandomSeedButton.TabIndex = 19;
-            this.RandomSeedButton.Text = "🔃";
-            this.RandomSeedButton.UseVisualStyleBackColor = true;
-            this.RandomSeedButton.Click += new System.EventHandler(this.RandomSeedButton_Click);
-            // 
-            // ClearButton
-            // 
-            this.ClearButton.Location = new System.Drawing.Point(12, 158);
-            this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(150, 29);
-            this.ClearButton.TabIndex = 19;
-            this.ClearButton.Text = "Clear";
-            this.ClearButton.UseVisualStyleBackColor = true;
-            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
-            // 
-            // SeedData
-            // 
-            this.SeedData.Location = new System.Drawing.Point(14, 55);
-            this.SeedData.Name = "SeedData";
-            this.SeedData.Size = new System.Drawing.Size(125, 27);
-            this.SeedData.TabIndex = 12;
-            this.SeedData.Text = "2126844100";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(14, 32);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(74, 20);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "Map seed";
-            // 
-            // CancelGenerateButton
-            // 
-            this.CancelGenerateButton.Location = new System.Drawing.Point(14, 193);
-            this.CancelGenerateButton.Name = "CancelGenerateButton";
-            this.CancelGenerateButton.Size = new System.Drawing.Size(150, 29);
-            this.CancelGenerateButton.TabIndex = 15;
-            this.CancelGenerateButton.Text = "Cancel";
-            this.CancelGenerateButton.UseVisualStyleBackColor = true;
-            this.CancelGenerateButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
             // ShowNumbersCheckbox
             // 
             this.ShowNumbersCheckbox.AutoSize = true;
@@ -429,6 +445,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.LavenderBlush;
             this.groupBox2.Controls.Add(this.ProgressBarCheck);
             this.groupBox2.Controls.Add(this.LayersListGrid);
             this.groupBox2.Controls.Add(this.ShowNumbersCheckbox);
@@ -463,12 +480,14 @@
             // 
             // LayersListGrid
             // 
+            this.LayersListGrid.BackgroundColor = System.Drawing.Color.LavenderBlush;
+            this.LayersListGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LayersListGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LayersListGrid.Location = new System.Drawing.Point(0, 681);
             this.LayersListGrid.Name = "LayersListGrid";
             this.LayersListGrid.RowHeadersWidth = 51;
             this.LayersListGrid.RowTemplate.Height = 29;
-            this.LayersListGrid.Size = new System.Drawing.Size(240, 348);
+            this.LayersListGrid.Size = new System.Drawing.Size(240, 298);
             this.LayersListGrid.TabIndex = 28;
             // 
             // LayersLabel
@@ -491,6 +510,7 @@
             // 
             // SpatialOffsetCounter
             // 
+            this.SpatialOffsetCounter.BackColor = System.Drawing.Color.Lavender;
             this.SpatialOffsetCounter.Location = new System.Drawing.Point(13, 490);
             this.SpatialOffsetCounter.Minimum = new decimal(new int[] {
             1,
@@ -581,6 +601,7 @@
             // 
             // LayersComboBox
             // 
+            this.LayersComboBox.BackColor = System.Drawing.Color.Lavender;
             this.LayersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LayersComboBox.FormattingEnabled = true;
             this.LayersComboBox.Location = new System.Drawing.Point(13, 50);
@@ -610,17 +631,19 @@
             // 
             // ResetLagenButton
             // 
+            this.ResetLagenButton.BackColor = System.Drawing.Color.Moccasin;
             this.ResetLagenButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ResetLagenButton.Location = new System.Drawing.Point(12, 293);
             this.ResetLagenButton.Name = "ResetLagenButton";
             this.ResetLagenButton.Size = new System.Drawing.Size(125, 27);
             this.ResetLagenButton.TabIndex = 19;
             this.ResetLagenButton.Text = "Reset lagen 🔃";
-            this.ResetLagenButton.UseVisualStyleBackColor = true;
+            this.ResetLagenButton.UseVisualStyleBackColor = false;
             this.ResetLagenButton.Click += new System.EventHandler(this.ResetLagenButton_Click);
             // 
             // LetterLaagData
             // 
+            this.LetterLaagData.BackColor = System.Drawing.Color.Lavender;
             this.LetterLaagData.Location = new System.Drawing.Point(13, 167);
             this.LetterLaagData.MaxLength = 1;
             this.LetterLaagData.Name = "LetterLaagData";
@@ -674,6 +697,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.MapProgress);
             this.Controls.Add(this.groupBox2);
