@@ -1,8 +1,6 @@
-﻿using Globals.Interfaces;
+﻿namespace LogicLayer;
 
-namespace LogicLayer;
-
-public class Layer : ILogic
+public class Layer : ICyclonMain
 {
     public Layer(TerrainType naamLaag, Color kleur, int height, char teken)
     {

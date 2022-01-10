@@ -1,18 +1,7 @@
-﻿using Globals.Interfaces;
-
-namespace LogicLayer
+﻿namespace LogicLayer
 {
-    public class CyclonMain : ILogic
+    public interface ICyclonMain
     {
-        private readonly IData _data;
-        private readonly Random _random = new Random();
-        public CyclonMain(IData data)
-        {
-            _data = data;
-        }
-        public CyclonMain()
-        {
-        }
         public Map Generate(int width, int height, float scale, string seed, List<Layer> layers)
         {
             var map = new Map(width, height, scale, seed);
@@ -69,9 +58,10 @@ namespace LogicLayer
         }
         public void SpatialOffset(float[,] data, Map map, List<Layer> layers, int aantalKeer)
         {
+            Random random = new Random();
             for (int i = 0; i < aantalKeer; i++)
             {
-                SimplexNoise.Noise.Seed = _random.Next();
+                SimplexNoise.Noise.Seed = random.Next();
                 float[,]? noiseValues = SimplexNoise.Noise.Calc2D(map.Width, map.Height, map.Scale);
                 for (int y = 0; y < map.Height; y++)
                 {
@@ -107,11 +97,12 @@ namespace LogicLayer
 
         public void ColorShift(Map map, int max)
         {
+            Random random = new Random();
             for (int y = 0; y < map.Height; y++)
             {
                 for (int x = 0; x < map.Width; x++)
                 {
-                    map.Tiles[x, y].Color = Color.FromArgb(map.Tiles[x, y].Laag.Kleur.ToArgb() + _random.Next(0, max));
+                    map.Tiles[x, y].Color = Color.FromArgb(map.Tiles[x, y].Laag.Kleur.ToArgb() + random.Next(0, max));
                 }
             }
         }

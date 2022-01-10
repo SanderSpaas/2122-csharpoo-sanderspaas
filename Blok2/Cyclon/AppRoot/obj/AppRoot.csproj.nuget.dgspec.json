@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\AppRoot\\AppRoot.csproj": {}
+    "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\AppRoot\\AppRoot.csproj": {}
   },
   "projects": {
-    "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\AppRoot\\AppRoot.csproj": {
+    "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\AppRoot\\AppRoot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\AppRoot\\AppRoot.csproj",
+        "projectUniqueName": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\AppRoot\\AppRoot.csproj",
         "projectName": "AppRoot",
-        "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\AppRoot\\AppRoot.csproj",
-        "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
-        "outputPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\AppRoot\\obj\\",
+        "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\AppRoot\\AppRoot.csproj",
+        "packagesPath": "C:\\Users\\sande\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\AppRoot\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sande\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,24 +26,23 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.ikdoeict.be/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj": {
-                "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj"
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj"
               },
-              "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
-                "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj"
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj"
               },
-              "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj": {
-                "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj"
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj"
               },
-              "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\PresentationLayer.csproj": {
-                "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\PresentationLayer.csproj"
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\PresentationLayer.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\PresentationLayer.csproj"
               }
             }
           }
@@ -80,21 +78,20 @@
         }
       }
     },
-    "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj": {
+    "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj",
         "projectName": "DataAccessLayer",
-        "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj",
-        "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
-        "outputPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\obj\\",
+        "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj",
+        "packagesPath": "C:\\Users\\sande\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sande\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -103,18 +100,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.ikdoeict.be/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
-                "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj"
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj"
               },
-              "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj": {
-                "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj"
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj"
               }
             }
           }
@@ -147,21 +143,20 @@
         }
       }
     },
-    "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
+    "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj",
+        "projectUniqueName": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj",
         "projectName": "Globals",
-        "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj",
-        "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
-        "outputPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\obj\\",
+        "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj",
+        "packagesPath": "C:\\Users\\sande\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sande\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -170,8 +165,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.ikdoeict.be/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0-windows7.0": {
@@ -207,21 +201,20 @@
         }
       }
     },
-    "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj": {
+    "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj",
+        "projectUniqueName": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj",
         "projectName": "LogicLayer",
-        "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj",
-        "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
-        "outputPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\obj\\",
+        "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj",
+        "packagesPath": "C:\\Users\\sande\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sande\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -230,15 +223,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.ikdoeict.be/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
-                "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj"
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj"
               }
             }
           }
@@ -280,21 +272,20 @@
         }
       }
     },
-    "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\PresentationLayer.csproj": {
+    "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\PresentationLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\PresentationLayer.csproj",
+        "projectUniqueName": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\PresentationLayer.csproj",
         "projectName": "PresentationLayer",
-        "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\PresentationLayer.csproj",
-        "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
-        "outputPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\obj\\",
+        "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\PresentationLayer.csproj",
+        "packagesPath": "C:\\Users\\sande\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\PresentationLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sande\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -303,21 +294,20 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.ikdoeict.be/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj": {
-                "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj"
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\DataAccessLayer\\DataAccessLayer.csproj"
               },
-              "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
-                "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj"
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\Globals\\Globals.csproj"
               },
-              "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj": {
-                "projectPath": "D:\\Git\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj"
+              "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj": {
+                "projectPath": "C:\\Users\\sande\\OneDrive - ODISEE\\2e jaar\\C#Programming\\FirstProject\\2122-csharpoo-sanderspaas\\Blok2\\Cyclon\\LogicLayer\\LogicLayer.csproj"
               }
             }
           }

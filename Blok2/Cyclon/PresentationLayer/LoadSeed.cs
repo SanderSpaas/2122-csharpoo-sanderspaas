@@ -3,13 +3,21 @@
 namespace PresentationLayer;
 public partial class LoadSeed : Form
 {
-    public LoadSeed()
+    private readonly ISeedData _seedData;
+    public LoadSeed(ISeedData seedData)
     {
         InitializeComponent();
         Icon = new Icon("Assets/Cyclon.ico");
-        //DataGrid.Rows.Add("Seed", "Naam", "Beschrijving");
-        SeedData seedDataObj = new();
-        DataGrid.DataSource = seedDataObj.ReadSeeds();
+        _seedData = seedData;
+
+        if (_seedData.ReadSeeds() != null)
+        {
+            DataGrid.DataSource = _seedData.ReadSeeds();
+        }
+        else
+        {
+            DataGrid.Visible = false;
+        }
         DataGrid.RowHeadersVisible = false;
         DataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         DataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
@@ -21,8 +29,7 @@ public partial class LoadSeed : Form
         {
             if (DataGrid.SelectedRows.Count == 1)
             {
-                string text = DataGrid.SelectedRows[0].Cells[0].Value.ToString();
-                Clipboard.SetText(text);
+                Clipboard.SetText(DataGrid.SelectedRows[0].Cells[0].Value.ToString());
             }
         }
         Hide();

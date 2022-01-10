@@ -1,6 +1,6 @@
 ﻿namespace LogicLayer;
 
-public class Seed
+public class Seed : ICyclonMain
 {
     public Seed(string seedName, string name, string description)
     {

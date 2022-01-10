@@ -111,12 +111,13 @@
             // 
             // GenerateButton
             // 
-            this.GenerateButton.Location = new System.Drawing.Point(16, 88);
+            this.GenerateButton.BackColor = System.Drawing.Color.Honeydew;
+            this.GenerateButton.Location = new System.Drawing.Point(14, 228);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(150, 29);
             this.GenerateButton.TabIndex = 4;
             this.GenerateButton.Text = "Generate";
-            this.GenerateButton.UseVisualStyleBackColor = true;
+            this.GenerateButton.UseVisualStyleBackColor = false;
             this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
             // 
             // HeightData
@@ -312,14 +313,11 @@
             // 
             this.groupBox1.Controls.Add(this.LoadSeedButton);
             this.groupBox1.Controls.Add(this.SaveSeedButton);
-            this.groupBox1.Controls.Add(this.ShowModeCheckBox);
-            this.groupBox1.Controls.Add(this.ProgressBarCheck);
             this.groupBox1.Controls.Add(this.RandomSeedButton);
             this.groupBox1.Controls.Add(this.ClearButton);
             this.groupBox1.Controls.Add(this.SeedData);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.CancelGenerateButton);
-            this.groupBox1.Controls.Add(this.ShowNumbersCheckbox);
             this.groupBox1.Controls.Add(this.GenerateButton);
             this.groupBox1.Location = new System.Drawing.Point(6, 351);
             this.groupBox1.Name = "groupBox1";
@@ -330,7 +328,7 @@
             // 
             // LoadSeedButton
             // 
-            this.LoadSeedButton.Location = new System.Drawing.Point(16, 321);
+            this.LoadSeedButton.Location = new System.Drawing.Point(12, 123);
             this.LoadSeedButton.Name = "LoadSeedButton";
             this.LoadSeedButton.Size = new System.Drawing.Size(150, 29);
             this.LoadSeedButton.TabIndex = 23;
@@ -340,7 +338,7 @@
             // 
             // SaveSeedButton
             // 
-            this.SaveSeedButton.Location = new System.Drawing.Point(16, 286);
+            this.SaveSeedButton.Location = new System.Drawing.Point(12, 88);
             this.SaveSeedButton.Name = "SaveSeedButton";
             this.SaveSeedButton.Size = new System.Drawing.Size(150, 29);
             this.SaveSeedButton.TabIndex = 22;
@@ -351,7 +349,7 @@
             // ShowModeCheckBox
             // 
             this.ShowModeCheckBox.AutoSize = true;
-            this.ShowModeCheckBox.Location = new System.Drawing.Point(19, 256);
+            this.ShowModeCheckBox.Location = new System.Drawing.Point(13, 649);
             this.ShowModeCheckBox.Name = "ShowModeCheckBox";
             this.ShowModeCheckBox.Size = new System.Drawing.Size(155, 24);
             this.ShowModeCheckBox.TabIndex = 21;
@@ -364,7 +362,7 @@
             this.ProgressBarCheck.AutoSize = true;
             this.ProgressBarCheck.Checked = true;
             this.ProgressBarCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ProgressBarCheck.Location = new System.Drawing.Point(19, 226);
+            this.ProgressBarCheck.Location = new System.Drawing.Point(13, 619);
             this.ProgressBarCheck.Name = "ProgressBarCheck";
             this.ProgressBarCheck.Size = new System.Drawing.Size(150, 24);
             this.ProgressBarCheck.TabIndex = 20;
@@ -384,7 +382,7 @@
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(16, 158);
+            this.ClearButton.Location = new System.Drawing.Point(12, 158);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(150, 29);
             this.ClearButton.TabIndex = 19;
@@ -411,7 +409,7 @@
             // 
             // CancelGenerateButton
             // 
-            this.CancelGenerateButton.Location = new System.Drawing.Point(16, 123);
+            this.CancelGenerateButton.Location = new System.Drawing.Point(14, 193);
             this.CancelGenerateButton.Name = "CancelGenerateButton";
             this.CancelGenerateButton.Size = new System.Drawing.Size(150, 29);
             this.CancelGenerateButton.TabIndex = 15;
@@ -422,7 +420,7 @@
             // ShowNumbersCheckbox
             // 
             this.ShowNumbersCheckbox.AutoSize = true;
-            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(19, 196);
+            this.ShowNumbersCheckbox.Location = new System.Drawing.Point(13, 589);
             this.ShowNumbersCheckbox.Name = "ShowNumbersCheckbox";
             this.ShowNumbersCheckbox.Size = new System.Drawing.Size(167, 24);
             this.ShowNumbersCheckbox.TabIndex = 18;
@@ -431,8 +429,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.ProgressBarCheck);
             this.groupBox2.Controls.Add(this.LayersListGrid);
+            this.groupBox2.Controls.Add(this.ShowNumbersCheckbox);
             this.groupBox2.Controls.Add(this.LayersLabel);
+            this.groupBox2.Controls.Add(this.ShowModeCheckBox);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.SpatialOffsetCounter);
             this.groupBox2.Controls.Add(this.IslandsCheckBox);
@@ -463,11 +464,11 @@
             // LayersListGrid
             // 
             this.LayersListGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LayersListGrid.Location = new System.Drawing.Point(0, 607);
+            this.LayersListGrid.Location = new System.Drawing.Point(0, 681);
             this.LayersListGrid.Name = "LayersListGrid";
             this.LayersListGrid.RowHeadersWidth = 51;
             this.LayersListGrid.RowTemplate.Height = 29;
-            this.LayersListGrid.Size = new System.Drawing.Size(240, 422);
+            this.LayersListGrid.Size = new System.Drawing.Size(240, 348);
             this.LayersListGrid.TabIndex = 28;
             // 
             // LayersLabel

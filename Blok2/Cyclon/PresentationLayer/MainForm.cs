@@ -1,49 +1,45 @@
-﻿using Globals.Interfaces;
+﻿using DataAccessLayer;
 using LogicLayer;
 
 namespace PresentationLayer
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, ISeedData
     {
-        private readonly IData _data;
-        private readonly ILogic _logic;
+        private readonly ICyclonMain _cyclonMain;
         private Map _map = new();
-        private CyclonMain _main = new();
         private Bitmap _bitmap;
         private bool _generated = false;
         private int _tileSize = 0;
-        private readonly Color[] _kleuren = new Color[] { Color.FromArgb(2, 72, 132), Color.FromArgb(3, 100, 184), Color.FromArgb(255, 203, 60), Color.Green, Color.DarkGreen, Color.Gray };
+        private readonly Color[] _kleuren = new Color[] { Color.FromArgb(2, 72, 132), Color.FromArgb(3, 100, 184), Color.FromArgb(255, 203, 60), Color.Green, Color.DarkGreen, Color.FromArgb(104, 104, 104) };
         private readonly int[] _heights = new int[] { 40, 70, 120, 135, 220, 233 };
         private readonly char[] _drawings = new char[] { '█', '█', '█', '█', '█', '█' };
         private List<Layer> _layers = new();
         private CancellationTokenSource _cancellationSource;
         private readonly Random _random = new();
 
-        public MainForm(ILogic logic, IData data)
+        public MainForm(ICyclonMain cyclonMain)
         {
-            _logic = logic;
-            _data = data;
+            _cyclonMain = cyclonMain;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
-            _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
+            _layers = _cyclonMain.MaakLagen(_kleuren, _heights, _drawings);
             SeedData.Text = _random.Next().ToString();
             foreach (object Terrain in Enum.GetValues(typeof(TerrainType)))
             {
                 if (Terrain.ToString() != "Undefined")
                 {
                     LayersComboBox.Items.Add(Terrain);
-
                 }
             }
-            ///dingen gaan juist zetten voor de gridview
+            LayersComboBox.SelectedIndex = 0;
+
+            //dingen gaan juist zetten voor de gridview
             LayersListGrid.DataSource = _layers;
             LayersListGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             LayersListGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             LayersListGrid.BackgroundColor = Color.White;
             LayersListGrid.RowHeadersVisible = false;
             LayersListGrid.ReadOnly = true;
-
-            LayersComboBox.SelectedIndex = 0;
 
             //de map juist gaan sizen
             HeightData.Value = MapModern.Width / (int)TileSizeData.Value;
@@ -62,28 +58,28 @@ namespace PresentationLayer
                 //als de seed text is dan veranderen we het naar een hascode aka een getal
                 seed = SeedData.Text.GetHashCode();
             }
-            _map = _main.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, SeedData.Text, _layers);
+            _map = _cyclonMain.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, SeedData.Text, _layers);
             _tileSize = (int)TileSizeData.Value;
             _bitmap = new Bitmap(_map.Height, _map.Width, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             if (SpatialOffsetCheckBox.Checked)
             {
-                _main.SpatialOffset(_map.NoiseValues, _map, _layers, (int)SpatialOffsetCounter.Value);
+                _cyclonMain.SpatialOffset(_map.NoiseValues, _map, _layers, (int)SpatialOffsetCounter.Value);
             }
             if (IslandsCheckBox.Checked)
             {
-                _main.Islands(_map, _layers);
+                _cyclonMain.Islands(_map, _layers);
             }
             if (InvertCheckBox.Checked)
             {
-                _main.Invert(_map.NoiseValues, _map);
+                _cyclonMain.Invert(_map.NoiseValues, _map);
             }
             if (VariatieCheckBox.Checked)
             {
-                _main.ColorShift(_map, VariatieSlider.Value);
+                _cyclonMain.ColorShift(_map, VariatieSlider.Value);
             }
             if (ShadingCheckBox.Checked)
             {
-                _main.Shading(_map);
+                _cyclonMain.Shading(_map);
             }
             _generated = true;
         }
@@ -98,10 +94,8 @@ namespace PresentationLayer
                 MapLegacy.Clear();
                 _cancellationSource = new();
                 GenerateButton.Enabled = false;
-                var taskDone = await Task.Run(() => LegacyDrawing()); if (taskDone == TaskStatus.RanToCompletion || taskDone == TaskStatus.Canceled)
-                {
-                    GenerateButton.Enabled = true;
-                }
+                await Task.Run(() => LegacyDrawing());
+                GenerateButton.Enabled = true;
             }
         }
         private async void DrawingPanel_Paint(object sender, PaintEventArgs e)
@@ -114,10 +108,8 @@ namespace PresentationLayer
             {
                 GenerateButton.Enabled = false;
                 _cancellationSource = new();
-                var taskDone = await Task.Run(() => ModernDrawing()); if (taskDone == TaskStatus.RanToCompletion || taskDone == TaskStatus.Canceled)
-                {
-                    GenerateButton.Enabled = true;
-                }
+                await Task.Run(() => ModernDrawing());
+                GenerateButton.Enabled = true;
             }
         }
         public TaskStatus LegacyDrawing()
@@ -246,7 +238,7 @@ namespace PresentationLayer
         }
         private void ResetLagenButton_Click(object sender, EventArgs e)
         {
-            _layers = _main.MaakLagen(_kleuren, _heights, _drawings);
+            _layers = _cyclonMain.MaakLagen(_kleuren, _heights, _drawings);
             LayersListGrid.DataSource = _layers;
             LayersListGrid.Update();
             LayersListGrid.Refresh();
@@ -379,12 +371,14 @@ namespace PresentationLayer
 
         private void SaveSeedButton_Click(object sender, EventArgs e)
         {
-            new SaveSeed(SeedData.Text).ShowDialog();
+            ISeedData seedData = new MainForm(_cyclonMain);
+            new SaveSeed(SeedData.Text, seedData).ShowDialog();
         }
 
         private void LoadSeedButton_Click(object sender, EventArgs e)
         {
-            new LoadSeed().ShowDialog();
+            ISeedData seedData = new MainForm(_cyclonMain);
+            new LoadSeed(seedData).ShowDialog();
         }
     }
 }

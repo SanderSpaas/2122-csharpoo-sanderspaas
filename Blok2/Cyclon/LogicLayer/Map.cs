@@ -1,8 +1,6 @@
-﻿using Globals.Interfaces;
-
-namespace LogicLayer
+﻿namespace LogicLayer
 {
-    public class Map : ILogic
+    public class Map : ICyclonMain
     {
         public Map()
         {

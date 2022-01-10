@@ -1,18 +1,13 @@
-﻿using Globals.Interfaces;
-using LogicLayer;
+﻿using LogicLayer;
 using System.Diagnostics;
 using System.Text.Json;
 
 namespace DataAccessLayer
 {
-    public class SeedData : IData
+    public interface ISeedData
     {
         private static List<Seed> _seedData = new();
         private const string _filename = @"Assets/CyclonSeeds.json";
-        public SeedData()
-        {
-
-        }
         public static void CheckOrCreate()
         {
             try
@@ -61,6 +56,7 @@ namespace DataAccessLayer
                 {
                     Debug.WriteLine($"Error reading the file: {_filename}");
                     Debug.WriteLine(e.Message);
+                    return null;
                 }
             }
             return null;
