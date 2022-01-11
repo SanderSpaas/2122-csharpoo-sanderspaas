@@ -15,18 +15,17 @@
 - [x] *Je gebruikt 'atomaire' commits*
 - [x] *Je gebruikt zinvolle commit messages*
 
-* Je commit messages zijn niet altijd voldoende informatief. Beschrijf telkens concreet wat er veranderd is sinds de vorige commit.
+* Je commits zijn niet (altijd) atomair: je hebt commits waarin je meerdere losstaande wijzigingen hebt gedaan.
+
 * Je hebt je .gitIgnore bestand aangemaakt nadat je al commits gedaan hebt vanuit je Visual Studio solution. Daardoor zijn er al een aantal 'ongewenste' bestande gemarkeerd voor tracking door GIT.    
    Op volgende blog kan je informatie vinden over hoe je dat moet oplossen: https://www.codeblocq.com/2016/01/Untrack-files-already-added-to-git-repository-based-on-gitignore/.
    1/1/2022: ik heb dat ondertussen zelf opgelost... 
 
 #### Debugging
 
---> Nog niet beoordeeld (kan enkel interactief gebeuren)
-
-- [ ] *Code stap voor stap uitvoeren*
-- [ ] *Breakpoints*
-- [ ] *De waarde van variabelen bekijken tijdens de uitvoering van je programma*
+- [x] *Code stap voor stap uitvoeren*
+- [x] *Breakpoints*
+- [x] *De waarde van variabelen bekijken tijdens de uitvoering van je programma*
 
 #### Programmeerstijl
 
@@ -68,8 +67,6 @@
 #### Enumerations
 
 - [x] *Declaratie en gebruik van enum-type*
- 
-* Vervang  `if (Terrain.ToString() != "Undefined")` door `if (terrain != TerrainType.Undefined)`.
 
 #### Properties
 
@@ -96,12 +93,15 @@
 - [ ] *Interface implementatie*
 - [ ] *Interface gebruiken als type*
 
+* In de `ICyclonMain` interface geef je ook al een default-implementatie voor de methodes. Behalve in zeer sepcifieke uitzonderlijke situaties is dat absoluut niet de bedoeling!
+
+
 #### Architectuur van een toepassing - Meerlagenmodel
 
-- [ ] *Klasseblibliotheken*
-- [ ] *Meerlagenmodel - 3lagenmodel*
-- [ ] *'Loose coupling' - dependency injection*
-- [ ] *Interface gebruiken als scheiding tussen architectuurlagen*
+- [x] *Klasseblibliotheken*
+- [x] *Meerlagenmodel - 3lagenmodel*
+- [x] *'Loose coupling' - dependency injection*
+- [x] *Interface gebruiken als scheiding tussen architectuurlagen*
 
 * De 'FileSelector' in 'Dataverwerker' omvat interactie met de gebruiker en hoort dus thuis in de presentatielaag.
 * Het lezen uit een bestand (zoals bv. in 'KiesRandomRol') hoort in de datalaag en niet in de logische laag. Hetzéelfde geldt voor alle maniupluaties van bestanden (lezen, schrijven, aanmaken...)
@@ -117,6 +117,8 @@
 --> Nog niet beoordeeld
 
 - [ ] *'value' en 'reference' types, 'deep' versus 'shallow' copy, object cloning*
+
+* De 'copy-constructor' van 'Map' is geen echte copy-constructor: het maakt geen 'deep'-copy van de originele map en gebruikt daarvan ook niet de bestaande noise-levels.
 
 #### Klassen - klassehiërarchie
 
@@ -164,7 +166,7 @@
 - [x] *Event 'Consumer'*
 
 * Je reageert op externe events maar nog niet op eigen events die vanuit je eigen code gestart worden.
-7/01/2022: wat is hier veranderd na bovenstaande feedback?
+7/01/2022, 10/01/2022: wat is hier veranderd na bovenstaande feedback?
 
 #### Concurrent programmatie: Tasks
 
