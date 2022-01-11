@@ -11,6 +11,5 @@
         void ColorShift(Map map, int max);
         void Shading(Map map);
         void Islands(Map map, List<Layer> layers);
-
     }
 }

@@ -18,15 +18,15 @@
         }
 
         //copy constructor
-        //public Map(Map map, float[,] noiseValues)
-        //{
-        //    Width = map.Width;
-        //    Height = map.Height;
-        //    Scale = map.Scale;
-        //    Tiles = map.Tiles;
-        //    Seed = map.Seed;
-        //    NoiseValues = noiseValues;
-        //}
+        public Map(Map map)
+        {
+            Width = map.Width;
+            Height = map.Height;
+            Scale = map.Scale;
+            Tiles = map.Tiles;
+            Seed = map.Seed;
+            NoiseValues = map.NoiseValues;
+        }
 
         public int Width { get; set; }
         public int Height { get; set; }

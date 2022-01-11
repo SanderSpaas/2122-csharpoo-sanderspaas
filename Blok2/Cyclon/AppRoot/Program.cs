@@ -1,3 +1,4 @@
+using LogicLayer;
 using PresentationLayer;
 
 namespace AppRoot
@@ -10,8 +11,9 @@ namespace AppRoot
         [STAThread]
         private static void Main()
         {
+            ICyclonMain cyclonMain = new Map();
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            Application.Run(new MainForm(cyclonMain));
         }
     }
 }

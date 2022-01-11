@@ -9,8 +9,7 @@ namespace PresentationLayer
         private Map _map = new();
         private SeedData _seedData = new();
         private Bitmap _bitmap;
-        private Seed _seed = new();
-        private Seed _seedPrevious = new();
+        private ICyclonMain _cyclonMain;
         private bool _generated = false;
         private bool _taskWorking = false;
         private int _tileSize = 0;
@@ -21,13 +20,13 @@ namespace PresentationLayer
         private CancellationTokenSource _cancellationSource;
         private readonly Random _random = new();
 
-        public MainForm()
+        public MainForm(ICyclonMain cyclonMain)
         {
+            _cyclonMain = cyclonMain;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
             _layers = _map.MaakLagen(_kleuren, _heights, _drawings);
-            _seed = new(_random.Next().ToString(), "Placeholder", "Placeholder");
-            SeedData.Text = _seed.SeedName;
+            SeedData.Text = _random.Next().ToString();
 
             foreach (TerrainType Terrain in Enum.GetValues(typeof(TerrainType)))
             {
@@ -303,7 +302,7 @@ namespace PresentationLayer
         }
         private void RandomSeedButton_Click(object sender, EventArgs e)
         {
-            //_seedPrevious 
+
             SeedData.Text = _random.Next().ToString();
         }
         private void ClearButton_Click(object sender, EventArgs e)
