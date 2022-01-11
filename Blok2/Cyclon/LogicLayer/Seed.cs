@@ -2,6 +2,10 @@
 
 public class Seed
 {
+    public Seed()
+    {
+
+    }
     public Seed(string seedName, string name, string description)
     {
         SeedName = seedName;

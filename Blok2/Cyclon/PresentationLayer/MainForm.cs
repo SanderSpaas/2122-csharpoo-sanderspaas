@@ -3,10 +3,11 @@ using LogicLayer;
 
 namespace PresentationLayer
 {
-    public partial class MainForm : Form, ISeedData
+    public partial class MainForm : Form
     {
-        private readonly ICyclonMain _cyclonMain;
+        //private readonly ICyclonMain _cyclonMain;
         private Map _map = new();
+        private SeedData _seed = new();
         private Bitmap _bitmap;
         private bool _generated = false;
         private int _tileSize = 0;
@@ -19,10 +20,10 @@ namespace PresentationLayer
 
         public MainForm(ICyclonMain cyclonMain)
         {
-            _cyclonMain = cyclonMain;
+            //_cyclonMain = cyclonMain;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
-            _layers = _cyclonMain.MaakLagen(_kleuren, _heights, _drawings);
+            _layers = _map.MaakLagen(_kleuren, _heights, _drawings);
             SeedData.Text = _random.Next().ToString();
             foreach (TerrainType Terrain in Enum.GetValues(typeof(TerrainType)))
             {
@@ -58,28 +59,28 @@ namespace PresentationLayer
                 //als de seed text is dan veranderen we het naar een hascode aka een getal
                 seed = SeedData.Text.GetHashCode();
             }
-            _map = _cyclonMain.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, SeedData.Text, _layers);
+            _map = _map.Generate((int)HeightData.Value, (int)WidthData.Value, (float)ScaleData.Value / 100, SeedData.Text, _layers);
             _tileSize = (int)TileSizeData.Value;
             _bitmap = new Bitmap(_map.Height, _map.Width, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             if (SpatialOffsetCheckBox.Checked)
             {
-                _cyclonMain.SpatialOffset(_map.NoiseValues, _map, _layers, (int)SpatialOffsetCounter.Value);
+                _map.SpatialOffset(_map.NoiseValues, _map, _layers, (int)SpatialOffsetCounter.Value);
             }
             if (IslandsCheckBox.Checked)
             {
-                _cyclonMain.Islands(_map, _layers);
+                _map.Islands(_map, _layers);
             }
             if (InvertCheckBox.Checked)
             {
-                _cyclonMain.Invert(_map.NoiseValues, _map);
+                _map.Invert(_map.NoiseValues, _map);
             }
             if (VariatieCheckBox.Checked)
             {
-                _cyclonMain.ColorShift(_map, VariatieSlider.Value);
+                _map.ColorShift(_map, VariatieSlider.Value);
             }
             if (ShadingCheckBox.Checked)
             {
-                _cyclonMain.Shading(_map);
+                _map.Shading(_map);
             }
             _generated = true;
         }
@@ -234,7 +235,7 @@ namespace PresentationLayer
         }
         private void ResetLagenButton_Click(object sender, EventArgs e)
         {
-            _layers = _cyclonMain.MaakLagen(_kleuren, _heights, _drawings);
+            _layers = _map.MaakLagen(_kleuren, _heights, _drawings);
             LayersListGrid.DataSource = _layers;
             LayersListGrid.Update();
             LayersListGrid.Refresh();
@@ -359,14 +360,12 @@ namespace PresentationLayer
 
         private void SaveSeedButton_Click(object sender, EventArgs e)
         {
-            ISeedData seedData = new MainForm(_cyclonMain);
-            new SaveSeed(SeedData.Text, seedData).ShowDialog();
+            new SaveSeed(SeedData.Text, _seed).ShowDialog();
         }
 
         private void LoadSeedButton_Click(object sender, EventArgs e)
         {
-            ISeedData seedData = new MainForm(_cyclonMain);
-            new LoadSeed(seedData).ShowDialog();
+            new LoadSeed(_seed).ShowDialog();
         }
     }
 }

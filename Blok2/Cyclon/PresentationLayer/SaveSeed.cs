@@ -5,8 +5,8 @@ namespace PresentationLayer;
 public partial class SaveSeed : Form
 {
     private readonly string _seed;
-    private readonly ISeedData _seedData;
-    public SaveSeed(string seed, ISeedData seedData)
+    private readonly SeedData _seedData;
+    public SaveSeed(string seed, SeedData seedData)
     {
         InitializeComponent();
         Icon = new Icon("Assets/Cyclon.ico");
@@ -17,7 +17,7 @@ public partial class SaveSeed : Form
 
     private void SaveSeedButton_Click(object sender, EventArgs e)
     {
-        if (SeedInput.Text != "" && SeedNameInput.Text != "" && SeedDescInput.Text != "")
+        if (!String.IsNullOrWhiteSpace(SeedInput.Text) && !String.IsNullOrWhiteSpace(SeedNameInput.Text) && !String.IsNullOrWhiteSpace(SeedDescInput.Text))
         {
             var seed = new Seed(SeedInput.Text, SeedNameInput.Text, SeedDescInput.Text);
             _seedData.SaveSeed(seed);

@@ -3,8 +3,8 @@
 namespace PresentationLayer;
 public partial class LoadSeed : Form
 {
-    private readonly ISeedData _seedData;
-    public LoadSeed(ISeedData seedData)
+    private SeedData _seedData;
+    public LoadSeed(SeedData seedData)
     {
         InitializeComponent();
         Icon = new Icon("Assets/Cyclon.ico");

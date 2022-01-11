@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace DataAccessLayer
 {
-    public interface ISeedData
+    public class SeedData
     {
         private static List<Seed> _seedData = new();
         private const string _filename = @"Assets/CyclonSeeds.json";
