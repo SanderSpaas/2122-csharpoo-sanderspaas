@@ -1,18 +1,19 @@
-﻿namespace LogicLayer;
-
-public class Layer
+﻿namespace LogicLayer
 {
-    public Layer(TerrainType naamLaag, Color kleur, int height, char teken)
+    public class Layer
     {
-        NaamLaag = naamLaag;
-        Kleur = kleur;
-        Height = height;
-        Teken = teken;
+        public Layer(TerrainType naamLaag, Color kleur, int height, char teken)
+        {
+            NaamLaag = naamLaag;
+            Kleur = kleur;
+            Height = height;
+            Teken = teken;
+        }
+
+        public TerrainType NaamLaag { get; set; }
+        public Color Kleur { get; set; }
+        public char Teken { get; set; }
+        public int Height { get; set; }
+
     }
-
-    public TerrainType NaamLaag { get; set; }
-    public Color Kleur { get; set; }
-    public char Teken { get; set; }
-    public int Height { get; set; }
-
 }

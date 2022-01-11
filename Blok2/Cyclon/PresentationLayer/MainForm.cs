@@ -25,7 +25,7 @@ namespace PresentationLayer
             _cyclonMain = cyclonMain;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
-            _layers = _map.MaakLagen(_kleuren, _heights, _drawings);
+            _layers = _map.MakeLayers(_kleuren, _heights, _drawings);
             SeedData.Text = _random.Next().ToString();
 
             foreach (TerrainType Terrain in Enum.GetValues(typeof(TerrainType)))
@@ -253,7 +253,7 @@ namespace PresentationLayer
         }
         private void ResetLagenButton_Click(object sender, EventArgs e)
         {
-            _layers = _map.MaakLagen(_kleuren, _heights, _drawings);
+            _layers = _map.MakeLayers(_kleuren, _heights, _drawings);
             LayersListGrid.DataSource = _layers;
             LayersListGrid.Update();
             LayersListGrid.Refresh();

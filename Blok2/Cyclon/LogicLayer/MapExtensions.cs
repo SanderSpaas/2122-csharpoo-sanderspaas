@@ -1,42 +1,43 @@
-﻿namespace LogicLayer;
-
-public static class MapExtensions
+﻿namespace LogicLayer
 {
-    public static void PrintTerrainOld(this Map map, RichTextBox box, int x, int y, int fontSize)
+    public static class MapExtensions
     {
-        AppendText(map, box, fontSize, x, y, false);
-    }
-    public static void PrintTerrainModern(this Map map, Graphics paint, int x, int y, int tile, CheckBox checkDebug)
-    {
-        paint.DrawRectangle(new Pen(map.Tiles[x, y].Color, tile), x * tile, y * tile, tile, tile);
-        if (checkDebug.Checked)
+        public static void PrintTerrainOld(this Map map, RichTextBox box, int x, int y, int fontSize)
         {
-            paint.DrawString(((int)map.NoiseValues[x, y]).ToString(), new Font("Arial", tile / 6), new SolidBrush(Color.Black), x * tile, y * tile);
+            AppendText(map, box, fontSize, x, y, false);
         }
-    }
-    public static void AppendText(this Map map, RichTextBox box, int fontSize, int x, int y, bool newline)
-    {
-        if (box.InvokeRequired)
+        public static void PrintTerrainModern(this Map map, Graphics paint, int x, int y, int tile, CheckBox checkDebug)
         {
-            box.Invoke(new MethodInvoker(delegate
+            paint.DrawRectangle(new Pen(map.Tiles[x, y].Color, tile), x * tile, y * tile, tile, tile);
+            if (checkDebug.Checked)
             {
-                var currentFont = box.SelectionFont;
-                var newFontStyle = currentFont.Style | FontStyle.Bold;
-                box.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFontStyle);
-                box.SelectionStart = box.TextLength;
-                box.SelectionLength = 0;
-                if (newline)
+                paint.DrawString(((int)map.NoiseValues[x, y]).ToString(), new Font("Arial", tile / 6), new SolidBrush(Color.Black), x * tile, y * tile);
+            }
+        }
+        public static void AppendText(this Map map, RichTextBox box, int fontSize, int x, int y, bool newline)
+        {
+            if (box.InvokeRequired)
+            {
+                box.Invoke(new MethodInvoker(delegate
                 {
-                    box.SelectionColor = Color.Blue;
-                    box.AppendText("\r\n");
-                }
-                else
-                {
-                    box.SelectionColor = map.Tiles[x, y].Color;
-                    box.AppendText(map.Tiles[x, y].Laag.Teken.ToString());
-                }
-                box.SelectionColor = box.ForeColor;
-            }));
+                    var currentFont = box.SelectionFont;
+                    var newFontStyle = currentFont.Style | FontStyle.Bold;
+                    box.SelectionFont = new Font(currentFont.FontFamily, fontSize, newFontStyle);
+                    box.SelectionStart = box.TextLength;
+                    box.SelectionLength = 0;
+                    if (newline)
+                    {
+                        box.SelectionColor = Color.Blue;
+                        box.AppendText("\r\n");
+                    }
+                    else
+                    {
+                        box.SelectionColor = map.Tiles[x, y].Color;
+                        box.AppendText(map.Tiles[x, y].Laag.Teken.ToString());
+                    }
+                    box.SelectionColor = box.ForeColor;
+                }));
+            }
         }
     }
 }

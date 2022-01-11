@@ -60,7 +60,7 @@
             return map;
         }
 
-        public List<Layer> MaakLagen(Color[] kleuren, int[] hoogtes, char[] drawings)
+        public List<Layer> MakeLayers(Color[] kleuren, int[] hoogtes, char[] drawings)
         {
             var layers = new List<Layer>();
             int index = 0;
@@ -89,7 +89,7 @@
             };
         }
 
-        public float[,] GenerateNoise(string seed, int widht, int height, float scale)
+        public float[,] GenerateNoise(string seed, int width, int height, float scale)
         {
             if (!Int32.TryParse(seed, out int seedNumber))
             {
@@ -97,7 +97,7 @@
                 seedNumber = seed.GetHashCode();
             }
             SimplexNoise.Noise.Seed = seedNumber;
-            return SimplexNoise.Noise.Calc2D(widht, height, scale);
+            return SimplexNoise.Noise.Calc2D(width, height, scale);
         }
         public void SpatialOffset(float[,] data, Map map, List<Layer> layers, int aantalKeer)
         {
