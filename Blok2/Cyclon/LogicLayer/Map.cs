@@ -2,7 +2,7 @@
 {
     public class Map : CircleGradient, ICyclonMain
     {
-        public Map()
+        public Map() : this(200, 200, 3.56f, "seed", new float[4, 2] { { 1.0f, 8.0f }, { 1.1f, 8.1f }, { 1.2f, 8.2f }, { 1.3f, 8.3f } })
         {
         }
 
