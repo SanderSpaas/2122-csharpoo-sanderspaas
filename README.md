@@ -16,7 +16,7 @@ Maakt de Spion een fout en verraadt deze zich, dan kan de rest van de groep winn
 Weet de spion gedurende het spel 100 % zeker wat de locatie is, mag hij zeggen dat hij de spion is en de locatie noemen. Klopt het? Dan wint de spion. Na afloop van de 8 minuten krijgt de groep nog één kans om iemand unaniem te beschuldigen. Is dat de spion? Dan wint de groep, anders wint de spion.
 
 ## Project Cyclon ## 
-![image.png](./image.png)
+![image-1.png](./image-1.png)
 Project Cyclon is een tool om maps mee te genereren.
 Dit kan je momenteel met 2 tekenstijlen en een heleboel parameters.
 De maps gaan gegenereerd worden op basis van simplexnoise.
