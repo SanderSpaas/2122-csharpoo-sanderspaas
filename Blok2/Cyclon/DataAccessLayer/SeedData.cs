@@ -6,9 +6,9 @@ namespace DataAccessLayer
 {
     public class SeedData
     {
-        private static List<Seed> _seedData = new();
+        private List<Seed> _seedData = new();
         private const string _filename = @"Assets/CyclonSeeds.json";
-        public static void CheckOrCreate()
+        public void CheckOrCreate()
         {
             try
             {

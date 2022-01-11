@@ -1,15 +1,16 @@
 ﻿using DataAccessLayer;
 using LogicLayer;
+using System.Diagnostics;
 
 namespace PresentationLayer
 {
     public partial class MainForm : Form
     {
-        //private readonly ICyclonMain _cyclonMain;
         private Map _map = new();
         private SeedData _seed = new();
         private Bitmap _bitmap;
         private bool _generated = false;
+        private bool _taskWorking = false;
         private int _tileSize = 0;
         private readonly Color[] _kleuren = new Color[] { Color.FromArgb(2, 72, 132), Color.FromArgb(3, 100, 184), Color.FromArgb(255, 203, 60), Color.Green, Color.DarkGreen, Color.FromArgb(104, 104, 104) };
         private readonly int[] _heights = new int[] { 40, 70, 120, 135, 220, 233 };
@@ -18,9 +19,8 @@ namespace PresentationLayer
         private CancellationTokenSource _cancellationSource;
         private readonly Random _random = new();
 
-        public MainForm(ICyclonMain cyclonMain)
+        public MainForm()
         {
-            //_cyclonMain = cyclonMain;
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
             _layers = _map.MaakLagen(_kleuren, _heights, _drawings);
@@ -95,8 +95,10 @@ namespace PresentationLayer
                 MapLegacy.Clear();
                 _cancellationSource = new();
                 GenerateButton.Enabled = false;
+                _taskWorking = true;
                 await Task.Run(() => LegacyDrawing());
                 GenerateButton.Enabled = true;
+                _taskWorking = false;
             }
         }
         private async void DrawingPanel_Paint(object sender, PaintEventArgs e)
@@ -109,66 +111,79 @@ namespace PresentationLayer
             {
                 GenerateButton.Enabled = false;
                 _cancellationSource = new();
+                _taskWorking = true;
                 await Task.Run(() => ModernDrawing());
                 GenerateButton.Enabled = true;
+                _taskWorking = false;
             }
         }
         public void LegacyDrawing()
         {
-            MapProgress.Invoke(new MethodInvoker(delegate
+
+            if (_taskWorking)
             {
-                MapProgress.Maximum = _map.Height * _map.Width;
-            }));
-            int counter = 0;
-            for (int y = 0; y < _map.Height; y++)
-            {
-                for (int x = 0; x < _map.Width; x++)
+                Debug.WriteLine("LegacyDrawing started");
+                MapProgress.Invoke(new MethodInvoker(delegate
                 {
-                    try
+                    MapProgress.Maximum = _map.Height * _map.Width;
+                }));
+                int counter = 0;
+                for (int y = 0; y < _map.Height; y++)
+                {
+                    for (int x = 0; x < _map.Width; x++)
                     {
-                        _cancellationSource.Token.ThrowIfCancellationRequested();
+                        try
+                        {
+                            _cancellationSource.Token.ThrowIfCancellationRequested();
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            _generated = false;
+                            break;
+                        }
+                        MapExtensions.PrintTerrainOld(_map, MapLegacy, x, y, _tileSize);
+                        MapProgress.Invoke(new MethodInvoker(delegate
+                        {
+                            MapProgress.Value = counter++;
+                        }));
                     }
-                    catch (OperationCanceledException)
-                    {
-                        _generated = false;
-                    }
-                    MapExtensions.PrintTerrainOld(_map, MapLegacy, x, y, _tileSize);
-                    MapProgress.Invoke(new MethodInvoker(delegate
-                    {
-                        MapProgress.Value = counter++;
-                    }));
+                    MapExtensions.AppendText(_map, MapLegacy, _tileSize, 0, 0, true);
                 }
-                MapExtensions.AppendText(_map, MapLegacy, _tileSize, 0, 0, true);
+                _generated = false;
             }
-            _generated = false;
         }
         public void ModernDrawing()
         {
-            MapProgress.Invoke(new MethodInvoker(delegate
+            if (_taskWorking)
             {
-                MapProgress.Maximum = _map.Height * _map.Width;
-            }));
-            int counter = 0;
-            for (int y = 0; y < _map.Height; y++)
-            {
-                for (int x = 0; x < _map.Width; x++)
+                Debug.WriteLine("ModernDrawing started");
+                MapProgress.Invoke(new MethodInvoker(delegate
                 {
-                    try
+                    MapProgress.Maximum = _map.Height * _map.Width;
+                }));
+                int counter = 0;
+                for (int y = 0; y < _map.Height; y++)
+                {
+                    for (int x = 0; x < _map.Width; x++)
                     {
-                        _cancellationSource.Token.ThrowIfCancellationRequested();
+                        try
+                        {
+                            _cancellationSource.Token.ThrowIfCancellationRequested();
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            _generated = false;
+                            break;
+                        }
+                        MapExtensions.PrintTerrainModern(_map, MapModern.CreateGraphics(), x, y, _tileSize, ShowNumbersCheckbox);
+                        MapProgress.Invoke(new MethodInvoker(delegate
+                        {
+                            MapProgress.Value = counter++;
+                        }));
                     }
-                    catch (OperationCanceledException)
-                    {
-                        _generated = false;
-                    }
-                    MapExtensions.PrintTerrainModern(_map, MapModern.CreateGraphics(), x, y, _tileSize, ShowNumbersCheckbox);
-                    MapProgress.Invoke(new MethodInvoker(delegate
-                    {
-                        MapProgress.Value = counter++;
-                    }));
                 }
+                _generated = false;
             }
-            _generated = false;
         }
 
         private void ColorPickerButton_Click(object sender, EventArgs e)
@@ -252,6 +267,7 @@ namespace PresentationLayer
         {
             if (_cancellationSource != null)
             {
+                Debug.WriteLine("Task Canceled");
                 _cancellationSource.Cancel();
                 _generated = false;
                 MapProgress.Value = 0;
