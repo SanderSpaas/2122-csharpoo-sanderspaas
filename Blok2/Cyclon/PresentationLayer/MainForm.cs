@@ -7,8 +7,10 @@ namespace PresentationLayer
     public partial class MainForm : Form
     {
         private Map _map = new();
-        private SeedData _seed = new();
+        private SeedData _seedData = new();
         private Bitmap _bitmap;
+        private Seed _seed = new();
+        private Seed _seedPrevious = new();
         private bool _generated = false;
         private bool _taskWorking = false;
         private int _tileSize = 0;
@@ -24,7 +26,9 @@ namespace PresentationLayer
             InitializeComponent();
             Icon = new Icon("Assets/Cyclon.ico");
             _layers = _map.MaakLagen(_kleuren, _heights, _drawings);
-            SeedData.Text = _random.Next().ToString();
+            _seed = new(_random.Next().ToString(), "Placeholder", "Placeholder");
+            SeedData.Text = _seed.SeedName;
+
             foreach (TerrainType Terrain in Enum.GetValues(typeof(TerrainType)))
             {
                 if (Terrain != TerrainType.Undefined)
@@ -299,6 +303,7 @@ namespace PresentationLayer
         }
         private void RandomSeedButton_Click(object sender, EventArgs e)
         {
+            //_seedPrevious 
             SeedData.Text = _random.Next().ToString();
         }
         private void ClearButton_Click(object sender, EventArgs e)
@@ -376,12 +381,12 @@ namespace PresentationLayer
 
         private void SaveSeedButton_Click(object sender, EventArgs e)
         {
-            new SaveSeed(SeedData.Text, _seed).ShowDialog();
+            new SaveSeed(SeedData.Text, _seedData).ShowDialog();
         }
 
         private void LoadSeedButton_Click(object sender, EventArgs e)
         {
-            new LoadSeed(_seed).ShowDialog();
+            new LoadSeed(_seedData).ShowDialog();
         }
     }
 }

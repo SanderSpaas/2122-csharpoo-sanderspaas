@@ -12,6 +12,7 @@ public class Seed
         Name = name;
         Description = description;
     }
+
     public string SeedName { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }

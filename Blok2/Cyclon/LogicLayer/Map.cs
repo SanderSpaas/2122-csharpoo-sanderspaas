@@ -1,6 +1,6 @@
 ﻿namespace LogicLayer
 {
-    public class Map : ICyclonMain
+    public class Map : CircleGradient, ICyclonMain
     {
         public Map()
         {
@@ -161,7 +161,7 @@
         }
         public void Islands(Map map, List<Layer> layers)
         {
-            float[,] tempArray = CircleGradient(map);
+            float[,] tempArray = MakeCircleGradient(map);
             for (int y = 0; y < map.Height; y++)
             {
                 for (int x = 0; x < map.Width; x++)
@@ -175,20 +175,6 @@
                     map.Tiles[x, y].Color = map.Tiles[x, y].Laag.Kleur;
                 }
             }
-        }
-        public float[,] CircleGradient(Map map)
-        {
-            float[,] data = new float[map.Width, map.Height];
-            for (int y = 0; y < map.Height; y++)
-            {
-                for (int x = 0; x < map.Width; x++)
-                {
-                    float distanceX = (float)Math.Pow(map.Width / 2 - x, 2);
-                    float distanceY = (float)Math.Pow(map.Height / 2 - y, 2);
-                    data[x, y] = (float)Math.Sqrt(distanceX + distanceY) / map.Width * 510;
-                }
-            }
-            return data;
         }
     }
 }
