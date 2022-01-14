@@ -17,9 +17,6 @@
 
 * Je commits zijn niet (altijd) atomair: je hebt commits waarin je meerdere losstaande wijzigingen hebt gedaan.
 
-* Je hebt je .gitIgnore bestand aangemaakt nadat je al commits gedaan hebt vanuit je Visual Studio solution. Daardoor zijn er al een aantal 'ongewenste' bestande gemarkeerd voor tracking door GIT.    
-   Op volgende blog kan je informatie vinden over hoe je dat moet oplossen: https://www.codeblocq.com/2016/01/Untrack-files-already-added-to-git-repository-based-on-gitignore/.
-   1/1/2022: ik heb dat ondertussen zelf opgelost... 
 
 #### Debugging
 
@@ -114,21 +111,19 @@
 
 #### 'Value' en 'Reference' types, cloning van objecten
 
---> Nog niet beoordeeld
+- [x] 'value' en 'reference' types, 'deep' versus 'shallow' copy, object cloning*
 
-- [ ] *'value' en 'reference' types, 'deep' versus 'shallow' copy, object cloning*
-
-* De 'copy-constructor' van 'Map' is geen echte copy-constructor: het maakt geen 'deep'-copy van de originele map en gebruikt daarvan ook niet de bestaande noise-levels.
+* De 'copy-constructor' van 'Map' is geen echte copy-constructor: het maakt geen 'deep'-copy van de originele map: de nieuwe Map-instantie heeft een referentie naar hetzelfde 'NoiseValues' object als de originele (het is dus een 'shallow' copy).
 
 #### Klassen - klassehiërarchie
 
 - [x] *Klasse declaratie*
 - [x] *constructor overloading*
-- [ ] *Klasse-hiërarchie - subklasse - base-constructor*
+- [x] *Klasse-hiërarchie - subklasse - base-constructor*
 - [ ] *Klasse-hiërarchie - virtual methods - override*
-- [ ] *Abstracte klasse + implementatie*
+- [x] *Abstracte klasse + implementatie*
 
-* Je gebruikt constructor overloading voor 'Map' maar de default-constructor geeft een map die niet volledig geïnitialiseerd is (en die ook niet zinvol gebruikt wordt).*
+* Je abstracte klasse 'circlegradient' is niet zo zinvol binnen je toepassing: er zijn geen abstracte of virtuele methdoes, er is geen specifieke base-constructor, er is slechts één subklasse.
 
 #### Structs
 
