@@ -26,29 +26,12 @@
 
 #### Programmeerstijl
 
-- [ ] *Huisregels voor programmeerstijl volgen*
+- [x] *Huisregels voor programmeerstijl volgen*
  
 * Je volgt niet altijd de regels voor naamgeving.
    * Gebruik geen underscores in namen (pas de automatisch gegenereerde namen met underscores aan).
 * Schrijf geen te lange methoden (richtlijn ~20 lijnen).
-* Gebruik voor alle velden, klassen, methodes, properties steeds access modifiers (public, private...).
-* Hanteer de gevraagde volgorde voor de verschillende onderdelen van je klasse (properties na de velden en voor de constructor).
 * Vermijd overbodige blanco lijnen (bv. twee achter elkaar of een blanco lijn tussen twee accolades).
-* Werk niet met statische methodes of variabelen tenzij daar een heel goede reden voor is.
-
-* Je hebt de 'ILogic' interface leeg gelaten maar implementeert die wel in `CyclonMain`, `Map`en `Tile`. Waarom???
-* Zet geen twee statements op één lijn (zoals in 'MainForm.StartDrawing').
-
-* Volgende code is niet echt zinvol:    
-    ```csharp
-       var taskDone = await Task.Run(() => ModernDrawing());    
-       if (taskDone == TaskStatus.RanToCompletion || taskDone == TaskStatus.Canceled)
-       {
-          GenerateButton.Enabled = true;
-       }
-    ```
-    Als er bij de await geen exception optreedt dan kan de TaskStatus enkel 'RanToCompletion' of 'Canceled' zijn.
-
 * Tip: hou rekening met de messages en warnings uit de 'Error List'.
 
 
@@ -84,14 +67,9 @@
 
 #### Interfaces
 
---> Nog niet beoordeeld
-
-- [ ] *Interface declaratie*
-- [ ] *Interface implementatie*
-- [ ] *Interface gebruiken als type*
-
-* In de `ICyclonMain` interface geef je ook al een default-implementatie voor de methodes. Behalve in zeer sepcifieke uitzonderlijke situaties is dat absoluut niet de bedoeling!
-
+- [x] *Interface declaratie*
+- [x] *Interface implementatie*
+- [x] *Interface gebruiken als type*
 
 #### Architectuur van een toepassing - Meerlagenmodel
 
@@ -145,7 +123,7 @@
 
 - [x] *Lambda expressions*
 
-* Je gebruikt enkel heel elementaire lambda expressionz (om je Tasks te starten).
+* Je gebruikt enkel heel elementaire lambda expressions (om je Tasks te starten).
 
 #### Language Integrated Query (Linq)
 
@@ -169,8 +147,6 @@
 - [x] *Cross-thread' interactie vanuit een Task met de userinterface*
 - [ ] *Exceptions in Tasks*
 - [ ] *Parallel loops*
-
-* Het is niet de bedoeling dat je zelf 'TaskStatus' waarden doorgeeft uit een methode. Dat wordt door .Net op een specifieke manier gebruikt om de toestand van een Task aan te geven.
 
  
 #### Concurrent programming: Task synchronisation
@@ -202,11 +178,6 @@
 
 - [x] *Zinvol gebruik statische klassen, methoden, velden*
 
-* Het gebruik van het statisch '_seedData' veld in 'SeedData' is een antipattern! Maak daar gewoon instance veld van en zorg dat je maar één instantie van 'SeedData' maakt die je dan via de constructor injecteert op alle plaatsen waar je die nodig hebt.
-* Het heeft geen enkele meerwaarde dat `CheckOrCreate` een statische methode is. Ook dat is een antipattern.
-* 
 #### Code Reviews
 
---> Nog niet beoordeeld
-
-- [ ] *Code reviews*
+- [x] *Code reviews*
